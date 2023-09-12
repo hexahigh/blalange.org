@@ -1,44 +1,46 @@
 <script>
-    (function () {
-        const second = 1000,
-            minute = second * 60,
-            hour = minute * 60,
-            day = hour * 24;
+    import { onMount } from "svelte";
+    onMount(() => {
+        (function () {
+            const second = 1000,
+                minute = second * 60,
+                hour = minute * 60,
+                day = hour * 24;
 
             let today = new Date();
             let yyyy = today.getFullYear();
             let monthDay = "10/16/";
             let date = monthDay + yyyy;
 
-        const countDown = new Date(date).getTime(),
-            x = setInterval(function () {
-                const now = new Date().getTime(),
-                    distance = countDown - now;
+            const countDown = new Date(date).getTime(),
+                x = setInterval(function () {
+                    const now = new Date().getTime(),
+                        distance = countDown - now;
 
-                (document.getElementById("days").innerText = Math.floor(
-                    distance / day
-                )),
-                    (document.getElementById("hours").innerText = Math.floor(
-                        (distance % day) / hour
+                    (document.getElementById("days").innerText = Math.floor(
+                        distance / day
                     )),
-                    (document.getElementById("minutes").innerText = Math.floor(
-                        (distance % hour) / minute
-                    )),
-                    (document.getElementById("seconds").innerText = Math.floor(
-                        (distance % minute) / second
-                    ));
+                        (document.getElementById("hours").innerText =
+                            Math.floor((distance % day) / hour)),
+                        (document.getElementById("minutes").innerText =
+                            Math.floor((distance % hour) / minute)),
+                        (document.getElementById("seconds").innerText =
+                            Math.floor((distance % minute) / second));
 
-                //do something later when date is reached
-                if (distance < 0) {
-                    document.getElementById("headline").innerText =
-                        "Kukfest is currently happening!";
-                    document.getElementById("countdown").style.display = "none";
-                    document.getElementById("content").style.display = "block";
-                    clearInterval(x);
-                }
-                //seconds
-            }, 0);
-    })();
+                    //do something later when date is reached
+                    if (distance < 0) {
+                        document.getElementById("headline").innerText =
+                            "Kukfest is currently happening!";
+                        document.getElementById("countdown").style.display =
+                            "none";
+                        document.getElementById("content").style.display =
+                            "block";
+                        clearInterval(x);
+                    }
+                    //seconds
+                }, 0);
+        })();
+    });
 </script>
 
 <svelte:head />
