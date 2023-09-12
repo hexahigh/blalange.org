@@ -1,65 +1,63 @@
 <script>
     import { onMount } from "svelte";
+    let headline = "Nedtelling til Kukfest 23.1", countdownVisible = true, contentVisible = false;
+
+    let days = "00", hours = "00", minutes = "00", seconds = "00"
+
     onMount(() => {
-        (function () {
-            const second = 1000,
-                minute = second * 60,
-                hour = minute * 60,
-                day = hour * 24;
+        const second = 1000,
+            minute = second * 60,
+            hour = minute * 60,
+            day = hour * 24;
 
-            let today = new Date();
-            let yyyy = today.getFullYear();
-            let monthDay = "10/16/";
-            let date = monthDay + yyyy;
+        let today = new Date();
+        let yyyy = today.getFullYear();
+        let monthDay = "10/16/";
+        let time = "16:16:00";
+        let date = monthDay + yyyy + " " + time;
 
-            const countDown = new Date(date).getTime(),
-                x = setInterval(function () {
-                    const now = new Date().getTime(),
-                        distance = countDown - now;
+        const countDown = new Date(date).getTime(),
+            x = setInterval(function () {
+                const now = new Date().getTime(),
+                    distance = countDown - now;
 
-                    (document.getElementById("days").innerText = Math.floor(
-                        distance / day
-                    )),
-                        (document.getElementById("hours").innerText =
-                            Math.floor((distance % day) / hour)),
-                        (document.getElementById("minutes").innerText =
-                            Math.floor((distance % hour) / minute)),
-                        (document.getElementById("seconds").innerText =
-                            Math.floor((distance % minute) / second));
+                days = Math.floor(distance / day);
+                hours = Math.floor((distance % day) / hour);
+                minutes = Math.floor((distance % hour) / minute);
+                seconds = Math.floor((distance % minute) / second);
 
-                    //do something later when date is reached
-                    if (distance < 0) {
-                        document.getElementById("headline").innerText =
-                            "Kukfest is currently happening!";
-                        document.getElementById("countdown").style.display =
-                            "none";
-                        document.getElementById("content").style.display =
-                            "block";
-                        clearInterval(x);
-                    }
-                    //seconds
-                }, 0);
-        })();
+                //do something later when date is reached
+                if (distance < 0) {
+                    headline = "Kukfest skjer nå!";
+                    countdownVisible = false;
+                    contentVisible = true;
+                    clearInterval(x);
+                }
+                //seconds
+            }, 0);
     });
 </script>
 
-<svelte:head />
 
 <div class="container">
-    <h1 id="headline">Countdown to Kukfest 23.1</h1>
+    <h1>{headline}</h1>
+    {#if countdownVisible}
     <div id="countdown">
         <ul>
-            <li><span id="days" />days</li>
-            <li><span id="hours" />Hours</li>
-            <li><span id="minutes" />Minutes</li>
-            <li><span id="seconds" />Seconds</li>
+            <li><span>{days}</span>days</li>
+            <li><span>{hours}</span>Hours</li>
+            <li><span>{minutes}</span>Minutes</li>
+            <li><span>{seconds}</span>Seconds</li>
         </ul>
     </div>
+    {/if}
+    {#if contentVisible}
     <div id="content" class="emoji">
         <span>🥳</span>
         <span>🎉</span>
         <span>🎂</span>
     </div>
+    {/if}
 </div>
 
 <style>

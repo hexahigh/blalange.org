@@ -17,7 +17,8 @@
             {
                 url: "https://kukfest.eu/img.jpg",
                 alt: "Kukfest logo",
-            },],
+            },
+        ],
         siteName: "Kukfest",
     }}
 />

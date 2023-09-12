@@ -12,7 +12,7 @@
         <li id="nav-menu-li">
             <button id="nav-menu"
                 ><img
-                    src="/data/images/menu.svg"
+                    src="/img/menu.svg"
                     alt="menu"
                     id="nav-menu-img"
                 /></button
