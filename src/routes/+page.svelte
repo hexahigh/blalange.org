@@ -1,5 +1,6 @@
 <script>
     import Countdown from "./countdown.svelte";
+    import Nav from "./Nav.svelte";
     import { MetaTags } from "svelte-meta-tags";
 </script>
 
@@ -9,20 +10,20 @@
     description="Kukfest har masse kuk"
     canonical="https://kukfest.eu"
     openGraph={{
-        url: "https://www.url.ie/a",
+        url: "https://kukfest.eu",
         title: "Kukfest",
         description: "Mye kuk",
         images: [
             {
-                url: "https://www.example.ie/og-image-01.jpg",
-                width: 800,
-                height: 600,
-                alt: "Og Image Alt",
+                url: "https://kukfest.eu/img.jpg",
+                alt: "Kukfest logo",
             },],
         siteName: "Kukfest",
     }}
 />
 
 <svelte:head />
+
+<Nav />
 
 <Countdown />
