@@ -1,5 +1,4 @@
 <script>
-    import { page } from "$app/stores";
 </script>
 
 <nav>
@@ -32,6 +31,59 @@
     @font-face {
         font-family: Broadway-custom;
         src: url(/font/broadway%20regular.ttf);
+    }
+
+    :root {
+        --text-color: #000000;
+        --nav-link-inactive: #000000;
+        --body-bg: #ffffff;
+        --nav-link-hover: #000000;
+    }
+
+    nav {
+        padding: 1.5rem 5vw;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+    }
+
+    nav > img {
+        height: 45px;
+        width: 45px;
+    }
+
+    nav > p {
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+
+    nav ul {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        gap: 3vw;
+        z-index: 1;
+    }
+
+    #nav-mobile {
+        display: none;
+    }
+
+    nav ul li {
+        list-style: none;
+        font-size: 1.1rem;
+    }
+
+    nav ul li a {
+        color: var(--nav-link-inactive);
+    }
+
+    nav ul li a:hover {
+        color: var(--nav-link-hover);
+    }
+
+    #nav-active {
+        color: var(--text-color);
     }
     #nav-active {
         color: #000000;
