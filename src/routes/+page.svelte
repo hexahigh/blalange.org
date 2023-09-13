@@ -1,7 +1,6 @@
 <script>
     import Countdown from "./countdown.svelte";
     import Nav from "./Nav.svelte";
-    import Confetti from "./Confetti.svelte";
     import { MetaTags } from "svelte-meta-tags";
 </script>
 
@@ -26,8 +25,6 @@
 <svelte:head>
 
 </svelte:head>
-
-<Confetti />
 
 <Nav />
 
