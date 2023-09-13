@@ -1,7 +1,6 @@
 <script>
     import Countdown from "./countdown.svelte";
     import Nav from "./Nav.svelte";
-    import Particle from "./Particle.svelte";
     import { MetaTags } from "svelte-meta-tags";
 </script>
 
@@ -28,7 +27,5 @@
 </svelte:head>
 
 <Nav />
-
-<Particle />
 
 <Countdown />
