@@ -1,8 +1,9 @@
 <script>
+    import * as conf from '$lib/js/conf.js';
 </script>
 
 <nav>
-    <img src="/img.jpg" alt="Kukfest logo" />
+    <img src="/img.jpg" alt="Kukfest logo" on:click={fireAll} />
     <p class="text" style="font-family: Broadway-custom;">Kukfest</p>
     <ul id="nav-pc">
         <li><a href="/">Home</a></li>
