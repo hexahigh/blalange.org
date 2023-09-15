@@ -1,12 +1,16 @@
 <script>
     import * as conf from '$lib/js/conf.js';
+    import { page } from '$app/stores';
+    let path;
+
+    $: path = $page.url.pathname;
 </script>
 
 <nav>
     <img src="/img.jpg" alt="Kukfest logo" on:click={conf.fireAll} class="rounded-lg" />
-    <p class="text" style="font-family: Broadway-custom;">Kukfest</p>
+    <p class="krona">Kukfest</p>
     <ul id="nav-pc">
-        <li><a href="/">Home</a></li>
+        <li class={path === '/' ? 'active' : ''}><a href="/">Home</a></li>
         <li><a href="https://boofdev.eu">Contact</a></li>
     </ul>
     <ul id="nav-mobile">
@@ -32,6 +36,11 @@
     @font-face {
         font-family: Broadway-custom;
         src: url(/font/broadway%20regular.ttf);
+    }
+
+    nav li.active {
+        border-bottom: solid;
+        border-color: #000000;
     }
 
     :root {
