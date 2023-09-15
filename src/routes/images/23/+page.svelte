@@ -1,16 +1,23 @@
 
-<div class="row">
-    <div class="column">
-    </div>
-    <div class="column">
-    </div>
-    <div class="column">
-    </div>
-    <div class="column">
-    </div>
-  </div>
+<div class="main">
+    <div class="row">
+        <div class="column">
+        </div>
+        <div class="column">
+        </div>
+        <div class="column">
+        </div>
+        <div class="column">
+        </div>
+      </div>
+</div>
 
   <style>
+
+    .main {
+        background-color: #ffffff;
+    }
+
     .row {
   display: flex;
   flex-wrap: wrap;
