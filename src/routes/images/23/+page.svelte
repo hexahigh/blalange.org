@@ -1,3 +1,11 @@
+<script>
+    import Nav from "../../Nav.svelte";
+    import ImagesNav from "../../components/images-nav.svelte";
+</script>
+
+<Nav />
+<ImagesNav />
+
 <div class="main">
     <div class="row">
         <div class="column">
