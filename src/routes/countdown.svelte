@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    let headline = "Nedtelling til Kukfest 23.1", countdownVisible = true, contentVisible = false;
+    let headline = "Nedtelling til ", countdownVisible = true, contentVisible = false;
 
     let days = "00", hours = "00", minutes = "00", seconds = "00"
 
@@ -28,7 +28,7 @@
 
                 //do something later when date is reached
                 if (distance < 0) {
-                    headline = "Kukfest skjer nå!";
+                    headline = "Nå skjer ";
                     countdownVisible = false;
                     contentVisible = true;
                     clearInterval(x);
@@ -40,7 +40,7 @@
 
 
 <div class="container">
-    <h1>{headline}</h1>
+    <h2><span class="lexend">{headline}</span><span class="krona">Kukfest 23.1</span></h2>
     {#if countdownVisible}
     <div id="countdown">
         <ul>
