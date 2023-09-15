@@ -1,5 +1,4 @@
 <script>
-    import * as conf from '$lib/js/conf.js';
     import { page } from '$app/stores';
     let path;
 
@@ -7,14 +6,9 @@
 </script>
 
 <nav>
-    <div>
-        <img src="/img.jpg" alt="Kukfest logo" on:click={conf.fireAll} class="rounded-lg" />
-        <p class="krona">Kukfest</p>
-    </div>
     <ul id="nav-pc">
-        <li class={path === '/' ? 'active' : ''}><a href="/">Home</a></li>
-        <li class={path.includes("/images") ? 'active' : ''}><a href="/images/23">Images</a></li>
-        <li><a href="https://boofdev.eu/#contact">Contact</a></li>
+        <li class={path === '/images/23' ? 'active' : ''}><a href="/">2023</a></li>
+        <li class={path === '/images/23.1' ? 'active' : ''}><a href="/">2023.1</a></li>
     </ul>
 </nav>
 
