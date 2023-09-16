@@ -8,7 +8,7 @@
 
 <nav>
     <img
-        src="/img/favicon.svg"
+        src="/img/favicon.png"
         alt="Kukfest logo"
         on:click={conf.fireAll}
         class="rounded-lg"
