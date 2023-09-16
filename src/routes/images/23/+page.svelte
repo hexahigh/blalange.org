@@ -9,20 +9,13 @@
 <div class="main">
     <div class="row">
         <div class="column">
-            <img src="/img/lars.png" />
-            <img src="/img/lars.png" />
+            <iframe src="https://yewtu.be/embed/72cLBqbh2DE" title="Kukfest 23" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="column">
-            <img src="/img/lars.png" />
-            <img src="/img/lars.png" />
         </div>
         <div class="column">
-            <img src="/img/lars.png" />
-            <img src="/img/lars.png" />
         </div>
         <div class="column">
-            <img src="/img/lars.png" />
-            <img src="/img/lars.png" />
         </div>
     </div>
 </div>
@@ -43,6 +36,18 @@
         flex: 25%;
         max-width: 25%;
         padding: 0 4px;
+    }
+
+    .column video {
+        margin-top: 8px;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    .column iframe {
+        margin-top: 8px;
+        vertical-align: middle;
+        width: 100%;
     }
 
     .column img {
