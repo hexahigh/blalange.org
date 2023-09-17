@@ -29,3 +29,8 @@
 <Nav />
 
 <Countdown />
+
+<div class="bg-fixed bg-no-repeat bg-cover text-white text-center" style="background-image: url(/img/bg1.png);">
+    <h2 class="text-xl">Hva er kukfest?</h2>
+    <p>Kukfest er en liten festival som skjer på en minecraft server kjørt av noen venner. Den startet i 2023 og blir større for vært år. Det er minigames, et talentshow og mange andre gøye aktiviteter. Akkurat nå så er den eneste måten å bli med er å bli invitert.</p>
+</div>
