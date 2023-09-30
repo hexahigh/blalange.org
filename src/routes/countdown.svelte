@@ -40,7 +40,7 @@
 
 
 <div class="container">
-    <h2><span class="lexend">{headline}</span><span class="krona">Kukfest 23.1</span></h2>
+    <h2><span class="lexend text-3xl">{headline}</span><span class="krona text-4xl">Kukfest 23.1</span></h2>
     {#if countdownVisible}
     <div id="countdown">
         <ul>
