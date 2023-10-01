@@ -49,6 +49,7 @@
       <source src="/vid/Kukfest 23.1 8K Trailer 1.webm" type="video/webm" />
       <source src="/vid/Kukfest 23.1 8K Trailer 1 H265.mp4" type="video/mp4" />
       <source src="/vid/Kukfest 23.1 8K Trailer 1 x264.mp4" type="video/mp4" />
+      <source src="/vid/Kukfest 23.1 8K Trailer 1 theora.mkv" type="video/x-matroska" />
     </video>
   </div>
 </div>
