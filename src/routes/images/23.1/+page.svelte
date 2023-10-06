@@ -16,19 +16,19 @@
             <img src="/img/image-archive/23.1/huge_2023-09-25_18.19.16.png">
         </div>
         <div class="column">
-            <img src="/img/image-archive/23.1/23.1/2023-09-13_17.22.52.png">
-            <img src="/img/image-archive/23.1/23.1/2023-09-13_17.24.17.png">
+            <img src="/img/image-archive/23.1/2023-09-13_17.22.52.png">
+            <img src="/img/image-archive/23.1/2023-09-13_17.24.17.png">
             <img src="/img/image-archive/23.1/huge_2023-09-25_18.19.50.png">
             <img src="/img/image-archive/23.1/huge_2023-09-25_18.20.14.png">
         </div>
         <div class="column">
-            <img src="/img/image-archive/23.1/23.1/2023-09-13_17.24.41.png">
-            <img src="/img/image-archive/23.1/23.1/2023-09-16_17.23.42.png">
+            <img src="/img/image-archive/23.1/2023-09-13_17.24.41.png">
+            <img src="/img/image-archive/23.1/2023-09-16_17.23.42.png">
             <img src="/img/image-archive/23.1/huge_2023-09-25_18.20.30.png">
             <img src="/img/image-archive/23.1/huge_2023-10-02_12.26.04.png">
         </div>
         <div class="column">
-            <img src="/img/image-archive/23.1/23.1/2023-09-16_17.23.53.png">
+            <img src="/img/image-archive/23.1/2023-09-16_17.23.53.png">
             <img src="/img/image-archive/23.1/huge_2023-10-06_13.57.11.png">
             <img src="/img/image-archive/23.1/huge_2023-10-06_13.57.29.png">
             <img src="/img/image-archive/23.1/huge_2023-10-06_13.57.51.png">
