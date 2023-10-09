@@ -5,8 +5,19 @@
     import imagesData from "./images.json";
 
     let images = imagesData.slice(1); // Exclude the first object with hqUrl and lqUrl
+    let lowResImagesLoaded = false;
 
-    function handleImageLoad(index) {
+    function handleLowResImageLoad(index) {
+        images[index].loaded = true;
+
+        // Check if all low-resolution images have finished loading
+        const allLowResImagesLoaded = images.every((image) => image.loaded);
+        if (allLowResImagesLoaded) {
+            lowResImagesLoaded = true;
+        }
+    }
+
+    function handleHighResImageLoad(index) {
         images[index].loaded = true;
     }
 </script>
