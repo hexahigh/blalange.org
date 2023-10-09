@@ -1,0 +1,14 @@
+[
+    {
+        "hqUrl": "/img/image-archive/23.1/",
+        "lqUrl": "/img/image-archive/23.1/lr/"
+    },
+    {
+        "src": "image1.jpg",
+        "loaded": false
+    },
+    {
+        "src": "image2.jpg",
+        "loaded": false
+    }
+]
