@@ -1,6 +1,6 @@
 <script>
     import Nav from "../../Nav.svelte";
-    import ImagesNav from "../../components/images-nav.svelte";
+    import ImagesNav from "$lib/components/images-nav.svelte";
 </script>
 
 <Nav />
