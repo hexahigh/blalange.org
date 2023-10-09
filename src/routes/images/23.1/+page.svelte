@@ -26,20 +26,30 @@
 <ImagesNav />
 
 <div class="main">
-    {#each images as image, index}
-        {#if image.loaded}
-            <img
-                src={`${imagesData[0].hqUrl}${image.src}`}
-                alt="High Resolution Image"
-            />
-        {:else}
-            <img
-                src={`${imagesData[0].lqUrl}${image.src}`}
-                alt="Low Resolution Image"
-                on:load={() => handleImageLoad(index)}
-            />
-        {/if}
-    {/each}
+    <div class="image-container">
+        {#each images as image, index}
+            <div class="image-item">
+                {#if image.loaded}
+                    <img
+                        src={`${imagesData[0].hqUrl}${image.src}`}
+                        alt="High Resolution Image"
+                    />
+                {:else if lowResImagesLoaded}
+                    <img
+                        src={`${imagesData[0].hqUrl}${image.src}`}
+                        alt="High Resolution Image"
+                        on:load={() => handleHighResImageLoad(index)}
+                    />
+                {:else}
+                    <img
+                        src={`${imagesData[0].lqUrl}${image.src}`}
+                        alt="Low Resolution Image"
+                        on:load={() => handleLowResImageLoad(index)}
+                    />
+                {/if}
+            </div>
+        {/each}
+    </div>
 </div>
 
 <style>
@@ -47,29 +57,16 @@
         background-color: #ffffff;
     }
 
-    .main {
+    .image-container {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 
-    .main img {
-        margin-top: 8px;
-        vertical-align: middle;
-        width: 25%;
+    .image-item {
+        flex: 1 0 200px;
+        max-width: 100%;
     }
 
-    /* Responsive layout - makes a two column-layout instead of four columns */
-    @media screen and (max-width: 800px) {
-        .column {
-            flex: 50%;
-            max-width: 50%;
-        }
-    }
-
-    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-    @media screen and (max-width: 600px) {
-        .column {
-            flex: 100%;
-            max-width: 100%;
-        }
-    }
 </style>
