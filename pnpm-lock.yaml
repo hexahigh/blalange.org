@@ -38,7 +38,7 @@ devDependencies:
     specifier: ^8.4.31
     version: 8.4.31
   svelte:
-    specifier: ^4.0.5
+    specifier: ^4.2.1
     version: 4.2.1
   svelte-loading-spinners:
     specifier: ^0.3.4
