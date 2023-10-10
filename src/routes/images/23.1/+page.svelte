@@ -6,9 +6,9 @@
 
   let images = imagesData.slice(1); // Exclude the first object with hqUrl and lqUrl
 
-  function handleImageLoad(index) {
+  /*function handleImageLoad(index) {
     images[index].loaded = true;
-  }
+  }*/
 
   // Distribute the images as evenly as possible into 4 columns
   let columns = [[], [], [], []];
