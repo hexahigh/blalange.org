@@ -15,7 +15,7 @@
 		"@vite-pwa/sveltekit": "^0.2.7",
 		"autoprefixer": "^10.4.16",
 		"postcss": "^8.4.31",
-		"svelte": "^4.0.5",
+		"svelte": "^4.2.1",
 		"svelte-loading-spinners": "^0.3.4",
 		"svelte-meta-tags": "^3.0.4",
 		"tailwindcss": "^3.3.3",
