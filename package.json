@@ -5,11 +5,13 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"generate-pwa-assets": "pwa-assets-generator"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.25.0",
+		"@vite-pwa/assets-generator": "^0.0.10",
 		"@vite-pwa/sveltekit": "^0.2.7",
 		"autoprefixer": "^10.4.16",
 		"postcss": "^8.4.31",
