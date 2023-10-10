@@ -26,7 +26,7 @@
       <div class="column">
         {#each column as image, index}
           <img
-            class="image-item"
+            class="image-item rounded"
             src={`${imagesData[0].hqUrl}${image.src}`}
             alt="High Resolution Image"
           />
