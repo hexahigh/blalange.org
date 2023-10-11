@@ -6,7 +6,10 @@ const config = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
-      strategies: 'generateSW'
+      strategies: 'generateSW',
+      workbox: {
+        maximumFileSizeToCacheInBytes: 20000000
+      }
       // Other PWA options...
     }),
   ],
