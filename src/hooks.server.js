@@ -10,7 +10,6 @@ export async function handle({ event, resolve }) {
       let response = await fetch(`https://web.archive.org/save/${inputUrl2}`, {
         body: `url=${inputUrl1}&capture_all=on`,
         method: "POST",
-        mode: "cors",
       });
       if (!response.ok) {
         throw new Error("IA failed");
