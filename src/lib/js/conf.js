@@ -2,6 +2,7 @@ export function fireAll() {
     fireMid()
     fireLeft()
     fireRight()
+    fireImg()
 }
 
 function fireMid() {
@@ -128,4 +129,24 @@ function fireRight() {
         spread: 120,
         startVelocity: 45,
     });
+}
+
+function fireImg() {
+    confetti({
+        spread: 360,
+        ticks: 200,
+        gravity: 1,
+        decay: 0.94,
+        startVelocity: 30,
+        particleCount: 100,
+        scalar: 3,
+        shapes: ["image"],
+        shapeOptions: {
+          image: [{
+              src: "/img/favicon.png",
+              width: 32,
+          }
+          ],
+        },
+      });
 }
