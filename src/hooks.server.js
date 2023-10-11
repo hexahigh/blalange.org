@@ -1,7 +1,7 @@
 // src/hooks.js
-export async function handle({ request, resolve }) {
+export async function handle({ event, resolve }) {
     // If the URL ends with 'sw.js', redirect to the actual service worker file
-    if (request.path.endsWith('sw.js')) {
+    if (event.url.pathname('sw.js')) {
       return {
         status: 301,
         headers: {
@@ -11,6 +11,7 @@ export async function handle({ request, resolve }) {
     }
   
     // Otherwise, continue with the normal request
-    return await resolve(request);
+	const response = await resolve(event);
+	return response;
   }
   
