@@ -7,6 +7,7 @@ const config = {
     sveltekit(),
     SvelteKitPWA({
       strategies: 'generateSW',
+      registerType: 'autoUpdate',
       workbox: {
         maximumFileSizeToCacheInBytes: 20000000,
         runtimeCaching: [
