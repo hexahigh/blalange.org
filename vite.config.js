@@ -6,7 +6,7 @@ const config = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
-      strategies: 'injectManifest'
+      strategies: 'generateSW'
       // Other PWA options...
     }),
   ],
