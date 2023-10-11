@@ -42,7 +42,7 @@
 </div>
 <div>
   <div class="text-center">
-    <h2 class="text-3xl">Watch our epic trailer</h2>
+    <h2 class="text-3xl">Se vår episke trailer</h2>
   </div>
   <div class="mt-5 justify-center flex">
     <video class="w-96 rounded border border-black" controls>

@@ -15,11 +15,11 @@
     />
     <p class="krona">Kukfest</p>
     <ul id="nav-pc">
-        <li class={path === "/" ? "active" : ""}><a href="/">Home</a></li>
+        <li class={path === "/" ? "active" : ""}><a href="/">Hjem</a></li>
         <li class={path.includes("/images") ? "active" : ""}>
-            <a href="/images/23">Images</a>
+            <a href="/images/23">Bilder</a>
         </li>
-        <li><a href="https://boofdev.eu/#contact">Contact</a></li>
+        <li><a href="https://boofdev.eu/#contact">Kontakt</a></li>
     </ul>
 </nav>
 
