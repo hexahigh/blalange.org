@@ -11,7 +11,7 @@
       registerSW({
         immediate: true,
         onRegistered(r) {
-          // uncomment following code if you want check for updates
+          // uncomment following code if you want check for update
           r &&
             setInterval(() => {
               console.log("Checking for sw update");
