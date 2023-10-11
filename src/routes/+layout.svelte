@@ -16,7 +16,7 @@
             setInterval(() => {
               console.log("Checking for sw update");
               r.update();
-            }, 200000);
+            }, 20000);
           console.log(`SW Registered: ${r}`);
         },
         onRegisterError(error) {
