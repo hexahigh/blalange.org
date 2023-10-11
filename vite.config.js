@@ -6,7 +6,7 @@ const config = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
-      manifest: {}, // Disables automatic generation of manifest file
+      strategies: 'injectManifest'
       // Other PWA options...
     }),
   ],
