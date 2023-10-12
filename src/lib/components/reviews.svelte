@@ -11,7 +11,7 @@
         joined: 'Joined on Juli 2009'
       },
       total: 5,
-      rating: 5,
+      rating: 5.0,
       heading: 'Tissen min ble så mye lengre!',
       address: 'Krydderland',
       datetime: '2023-10-12'
