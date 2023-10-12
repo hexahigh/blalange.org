@@ -8,6 +8,7 @@
           src: '/img/people/herremann.jpg',
           alt: 'Hermann Roos'
         },
+        joined: 'Joined on Juli 2009'
       },
       total: 5,
       rating: 5,
