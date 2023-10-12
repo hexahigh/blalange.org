@@ -54,9 +54,3 @@
     </video>
   </div>
 </div>
-<div>
-  <div class="text-center">
-    <h2 class="text-3xl">Anmeldelser</h2>
-  </div>
-  <Reviews />
-</div>
