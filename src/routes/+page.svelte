@@ -2,6 +2,7 @@
   import Countdown from "./countdown.svelte";
   import Nav from "./Nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
+  import Reviews from "../lib/components/reviews.svelte";
 </script>
 
 <MetaTags
@@ -52,4 +53,10 @@
       <source src="/vid/Kukfest 23.1 8K Trailer 1 theora.mkv" type="video/x-matroska" />
     </video>
   </div>
+</div>
+<div>
+  <div class="text-center">
+    <h2 class="text-3xl">Anmeldelser</h2>
+  </div>
+  <Reviews />
 </div>
