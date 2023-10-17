@@ -1,10 +1,15 @@
+import blocked from './lib/json/blocked.json'
+
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-  let ip = event.request.headers.get("CF-Connecting-IP");
-  let blocked = ["84.215.200.49"];
 
-  if (blocked.includes(ip)) {
-    return new Response("Haha get blocked");
+  let ip = event.request.headers.get("CF-Connecting-IP");
+
+  if (blocked.includes(ip) || event.url.searchParams.has("testBlock"))  {
+    return {
+      status: 418,
+      body: "Im a teapot"
+    };
   }
 
   const response = await resolve(event);
