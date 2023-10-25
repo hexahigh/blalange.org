@@ -9,7 +9,7 @@
   let email = "";
   let name = "";
   let yesOrNo = "";
-  let secondYesOrNo = "";
+  let manOrWoman = "";
   let image = null;
   let geoLocation = "";
 
@@ -29,7 +29,7 @@
           console.log(geoLocation);
           document.getElementById("geoSuccessText").innerText =
             "Fikk tak i lokasjonen";
-            document.getElementById("geoSuccess").checked = true
+          document.getElementById("geoSuccess").checked = true;
           document
             .getElementById("geoSuccessText")
             .classList.remove("text-red-600");
@@ -53,7 +53,7 @@
   use:autoAnimate
 >
   <label class="flex flex-col mb-4">
-    <span class="mb-2">Email</span>
+    <span class="mb-2">Epost adresse</span>
     <div class="flex items-center">
       <EnvelopeSolid class="h-5 w-5 mr-2 text-orange-500" />
       <input
@@ -67,7 +67,7 @@
   </label>
 
   <label class="flex flex-col mb-4">
-    <span class="mb-2">Name</span>
+    <span class="mb-2">Navn</span>
     <div class="flex items-center">
       <UserCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
       <input
@@ -81,46 +81,41 @@
   </label>
 
   <div class="mb-4">
-    <span class="mb-2">Yes or No?</span>
+    <span class="mb-2">Er du ok med å bli filmet underr kukfest?</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
         <input bind:group={yesOrNo} class="mr-2" type="radio" value="yes" />
-        <span>Yes</span>
+        <span>Ja</span>
       </label>
       <label class="flex items-center">
         <input bind:group={yesOrNo} class="mr-2" type="radio" value="no" />
-        <span>No</span>
+        <span>Nei</span>
       </label>
     </div>
   </div>
 
   <div class="mb-4">
-    <span class="mb-2">Second Yes or No?</span>
+    <span class="mb-2">Kjønn</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
-        <input
-          bind:group={secondYesOrNo}
-          class="mr-2"
-          type="radio"
-          value="yes"
-        />
-        <span>Yes</span>
+        <input bind:group={manOrWoman} class="mr-2" type="radio" value="man" />
+        <span>Gutt</span>
       </label>
       <label class="flex items-center">
         <input
-          bind:group={secondYesOrNo}
+          bind:group={manOrWoman}
           class="mr-2"
           type="radio"
-          value="no"
+          value="woman"
         />
-        <span>No</span>
+        <span>Jente</span>
       </label>
     </div>
   </div>
 
-  {#if secondYesOrNo === "yes"}
+  {#if manOrWoman === "woman"}
     <label class="flex flex-col mb-4">
       <span class="mb-2">Lokasjon</span>
       <button
@@ -142,7 +137,12 @@
     </label>
 
     <label class="flex flex-col mb-4">
-      <span class="mb-2">Image</span>
+      <span class="mb-2">Alder</span>
+      <input type="number" class="border-2 border-orange-500 p-2 w-full rounded-md" placeholder="69" required />
+    </label>
+
+    <label class="flex flex-col mb-4">
+      <span class="mb-2">Bilde av deg</span>
       {#if image}
         <div class="flex items-center">
           <img
@@ -152,7 +152,7 @@
           />
           <button
             class="bg-red-500 text-white p-2 rounded-md"
-            on:click={clearImage}>Clear Image</button
+            on:click={clearImage}>Reset bilde</button
           >
         </div>
       {:else}
@@ -170,6 +170,6 @@
   <button
     class="bg-orange-500 text-white p-2 mt-4 rounded-md"
     id="submitButton"
-    type="submit">Submit</button
+    type="submit">Send inn</button
   >
 </form>
