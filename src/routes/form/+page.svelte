@@ -81,7 +81,7 @@
   </label>
 
   <div class="mb-4">
-    <span class="mb-2">Er du ok med å bli filmet underr kukfest?</span>
+    <span class="mb-2">Er du ok med å bli filmet under kukfest?</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
@@ -94,6 +94,20 @@
       </label>
     </div>
   </div>
+
+  <label class="flex flex-col mb-4">
+    <span class="mb-2">Er det noen ekstra informasjon vi bør vite? Hva du skal gjøre, osv</span>
+    <div class="flex items-center">
+      <UserCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
+      <textarea
+        bind:value={name}
+        class="border-2 border-orange-500 p-2 w-full rounded-md"
+        type="text"
+        placeholder="Jeg skal spille gitar og..."
+        required
+      />
+    </div>
+  </label>
 
   <div class="mb-4">
     <span class="mb-2">Kjønn</span>
