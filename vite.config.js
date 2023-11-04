@@ -6,7 +6,7 @@ const config = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
-      srcDir: 'static',
+      srcDir: 'src',
       filename: 'sw.js',
       strategies: 'injectManifest',
       registerType: 'autoUpdate',
