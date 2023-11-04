@@ -11,7 +11,7 @@ const config = {
       strategies: 'injectManifest',
       registerType: 'autoUpdate',
       workbox: {
-        maximumFileSizeToCacheInBytes: 20000000,
+        maximumFileSizeToCacheInBytes: 20 *1024*1000,
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
