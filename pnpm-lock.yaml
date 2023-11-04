@@ -67,6 +67,9 @@ devDependencies:
   vite:
     specifier: ^4.4.11
     version: 4.4.11
+  workbox-cacheable-response:
+    specifier: ^7.0.0
+    version: 7.0.0
   workbox-core:
     specifier: ^7.0.0
     version: 7.0.0
