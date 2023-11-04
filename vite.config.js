@@ -6,7 +6,9 @@ const config = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
-      strategies: 'generateSW',
+      srcDir: 'static',
+      filename: 'sw.js',
+      strategies: 'injectManifest',
       registerType: 'autoUpdate',
       workbox: {
         maximumFileSizeToCacheInBytes: 20000000,
