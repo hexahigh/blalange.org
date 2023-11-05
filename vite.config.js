@@ -16,6 +16,7 @@ const config = {
       },
 
       // Im unsure if this is still needed but im going to keep it just incase
+      // Nvm it's needed
       workbox: {
         maximumFileSizeToCacheInBytes: 30000000, // 30MB
         runtimeCaching: [
