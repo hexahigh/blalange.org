@@ -1,3 +1,6 @@
+/**
+ * Fires all the confetti.
+ */
 export function fireAll() {
     fireMid()
     fireLeft()
