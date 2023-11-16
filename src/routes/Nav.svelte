@@ -20,6 +20,7 @@
             <a href="/images/23">Bilder</a>
         </li>
         <li><a href="https://boofdev.eu/#contact">Kontakt</a></li>
+        <li><a href="https://merch.kukfest.eu">Merch</a></li>
     </ul>
 </nav>
 
