@@ -1,6 +1,5 @@
 <script>
-  import { createOrbitDB } from "@orbitdb/core";
-  import IPFS from "ipfs-core";
+  import GUN from "https://cdn.skypack.dev/gun";
   import autoAnimate from "@formkit/auto-animate";
   import {
     EnvelopeSolid,
@@ -16,23 +15,7 @@
   let geoLocation = "";
 
   async function handleSubmit() {
-    const ipfs = await IPFS.create();
-    const orbitdb = await createOrbitDB({ ipfs });
 
-    // Create / Open a database. Defaults to db type "events".
-    const db = await orbitdb.open("form-12299332", { type: 'documents' });
-
-    const address = db.address;
-    console.log(address);
-
-    await db.put({
-      email,
-      name,
-      yesOrNo,
-      manOrWoman,
-      image,
-      geoLocation,
-    });
   }
 
   function clearImage() {
