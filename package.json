@@ -32,6 +32,7 @@
 	"type": "module",
 	"dependencies": {
 		"@formkit/auto-animate": "^0.8.1",
+		"@orbitdb/core": "^1.0.2",
 		"@sveltejs/adapter-cloudflare": "^2.3.3",
 		"flowbite-svelte-icons": "^0.4.5",
 		"kolorist": "^1.8.0",

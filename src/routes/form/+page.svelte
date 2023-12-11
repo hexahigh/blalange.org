@@ -1,4 +1,6 @@
 <script>
+  import { createOrbitDB } from "@orbitdb/core";
+  import IPFS from "ipfs-core";
   import autoAnimate from "@formkit/auto-animate";
   import {
     EnvelopeSolid,
@@ -13,8 +15,24 @@
   let image = null;
   let geoLocation = "";
 
-  function handleSubmit() {
-    // Handle form submission logic here
+  async function handleSubmit() {
+    const ipfs = await IPFS.create();
+    const orbitdb = await createOrbitDB({ ipfs });
+
+    // Create / Open a database. Defaults to db type "events".
+    const db = await orbitdb.open("form-12299332", { type: 'documents' });
+
+    const address = db.address;
+    console.log(address);
+
+    await db.put({
+      email,
+      name,
+      yesOrNo,
+      manOrWoman,
+      image,
+      geoLocation,
+    });
   }
 
   function clearImage() {
@@ -96,7 +114,9 @@
   </div>
 
   <label class="flex flex-col mb-4">
-    <span class="mb-2">Er det noen ekstra informasjon vi bør vite? Hva du skal gjøre, osv</span>
+    <span class="mb-2"
+      >Er det noen ekstra informasjon vi bør vite? Hva du skal gjøre, osv</span
+    >
     <div class="flex items-center">
       <UserCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
       <textarea
@@ -152,7 +172,12 @@
 
     <label class="flex flex-col mb-4">
       <span class="mb-2">Alder</span>
-      <input type="number" class="border-2 border-orange-500 p-2 w-full rounded-md" placeholder="69" required />
+      <input
+        type="number"
+        class="border-2 border-orange-500 p-2 w-full rounded-md"
+        placeholder="69"
+        required
+      />
     </label>
 
     <label class="flex flex-col mb-4">
