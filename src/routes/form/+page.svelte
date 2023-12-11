@@ -1,5 +1,6 @@
 <script>
   import GUN from "https://cdn.skypack.dev/gun";
+  let gun = GUN();
   import autoAnimate from "@formkit/auto-animate";
   import {
     EnvelopeSolid,
@@ -15,7 +16,14 @@
   let geoLocation = "";
 
   async function handleSubmit() {
-
+    gun.get('formResponses').put({
+      email: email,
+      name: name,
+      yesOrNo: yesOrNo,
+      manOrWoman: manOrWoman,
+      image: image, // TODO: Find a way to properly store the image
+      geoLocation: geoLocation
+    });
   }
 
   function clearImage() {
