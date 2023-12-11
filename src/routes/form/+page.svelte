@@ -1,6 +1,5 @@
 <script>
-  import GUN from "https://cdn.skypack.dev/gun";
-  let gun = GUN();
+  const gun = require("gun/gun");
   import autoAnimate from "@formkit/auto-animate";
   import {
     EnvelopeSolid,
