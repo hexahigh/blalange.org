@@ -209,6 +209,7 @@
     </label>
   {/if}
   <button
+    on:click={handleSubmit}
     class="bg-orange-500 text-white p-2 mt-4 rounded-md"
     id="submitButton"
     type="submit">Send inn</button
