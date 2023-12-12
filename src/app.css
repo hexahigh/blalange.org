@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*:root {
+    --text-color: #000000;
+    --nav-link-inactive: #000000;
+    --body-bg: #ffffff;
+    --nav-link-hover: #000000;
+}
+
+body.dark {
+    --text-color: #ffffff;
+    --nav-link-inactive: #ffffff;
+    --body-bg: #000000;
+    --nav-link-hover: #ffffff;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-color);
+}
+
+nav ul li a {
+    color: var(--nav-link-inactive);
+}
+
+nav ul li a:hover {
+    color: var(--nav-link-hover);
+}*/
