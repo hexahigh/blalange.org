@@ -1,10 +1,13 @@
 <script>
   import autoAnimate from "@formkit/auto-animate";
+  import PocketBase from "pocketbase";
   import {
     EnvelopeSolid,
     UserCircleSolid,
     QuestionCircleSolid,
   } from "flowbite-svelte-icons";
+
+  const pb = new PocketBase("https://db.080609.xyz");
 
   let email = "";
   let name = "";
@@ -14,6 +17,18 @@
   let geoLocation = "";
 
   async function handleSubmit() {
+    const formData = new FormData();
+    formData.append("time", Date.now());
+    formData.append("timeutc", Date().getTime());
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("latlon", geoLocation);
+    formData.append("MW", manOrWoman);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    await pb.collection("form").create(formData);
   }
 
   function clearImage() {
