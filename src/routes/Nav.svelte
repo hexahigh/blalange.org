@@ -6,7 +6,7 @@
     $: path = $page.url.pathname;
 </script>
 
-<nav class="dark-bg dark-text dark-url">
+<nav>
     <img
         src="/img/favicon.png"
         alt="Kukfest logo"

@@ -29,7 +29,7 @@
 
 <!--<Countdown />-->
 
-<div class="dark-bg dark-text">
+<div>
   <div
     class="bg-fixed bg-no-repeat bg-cover text-white text-center"
     style="background-image: url(/img/bg1.png);"
