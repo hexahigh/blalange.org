@@ -11,10 +11,11 @@
 
   let email = "";
   let name = "";
-  let yesOrNo = "";
+  let filmed = "";
   let manOrWoman = "";
   let image = null;
   let geoLocation = "";
+  let extra = "";
 
   async function handleSubmit() {
     const formData = new FormData();
@@ -24,6 +25,8 @@
     formData.append("email", email);
     formData.append("latlon", geoLocation);
     formData.append("MW", manOrWoman);
+    formData.append("extra", extra);
+    formData.append("filmed", filmed);
     if (image) {
       formData.append("image", image);
     }
@@ -99,11 +102,11 @@
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
-        <input bind:group={yesOrNo} class="mr-2" type="radio" value="yes" />
+        <input bind:group={filmed} class="mr-2" type="radio" value="yes" />
         <span>Ja</span>
       </label>
       <label class="flex items-center">
-        <input bind:group={yesOrNo} class="mr-2" type="radio" value="no" />
+        <input bind:group={filmed} class="mr-2" type="radio" value="no" />
         <span>Nei</span>
       </label>
     </div>
@@ -116,7 +119,7 @@
     <div class="flex items-center">
       <UserCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
       <textarea
-        bind:value={name}
+        bind:value={extra}
         class="border-2 border-orange-500 p-2 w-full rounded-md"
         type="text"
         placeholder="Jeg skal spille gitar og..."
