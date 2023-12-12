@@ -41,7 +41,7 @@
     måten å bli med er å bli invitert.
   </p>
 </div>
-<div>
+<div class="dark:darkBG">
   <div class="text-center">
     <h2 class="text-3xl">Se vår episke trailer</h2>
   </div>

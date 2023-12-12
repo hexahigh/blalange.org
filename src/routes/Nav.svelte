@@ -102,6 +102,7 @@
   #nav-active {
     color: #000000;
   }
+
   .scrollTop {
     position: fixed;
     background: #000;
