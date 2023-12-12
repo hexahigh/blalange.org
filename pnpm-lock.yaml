@@ -23,6 +23,9 @@ dependencies:
   pocketbase:
     specifier: ^0.20.1
     version: 0.20.1
+  svelte-leaflet:
+    specifier: ^0.2.0
+    version: 0.2.0
   svelte-particles:
     specifier: ^2.12.0
     version: 2.12.0(svelte@4.2.2)
@@ -2914,6 +2917,10 @@ packages:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
     dev: false
 
+  /leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
+    dev: false
+
   /leven@3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
     engines: {node: '>=6'}
@@ -3677,6 +3684,12 @@ packages:
       svelte: ^3.19.0 || ^4.0.0
     dependencies:
       svelte: 4.2.2
+
+  /svelte-leaflet@0.2.0:
+    resolution: {integrity: sha512-rEebAGmOn+CTw4WIJlYQreAPfLrlQDwtMzlruNxPBaYRZUz4ww0+/Q1huIOq/VM8Guz05s78ejDeD25iL1vv1Q==}
+    dependencies:
+      leaflet: 1.9.4
+    dev: false
 
   /svelte-loading-spinners@0.3.4:
     resolution: {integrity: sha512-vKaW71QMCBcTNijAGc0mUl8k3DQ66iYmp6MB8BMGCXyWk82bTrcLy8FOnSm9fE+8q6TwzD6PLUoYFHt0II93Xw==}
