@@ -16,6 +16,7 @@
   let image = null;
   let geoLocation = "";
   let extra = "";
+  let age = 0;
 
   async function handleSubmit() {
     const formData = new FormData();
@@ -27,6 +28,7 @@
     formData.append("MW", manOrWoman);
     formData.append("extra", extra);
     formData.append("filmed", filmed);
+    formData.append("age", age);
     if (image) {
       formData.append("image", image);
     }
@@ -172,6 +174,7 @@
     <label class="flex flex-col mb-4">
       <span class="mb-2">Alder</span>
       <input
+        bind:value={age}
         type="number"
         class="border-2 border-orange-500 p-2 w-full rounded-md"
         placeholder="69"
