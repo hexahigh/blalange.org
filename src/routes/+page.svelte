@@ -29,28 +29,39 @@
 
 <!--<Countdown />-->
 
-<div
-  class="bg-fixed bg-no-repeat bg-cover text-white text-center"
-  style="background-image: url(/img/bg1.png);"
->
-  <h2 class="text-3xl">Hva er kukfest?</h2>
-  <p class="text-xl">
-    Kukfest er en liten festival som skjer på en minecraft server kjørt av noen
-    venner. Den startet i 2023 og blir større for vært år. Det er minigames, et
-    talentshow og mange andre gøye aktiviteter. Akkurat nå så er den eneste
-    måten å bli med er å bli invitert.
-  </p>
-</div>
-<div class="dark:darkBG">
-  <div class="text-center">
-    <h2 class="text-3xl">Se vår episke trailer</h2>
+<div class="BG-dark">
+  <div
+    class="bg-fixed bg-no-repeat bg-cover text-white text-center"
+    style="background-image: url(/img/bg1.png);"
+  >
+    <h2 class="text-3xl">Hva er kukfest?</h2>
+    <p class="text-xl">
+      Kukfest er en liten festival som skjer på en minecraft server kjørt av
+      noen venner. Den startet i 2023 og blir større for vært år. Det er
+      minigames, et talentshow og mange andre gøye aktiviteter. Akkurat nå så er
+      den eneste måten å bli med er å bli invitert.
+    </p>
   </div>
-  <div class="mt-5 justify-center flex">
-    <video class="w-96 rounded border border-black" controls>
-      <source src="/vid/Kukfest 23.1 8K Trailer 1 vp9.webm" type="video/webm" />
-      <source src="/vid/Kukfest 23.1 8K Trailer 1 H265.mp4" type="video/mp4" />
-      <source src="/vid/Kukfest 23.1 8K Trailer 1 x264.mp4" type="video/mp4" />
-    </video>
+  <div>
+    <div class="text-center">
+      <h2 class="text-3xl">Se vår episke trailer</h2>
+    </div>
+    <div class="mt-5 justify-center flex">
+      <video class="w-96 rounded border border-black" controls>
+        <source
+          src="/vid/Kukfest 23.1 8K Trailer 1 vp9.webm"
+          type="video/webm"
+        />
+        <source
+          src="/vid/Kukfest 23.1 8K Trailer 1 H265.mp4"
+          type="video/mp4"
+        />
+        <source
+          src="/vid/Kukfest 23.1 8K Trailer 1 x264.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
   </div>
 </div>
 <!--<div>
