@@ -21,7 +21,7 @@
   async function handleSubmit() {
     const formData = new FormData();
     formData.append("time", new Date.now());
-    formData.append("timeutc", new Date().toUTCString());
+    formData.append("timeutc", new Date.toUTCString());
     formData.append("name", name);
     formData.append("email", email);
     formData.append("latlon", geoLocation);
