@@ -10,13 +10,12 @@
     color: #ffffff;
 }
 
-.dark-url {
-    a {
-        color: #ffffff;
-    }
-    a:hover {
-        color: #ffffff;
-    }
+.dark-url a {
+    color: #ffffff;
+}
+
+.dark-url a:hover {
+    color: #ffffff;
 }
 
 
