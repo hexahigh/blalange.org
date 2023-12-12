@@ -2,9 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.BG-dark {
+.dark-bg {
     background-color: #333333;
+}
 
+.dark-text {
+    color: #ffffff;
+}
+
+.dark-url {
+    a {
+        color: #ffffff;
+    }
+    a:hover {
+        color: #ffffff;
+    }
 }
 
 
