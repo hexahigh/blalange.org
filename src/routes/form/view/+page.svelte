@@ -1,7 +1,6 @@
 <script>
     import { onMount } from 'svelte';
     import PocketBase from 'pocketbase';
-    import { MapContainer, TileLayer, Marker, Popup } from 'svelte-leaflet';
   
     let data = [];
   
@@ -19,11 +18,5 @@
       <p>{item.age}</p>
       <p>{item.filmed}</p>
       <p>{item.MW}</p>
-      <MapContainer style="height: 180px; width: 100%;" center={item.latlon} zoom={13}>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={item.latlon}>
-          <Popup>{item.name}'s location</Popup>
-        </Marker>
-      </MapContainer>
     </div>
   {/each}
