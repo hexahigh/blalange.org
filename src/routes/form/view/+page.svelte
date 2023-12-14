@@ -36,6 +36,8 @@
     <p><strong>LatLon:</strong> {item.latlon}</p>
     <p><strong>Filmed:</strong> {item.filmed}</p>
     <p><strong>MW:</strong> {item.MW}</p>
+    <p><strong>Time:</strong> {item.time}</p>
+    <p><strong>TimeUTC:</strong> {item.timeutc}</p>
   </div>
 {/each}
 
