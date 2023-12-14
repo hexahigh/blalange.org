@@ -16,6 +16,7 @@
   }
 
   async function auth() {
+    const pb = new PocketBase("https://db.080609.xyz");
     await pb.collection("users").authWithPassword(user, pass);
   }
 </script>
