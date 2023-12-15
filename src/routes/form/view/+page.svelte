@@ -33,6 +33,7 @@
     <p><strong>Email:</strong> {item.email}</p>
     <p><strong>Extra:</strong> {item.extra}</p>
     <p><strong>Age:</strong> {item.age}</p>
+    <p><strong>UserAgent:</strong> {item.ua}</p>
     <p><strong>LatLon:</strong> {item.latlon}</p>
     <p><strong>Filmed:</strong> {item.filmed}</p>
     <p><strong>MW:</strong> {item.MW}</p>
