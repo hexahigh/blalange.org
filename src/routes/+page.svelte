@@ -3,6 +3,7 @@
   import Nav from "./Nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
   import Reviews from "../lib/components/reviews.svelte";
+  import Form from "$lib/components/form.svelte";
 </script>
 
 <MetaTags
@@ -62,6 +63,11 @@
         />
       </video>
     </div>
+  </div>
+  <div class="text-center">
+    <h2 class="text-3xl">Bli med</h2>
+    <p>Vil du bli med på neste Kukfest? Svar på dette skjemaet.</p>
+    <Form/>
   </div>
 </div>
 <!--<div>
