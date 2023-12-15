@@ -17,7 +17,6 @@
     <li>Geolocation (for women)</li>
     <li>Age (for women)</li>
     <li>Image (for women)</li>
-    <li>Naked photos (only if you are a woman and over 18)</li>
   </ul>
   
   <h2 class="text-2xl">How We Use Your Information</h2>
