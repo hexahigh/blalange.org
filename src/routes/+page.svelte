@@ -67,21 +67,8 @@
   <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
     <p>Vil du bli med på neste Kukfest? Svar på dette skjemaet.</p>
-    <div class="form text-left flex justify-center">
+    <div class="text-left flex justify-center">
       <Form />
     </div>
   </div>
 </div>
-<!--<div>
-  <div class="text-center">
-    <h2 class="text-3xl">Anmeldelser</h2>
-  </div>
-  <Reviews />
-</div>-->
-
-
-<style>
-  .form {
-    width: 50rem
-  }
-</style>
