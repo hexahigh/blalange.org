@@ -67,7 +67,9 @@
   <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
     <p>Vil du bli med på neste Kukfest? Svar på dette skjemaet.</p>
-    <Form/>
+    <div class="form text-left">
+    <Form />
+  </div>
   </div>
 </div>
 <!--<div>
@@ -76,3 +78,10 @@
   </div>
   <Reviews />
 </div>-->
+
+
+<style>
+  .form {
+    width: 50rem
+  }
+</style>
