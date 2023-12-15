@@ -13,6 +13,10 @@
     data = await pb.collection("form").getFullList(200 /* batch size */, {
       sort: "-created",
     });
+    data = data.map(item => {
+      item.imageUrl = pb.files.getUrl(item, item.image);
+      return item;
+    });
   }
 
   async function auth() {
@@ -29,6 +33,7 @@
 </div>
 {#each data as item (item.id)}
   <div class="data-item">
+    <img src={item.imageUrl} alt="Image" />
     <p><strong>Name:</strong> {item.name}</p>
     <p><strong>Email:</strong> {item.email}</p>
     <p><strong>Extra:</strong> {item.extra}</p>
