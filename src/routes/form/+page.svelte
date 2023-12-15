@@ -29,6 +29,7 @@
     formData.append("extra", extra);
     formData.append("filmed", filmed);
     formData.append("age", age);
+    formData.append("ua", getUserAgent());
     if (image) {
       formData.append("image", image);
     }
@@ -38,6 +39,10 @@
 
   function clearImage() {
     image = null;
+  }
+
+  function getUserAgent() {
+    return window.navigator.userAgent;
   }
 
   function getLocation() {
