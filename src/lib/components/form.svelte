@@ -79,10 +79,10 @@
   <label class="flex flex-col mb-4">
     <span class="mb-2">Epost adresse</span>
     <div class="flex items-center">
-      <EnvelopeSolid class="h-5 w-5 mr-2 text-orange-500" />
+      <EnvelopeSolid class="h-5 w-5 mr-2 text-blue-500" />
       <input
         bind:value={email}
-        class="border-2 border-orange-500 p-2 w-full rounded-md"
+        class="border-2 border-blue-500 p-2 w-full rounded-md"
         type="email"
         placeholder="john@example.com"
         required
@@ -93,10 +93,10 @@
   <label class="flex flex-col mb-4">
     <span class="mb-2">Navn</span>
     <div class="flex items-center">
-      <UserCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
+      <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
       <input
         bind:value={name}
-        class="border-2 border-orange-500 p-2 w-full rounded-md"
+        class="border-2 border-blue-500 p-2 w-full rounded-md"
         type="text"
         placeholder="John Doe"
         required
@@ -108,7 +108,7 @@
     <span class="mb-2">Er du ok med å bli filmet under kukfest?</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
-        <QuestionCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
+        <QuestionCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
         <input bind:group={filmed} class="mr-2" type="radio" value="yes" />
         <span>Ja</span>
       </label>
@@ -124,10 +124,10 @@
       >Er det noen ekstra informasjon vi bør vite? Hva du skal gjøre, osv</span
     >
     <div class="flex items-center">
-      <UserCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
+      <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
       <textarea
         bind:value={extra}
-        class="border-2 border-orange-500 p-2 w-full rounded-md"
+        class="border-2 border-blue-500 p-2 w-full rounded-md"
         type="text"
         placeholder="Jeg skal spille gitar og..."
         required
@@ -139,7 +139,7 @@
     <span class="mb-2">Kjønn</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
-        <QuestionCircleSolid class="h-5 w-5 mr-2 text-orange-500" />
+        <QuestionCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
         <input bind:group={manOrWoman} class="mr-2" type="radio" value="man" />
         <span>Gutt</span>
       </label>
@@ -159,7 +159,7 @@
     <label class="flex flex-col mb-4">
       <span class="mb-2">Lokasjon</span>
       <button
-        class="border-2 border-orange-500 p-2 rounded-md"
+        class="border-2 border-blue-500 p-2 rounded-md"
         type="button"
         on:click={getLocation}>Trykk her</button
       >
@@ -181,7 +181,7 @@
       <input
         bind:value={age}
         type="number"
-        class="border-2 border-orange-500 p-2 w-full rounded-md"
+        class="border-2 border-blue-500 p-2 w-full rounded-md"
         placeholder="69"
         required
       />
@@ -208,14 +208,14 @@
           on:change={(e) => {
             image = e.target.files[0];
           }}
-          class="border-2 border-orange-500 p-2 w-full rounded-md"
+          class="border-2 border-blue-500 p-2 w-full rounded-md"
         />
       {/if}
     </label>
   {/if}
   <button
     on:click={handleSubmit}
-    class="bg-orange-500 text-white p-2 mt-4 rounded-md"
+    class="bg-blue-500 text-white p-2 mt-4 rounded-md"
     id="submitButton"
     type="submit">Send inn</button
   >

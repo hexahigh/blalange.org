@@ -5,6 +5,12 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require("@catppuccin/tailwindcss")({
+      // which flavour of colours to use by default, in the `:root`
+      prefix: false,
+      defaultFlavour: "mocha",
+    }),
+  ],
 }
 

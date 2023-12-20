@@ -14,7 +14,7 @@
         class="rounded-lg"
     />
     <p class="krona">Kukfest</p>
-    <ul id="nav-pc">
+    <ul id="nav-pc" class="text-blue">
         <li class={path === "/" ? "active" : ""}><a href="/">Hjem</a></li>
         <li class={path.includes("/images") ? "active" : ""}>
             <a href="/images/23">Bilder</a>
@@ -76,13 +76,13 @@
         font-size: 1.1rem;
     }
 
-    nav ul li a {
+    /*nav ul li a {
         color: var(--nav-link-inactive);
     }
 
     nav ul li a:hover {
         color: var(--nav-link-hover);
-    }
+    }*/
 
     #nav-active {
         color: var(--text-color);

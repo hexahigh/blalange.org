@@ -26,13 +26,12 @@
 />
 <svelte:head />
 
-<Nav />
-
 <!--<Countdown />-->
 
-<div>
+<div class="bg-base text-text">
+  <Nav />
   <div
-    class="bg-fixed bg-no-repeat bg-cover text-white text-center"
+    class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
     style="background-image: url(/img/bg1.png);"
   >
     <h2 class="text-3xl">Hva er kukfest?</h2>
@@ -64,7 +63,7 @@
       </video>
     </div>
   </div>
-  <div class="text-center">
+  <div class="text-center mocha">
     <h2 class="text-3xl">Bli med</h2>
     <p>Vil du bli med på neste Kukfest? Svar på dette skjemaet.</p>
     <div class="text-left flex justify-center">

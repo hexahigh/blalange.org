@@ -20,7 +20,7 @@
 <Nav />
 <ImagesNav />
 
-<div class="main">
+<div>
   <div class="row">
     {#each columns as column, columnIndex}
       <div class="column">
@@ -37,10 +37,6 @@
 </div>
 
 <style>
-  .main {
-    background-color: #ffffff;
-  }
-
   .row {
     display: flex;
     flex-wrap: wrap;

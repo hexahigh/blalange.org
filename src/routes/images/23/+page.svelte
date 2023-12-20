@@ -6,7 +6,7 @@
 <Nav />
 <ImagesNav />
 
-<div class="main">
+<div>
     <div class="row">
         <div class="column">
             <iframe src="https://yewtu.be/embed/72cLBqbh2DE" title="Kukfest 23" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -21,10 +21,6 @@
 </div>
 
 <style>
-    .main {
-        background-color: #ffffff;
-    }
-
     .row {
         display: flex;
         flex-wrap: wrap;

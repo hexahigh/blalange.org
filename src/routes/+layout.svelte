@@ -5,6 +5,6 @@
 
 </script>
 
-<main>
+<main class="text-text bg-base min-h-screen">
   <slot />
 </main>
