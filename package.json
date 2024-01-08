@@ -11,6 +11,7 @@
 	"devDependencies": {
 		"@catppuccin/tailwindcss": "^0.1.6",
 		"@sveltejs/adapter-auto": "^2.1.1",
+		"@sveltejs/enhanced-img": "^0.1.7",
 		"@sveltejs/kit": "^1.27.6",
 		"@vite-pwa/assets-generator": "^0.0.10",
 		"@vite-pwa/sveltekit": "^0.2.7",
