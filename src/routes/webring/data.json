@@ -4,5 +4,11 @@
     "name": "Lain-la",
     "imageUrl": "https://nosleepforme.neocities.org/images/banners/lain-la.png",
     "url": "https://lain.la"
+ },
+ {
+   "id": 2,
+   "name": "Firefox",
+   "imageUrl": "https://cyber.dabamos.de/88x31/anythingbut.gif",
+   "url": "https://firefox.com"
  }
 ]
