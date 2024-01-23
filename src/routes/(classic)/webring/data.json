@@ -1,0 +1,20 @@
+[
+ {
+    "id": 1,
+    "name": "Lain-la",
+    "imageUrl": "https://kukfest.eu/img/webring/lain-la.png",
+    "url": "https://lain.la"
+ },
+ {
+   "id": 2,
+   "name": "Firefox",
+   "imageUrl": "https://kukfest.eu/img/webring/anythingbut.gif",
+   "url": "https://firefox.com"
+ },
+ {
+   "id": 3,
+   "name": "Links",
+   "imageUrl": "https://kukfest.eu/img/webring/bestviewedlinks.gif",
+   "url": "http://links.twibright.com/"
+ }
+]
