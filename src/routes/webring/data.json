@@ -16,5 +16,17 @@
    "name": "Links",
    "imageUrl": "https://kukfest.eu/img/webring/bestviewedlinks.gif",
    "url": "http://links.twibright.com/"
+ },
+ {
+   "id": 4,
+   "name": "Linux mint",
+   "imageUrl": "https://kukfest.eu/img/webring/linux_mint.gif",
+   "url": "https://linuxmint.com"
+ },
+ {
+   "id": 5,
+   "name": "GNU nano",
+   "imageUrl": "https://kukfest.eu/img/webring/gnunano.gif",
+   "url": "https://www.nano-editor.org/"
  }
 ]

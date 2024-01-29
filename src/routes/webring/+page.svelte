@@ -2,7 +2,7 @@
   import sites from "./data.json";
 </script>
 
-<div class="grid grid-cols-3 gap-4 bg-black">
+<div class="grid grid-cols-5 gap-9 bg-black w-full h-screen">
   {#each sites as site (site.id)}
     <a href={site.url}>
       <img
