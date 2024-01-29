@@ -14,6 +14,9 @@ dependencies:
   '@tsparticles/svelte':
     specifier: ^3.0.0
     version: 3.0.0(svelte@4.2.2)
+  audiomotion-analyzer:
+    specifier: ^4.4.0
+    version: 4.4.0
   flowbite-svelte-icons:
     specifier: ^0.4.5
     version: 0.4.5(svelte@4.2.2)(tailwind-merge@2.0.0)(tailwindcss@3.3.5)
@@ -2123,6 +2126,10 @@ packages:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
     dev: true
+
+  /audiomotion-analyzer@4.4.0:
+    resolution: {integrity: sha512-vba/mHQPF31NkLD+5K/0yRcmd33aaBqKx0T48dav/vc+2AQAizHCMFLxROTsVE27HsGdacwC9H1DsV3YazeKwA==}
+    dev: false
 
   /autoprefixer@10.4.16(postcss@8.4.31):
     resolution: {integrity: sha512-7vd3UC6xKp0HLfua5IjZlcXvGAGy7cBAXTg2lyQ/8WpNhd6SiZ8Be+xm3FyBSYJx5GKcpRCzBh7RH4/0dnY+uQ==}
