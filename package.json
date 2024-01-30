@@ -35,6 +35,8 @@
 	"dependencies": {
 		"@formkit/auto-animate": "^0.8.1",
 		"@sveltejs/adapter-cloudflare": "^2.3.3",
+		"@tsparticles/svelte": "^3.0.0",
+		"audiomotion-analyzer": "^4.4.0",
 		"flowbite-svelte-icons": "^0.4.5",
 		"gun": "^0.2020.1239",
 		"kolorist": "^1.8.0",

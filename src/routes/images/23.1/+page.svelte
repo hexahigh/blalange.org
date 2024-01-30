@@ -2,19 +2,18 @@
   import Nav from "../../Nav.svelte";
   import ImagesNav from "$lib/components/images-nav.svelte";
 
-  import imagesData from "./images.json";
-
-  let images = imagesData.slice(1); // Exclude the first object with hqUrl and lqUrl
-
-  /*function handleImageLoad(index) {
-    images[index].loaded = true;
-  }*/
+  const pictureModules = import.meta.glob(
+    "$lib/img/image-archive/23.1/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}", { eager: true }
+  );
+  
+  const pictures = Object.values(pictureModules).map(module => module.default);
 
   // Distribute the images as evenly as possible into 4 columns
   let columns = [[], [], [], []];
-  for (let i = 0; i < images.length; i++) {
-    columns[i % columns.length].push(images[i]);
+  for (let i = 0; i < pictures.length; i++) {
+    columns[i % columns.length].push(pictures[i]);
   }
+  console.log(columns)
 </script>
 
 <Nav />
@@ -27,7 +26,7 @@
         {#each column as image, index}
           <img
             class="image-item rounded"
-            src={`${imagesData[0].hqUrl}${image.src}`}
+            src={`${image}`}
             alt="High Resolution Image"
           />
         {/each}
