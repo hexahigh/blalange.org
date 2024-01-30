@@ -1,6 +1,7 @@
 <script>
     import * as conf from "$lib/js/conf.js";
     import { page } from "$app/stores";
+    import autoAnimate from "@formkit/auto-animate";
     let path;
 
     $: path = $page.url.pathname;
@@ -14,7 +15,7 @@
         class="rounded-lg"
     />
     <p class="krona">Kukfest</p>
-    <ul id="nav-pc" class="text-blue">
+    <ul id="nav-pc" use:autoAnimate class="text-blue">
         <li class={path === "/" ? "active" : ""}><a href="/">Hjem</a></li>
         <li class={path.includes("/images") ? "active" : ""}>
             <a href="/images/23">Bilder</a>

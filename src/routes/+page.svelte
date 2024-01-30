@@ -70,6 +70,5 @@
     <div class="text-left flex justify-center">
       <Form />
     </div>
-    <Team />
   </div>
 </div>

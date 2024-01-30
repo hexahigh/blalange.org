@@ -12,7 +12,7 @@
     <slot />
   </main>
 {:else}
-  <main use:autoAnimate class="text-text bg-base min-h-screen">
+  <main class="text-text bg-base min-h-screen">
     <slot />
   </main>
 {/if}
