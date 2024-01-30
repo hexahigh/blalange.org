@@ -1,32 +1,592 @@
 [
- {
-    "id": 1,
+  {
     "name": "Lain-la",
     "imageUrl": "https://kukfest.eu/img/webring/lain-la.png",
     "url": "https://lain.la"
- },
- {
-   "id": 2,
-   "name": "Firefox",
-   "imageUrl": "https://kukfest.eu/img/webring/anythingbut.gif",
-   "url": "https://firefox.com"
- },
- {
-   "id": 3,
-   "name": "Links",
-   "imageUrl": "https://kukfest.eu/img/webring/bestviewedlinks.gif",
-   "url": "http://links.twibright.com/"
- },
- {
-   "id": 4,
-   "name": "Linux mint",
-   "imageUrl": "https://kukfest.eu/img/webring/linux_mint.gif",
-   "url": "https://linuxmint.com"
- },
- {
-   "id": 5,
-   "name": "GNU nano",
-   "imageUrl": "https://kukfest.eu/img/webring/gnunano.gif",
-   "url": "https://www.nano-editor.org/"
- }
+  },
+  {
+    "name": "Firefox",
+    "imageUrl": "https://kukfest.eu/img/webring/anythingbut.gif",
+    "url": "https://firefox.com"
+  },
+  {
+    "name": "Links",
+    "imageUrl": "https://kukfest.eu/img/webring/bestviewedlinks.gif",
+    "url": "http://links.twibright.com/"
+  },
+  {
+    "name": "Linux mint",
+    "imageUrl": "https://kukfest.eu/img/webring/linux_mint.gif",
+    "url": "https://linuxmint.com"
+  },
+  {
+    "name": "GNU nano",
+    "imageUrl": "https://kukfest.eu/img/webring/gnunano.gif",
+    "url": "https://www.nano-editor.org/"
+  },
+  {
+    "url": "https://ophanim.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/ophanim.gif",
+    "name": "Ophanim"
+  },
+  {
+    "url": "https://getimiskon.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/getimiskon.png",
+    "name": "getimiskon's space"
+  },
+  {
+    "url": "https://yukinu.com",
+    "imageUrl": "https://kukfest.eu/img/webring/yukinu.gif",
+    "name": "Yukinu"
+  },
+  {
+    "url": "http://alienozi.c1.biz",
+    "imageUrl": "https://kukfest.eu/img/webring/alienozi.png",
+    "name": "Alienozi's Website for Electonics"
+  },
+  {
+    "url": "https://jyushimatsu.web.fc2.com",
+    "imageUrl": "https://kukfest.eu/img/webring/jyushimatsu.png",
+    "name": "jyushimatsu"
+  },
+  {
+    "url": "https://3xf.eu",
+    "imageUrl": "https://kukfest.eu/img/webring/fenix.png",
+    "name": "FönixFogelFuchs"
+  },
+  {
+    "url": "https://xerophyte.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/xerophyte.gif",
+    "name": "Xerophyte"
+  },
+  {
+    "url": "https://tinfoil-hat.net",
+    "imageUrl": "https://kukfest.eu/img/webring/tinfoil-hat.png",
+    "name": "tinfoil-hat"
+  },
+  {
+    "url": "https://nightt.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/nightt.gif",
+    "name": "Nightt's retro art"
+  },
+  {
+    "url": "https://volta.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/aiws.png",
+    "name": "Alice In Wonderland Syndrome"
+  },
+  {
+    "url": "https://jakesthoughts.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/jakesthoughts.gif",
+    "name": "Jake's thoughts"
+  },
+  {
+    "url": "https://jakes-mail.top",
+    "imageUrl": "https://kukfest.eu/img/webring/jakes-mail.gif",
+    "name": "Jake's mail"
+  },
+  {
+    "url": "https://www.davidgebski.nl",
+    "imageUrl": "https://kukfest.eu/img/webring/davidgebski.png",
+    "name": "davidgebski.nl"
+  },
+  {
+    "url": "https://mayvaneday.org",
+    "imageUrl": "https://kukfest.eu/img/webring/mayvaneday-org.png",
+    "name": "MayVaneDay Studios"
+  },
+  {
+    "url": "https://se7en-site.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/se7en-site.png",
+    "name": "Se7en's site"
+  },
+  {
+    "url": "https://dataswamp.org/~lich",
+    "imageUrl": "https://kukfest.eu/img/webring/lich.png",
+    "name": "lich's website"
+  },
+  {
+    "url": "http://radioccc.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/radio-chupacabra.png",
+    "name": "Radio Chupacabra"
+  },
+  {
+    "url": "https://uwcur.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/uwcur.png",
+    "name": "Underground Web Cyberpunk Community Project"
+  },
+  {
+    "url": "https://saltorn.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/saltorn.png",
+    "name": "Saltorn"
+  },
+  {
+    "url": "https://nyom.ru",
+    "imageUrl": "https://kukfest.eu/img/webring/nyom.gif",
+    "name": "nyom.ru"
+  },
+  {
+    "url": "https://tilde.club/~parnell",
+    "imageUrl": "https://kukfest.eu/img/webring/parnell.png",
+    "name": "J. Frank Parnell"
+  },
+  {
+    "url": "https://deurist.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/deurist.png",
+    "name": "Urist"
+  },
+  {
+    "url": "https://tohya.net",
+    "imageUrl": "https://kukfest.eu/img/webring/tohya.png",
+    "name": "saturnexplorers"
+  },
+  {
+    "url": "https://kyubit.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/kyubit.png",
+    "name": "Kyubit"
+  },
+  {
+    "url": "https://grafovolaverunt.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/grafovolaverunt.gif",
+    "name": "Grafo Volaverunt"
+  },
+  {
+    "url": "https://kill-9.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/kill-9-new.png",
+    "name": "kill-9.xyz"
+  },
+  {
+    "url": "https://lainch.leibur.eu",
+    "imageUrl": "https://kukfest.eu/img/webring/lainch.png",
+    "name": "Lainch"
+  },
+  {
+    "url": "https://cumbia.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/cumbia.png",
+    "name": "Cumbia in the wired"
+  },
+  {
+    "url": "https://sftn.github.io",
+    "imageUrl": "https://kukfest.eu/img/webring/sftn.png",
+    "name": "Strings From The Network"
+  },
+  {
+    "url": "https://lilibyte.net",
+    "imageUrl": "https://kukfest.eu/img/webring/lilibyte.gif",
+    "name": "Lilibyte"
+  },
+  {
+    "url": "https://strlst.myogaya.jp/index.html",
+    "imageUrl": "https://kukfest.eu/img/webring/strlst.png",
+    "name": "satorialistic"
+  },
+  {
+    "url": "https://user-index.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/user-index.gif",
+    "name": "User-Index"
+  },
+  {
+    "url": "https://skumsoft.ltd/slimenet",
+    "imageUrl": "https://kukfest.eu/img/webring/slime-net.gif",
+    "name": "Slime-Net"
+  },
+  {
+    "url": "https://bendersteed.tech",
+    "imageUrl": "https://kukfest.eu/img/webring/bendersteed.jpg",
+    "name": "Bendersteed"
+  },
+  {
+    "url": "https://hellishchemicals.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/hellish-chemicals.png",
+    "name": "Hellish Chemicals"
+  },
+  {
+    "url": "https://theswissbay.ch/pdf",
+    "imageUrl": "https://kukfest.eu/img/webring/the-swiss-bay.jpg",
+    "name": "The Swiss Bay"
+  },
+  {
+    "url": "http://freetext.wz.cz",
+    "imageUrl": "https://kukfest.eu/img/webring/freetext.png",
+    "name": "Freetext"
+  },
+  {
+    "url": "https://six10.pw",
+    "imageUrl": "https://kukfest.eu/img/webring/six10.png",
+    "name": "SIX10"
+  },
+  {
+    "url": "https://jack---91.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/jack91.gif",
+    "name": "J@ck#91"
+  },
+  {
+    "url": "https://xenobyte.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/xenobyte.jpg",
+    "name": "Xenobyte"
+  },
+  {
+    "url": "https://flammableduck.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/flammable-duck.png",
+    "name": "Flammable Duck"
+  },
+  {
+    "url": "https://tildezero.xyz/~goat/#rigmarole",
+    "imageUrl": "https://kukfest.eu/img/webring/blaise-haskell.jpg",
+    "name": "Blaise Haskell"
+  },
+  {
+    "url": "https://gapandfriends.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/gap-and-friends.png",
+    "name": "Gap and friends"
+  },
+  {
+    "url": "https://purplevoid.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/purplevoid.png",
+    "name": "purplevoid"
+  },
+  {
+    "url": "https://sizeof.cat",
+    "imageUrl": "https://kukfest.eu/img/webring/sizeofcat.jpg",
+    "name": "sizeof(cat)"
+  },
+  {
+    "url": "https://unix.tirol",
+    "imageUrl": "https://kukfest.eu/img/webring/unix-tirol.png",
+    "name": "unix.tirol"
+  },
+  {
+    "url": "http://hakase-shrine.cf",
+    "imageUrl": "https://kukfest.eu/img/webring/shrine-of-hakase.gif",
+    "name": "Shrine of Hakase"
+  },
+  {
+    "url": "https://extramundane.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/extramundane.jpg",
+    "name": "The Extramundane"
+  },
+  {
+    "url": "https://omicronsetup.eu",
+    "imageUrl": "https://kukfest.eu/img/webring/omicron-setup.gif",
+    "name": "Omicron Setup"
+  },
+  {
+    "url": "https://workingsea.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/workingsea.png",
+    "name": "WorkingSea"
+  },
+  {
+    "url": "https://lukescabin.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/lukes-cabin.png",
+    "name": "Luke's Cabin"
+  },
+  {
+    "url": "https://protocol7.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/protocol7.png",
+    "name": "Protocol 7"
+  },
+  {
+    "url": "https://tard.zone",
+    "imageUrl": "https://kukfest.eu/img/webring/tard-zone.gif",
+    "name": "Tard Zone"
+  },
+  {
+    "url": "https://beedge.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/beedge.png",
+    "name": "Beedge"
+  },
+  {
+    "url": "https://0x1bi.net",
+    "imageUrl": "https://kukfest.eu/img/webring/0x1bi.png",
+    "name": "0x1bi"
+  },
+  {
+    "url": "https://deadendshrine.online",
+    "imageUrl": "https://kukfest.eu/img/webring/dead-end-shrine.png",
+    "name": "Dead End Shrine Online"
+  },
+  {
+    "url": "https://digilord.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/digilord.gif",
+    "name": "Digilord"
+  },
+  {
+    "url": "https://godcock.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/godcock.jpg",
+    "name": "Godcock"
+  },
+  {
+    "url": "https://michii.tk",
+    "imageUrl": "https://kukfest.eu/img/webring/michi.png",
+    "name": "Michi"
+  },
+  {
+    "url": "https://karar.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/karar.png",
+    "name": "Karar"
+  },
+  {
+    "url": "https://nosleepforme.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/no-sleep.png",
+    "name": "No Sleep"
+  },
+  {
+    "url": "https://room4.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/room-4.jpg",
+    "name": "Room 4"
+  },
+  {
+    "url": "https://hen6003.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/hen6003.png",
+    "name": "hen6003"
+  },
+  {
+    "url": "https://diskmagvp.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/diskmagvp.png",
+    "name": "diskmagvp"
+  },
+  {
+    "url": "https://thephilosopherslibrary.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/thephilosopherslibrary.png",
+    "name": "thephilosopherslibrary"
+  },
+  {
+    "url": "https://mm4rk3t.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/mm4rk3t.gif",
+    "name": "mm4rk3t"
+  },
+  {
+    "url": "https://kassy.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/kassy.jpg",
+    "name": "kassy"
+  },
+  {
+    "url": "https://cabbagesorter.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/cabbage-sorter.png",
+    "name": "Cabbage Sorter"
+  },
+  {
+    "url": "https://xiixiixii.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/xiixiixii.gif",
+    "name": "xiixiixii"
+  },
+  {
+    "url": "https://oedo808.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/oedo808.gif",
+    "name": "oedo808"
+  },
+  {
+    "url": "https://xn--z7x.xn--6frz82g",
+    "imageUrl": "https://kukfest.eu/img/webring/xn-neko.gif",
+    "name": "xn-neko"
+  },
+  {
+    "url": "https://jole.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/jole.png",
+    "name": "jole"
+  },
+  {
+    "url": "https://confusion.codeberg.page",
+    "imageUrl": "https://kukfest.eu/img/webring/confusion.png",
+    "name": "Confusion's Confusing Confusefest"
+  },
+  {
+    "url": "https://morituritesalutant.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/morituri-te-salutant.jpg",
+    "name": "Morituri Te Salutant"
+  },
+  {
+    "url": "https://forum.agoraroad.com",
+    "imageUrl": "https://kukfest.eu/img/webring/agoraroad.gif",
+    "name": "Agora Road"
+  },
+  {
+    "url": "https://lain.la",
+    "imageUrl": "https://kukfest.eu/img/webring/lain-la.png",
+    "name": "lain.la"
+  },
+  {
+    "url": "https://arisu.world",
+    "imageUrl": "https://kukfest.eu/img/webring/arisu-world.png",
+    "name": "arisu.world"
+  },
+  {
+    "url": "https://unpop.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/unpop.gif",
+    "name": "Unpop"
+  },
+  {
+    "url": "https://driftt.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/driftt.png",
+    "name": "Driftt"
+  },
+  {
+    "url": "https://chaox.ro",
+    "imageUrl": "https://kukfest.eu/img/webring/chaox.png",
+    "name": "Chaox"
+  },
+  {
+    "url": "https://itsevergreen.rip",
+    "imageUrl": "https://kukfest.eu/img/webring/evergreen.png",
+    "name": "Evergreen"
+  },
+  {
+    "url": "https://mazak.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/mazak.png",
+    "name": "Mazak"
+  },
+  {
+    "url": "https://smolthots.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/small-thoughts.jpg",
+    "name": "Small Thoughts"
+  },
+  {
+    "url": "https://spectrum-of-consciousness.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/spectrum-of-consciousness.gif",
+    "name": "Spectrum of Consciousness"
+  },
+  {
+    "url": "https://libertywitch.com",
+    "imageUrl": "https://kukfest.eu/img/webring/liberty-witch.png",
+    "name": "Liberty Witch"
+  },
+  {
+    "url": "https://seapunk.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/seapunk.gif",
+    "name": "Seapunk"
+  },
+  {
+    "url": "https://ty3r0x.chaox.ro",
+    "imageUrl": "https://kukfest.eu/img/webring/ty3r0x.png",
+    "name": "Ty3r0x"
+  },
+  {
+    "url": "https://lckdscl.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/lckdscl.png",
+    "name": "lckdscl"
+  },
+  {
+    "url": "https://qmaury.com",
+    "imageUrl": "https://kukfest.eu/img/webring/qmaury.jpg",
+    "name": "qmaury"
+  },
+  {
+    "url": "https://galladite.net/~galladite/",
+    "imageUrl": "https://kukfest.eu/img/webring/galladite.png",
+    "name": "galladite"
+  },
+  {
+    "url": "https://halogenstars.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/halogen-stars.png",
+    "name": "halogen stars"
+  },
+  {
+    "url": "https://kirillov.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/kirillov.png",
+    "name": "Kirillov"
+  },
+  {
+    "url": "https://nerdbox.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/nerdbox.png",
+    "name": "nerdbox"
+  },
+  {
+    "url": "https://thecrypt.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/thecrypt.gif",
+    "name": "TheCrypt"
+  },
+  {
+    "url": "https://orizuru.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/orizuru.png",
+    "name": "orizuru"
+  },
+  {
+    "url": "https://rainisnot.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/rain.png",
+    "name": "rain"
+  },
+  {
+    "url": "https://tilde.team/~lemon",
+    "imageUrl": "https://kukfest.eu/img/webring/tocxjo.gif",
+    "name": "tocxjo"
+  },
+  {
+    "url": "https://newdigitalera.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/newdigitalera.png",
+    "name": "newdigitalera"
+  },
+  {
+    "url": "https://e3-l18-3.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/e3-l18-3.gif",
+    "name": "e3-l18-3"
+  },
+  {
+    "url": "https://vincememe.icu",
+    "imageUrl": "https://kukfest.eu/img/webring/vincememe.png",
+    "name": "Vincememe"
+  },
+  {
+    "url": "https://nomadalgia.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/nomadalgia.gif",
+    "name": "Nomadalgia"
+  },
+  {
+    "url": "https://minugahana.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/minugahana.png",
+    "name": "minugahana"
+  },
+  {
+    "url": "https://www.tyxton.net",
+    "imageUrl": "https://kukfest.eu/img/webring/tyxton.png",
+    "name": "tyxton.net"
+  },
+  {
+    "url": "https://urof.net",
+    "imageUrl": "https://kukfest.eu/img/webring/urof.gif",
+    "name": "urof.net"
+  },
+  {
+    "url": "https://trrb.xyz/",
+    "imageUrl": "https://kukfest.eu/img/webring/trrb.png",
+    "name": "trrb"
+  },
+  {
+    "url": "https://www.s-config.com",
+    "imageUrl": "https://kukfest.eu/img/webring/s-config.png",
+    "name": "S-Config"
+  },
+  {
+    "url": "https://grafo.zone",
+    "imageUrl": "https://kukfest.eu/img/webring/grafo-zone.png",
+    "name": "Grafo Zone"
+  },
+  {
+    "url": "https://intr.cx",
+    "imageUrl": "https://kukfest.eu/img/webring/interloper.png",
+    "name": "interloper minimalist services"
+  },
+  {
+    "url": "https://cool-website.xyz",
+    "imageUrl": "https://kukfest.eu/img/webring/cool-website.png",
+    "name": "cool-website.xyz"
+  },
+  {
+    "url": "https://czar.kalli.st",
+    "imageUrl": "https://kukfest.eu/img/webring/czar.png",
+    "name": "czar's blog"
+  },
+  {
+    "url": "https://foreverliketh.is",
+    "imageUrl": "https://kukfest.eu/img/webring/foreverliketh.png",
+    "name": "foreverliketh.is"
+  },
+  {
+    "url": "https://vd1r.neocities.org",
+    "imageUrl": "https://kukfest.eu/img/webring/vd1r.png",
+    "name": "vd1r"
+  },
+  {
+    "url": "https://www.neetventures.com",
+    "imageUrl": "https://kukfest.eu/img/webring/neet-ventures.gif",
+    "name": "Neet Ventures"
+  }
 ]
