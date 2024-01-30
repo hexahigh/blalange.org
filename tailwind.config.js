@@ -6,11 +6,11 @@ export default {
     extend: {},
   },
   plugins: [
-    require("@catppuccin/tailwindcss")({
+    /*require("@catppuccin/tailwindcss")({
       // which flavour of colours to use by default, in the `:root`
       prefix: false,
-      defaultFlavour: "mocha",
-    }),
+      defaultFlavour: "latte",
+    }),*/
   ],
 }
 
