@@ -7,12 +7,6 @@
   const { route } = $page;
 </script>
 
-{#if route.id.includes("/webring")}
-  <main use:autoAnimate>
-    <slot />
-  </main>
-{:else}
-  <main class="text-text bg-base min-h-screen">
-    <slot />
-  </main>
-{/if}
+<main>
+  <slot />
+</main>
