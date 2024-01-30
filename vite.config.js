@@ -1,11 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
-import { enhancedImages } from '@sveltejs/enhanced-img';
 
 /** @type {import('vite').UserConfig} */
 const config = {
   plugins: [
-    enhancedImages(),
     sveltekit(),
     SvelteKitPWA({
       srcDir: 'src',

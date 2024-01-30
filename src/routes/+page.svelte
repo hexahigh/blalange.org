@@ -4,6 +4,7 @@
   import { MetaTags } from "svelte-meta-tags";
   import Reviews from "../lib/components/reviews.svelte";
   import Form from "$lib/components/form.svelte";
+  import Team from "$lib/components/team.svelte";
 </script>
 
 <MetaTags
@@ -69,5 +70,6 @@
     <div class="text-left flex justify-center">
       <Form />
     </div>
+    <Team />
   </div>
 </div>
