@@ -5,7 +5,7 @@
   import herremann from "$lib/img/people/herremann.jpg"
 </script>
 
-<!--<nav />-->
+<nav />
 <div class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
   <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
     <img class="object-cover w-full rounded-t-lg h-96 md:w-48 md:rounded-none md:rounded-s-lg" src={cicignonPreview} alt="">
