@@ -7,7 +7,7 @@
   }
  </script>
  
- <div class="grid grid-cols-8 gap-9 p-10 bg-black w-full h-full min-h-screen">
+ <div class="grid grid-cols-8 gap-9 p-10 w-full">
   {#each sites as site (site.id)}
      {#await isValidImageURL(site.imageUrl)}
        <!-- Waiting for the image URL to be checked -->
