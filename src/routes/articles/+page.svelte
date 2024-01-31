@@ -1,10 +1,34 @@
 <script>
+  import { MetaTags } from "svelte-meta-tags";
   import Nav from "../Nav.svelte";
   import { Card, Button } from "flowbite-svelte";
   import cicignonPreview from "$lib/img/article-previews/cicignon.jpg";
   import herremann from "$lib/img/people/herremann.jpg";
   import ArticleCard from "$lib/components/articleCard.svelte";
 </script>
+
+<svelte:head>
+  <MetaTags
+    title="Balleblad"
+    titleTemplate="%s | Kukfest"
+    description="Nyhetssiden til Kukfest"
+    canonical="https://kukfest.eu/articles/"
+    openGraph={{
+      url: "https://www.url.ie/a",
+      title: "Balleblad | Kukfest",
+      description: "Nyhetssiden til Kukfest",
+      images: [
+        {
+          url: "https://www.example.ie/og-image-01.jpg",
+          width: 800,
+          height: 600,
+          alt: "Og Image Alt",
+        }
+      ],
+      siteName: "Kukfest",
+    }}
+  />
+</svelte:head>
 
 <nav />
 <div
