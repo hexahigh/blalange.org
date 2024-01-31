@@ -8,7 +8,7 @@
 
 <nav />
 <div
-  class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2"
+  class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
 >
   <ArticleCard
     image={cicignonPreview}
@@ -82,8 +82,9 @@
           Januar
           <ol class="ps-5 mt-2 space-y-1 list-decimal list-inside">
             <li>
-              <a href="https://example.com" class="hover:underline text-blue-600"
-                >lorem ipsum</a
+              <a
+                href="https://example.com"
+                class="hover:underline text-blue-600">lorem ipsum</a
               >
             </li>
           </ol>
@@ -92,3 +93,11 @@
     </li>
   </ul>
 </div>
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+</style>
