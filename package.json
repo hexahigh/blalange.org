@@ -40,6 +40,7 @@
 		"flowbite-svelte-icons": "^0.4.5",
 		"gun": "^0.2020.1239",
 		"kolorist": "^1.8.0",
+		"lorem-ipsum": "^2.0.8",
 		"pocketbase": "^0.20.1",
 		"svelte-leaflet": "^0.2.0",
 		"svelte-particles": "^2.12.0",
