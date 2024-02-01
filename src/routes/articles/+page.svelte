@@ -1,4 +1,5 @@
 <script>
+  import { MetaTags } from "svelte-meta-tags";
   import Nav from "../Nav.svelte";
   import { Card, Button } from "flowbite-svelte";
   import cicignonPreview from "$lib/img/article-previews/cicignon.jpg";
@@ -6,9 +7,32 @@
   import ArticleCard from "$lib/components/articleCard.svelte";
 </script>
 
+<svelte:head>
+  <MetaTags
+    title="Balleblad"
+    titleTemplate="%s | Kukfest"
+    description="Nyhetssiden til Kukfest"
+    canonical="https://kukfest.eu/articles/"
+    openGraph={{
+      url: "https://www.url.ie/a",
+      title: "Balleblad | Kukfest",
+      description: "Nyhetssiden til Kukfest",
+      images: [
+        {
+          url: "https://www.example.ie/og-image-01.jpg",
+          width: 800,
+          height: 600,
+          alt: "Og Image Alt",
+        }
+      ],
+      siteName: "Kukfest",
+    }}
+  />
+</svelte:head>
+
 <nav />
 <div
-  class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2"
+  class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
 >
   <ArticleCard
     image={cicignonPreview}
@@ -82,8 +106,9 @@
           Januar
           <ol class="ps-5 mt-2 space-y-1 list-decimal list-inside">
             <li>
-              <a href="https://example.com" class="hover:underline text-blue-600"
-                >lorem ipsum</a
+              <a
+                href="https://example.com"
+                class="hover:underline text-blue-600">lorem ipsum</a
               >
             </li>
           </ol>
@@ -92,3 +117,11 @@
     </li>
   </ul>
 </div>
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+</style>
