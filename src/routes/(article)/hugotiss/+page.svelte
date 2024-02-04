@@ -3,7 +3,7 @@
   import { MetaTags } from "svelte-meta-tags";
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
-  import hugo from "$lib/img/people/hugo.jpg";
+  import hugo from "$lib/img/people/hugo2.jpg";
 </script>
 
 <MetaTags
@@ -32,8 +32,8 @@
 >
   <div>
     <img
-      src={cicignon}
-      class="w-full aspect-[16/9] object-cover rounded-lg"
+      src={hugo}
+      class="w-screen aspect-[16/9] object-fill rounded-lg"
       alt="Article Image"
     />
     <div class="text-xl font-medium text-black">Homofil anal-sex skandale på Cicignon Skole</div>
