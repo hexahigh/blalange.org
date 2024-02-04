@@ -20,7 +20,7 @@
         <li class={path.includes("/images") ? "active" : ""}>
             <a href="/images/23">Bilder</a>
         </li>
-        <li class={path.includes("/articles") ? "active" : ""}><a href="/">Artikler</a></li>
+        <li class={path.includes("/articles") ? "active" : ""}><a href="/articles">Artikler</a></li>
         <li><a href="https://merch.kukfest.eu">Merch</a></li>
         <li><a href="https://boofdev.eu/#contact">Kontakt</a></li>
     </ul>
