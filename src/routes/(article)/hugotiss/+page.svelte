@@ -1,4 +1,5 @@
 <script>
+	import cicignon from '$lib/img/article-previews/cicignon.jpg';
   import { MetaTags } from "svelte-meta-tags";
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
@@ -31,7 +32,7 @@
 >
   <div>
     <img
-      src={hugo}
+      src={cicignon}
       class="w-full aspect-[16/9] object-cover rounded-lg"
       alt="Article Image"
     />
@@ -42,7 +43,7 @@
     <p class="text-gray-500">
       <img src={calendar} class="w-6 h-6 icon" /> 4 Februar 2024
     </p>
-    <article class="format text-gray-800">
+    <div class="max-w-2xl m-9 text-gray-800">
       <p class="mt-2">
         En nylig hendelse på Cicignon Skole har blitt dokumentert av vårt journalist-team, og dette har blitt en stor sak. Fra en gruppe ungdomskole elever har vi fått vite at Hugo Holquist og Patryk Kåre Kadziolka har hatt anal sex i garderoben. Dette var visst ikke første
         gangen de hadde gjort det som Hugo forklarer i et intervju.
@@ -72,7 +73,7 @@
           -Hugo Holmquist
         </p>
       </div>
-    </article>
+    </div>
   </div>
 </div>
 
