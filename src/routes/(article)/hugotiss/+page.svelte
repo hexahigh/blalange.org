@@ -16,10 +16,10 @@
     description: "Sex skandale",
     images: [
       {
-        url: "https://kukfest.eu/img/favicon.png",
-        width: 300,
-        height: 300,
-        alt: "Kukfest logo",
+        url: "https://kukfest.eu/img/people/hugo.jpg",
+        width: 401,
+        height: 505,
+        alt: "Hugo Holmquist",
       },
     ],
     siteName: "Kukfest",
