@@ -41,10 +41,10 @@
     />
     <div class="text-xl font-medium text-black">Homofil anal-sex skandale på Cicignon Skole</div>
     <p class="text-gray-500">
-      Av Simon Bråten, Hermann Roos
+      <img src={person} class="w-6 h-6 icon"> Simon Bråten, Hermann Roos
     </p>
     <p class="text-gray-500">
-      Publisert 4 Februar 2024
+      <img src={calendar} class="w-6 h-6 icon"> 4 Februar 2024
     </p>
     <div class="max-w-2xl m-9 text-gray-800">
       <p class="mt-2">
