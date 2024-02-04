@@ -14,16 +14,16 @@
       alt="Article Image"
     />
     <div class="text-xl font-medium text-black">Example Article</div>
-      <p class="text-gray-500">
-        <img src={person} class="w-6 h-6 icon" />By John Doe
-      </p>
-      <p class="text-gray-500">
-        <img src={calendar} class="w-6 h-6 icon" /> January 1, 2022
-      </p>
-    </div>
+    <p class="text-gray-500">
+      <img src={person} class="w-6 h-6 icon" />By John Doe
+    </p>
+    <p class="text-gray-500">
+      <img src={calendar} class="w-6 h-6 icon" /> January 1, 2022
+    </p>
     <p class="mt-2 text-gray-800">
       This is an example article. It's a great place to put your content.
     </p>
+  </div>
 </div>
 
 <style>
