@@ -1,6 +1,5 @@
 <script>
   import { MetaTags } from "svelte-meta-tags";
-  import cicignonPreview from "$lib/img/article-previews/cicignon.jpg";
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
   import hugo from "$lib/img/people/hugo.jpg";
@@ -28,15 +27,15 @@
 />
 
 <div
-  class="p-6 max-w-6xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4"
+  class="p-6 mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4"
 >
   <div>
     <img
-      src={cicignonPreview}
+      src={hugo}
       class="w-full aspect-[16/9] object-cover rounded-lg"
       alt="Article Image"
     />
-    <div class="text-xl font-medium text-black">Hugotiss</div>
+    <div class="text-xl font-medium text-black">Homofil anal-sex skandale på Cicignon Skole</div>
     <p class="text-gray-500">
       <img src={person} class="w-6 h-6 icon" />Simon Bråten & Hermann Roos
     </p>
@@ -45,9 +44,8 @@
     </p>
     <article class="format text-gray-800">
       <p class="mt-2">
-        Den *DATO* så hadde Hugo Holmquist og Patryk *ETTERNAVN* homofil anal
-        sex i gutte garderoben på Cicignon skole. Dette var visst ikke første
-        gangen de hadde gjort det her som Hugo senere forklarte i et intervju.
+        En nylig hendelse på Cicignon Skole har blitt dokumentert av vårt journalist-team, og dette har blitt en stor sak. Fra en gruppe ungdomskole elever har vi fått vite at Hugo Holquist og Patryk Kåre Kadziolka har hatt anal sex i garderoben. Dette var visst ikke første
+        gangen de hadde gjort det som Hugo forklarer i et intervju.
       </p>
       <div
         class="p-4 my-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800"
