@@ -5,6 +5,18 @@
   import cicignonPreview from "$lib/img/article-previews/cicignon.jpg";
   import herremann from "$lib/img/people/herremann.jpg";
   import ArticleCard from "$lib/components/articleCard.svelte";
+  import { LoremIpsum } from "lorem-ipsum";
+
+  const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 8,
+      min: 4,
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4,
+    },
+  });
 </script>
 
 <svelte:head>
@@ -23,7 +35,7 @@
           width: 800,
           height: 600,
           alt: "Og Image Alt",
-        }
+        },
       ],
       siteName: "Kukfest",
     }}
@@ -36,62 +48,74 @@
 >
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
   <ArticleCard
     image={cicignonPreview}
-    title="lorem ipsum"
-    description="lorem ipsum"
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
+    link="https://example.com"
+  />
+  <ArticleCard
+    image={cicignonPreview}
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
+    link="https://example.com"
+  />
+  <ArticleCard
+    image={cicignonPreview}
+    title={lorem.generateWords(3)}
+    description={lorem.generateSentences(1)}
     link="https://example.com"
   />
 </div>
