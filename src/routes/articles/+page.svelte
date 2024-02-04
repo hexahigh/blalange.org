@@ -4,6 +4,7 @@
   import { Card, Button } from "flowbite-svelte";
   import cicignonPreview from "$lib/img/article-previews/cicignon.jpg";
   import herremann from "$lib/img/people/herremann.jpg";
+  import hugo2 from "$lib/img/people/hugo2.jpg"
   import ArticleCard from "$lib/components/articleCard.svelte";
   import { LoremIpsum } from "lorem-ipsum";
 
@@ -40,81 +41,15 @@
   }}
 />
 
-<nav />
+<Nav />
 <div
   class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
 >
   <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
-  />
-  <ArticleCard
-    image={cicignonPreview}
-    title={lorem.generateWords(3)}
-    description={lorem.generateSentences(1)}
-    link="https://example.com"
+    image={hugo2}
+    title="Homofil anal-sex skandale på Cicignon Skole"
+    description="Det er rykter om at Hugo Holmquist og Patryk Kåre Kadziolka har hatt anal sex i gutte garderoben til Cicignon skole"
+    link="/hugotiss"
   />
 </div>
 
@@ -125,12 +60,12 @@
       2024
       <ol class="ps-5 mt-2 space-y-1 list-disc list-inside">
         <li>
-          Januar
+          Februar
           <ol class="ps-5 mt-2 space-y-1 list-decimal list-inside">
             <li>
               <a
-                href="https://example.com"
-                class="hover:underline text-blue-600">lorem ipsum</a
+                href="/hugotiss"
+                class="hover:underline text-blue-600">Homofil anal-sex skandale på Cicignon Skole</a
               >
             </li>
           </ol>

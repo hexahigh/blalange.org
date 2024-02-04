@@ -4,6 +4,7 @@
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
   import hugo from "$lib/img/people/hugo2.jpg";
+  import Nav from "../../Nav.svelte"
 </script>
 
 <MetaTags
@@ -26,6 +27,8 @@
     siteName: "Kukfest",
   }}
 />
+
+<Nav/>
 
 <div
   class="p-6 max-w-6xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4"
