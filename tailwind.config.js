@@ -6,6 +6,7 @@ export default {
     extend: {},
   },
   plugins: [
+    require('flowbite-typography'),
     /*require("@catppuccin/tailwindcss")({
       // which flavour of colours to use by default, in the `:root`
       prefix: false,

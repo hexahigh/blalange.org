@@ -14,7 +14,6 @@
       alt="Article Image"
     />
     <div class="text-xl font-medium text-black">Example Article</div>
-    <div class="flex-row flex gap-10">
       <p class="text-gray-500">
         <img src={person} class="w-6 h-6 icon" />By John Doe
       </p>
@@ -25,7 +24,6 @@
     <p class="mt-2 text-gray-800">
       This is an example article. It's a great place to put your content.
     </p>
-  </div>
 </div>
 
 <style>

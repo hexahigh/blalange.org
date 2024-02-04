@@ -73,6 +73,9 @@ devDependencies:
   flowbite-svelte:
     specifier: ^0.44.22
     version: 0.44.22(svelte@4.2.2)
+  flowbite-typography:
+    specifier: ^1.0.3
+    version: 1.0.3(tailwindcss@3.3.5)
   postcss:
     specifier: ^8.4.31
     version: 8.4.31
@@ -2731,6 +2734,17 @@ packages:
       tailwind-merge: 2.2.1
     dev: true
 
+  /flowbite-typography@1.0.3(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-UbdQFIIOb7xx2TS+QQrqr79B6ZSkSZurxYWzV0npth6Wns3/j7KfeDJoH9QFU+Zs7zjrvejNtyzgzWLWyCrdiA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      tailwindcss: 3.3.5
+    dev: true
+
   /flowbite@2.2.1:
     resolution: {integrity: sha512-iiZyBTtriEDRHrqXZgpKHaxl4B2J8HZUP8Yn1RXozUDKszWHDVj4GxQqMMB9AJHRWOgXV/4E/LJZ/zqQgBUhWA==}
     dependencies:
@@ -3219,8 +3233,20 @@ packages:
   /locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
 
+  /lodash.castarray@4.4.0:
+    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
+    dev: true
+
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
+    dev: true
+
+  /lodash.isplainobject@4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
+    dev: true
+
+  /lodash.merge@4.6.2:
+    resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
 
   /lodash.sortby@4.7.0:

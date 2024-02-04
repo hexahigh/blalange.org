@@ -19,28 +19,26 @@
   });
 </script>
 
-<svelte:head>
-  <MetaTags
-    title="Balleblad"
-    titleTemplate="%s | Kukfest"
-    description="Nyhetssiden til Kukfest"
-    canonical="https://kukfest.eu/articles/"
-    openGraph={{
-      url: "https://www.url.ie/a",
-      title: "Balleblad | Kukfest",
-      description: "Nyhetssiden til Kukfest",
-      images: [
-        {
-          url: "https://www.example.ie/og-image-01.jpg",
-          width: 800,
-          height: 600,
-          alt: "Og Image Alt",
-        },
-      ],
-      siteName: "Kukfest",
-    }}
-  />
-</svelte:head>
+<MetaTags
+  title="Balleblad"
+  titleTemplate="%s | Kukfest"
+  description="Nyhetssiden til Kukfest"
+  canonical="https://kukfest.eu/articles/"
+  openGraph={{
+    url: "https://kukfest.eu/articles",
+    title: "Balleblad | Kukfest",
+    description: "Nyhetssiden til Kukfest",
+    images: [
+      {
+        url: "https://kukfest.eu/img/favicon.png",
+        width: 300,
+        height: 300,
+        alt: "Kukfest logo",
+      },
+    ],
+    siteName: "Kukfest",
+  }}
+/>
 
 <nav />
 <div
