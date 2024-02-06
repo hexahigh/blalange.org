@@ -18,14 +18,13 @@
     description: "Mye kuk",
     images: [
       {
-        url: "https://kukfest.eu/img.jpg",
+        url: "https://kukfest.eu/img/favicon.png",
         alt: "Kukfest logo",
       },
     ],
     siteName: "Kukfest",
   }}
 />
-<svelte:head />
 
 <!--<Countdown />-->
 
@@ -37,10 +36,7 @@
   >
     <h2 class="text-3xl">Hva er kukfest?</h2>
     <p class="text-xl">
-      Kukfest er en liten festival som skjer på en minecraft server kjørt av
-      noen venner. Den startet i 2023 og blir større for vært år. Det er
-      minigames, et talentshow og mange andre gøye aktiviteter. Akkurat nå så er
-      den eneste måten å bli med er å bli invitert.
+      Kukfest er en liten festival som skjer et par ganger i året. Det er arrangert og kjørt av noen venner som like å ha det gøy. Vi har minst en stor fest per år og noen mindre.
     </p>
   </div>
   <div>
