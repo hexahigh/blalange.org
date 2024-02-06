@@ -1,10 +1,10 @@
 <script>
-	import cicignon from '$lib/img/article-previews/cicignon.jpg';
+  import cicignon from "$lib/img/article-previews/cicignon.jpg";
   import { MetaTags } from "svelte-meta-tags";
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
   import hugo from "$lib/img/people/hugo2.jpg";
-  import Nav from "../../Nav.svelte"
+  import Nav from "../../Nav.svelte";
 </script>
 
 <MetaTags
@@ -28,7 +28,7 @@
   }}
 />
 
-<Nav/>
+<Nav />
 
 <div
   class="p-6 max-w-6xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4"
@@ -39,16 +39,21 @@
       class="w-screen aspect-[16/9] object-fill rounded-lg"
       alt="Article Image"
     />
-    <div class="text-xl font-medium text-black">Homofil anal-sex skandale på Cicignon Skole</div>
+    <div class="text-xl font-medium text-black">
+      Homofil anal-sex skandale på Cicignon Skole
+    </div>
     <p class="text-gray-500">
-      <img src={person} class="w-6 h-6 icon"> Simon Bråten, Hermann Roos
+      <img src={person} class="w-6 h-6 icon" /> Simon Bråten, Hermann Roos
     </p>
     <p class="text-gray-500">
-      <img src={calendar} class="w-6 h-6 icon"> 4 Februar 2024
+      <img src={calendar} class="w-6 h-6 icon" /> 4 Februar 2024
     </p>
-    <div class="max-w-2xl m-9 text-gray-800">
+    <div class=" m-9 text-gray-800">
       <p class="mt-2">
-        En nylig hendelse på Cicignon Skole har blitt dokumentert av vårt journalist-team, og dette har blitt en stor sak. Fra en gruppe ungdomskole elever har vi fått vite at Hugo Holquist og Patryk Kåre Kadziolka har hatt anal sex i garderoben. Dette var visst ikke første
+        En nylig hendelse på Cicignon Skole har blitt dokumentert av vårt
+        journalist-team, og dette har blitt en stor sak. Fra en gruppe
+        ungdomskole elever har vi fått vite at Hugo Holmquist og Patryk Kåre
+        Kadziolka har hatt anal sex i garderoben. Dette var visst ikke første
         gangen de hadde gjort det som Hugo forklarer i et intervju.
       </p>
       <div
@@ -77,8 +82,24 @@
         </p>
       </div>
       <p class="mt-2">
-        Vi har investigert på rekkefølgelsen av hendelsene og kommet fram
+        Vi har intervjuet Patryk Kadziolka og det her er det han hadde å si:
       </p>
+      <div
+        class="p-4 my-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800"
+      >
+        <p
+          class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white"
+        >
+        -(Reporter) "Hvordan var det?"<br>
+        -(Patryk) "Den bare falt inn. Det var en opplevelse, det må jeg virkelig si."<br>
+        -(Reporter) "Det har gått rykter om at noe lignende har skjedd før, er det sant?"<br>
+        -(Patryk) "Det skjedde sånn cirka 1 år siden, men folk kan ikke hele historien."<br>
+        -(Reporter) "Kan du forklare hva som skjedde?"<br>
+        -(Patryk) "Vi var i fellesdusjen og så var det en jævel som skrudde av lyset, Hugo gikk bakover og kræsjet inn i meg."<br>
+        -(Reporter) "Hva skjedde etter det?"<br>
+        -(Patryk) "Den slapp inn. Hugo bykset vekk fra meg, det var ganske gøy."
+        </p>
+      </div>
     </div>
   </div>
 </div>
