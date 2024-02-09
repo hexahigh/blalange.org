@@ -1,4 +1,14 @@
-const pages = ["privacy", "countdown", "images", "images/23", "images/23.1", "articles", "hugotiss"];
+const pages = [
+  "privacy",
+  "countdown",
+  "images",
+  "images/23",
+  "images/23.1",
+  "articles",
+  "hugotiss",
+  "webring",
+  "form",
+];
 
 const site = "https://kukfest.eu";
 
