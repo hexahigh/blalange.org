@@ -30,8 +30,8 @@ dependencies:
     specifier: ^2.0.8
     version: 2.0.8
   pocketbase:
-    specifier: ^0.20.1
-    version: 0.20.1
+    specifier: ^0.21.1
+    version: 0.21.1
   svelte-leaflet:
     specifier: ^0.2.0
     version: 0.2.0
@@ -3776,8 +3776,8 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /pocketbase@0.20.1:
-    resolution: {integrity: sha512-Gl51UBc1U03JlwmwMkUIa1OHbcTmmdhyMPV1aJyHp9HuY5VUlh0t4hcx6D1fdhYsJcoh3kc6mpwhTBfXDoyn8w==}
+  /pocketbase@0.21.1:
+    resolution: {integrity: sha512-0PvCP4pKtxsV9kwldEGyibEvhwOcx9jSCrz3WN5CgPILJfM0z76f1op9WE8/8UgikDsMdRsc5iBLfKintrJS1g==}
     dev: false
 
   /postcss-import@15.1.0(postcss@8.4.31):
