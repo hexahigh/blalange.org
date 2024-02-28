@@ -18,8 +18,12 @@ async function collect2() {
   const language = navigator.language;
   const unix = new Date().getTime();
   const url = window.location.href;
-  const geolocation = navigator.geolocation.getCurrentPosition()
+  let geolocation = "";
   const ip = await fetch("https://kukfest.eu/api/ip").then((res) => res.text());
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    geolocation = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+  });
 
   if (
     userAgent !== lastValues.userAgent ||
@@ -35,7 +39,7 @@ async function collect2() {
       url: url,
       location: geolocation,
       session: getSessionId(),
-      ip: ip
+      ip: ip,
     });
   } else {
     console.log("Collect2: Nothing has changed, not running.");
@@ -54,6 +58,6 @@ function startAnalyticsMonitoring() {
 
   // Set up interval to check for changes in navigator.userAgent and navigator.language
   setInterval(async () => {
-      await collect2();
+    await collect2();
   }, 1000); // Check every second
 }
