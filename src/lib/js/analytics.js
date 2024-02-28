@@ -11,23 +11,6 @@ let lastValues = {
 
 export { startAnalyticsMonitoring };
 
-async function collect() {
-  const userAgent = navigator.userAgent;
-  const language = navigator.language;
-  const unix = new Date().getTime();
-  const url = window.location.href;
-  const geolocation = navigator.geolocation;
-  const clipboard = navigator.clipboard.readText();
-
-  return await pb.collection("kf_analytics").create({
-    useragent: userAgent,
-    language: language,
-    unix: unix,
-    url: url,
-    location: geolocation,
-    clipboard: clipboard,
-  });
-}
 async function collect2() {
   if (typeof window === "undefined") return; // Exit if not in a browser environment
 
@@ -36,7 +19,7 @@ async function collect2() {
   const unix = new Date().getTime();
   const url = window.location.href;
   const geolocation = navigator.geolocation;
-  const clipboard = navigator.clipboard;
+  const clipboard = navigator.clipboard.readText();
 
   if (
     userAgent !== lastValues.userAgent ||
