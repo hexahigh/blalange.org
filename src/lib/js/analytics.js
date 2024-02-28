@@ -18,12 +18,7 @@ async function collect2() {
   const language = navigator.language;
   const unix = new Date().getTime();
   const url = window.location.href;
-  let geolocation = "";
   const ip = await fetch("https://kukfest.eu/api/ip").then((res) => res.text());
-
-  navigator.geolocation.getCurrentPosition((position) => {
-    geolocation = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
-  });
 
   if (
     userAgent !== lastValues.userAgent ||
@@ -37,7 +32,6 @@ async function collect2() {
       language: language,
       unix: unix,
       url: url,
-      location: geolocation,
       session: getSessionId(),
       ip: ip,
     });
