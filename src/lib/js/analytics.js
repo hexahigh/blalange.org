@@ -19,6 +19,7 @@ async function collect2() {
   const unix = new Date().getTime();
   const url = window.location.href;
   const geolocation = navigator.geolocation;
+  const ip = fetch("https://kukfest.eu/api/ip").then((res) => res.text());
 
   if (
     userAgent !== lastValues.userAgent ||
@@ -34,6 +35,7 @@ async function collect2() {
       url: url,
       location: geolocation,
       session: getSessionId(),
+      ip: ip
     });
   } else {
     console.log("Collect2: Nothing has changed, not running.");
