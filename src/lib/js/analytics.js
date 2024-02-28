@@ -19,7 +19,7 @@ async function collect2() {
   const unix = new Date().getTime();
   const url = window.location.href;
   const geolocation = navigator.geolocation;
-  const ip = fetch("https://kukfest.eu/api/ip").then((res) => res.text());
+  const ip = await fetch("https://kukfest.eu/api/ip").then((res) => res.text());
 
   if (
     userAgent !== lastValues.userAgent ||
