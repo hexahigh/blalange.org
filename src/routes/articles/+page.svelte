@@ -47,6 +47,7 @@
 >
   <ArticleCard
     image={hugo2}
+    date="04.02.2024"
     title="Homofil anal-sex skandale på Cicignon Skole"
     description="Det er rykter om at Hugo Holmquist og Patryk Kåre Kadziolka har hatt anal sex i gutte garderoben til Cicignon skole"
     link="/hugotiss"
