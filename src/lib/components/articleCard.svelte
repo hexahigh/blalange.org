@@ -12,8 +12,8 @@
   export let title;
   export let description;
   export let link;
+  /** @type {string} @description The date of the article. Format: "dd.mm.yyyy */
   export let date;
-  import calendar from "$lib/svg/calendar.svg";
 </script>
 
 <div
@@ -29,8 +29,7 @@
       >
         {title}
       </h5>
-      <p class="text-gray-500">
-        <img src={calendar} class="w-6 h-6 icon" />{date}</p>
+      <p class="text-gray-500">{date}</p>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
         {description}
       </p>
