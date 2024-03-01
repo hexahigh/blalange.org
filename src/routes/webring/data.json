@@ -193,5 +193,15 @@
     "url": "https://cool-website.xyz",
     "imageUrl": "https://kukfest.eu/img/webring/cool-website.png",
     "name": "cool-website.xyz"
+  },
+  {
+    "url": "https://github.com",
+    "imageUrl": "https://kukfest.eu/img/webring/github.gif",
+    "name": "GitHub"
+  },
+  {
+    "url": "https://gitea.com",
+    "imageUrl": "https://github.com/go-gitea/gitea",
+    "name": "Gitea"
   }
 ]
