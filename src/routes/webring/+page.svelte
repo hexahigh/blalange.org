@@ -1,28 +1,17 @@
 <script>
   import sites from "./data.json";
- 
-  async function isValidImageURL(url) {
-     const response = await fetch(url);
-     return response.status === 200 && response.headers.get('content-type').startsWith('image');
-  }
- </script>
- 
- <div class="grid grid-cols-8 gap-9 p-10 w-full">
+</script>
+
+<div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-8 p-10 w-full min-h-screen bg-black">
   {#each sites as site (site.id)}
-     {#await isValidImageURL(site.imageUrl)}
-       <!-- Waiting for the image URL to be checked -->
-     {:then isValid}
-       {#if isValid}
-         <a href={site.url}>
-           <img
-             src={site.imageUrl}
-             alt={site.name}
-             class="object-cover w-full h-auto rounded-md"
-           />
-         </a>
-       {/if}
-     {:catch error}
-       <!-- An error occurred while checking the image URL -->
-     {/await}
+    <div>
+      <a href={site.url}>
+        <img
+          src={site.imageUrl}
+          alt={site.name}
+          class="object-cover w-full h-auto rounded-md"
+        />
+      </a>
+    </div>
   {/each}
- </div>
+</div>
