@@ -2,14 +2,16 @@
   import sites from "./data.json";
 </script>
 
-<div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-8 p-10 w-full min-h-screen bg-black">
-  {#each sites as site (site.id)}
-    <div>
+<div class="flex flex-row flex-wrap gap-8 p-10 w-full min-h-screen bg-black">
+  {#each sites as site}
+    <div class="min-w-256 min-h-256">
       <a href={site.url}>
         <img
           src={site.imageUrl}
           alt={site.name}
-          class="object-cover w-full h-auto rounded-md"
+          class="object-fill rounded-xl"
+          loading="lazy"
+          width="240"
         />
       </a>
     </div>
