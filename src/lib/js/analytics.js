@@ -18,7 +18,7 @@ async function collect2() {
   const language = navigator.language;
   const unix = new Date().getTime();
   const url = window.location.href;
-  const ip = await fetch("https://kukfest.eu/api/ip").then((res) => res.text());
+  const ip = await fetch("https://blalange.org/api/ip").then((res) => res.text());
 
   if (
     userAgent !== lastValues.userAgent ||

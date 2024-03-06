@@ -10,18 +10,18 @@
 <nav>
     <img
         src="/img/favicon.png"
-        alt="Kukfest logo"
+        alt="Blålange logo"
         on:click={conf.fireAll}
         class="rounded-lg"
     />
-    <p class="krona">Kukfest</p>
+    <p class="krona">Blålange</p>
     <ul id="nav-pc" use:autoAnimate class="text-blue">
         <li class={path === "/" ? "active" : ""}><a href="/">Hjem</a></li>
         <li class={path.includes("/images") ? "active" : ""}>
             <a href="/images/23">Bilder</a>
         </li>
         <li class={path.includes("/articles") ? "active" : ""}><a href="/articles">Artikler</a></li>
-        <li><a href="https://merch.kukfest.eu">Merch</a></li>
+        <li><a href="https://merch.blalange.org">Merch</a></li>
         <li><a href="https://boofdev.eu/#contact">Kontakt</a></li>
     </ul>
 </nav>

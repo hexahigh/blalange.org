@@ -10,7 +10,7 @@ const pages = [
   "form",
 ];
 
-const site = "https://kukfest.eu";
+const site = "https://blalange.org";
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {

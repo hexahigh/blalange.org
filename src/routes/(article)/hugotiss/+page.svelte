@@ -9,22 +9,22 @@
 
 <MetaTags
   title="Hugotiss"
-  titleTemplate="%s | Kukfest"
+  titleTemplate="%s | Blålange"
   description="Sex skandale"
-  canonical="https://kukfest.eu/hugotiss"
+  canonical="https://blalange.org/hugotiss"
   openGraph={{
-    url: "https://kukfest.eu/hugotiss",
-    title: "Hugotiss | Kukfest",
+    url: "https://blalange.org/hugotiss",
+    title: "Hugotiss | Blålange",
     description: "Sex skandale",
     images: [
       {
-        url: "https://kukfest.eu/img/people/hugo.jpg",
+        url: "https://blalange.org/img/people/hugo.jpg",
         width: 401,
         height: 505,
         alt: "Hugo Holmquist",
       },
     ],
-    siteName: "Kukfest",
+    siteName: "Blålange festivalen",
   }}
 />
 

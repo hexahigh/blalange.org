@@ -22,22 +22,22 @@
 
 <MetaTags
   title="Balleblad"
-  titleTemplate="%s | Kukfest"
-  description="Nyhetssiden til Kukfest"
-  canonical="https://kukfest.eu/articles/"
+  titleTemplate="%s | Blålange"
+  description="Nyhetssiden til Blålange festivalen"
+  canonical="https://blalange.org/articles/"
   openGraph={{
-    url: "https://kukfest.eu/articles",
-    title: "Balleblad | Kukfest",
-    description: "Nyhetssiden til Kukfest",
+    url: "https://blalange.org/articles",
+    title: "Balleblad | Blålange",
+    description: "Nyhetssiden til Blålange festivalen",
     images: [
       {
-        url: "https://kukfest.eu/img/favicon.png",
+        url: "https://blalange.org/img/favicon.png",
         width: 300,
         height: 300,
-        alt: "Kukfest logo",
+        alt: "Blålange logo",
       },
     ],
-    siteName: "Kukfest",
+    siteName: "Blålange festivalen",
   }}
 />
 
