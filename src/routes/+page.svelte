@@ -36,11 +36,11 @@
   >
     <h2 class="text-3xl">Hva er blålange festivalen?</h2>
     <p class="text-xl">
-      KUKFEST er en årlig stor-fest med konkurranser, talentshow og Celvin.
+      Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.
 
       Vi arbeider med å lage et inkulderende felleskap som elsker partylys.
       Vi tjener ingenting av Blålange festivalen, det er bare for gøy og pengene vi får inn blir brukt for fremtidige fester.
-      
+
       Så bli med, du og!
     </p>
   </div>
