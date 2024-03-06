@@ -36,9 +36,12 @@
   >
     <h2 class="text-3xl">Hva er blålange festivalen?</h2>
     <p class="text-xl">
-      Blålange festivalen er en liten festival som skjer et par ganger i året.
-      Det er arrangert og kjørt av noen venner som like å ha det gøy. Vi har
-      minst en stor fest per år og noen mindre.
+      Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.
+
+      Vi arbeider med å lage et inkulderende felleskap som elsker partylys.
+      Vi tjener ingenting av Blålange festivalen, det er bare for gøy og pengene vi får inn blir brukt for fremtidige fester.
+
+      Så bli med, du og!
     </p>
   </div>
   <div class="rounded-2xl p-5 flex flex-wrap pl-48 pr-48">
