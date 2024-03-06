@@ -1,28 +1,25 @@
 <script>
-  import Countdown from "./countdown.svelte";
   import Nav from "./Nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
-  import Reviews from "../lib/components/reviews.svelte";
   import Form from "$lib/components/form.svelte";
-  import Team from "$lib/components/team.svelte";
 </script>
 
 <MetaTags
-  title="Kukfest"
-  titleTemplate="%s | Kukfest"
-  description="Kukfest har masse kuk"
-  canonical="https://kukfest.eu"
+  title="Blålange festivalen"
+  titleTemplate="%s | Blålange"
+  description="Blålange festivalen er en norsk festival som skjer et par ganger i áret."
+  canonical="https://blalange.org"
   openGraph={{
-    url: "https://kukfest.eu",
-    title: "Kukfest",
-    description: "Mye kuk",
+    url: "https://blalange.org",
+    title: "Blålange festivalen",
+    description: "Blålange festivalen er en norsk festival som skjer et par ganger i áret.",
     images: [
       {
-        url: "https://kukfest.eu/img/favicon.png",
-        alt: "Kukfest logo",
+        url: "https://blalange.org/img/favicon.png",
+        alt: "Blålange logo",
       },
     ],
-    siteName: "Kukfest",
+    siteName: "Blålange festivalen",
   }}
 />
 
@@ -34,9 +31,9 @@
     class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
     style="background-image: url(/img/bg1.png);"
   >
-    <h2 class="text-3xl">Hva er kukfest?</h2>
+    <h2 class="text-3xl">Hva er blålange festivalen?</h2>
     <p class="text-xl">
-      Kukfest er en liten festival som skjer et par ganger i året. Det er arrangert og kjørt av noen venner som like å ha det gøy. Vi har minst en stor fest per år og noen mindre.
+      Blålange festivalen er en liten festival som skjer et par ganger i året. Det er arrangert og kjørt av noen venner som like å ha det gøy. Vi har minst en stor fest per år og noen mindre.
     </p>
   </div>
   <div>
@@ -62,7 +59,7 @@
   </div>
   <div class="text-center mocha">
     <h2 class="text-3xl">Bli med</h2>
-    <p>Vil du bli med på neste Kukfest? Svar på dette skjemaet.</p>
+    <p>Vil du bli med på neste Festival? Svar på dette skjemaet.</p>
     <div class="text-left flex justify-center">
       <Form />
     </div>
