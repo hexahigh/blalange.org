@@ -3,22 +3,20 @@
 @tailwind utilities;
 
 .dark-bg {
-    background-color: #333333;
+  background-color: #333333;
 }
 
 .dark-text {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .dark-url a {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .dark-url a:hover {
-    color: #ffffff;
+  color: #ffffff;
 }
-
-
 
 /*:root {
     --text-color: #000000;

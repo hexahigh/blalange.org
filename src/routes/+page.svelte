@@ -2,6 +2,8 @@
   import Nav from "./Nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
   import Form from "$lib/components/form.svelte";
+  import imgWeb from "$lib/img/home/web.svg";
+  import imgWebS from "$lib/img/home/web-s.svg";
 </script>
 
 <MetaTags
@@ -12,7 +14,8 @@
   openGraph={{
     url: "https://blalange.org",
     title: "Blålange festivalen",
-    description: "Blålange festivalen er en norsk festival som skjer et par ganger i áret.",
+    description:
+      "Blålange festivalen er en norsk festival som skjer et par ganger i áret.",
     images: [
       {
         url: "https://blalange.org/img/favicon.png",
@@ -33,31 +36,34 @@
   >
     <h2 class="text-3xl">Hva er blålange festivalen?</h2>
     <p class="text-xl">
-      Blålange festivalen er en liten festival som skjer et par ganger i året. Det er arrangert og kjørt av noen venner som like å ha det gøy. Vi har minst en stor fest per år og noen mindre.
+      Blålange festivalen er en liten festival som skjer et par ganger i året.
+      Det er arrangert og kjørt av noen venner som like å ha det gøy. Vi har
+      minst en stor fest per år og noen mindre.
     </p>
   </div>
-  <div>
-    <div class="text-center">
-      <h2 class="text-3xl">Se vår episke trailer</h2>
-    </div>
-    <div class="mt-5 justify-center flex">
-      <video class="w-96 rounded border border-black" controls>
-        <source
-          src="/vid/Kukfest 23.1 8K Trailer 1 vp9.webm"
-          type="video/webm"
-        />
-        <source
-          src="/vid/Kukfest 23.1 8K Trailer 1 H265.mp4"
-          type="video/mp4"
-        />
-        <source
-          src="/vid/Kukfest 23.1 8K Trailer 1 x264.mp4"
-          type="video/mp4"
-        />
-      </video>
+  <div class="rounded-2xl p-5 flex pl-48 pr-48">
+    <img src={imgWeb} alt="Web" class="w-96 h-96" />
+    <div class="item-body">
+      <h3 class="text-3xl dela">Bli med på festivalen fra hvor som helst!</h3>
+      <p class="text-xl roboto-condensed">
+        For bare 20kr får du tilgang til hele festen fra din mobil, pc eller tv!
+        Med enkel tilgang til liveshowet for lav pris er dette den perfekte
+        måten å prøve uten å tape noe. Så hva venter du på? Kjøp nå!
+      </p>
     </div>
   </div>
-  <div class="text-center mocha">
+  <div class="rounded-2xl p-5 flex pl-48 pr-48">
+    <div class="item-body">
+      <h3 class="text-3xl dela">Bli med på festivalen fra hvor som helst!</h3>
+      <p class="text-xl roboto-condensed">
+        For bare 20kr får du tilgang til hele festen fra din mobil, pc eller tv!
+        Med enkel tilgang til liveshowet for lav pris er dette den perfekte
+        måten å prøve uten å tape noe. Så hva venter du på? Kjøp nå!
+      </p>
+    </div>
+    <img src={imgWebS} alt="WebS" class="w-96 h-96" />
+  </div>
+  <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
     <p>Vil du bli med på neste Festival? Svar på dette skjemaet.</p>
     <div class="text-left flex justify-center">
