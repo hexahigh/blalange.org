@@ -41,7 +41,7 @@
       minst en stor fest per år og noen mindre.
     </p>
   </div>
-  <div class="rounded-2xl p-5 flex pl-48 pr-48">
+  <div class="rounded-2xl p-5 flex flex-wrap pl-48 pr-48">
     <img src={imgWeb} alt="Web" class="w-96 h-96" />
     <div class="item-body">
       <h3 class="text-3xl dela">Bli med på festivalen fra hvor som helst!</h3>
@@ -52,7 +52,7 @@
       </p>
     </div>
   </div>
-  <div class="rounded-2xl p-5 flex pl-48 pr-48">
+  <div class="rounded-2xl p-5 flex flex-wrap pl-48 pr-48">
     <div class="item-body">
       <h3 class="text-3xl dela">Bli med på festivalen fra hvor som helst!</h3>
       <p class="text-xl roboto-condensed">
