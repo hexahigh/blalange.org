@@ -42,6 +42,14 @@
       status = "Noe gikk galt: " + error;
     } finally {
       status = "Takk for din melding!";
+      email = "";
+      name = "";
+      geoLocation = "";
+      extra = "";
+      age = 0;
+      filmed = "";
+      manOrWoman = "";
+      clearImage();
     }
   }
 
