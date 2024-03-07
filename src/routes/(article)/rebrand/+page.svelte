@@ -49,9 +49,10 @@
     </p>
     <div class=" m-9 text-gray-800">
       <p class="mt-2">
-        Heihei, vi har nylig byttet navn fra Kukfest til Blålange festivalen, vi byttet det for å være mer inkluderende!
+        Heihei, vi har nylig byttet navn fra Kukfest til Blålange festivalen, vi byttet det for å være mer inkluderende og mindre krenkende.
+        <br>
         Men du spør kanskje, hvorfor kalte dere det Blålange festivalen?
-        Vi kalte det Blålange festivalen fordi Blålangen er Lars Oscar sin favoritt fisk, vi håper å overraske han med den nye navnet og invitere han til Blålange festivalen 2024.
+        Vi kalte det Blålange festivalen fordi Blålangen er Lars Oscar sin favoritt fisk, vi håper å overraske han med det nye navnet og invitere han til Blålange festivalen 2024.
       </p>
     </div>
   </div>
