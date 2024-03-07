@@ -14,6 +14,9 @@ dependencies:
   '@fontsource/lexend-exa':
     specifier: ^5.0.19
     version: 5.0.19
+  '@fontsource/material-icons':
+    specifier: ^5.0.14
+    version: 5.0.14
   '@fontsource/roboto-condensed':
     specifier: ^5.0.15
     version: 5.0.15
@@ -1541,6 +1544,10 @@ packages:
 
   /@fontsource/lexend-exa@5.0.19:
     resolution: {integrity: sha512-NWGA83T3mViektgvHrmlhCgifMEZKynHGX1tzoHz2bKGfTu5frV6gOSgEtKxNsXEisTs2NJh35FWI6wudtIKrw==}
+    dev: false
+
+  /@fontsource/material-icons@5.0.14:
+    resolution: {integrity: sha512-5O6DIF/qZc9I7W+zYZQESiizGnbkAD0U7FIPK+v6gLW2s9L+PRtXOFtd5Oe400QFNcVTJUgdTRY9bE81+zCq2Q==}
     dev: false
 
   /@fontsource/roboto-condensed@5.0.15:
@@ -5224,7 +5231,6 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
-    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0
