@@ -7,6 +7,7 @@
   import "@fontsource/lexend-exa";
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
+  import '@fontsource/material-icons';
 
   onMount(() => {
     startAnalyticsMonitoring();

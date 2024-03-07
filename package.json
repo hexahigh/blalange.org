@@ -37,6 +37,7 @@
 		"@fontsource/dela-gothic-one": "^5.0.18",
 		"@fontsource/krona-one": "^5.0.12",
 		"@fontsource/lexend-exa": "^5.0.19",
+		"@fontsource/material-icons": "^5.0.14",
 		"@fontsource/roboto-condensed": "^5.0.15",
 		"@formkit/auto-animate": "^0.8.1",
 		"@sveltejs/adapter-cloudflare": "^2.3.4",
