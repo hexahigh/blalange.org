@@ -2,6 +2,7 @@
     import * as conf from "$lib/js/conf.js";
     import { page } from "$app/stores";
     import autoAnimate from "@formkit/auto-animate";
+    import logo from "$lib/img/favicon.svg";
     let path;
 
     $: path = $page.url.pathname;
@@ -9,7 +10,7 @@
 
 <nav>
     <img
-        src="/img/favicon.png"
+        src={logo}
         alt="Blålange logo"
         on:click={conf.fireAll}
         class="rounded-lg"
