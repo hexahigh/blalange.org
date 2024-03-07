@@ -17,6 +17,7 @@
   let geoLocation = "";
   let extra = "";
   let age = 0;
+  let status = "";
 
   async function handleSubmit() {
     const formData = new FormData();
@@ -34,7 +35,22 @@
       formData.append("image", image);
     }
 
-    await pb.collection("form").create(formData);
+    try {
+      await pb.collection("form").create(formData);
+    } catch (error) {
+      console.error(error);
+      status = "Noe gikk galt: " + error;
+    } finally {
+      status = "Takk for din melding!";
+      email = "";
+      name = "";
+      geoLocation = "";
+      extra = "";
+      age = 0;
+      filmed = "";
+      manOrWoman = "";
+      clearImage();
+    }
   }
 
   function clearImage() {
@@ -219,4 +235,5 @@
     id="submitButton"
     type="submit">Send inn</button
   >
+  <p>{status}</p>
 </form>

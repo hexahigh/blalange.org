@@ -1,9 +1,7 @@
 <script>
+	import rebrand_logo from '$lib/img/article/rebrand_logo.png';
   import { MetaTags } from "svelte-meta-tags";
   import Nav from "../Nav.svelte";
-  import { Card, Button } from "flowbite-svelte";
-  import cicignonPreview from "$lib/img/article-previews/cicignon.jpg";
-  import herremann from "$lib/img/people/herremann.jpg";
   import hugo2 from "$lib/img/people/hugo2.jpg"
   import ArticleCard from "$lib/components/articleCard.svelte";
   import { LoremIpsum } from "lorem-ipsum";
@@ -51,6 +49,13 @@
     title="Homofil anal-sex skandale på Cicignon Skole"
     description="Det er rykter om at Hugo Holmquist og Patryk Kåre Kadziolka har hatt anal sex i gutte garderoben til Cicignon skole"
     link="/hugotiss"
+  />
+  <ArticleCard
+    image={rebrand_logo}
+    date="07.03.2024"
+    title="Vi har byttet navn!"
+    description="Vi har ditcha Kukfest branden og har byttet navn"
+    link="/rebrand"
   />
 </div>
 

@@ -2,6 +2,8 @@
   import Nav from "./Nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
   import Form from "$lib/components/form.svelte";
+  import imgWeb from "$lib/img/home/web.svg";
+  import imgWebS from "$lib/img/home/web-s.svg";
 </script>
 
 <MetaTags
@@ -12,7 +14,8 @@
   openGraph={{
     url: "https://blalange.org",
     title: "Blålange festivalen",
-    description: "Blålange festivalen er en norsk festival som skjer et par ganger i áret.",
+    description:
+      "Blålange festivalen er en norsk festival som skjer et par ganger i áret.",
     images: [
       {
         url: "https://blalange.org/img/favicon.png",
@@ -33,31 +36,15 @@
   >
     <h2 class="text-3xl">Hva er blålange festivalen?</h2>
     <p class="text-xl">
-      Blålange festivalen er en liten festival som skjer et par ganger i året. Det er arrangert og kjørt av noen venner som like å ha det gøy. Vi har minst en stor fest per år og noen mindre.
+      Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.
+      <br>
+      Vi arbeider med å lage et inkulderende felleskap som elsker partylys.
+      Vi tjener ingenting av Blålange festivalen, det er bare for gøy og pengene vi får inn blir brukt for fremtidige fester.
+
+      Så bli med, du og!
     </p>
   </div>
-  <div>
-    <div class="text-center">
-      <h2 class="text-3xl">Se vår episke trailer</h2>
-    </div>
-    <div class="mt-5 justify-center flex">
-      <video class="w-96 rounded border border-black" controls>
-        <source
-          src="/vid/Kukfest 23.1 8K Trailer 1 vp9.webm"
-          type="video/webm"
-        />
-        <source
-          src="/vid/Kukfest 23.1 8K Trailer 1 H265.mp4"
-          type="video/mp4"
-        />
-        <source
-          src="/vid/Kukfest 23.1 8K Trailer 1 x264.mp4"
-          type="video/mp4"
-        />
-      </video>
-    </div>
-  </div>
-  <div class="text-center mocha">
+  <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
     <p>Vil du bli med på neste Festival? Svar på dette skjemaet.</p>
     <div class="text-left flex justify-center">

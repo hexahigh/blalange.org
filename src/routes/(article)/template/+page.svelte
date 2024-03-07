@@ -1,5 +1,5 @@
 <script>
-  import cicignonPreview from "$lib/img/article-previews/cicignon.jpg";
+  import cicignonPreview from "$lib/img/article/cicignon.jpg";
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
 </script>
