@@ -15,7 +15,7 @@
   openGraph={{
     url: "https://blalange.org/rebrand",
     title: "Nytt navn | Blålange",
-    description: "Kukfest har bytten navn",
+    description: "Kukfest har byttet navn",
     images: [
       {
         url: {rebrand_logo},
