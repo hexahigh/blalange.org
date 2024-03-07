@@ -9,7 +9,7 @@ let lastValues = {
   url: typeof window !== "undefined" ? "" : "",
 };
 
-let ip = "",
+let ip = "";
 
 export { startAnalyticsMonitoring };
 
