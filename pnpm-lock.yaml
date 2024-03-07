@@ -5,6 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@fontsource/dela-gothic-one':
+    specifier: ^5.0.18
+    version: 5.0.18
+  '@fontsource/krona-one':
+    specifier: ^5.0.12
+    version: 5.0.12
+  '@fontsource/lexend-exa':
+    specifier: ^5.0.19
+    version: 5.0.19
+  '@fontsource/roboto-condensed':
+    specifier: ^5.0.15
+    version: 5.0.15
   '@formkit/auto-animate':
     specifier: ^0.8.1
     version: 0.8.1
@@ -211,7 +223,7 @@ packages:
     dependencies:
       '@babel/compat-data': 7.23.2
       '@babel/helper-validator-option': 7.22.15
-      browserslist: 4.22.1
+      browserslist: 4.23.0
       lru-cache: 5.1.1
       semver: 6.3.1
     dev: true
@@ -1519,6 +1531,22 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: true
 
+  /@fontsource/dela-gothic-one@5.0.18:
+    resolution: {integrity: sha512-gyC+WAHiXV4nMB3SgU4sroRp2E8TKq080dJsltcLoP5eqNxJcKYlGSMW99P0t9G6ORC0sgKn8n3NutgjkMsGSQ==}
+    dev: false
+
+  /@fontsource/krona-one@5.0.12:
+    resolution: {integrity: sha512-RqhZ0c2iDuY39zF7lR5yPq82hvgTzEvkZBtu6nSOy1GRKhv5WEAIyfRvTITeQg2VuMK66A8N1uDVYifyPvA8ZA==}
+    dev: false
+
+  /@fontsource/lexend-exa@5.0.19:
+    resolution: {integrity: sha512-NWGA83T3mViektgvHrmlhCgifMEZKynHGX1tzoHz2bKGfTu5frV6gOSgEtKxNsXEisTs2NJh35FWI6wudtIKrw==}
+    dev: false
+
+  /@fontsource/roboto-condensed@5.0.15:
+    resolution: {integrity: sha512-0AFvcI/8JQ5+FZE12hdaE1W/1ooJUzd5XP7jD74+SP+PArsswJ+6OV/oKTasgeQeZlvGrcD3chO6yr5K4JGwzA==}
+    dev: false
+
   /@formkit/auto-animate@0.8.1:
     resolution: {integrity: sha512-0/Z2cuNXWVVIG/l0SpcHAWFhGdvLJ8DRvEfRWvmojtmRWfEy+LWNwgDazbZqY0qQYtkHcoEK3jBLkhiZaB/4Ig==}
     dev: false
@@ -2540,17 +2568,6 @@ packages:
     dependencies:
       fill-range: 7.0.1
 
-  /browserslist@4.22.1:
-    resolution: {integrity: sha512-FEVc202+2iuClEhZhrWy6ZiAcRLvNMyYcxZ8raemul1DYVOVdFsbqckWLdsixQZCpJlwe77Z3UTalE7jsjnKfQ==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-    dependencies:
-      caniuse-lite: 1.0.30001547
-      electron-to-chromium: 1.4.551
-      node-releases: 2.0.13
-      update-browserslist-db: 1.0.13(browserslist@4.22.1)
-    dev: true
-
   /browserslist@4.23.0:
     resolution: {integrity: sha512-QW8HiM1shhT2GuzkvklfjcKDiWFXHOeFCIA/huJPwHsslwcydgk7X+z2zXpEijP98UCY7HbubZt5J2Zgvf0CaQ==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -2593,10 +2610,6 @@ packages:
   /camelcase-css@2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
-
-  /caniuse-lite@1.0.30001547:
-    resolution: {integrity: sha512-W7CrtIModMAxobGhz8iXmDfuJiiKg1WADMO/9x7/CLNin5cpSbuBjooyoIUVB5eyCc36QuTVlkVa1iB2S5+/eA==}
-    dev: true
 
   /caniuse-lite@1.0.30001593:
     resolution: {integrity: sha512-UWM1zlo3cZfkpBysd7AS+z+v007q9G1+fLTUU42rQnY6t2axoogPW/xol6T7juU5EUoOhML4WgBIdG+9yYqAjQ==}
@@ -2723,7 +2736,7 @@ packages:
   /core-js-compat@3.33.0:
     resolution: {integrity: sha512-0w4LcLXsVEuNkIqwjjf9rjCoPhK8uqA4tMRh4Ge26vfLtUutshn+aRJU21I9LCJlh2QQHfisNToLjw1XEJLTWw==}
     dependencies:
-      browserslist: 4.22.1
+      browserslist: 4.23.0
     dev: true
 
   /crypto-random-string@2.0.0:
@@ -2833,10 +2846,6 @@ packages:
     hasBin: true
     dependencies:
       jake: 10.8.7
-    dev: true
-
-  /electron-to-chromium@1.4.551:
-    resolution: {integrity: sha512-/Ng/W/kFv7wdEHYzxdK7Cv0BHEGSkSB3M0Ssl8Ndr1eMiYeas/+Mv4cNaDqamqWx6nd2uQZfPz6g25z25M/sdw==}
     dev: true
 
   /electron-to-chromium@1.4.690:
@@ -3707,10 +3716,6 @@ packages:
 
   /node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
-    dev: true
-
-  /node-releases@2.0.13:
-    resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
     dev: true
 
   /node-releases@2.0.14:
@@ -5002,17 +5007,6 @@ packages:
   /upath@1.2.0:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}
     engines: {node: '>=4'}
-    dev: true
-
-  /update-browserslist-db@1.0.13(browserslist@4.22.1):
-    resolution: {integrity: sha512-xebP81SNcPuNpPP3uzeW1NYXxI3rxyJzF3pD6sH4jE7o/IX+WtSpwnVU+qIsDPyk0d3hmFQ7mjqc6AtV604hbg==}
-    hasBin: true
-    peerDependencies:
-      browserslist: '>= 4.21.0'
-    dependencies:
-      browserslist: 4.22.1
-      escalade: 3.1.1
-      picocolors: 1.0.0
     dev: true
 
   /update-browserslist-db@1.0.13(browserslist@4.23.0):
