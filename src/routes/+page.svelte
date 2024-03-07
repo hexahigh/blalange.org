@@ -2,8 +2,6 @@
   import Nav from "./Nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
   import Form from "$lib/components/form.svelte";
-  import imgWeb from "$lib/img/home/web.svg";
-  import imgWebS from "$lib/img/home/web-s.svg";
 </script>
 
 <MetaTags
@@ -20,6 +18,12 @@
       {
         url: "https://blalange.org/img/favicon.png",
         alt: "Blålange logo",
+        type: "image/png",
+      },
+      {
+        url: "https://blalange.org/img/favicon.svg",
+        alt: "Blålange logo",
+        type: "image/svg",
       },
     ],
     siteName: "Blålange festivalen",
