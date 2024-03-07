@@ -37,34 +37,12 @@
     <h2 class="text-3xl">Hva er blålange festivalen?</h2>
     <p class="text-xl">
       Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.
-
+      <br>
       Vi arbeider med å lage et inkulderende felleskap som elsker partylys.
       Vi tjener ingenting av Blålange festivalen, det er bare for gøy og pengene vi får inn blir brukt for fremtidige fester.
 
       Så bli med, du og!
     </p>
-  </div>
-  <div class="rounded-2xl p-5 flex flex-wrap pl-48 pr-48">
-    <img src={imgWeb} alt="Web" class="w-96 h-96" />
-    <div class="item-body">
-      <h3 class="text-3xl dela">Bli med på festivalen fra hvor som helst!</h3>
-      <p class="text-xl roboto-condensed">
-        For bare 20kr får du tilgang til hele festen fra din mobil, pc eller tv!
-        Med enkel tilgang til liveshowet for lav pris er dette den perfekte
-        måten å prøve uten å tape noe. Så hva venter du på? Kjøp nå!
-      </p>
-    </div>
-  </div>
-  <div class="rounded-2xl p-5 flex flex-wrap pl-48 pr-48">
-    <div class="item-body">
-      <h3 class="text-3xl dela">Bli med på festivalen fra hvor som helst!</h3>
-      <p class="text-xl roboto-condensed">
-        For bare 20kr får du tilgang til hele festen fra din mobil, pc eller tv!
-        Med enkel tilgang til liveshowet for lav pris er dette den perfekte
-        måten å prøve uten å tape noe. Så hva venter du på? Kjøp nå!
-      </p>
-    </div>
-    <img src={imgWebS} alt="WebS" class="w-96 h-96" />
   </div>
   <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
