@@ -35,8 +35,8 @@
     "description": "Blålange Festivalen er en norsk festival som skjer et par ganger i áret.",
     "dir": "auto",
     "categories": [
-      "entertainment",
-      "games",
-      "social"
+      "news",
+      "social",
+      "events"
     ]
   }

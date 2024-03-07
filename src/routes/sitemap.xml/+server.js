@@ -1,5 +1,5 @@
 const pages = [
-  "privacy",
+  "rebrand",
   "countdown",
   "images",
   "images/23",
