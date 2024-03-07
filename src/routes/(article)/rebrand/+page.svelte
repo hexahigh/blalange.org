@@ -1,5 +1,4 @@
 <script>
-  import cicignon from "$lib/img/article-previews/cicignon.jpg";
   import { MetaTags } from "svelte-meta-tags";
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
