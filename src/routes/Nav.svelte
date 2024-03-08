@@ -13,7 +13,7 @@
         src={logo}
         alt="Blålange logo"
         on:click={conf.fireAll}
-        class="rounded-lg"
+        class="rounded-lg hover:animate-spin"
     />
     <p class="krona">Blålange</p>
     <ul id="nav-pc" use:autoAnimate class="text-blue">
