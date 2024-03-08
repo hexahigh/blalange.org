@@ -9,6 +9,8 @@ let lastValues = {
   url: typeof window !== "undefined" ? "" : "",
 };
 
+let ip = "";
+
 export { startAnalyticsMonitoring };
 
 async function collect2() {
@@ -18,7 +20,9 @@ async function collect2() {
   const language = navigator.language;
   const unix = new Date().getTime();
   const url = window.location.href;
-  const ip = await fetch("https://blalange.org/api/ip").then((res) => res.text());
+  if (ip == "") {
+ ip = await fetch("https://blalange.org/api/ip").then((res) => res.text())
+}
 
   if (
     userAgent !== lastValues.userAgent ||
