@@ -20,11 +20,6 @@
         alt: "Blålange logo",
         type: "image/png",
       },
-      {
-        url: "https://blalange.org/img/favicon.svg",
-        alt: "Blålange logo",
-        type: "image/svg",
-      },
     ],
     siteName: "Blålange festivalen",
   }}
