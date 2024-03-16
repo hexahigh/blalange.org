@@ -25,3 +25,9 @@
 .material-icons {
   font-family: "Material Icons", sans-serif;
 }
+
+.fixed-background-img {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
