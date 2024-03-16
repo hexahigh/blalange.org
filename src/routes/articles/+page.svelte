@@ -44,13 +44,6 @@
   class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
 >
   <ArticleCard
-    image={hugo2}
-    date="04.02.2024"
-    title="Homofil anal-sex skandale på Cicignon Skole"
-    description="Det er rykter om at Hugo Holmquist og Patryk Kåre Kadziolka har hatt anal sex i gutte garderoben til Cicignon skole"
-    link="/hugotiss"
-  />
-  <ArticleCard
     image={rebrand_logo}
     date="07.03.2024"
     title="Vi har byttet navn!"
@@ -66,12 +59,12 @@
       2024
       <ol class="ps-5 mt-2 space-y-1 list-disc list-inside">
         <li>
-          Februar
+          Mars
           <ol class="ps-5 mt-2 space-y-1 list-decimal list-inside">
             <li>
               <a
-                href="/hugotiss"
-                class="hover:underline text-blue-600">Homofil anal-sex skandale på Cicignon Skole</a
+                href="/rebrand"
+                class="hover:underline text-blue-600">Vi har byttet navn!</a
               >
             </li>
           </ol>
