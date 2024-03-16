@@ -28,11 +28,6 @@
 </nav>
 
 <style>
-    @font-face {
-        font-family: Broadway-custom;
-        src: url(/font/broadway%20regular.ttf);
-    }
-
     nav li.active {
         border-bottom: solid;
         border-color: #000000;
