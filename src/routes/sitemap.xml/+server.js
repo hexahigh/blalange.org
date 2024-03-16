@@ -5,7 +5,6 @@ const pages = [
   "images/23",
   "images/23.1",
   "articles",
-  "hugotiss",
   "webring",
   "form",
 ];

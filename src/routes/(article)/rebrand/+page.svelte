@@ -3,7 +3,7 @@
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
   import rebrand_logo from "$lib/img/article/rebrand_logo.png"
-  import Nav from "../../Nav.svelte";
+  import Nav from "$lib/components/nav.svelte";
 </script>
 
 <MetaTags

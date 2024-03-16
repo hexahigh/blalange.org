@@ -1,5 +1,5 @@
 <script>
-  import Nav from "./Nav.svelte";
+  import Nav from "$lib/components/nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
   import Form from "$lib/components/form.svelte";
 </script>

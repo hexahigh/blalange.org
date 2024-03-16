@@ -121,7 +121,7 @@
   </label>
 
   <div class="mb-4">
-    <span class="mb-2">Er du ok med å bli filmet under kukfest?</span>
+    <span class="mb-2">Er du ok med å bli filmet under blålange festivalen?</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-blue-500" />

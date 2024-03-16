@@ -7,9 +7,6 @@
 
 <nav>
   <ul id="nav-pc" class="text-blue">
-    <li class={path === "/images/23" ? "active" : ""}>
-      <a href="/images/23">2023</a>
-    </li>
     <li class={path === "/images/23.1" ? "active" : ""}>
       <a href="/images/23.1">2023.1</a>
     </li>
