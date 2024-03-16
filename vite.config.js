@@ -9,6 +9,7 @@ const config = {
       strategies: 'injectManifest',
       srcDir: 'src',
       filename: 'sw.js',
+      manifestFilename: 'manifest.json',
       /* other pwa options */  
     })
   ],
