@@ -8,7 +8,7 @@ const config = {
     SvelteKitPWA({
       strategies: 'injectManifest',
       srcDir: 'src',
-      filename: 'sw.js',
+      filename: 'service-worker.js',
       manifestFilename: 'manifest.json',
       manifest: {
           "name": "Blålange festivalen",
