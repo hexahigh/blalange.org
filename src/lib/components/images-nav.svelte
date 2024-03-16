@@ -7,9 +7,6 @@
 
 <nav>
   <ul id="nav-pc" class="text-blue">
-    <li class={path === "/images/23" ? "active" : ""}>
-      <a href="/images/23">2023</a>
-    </li>
     <li class={path === "/images/23.1" ? "active" : ""}>
       <a href="/images/23.1">2023.1</a>
     </li>
@@ -17,11 +14,6 @@
 </nav>
 
 <style>
-  @font-face {
-    font-family: Broadway-custom;
-    src: url(/font/broadway%20regular.ttf);
-  }
-
   nav li.active {
     border-bottom: solid;
     border-color: #000000;

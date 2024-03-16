@@ -1,5 +1,5 @@
 <script>
-  import Nav from "../../Nav.svelte";
+  import Nav from "$lib/components/nav.svelte";
   import ImagesNav from "$lib/components/images-nav.svelte";
 
   const pictureModules = import.meta.glob(

@@ -19,7 +19,7 @@
     <ul id="nav-pc" use:autoAnimate class="text-blue">
         <li class={path === "/" ? "active" : ""}><a href="/">Hjem</a></li>
         <li class={path.includes("/images") ? "active" : ""}>
-            <a href="/images/23">Bilder</a>
+            <a href="/images">Bilder</a>
         </li>
         <li class={path.includes("/articles") ? "active" : ""}><a href="/articles">Artikler</a></li>
         <li><a href="https://merch.blalange.org">Merch</a></li>
@@ -28,11 +28,6 @@
 </nav>
 
 <style>
-    @font-face {
-        font-family: Broadway-custom;
-        src: url(/font/broadway%20regular.ttf);
-    }
-
     nav li.active {
         border-bottom: solid;
         border-color: #000000;

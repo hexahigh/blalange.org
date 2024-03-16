@@ -1,7 +1,7 @@
 <script>
 	import rebrand_logo from '$lib/img/article/rebrand_logo.png';
   import { MetaTags } from "svelte-meta-tags";
-  import Nav from "../Nav.svelte";
+  import Nav from "$lib/components/nav.svelte";
   import hugo2 from "$lib/img/people/hugo2.jpg"
   import ArticleCard from "$lib/components/articleCard.svelte";
   import { LoremIpsum } from "lorem-ipsum";
