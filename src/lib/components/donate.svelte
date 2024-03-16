@@ -3,7 +3,7 @@
   import patreon from "$lib/svg/patreon2.svg";
 
   let cost = 2000;
-  let donated = 0;
+  let donated = 7.93;
 
   let percentage = (donated / cost) * 100;
 
