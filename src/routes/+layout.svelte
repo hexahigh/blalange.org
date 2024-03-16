@@ -45,3 +45,8 @@
 <main>
   <slot />
 </main>
+
+
+{#await import('$lib/components/reloadPrompt.svelte') then { default: ReloadPrompt}}
+  <ReloadPrompt />
+{/await}
