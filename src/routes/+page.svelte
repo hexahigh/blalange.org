@@ -2,6 +2,7 @@
   import Nav from "$lib/components/nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
   import Form from "$lib/components/form.svelte";
+  import Donate from "$lib/components/donate.svelte";
 </script>
 
 <MetaTags
@@ -43,6 +44,9 @@
       Så bli med, du og!
     </p>
   </div>
+
+  <Donate />
+  
   <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
     <p>Vil du bli med på neste Festival? Svar på dette skjemaet.</p>
