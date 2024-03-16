@@ -25,7 +25,7 @@ dependencies:
     version: 0.8.1
   '@sveltejs/adapter-cloudflare':
     specifier: ^2.3.4
-    version: 2.3.4(@sveltejs/kit@1.27.6)
+    version: 2.3.4(@sveltejs/kit@1.30.4)
   '@tsparticles/svelte':
     specifier: ^3.0.0
     version: 3.0.0(svelte@4.2.9)
@@ -69,19 +69,19 @@ devDependencies:
     version: 0.1.6(tailwindcss@3.3.5)
   '@sveltejs/adapter-auto':
     specifier: ^2.1.1
-    version: 2.1.1(@sveltejs/kit@1.27.6)
+    version: 2.1.1(@sveltejs/kit@1.30.4)
   '@sveltejs/enhanced-img':
     specifier: ^0.1.8
     version: 0.1.8(rollup@2.79.1)(svelte@4.2.9)
   '@sveltejs/kit':
-    specifier: ^1.27.6
-    version: 1.27.6(svelte@4.2.9)(vite@4.5.2)
+    specifier: ^1.30.4
+    version: 1.30.4(svelte@4.2.9)(vite@4.5.2)
   '@vite-pwa/assets-generator':
     specifier: ^0.2.4
     version: 0.2.4
   '@vite-pwa/sveltekit':
     specifier: ^0.3.0
-    version: 0.3.0(@sveltejs/kit@1.27.6)(vite-plugin-pwa@0.17.5)
+    version: 0.3.0(@sveltejs/kit@1.30.4)(vite-plugin-pwa@0.17.5)
   autoprefixer:
     specifier: ^10.4.18
     version: 10.4.18(postcss@8.4.31)
@@ -1913,22 +1913,22 @@ packages:
       string.prototype.matchall: 4.0.10
     dev: true
 
-  /@sveltejs/adapter-auto@2.1.1(@sveltejs/kit@1.27.6):
+  /@sveltejs/adapter-auto@2.1.1(@sveltejs/kit@1.30.4):
     resolution: {integrity: sha512-nzi6x/7/3Axh5VKQ8Eed3pYxastxoa06Y/bFhWb7h3Nu+nGRVxKAy3+hBJgmPCwWScy8n0TsstZjSVKfyrIHkg==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.27.6(svelte@4.2.9)(vite@4.5.2)
+      '@sveltejs/kit': 1.30.4(svelte@4.2.9)(vite@4.5.2)
       import-meta-resolve: 4.0.0
     dev: true
 
-  /@sveltejs/adapter-cloudflare@2.3.4(@sveltejs/kit@1.27.6):
+  /@sveltejs/adapter-cloudflare@2.3.4(@sveltejs/kit@1.30.4):
     resolution: {integrity: sha512-+5Msbm7svrZjaBt0KapNh2zEaMRfrhbTRBWRXrFa+w+KFRQnHjFIPvWz/NQ11XKVu7dRe7mkzqvqieL2b0hpJw==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
       '@cloudflare/workers-types': 4.20231010.0
-      '@sveltejs/kit': 1.27.6(svelte@4.2.9)(vite@4.5.2)
+      '@sveltejs/kit': 1.30.4(svelte@4.2.9)(vite@4.5.2)
       esbuild: 0.18.20
       worktop: 0.8.0-next.15
     dev: false
@@ -1944,8 +1944,8 @@ packages:
       - svelte
     dev: true
 
-  /@sveltejs/kit@1.27.6(svelte@4.2.9)(vite@4.5.2):
-    resolution: {integrity: sha512-GsjTkMbKzXdbeRg0tk8S7HNShQ4879ftRr0ZHaZfjbig1xQwG57Bvcm9U9/mpLJtCapLbLWUnygKrgcLISLC8A==}
+  /@sveltejs/kit@1.30.4(svelte@4.2.9)(vite@4.5.2):
+    resolution: {integrity: sha512-JSQIQT6XvdchCRQEm7BABxPC56WP5RYVONAi+09S8tmzeP43fBsRlr95bFmsTQM2RHBldfgQk+jgdnsKI75daA==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -1959,14 +1959,14 @@ packages:
       devalue: 4.3.2
       esm-env: 1.0.0
       kleur: 4.1.5
-      magic-string: 0.30.4
+      magic-string: 0.30.5
       mrmime: 1.0.1
       sade: 1.8.1
       set-cookie-parser: 2.6.0
       sirv: 2.0.3
       svelte: 4.2.9
       tiny-glob: 0.2.9
-      undici: 5.26.5
+      undici: 5.28.3
       vite: 4.5.2
     transitivePeerDependencies:
       - supports-color
@@ -1997,7 +1997,7 @@ packages:
       debug: 4.3.4
       deepmerge: 4.3.1
       kleur: 4.1.5
-      magic-string: 0.30.4
+      magic-string: 0.30.5
       svelte: 4.2.9
       svelte-hmr: 0.15.3(svelte@4.2.9)
       vite: 4.5.2
@@ -2354,14 +2354,14 @@ packages:
       unconfig: 0.3.11
     dev: true
 
-  /@vite-pwa/sveltekit@0.3.0(@sveltejs/kit@1.27.6)(vite-plugin-pwa@0.17.5):
+  /@vite-pwa/sveltekit@0.3.0(@sveltejs/kit@1.30.4)(vite-plugin-pwa@0.17.5):
     resolution: {integrity: sha512-cqVqHBm7kn3CQvNuBj21CSjf8Ub8rWhYJrYqr3qzQeWAm70ODASyaPc4vY8rwoxYGTnwWpgZ/ivJXmYV2G3j6Q==}
     engines: {node: '>=16.14 || >=18.13'}
     peerDependencies:
       '@sveltejs/kit': ^1.3.1 || ^2.0.1
       vite-plugin-pwa: '>=0.17.4 <1'
     dependencies:
-      '@sveltejs/kit': 1.27.6(svelte@4.2.9)(vite@4.5.2)
+      '@sveltejs/kit': 1.30.4(svelte@4.2.9)(vite@4.5.2)
       kolorist: 1.8.0
       vite-plugin-pwa: 0.17.5(vite@4.5.2)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
@@ -3617,12 +3617,6 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
-
-  /magic-string@0.30.4:
-    resolution: {integrity: sha512-Q/TKtsC5BPm0kGqgBIF9oXAs/xEf2vRKiIB4wCRQTJOQIByZ1d+NnUOotvJOvNpi5RNIgVOMC3pOuaP1ZTDlVg==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
 
   /magic-string@0.30.5:
     resolution: {integrity: sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==}
@@ -4970,8 +4964,8 @@ packages:
     resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
     dev: true
 
-  /undici@5.26.5:
-    resolution: {integrity: sha512-cSb4bPFd5qgR7qr2jYAi0hlX9n5YKK2ONKkLFkxl+v/9BvC0sOpZjBHDBSXc5lWAf5ty9oZdRXytBIHzgUcerw==}
+  /undici@5.28.3:
+    resolution: {integrity: sha512-3ItfzbrhDlINjaP0duwnNsKpDQk3acHI3gVJ1z4fmwMK31k5G9OVIAMLSIaP6w4FaGkaAkN6zaQO9LUvZ1t7VA==}
     engines: {node: '>=14.0'}
     dependencies:
       '@fastify/busboy': 2.0.0
@@ -5231,6 +5225,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0
