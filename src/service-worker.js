@@ -1,5 +1,5 @@
 import { skipWaiting, clientsClaim } from 'workbox-core';
-import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
+import { precacheAndRoute, createHandlerBoundToURL, cleanupOutdatedCaches } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { NetworkFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
@@ -7,8 +7,17 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 skipWaiting();
 clientsClaim();
 
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING')
+    self.skipWaiting()
+})
+
 // Precache assets
 precacheAndRoute(self.__WB_MANIFEST);
+
+// clean old assets
+cleanupOutdatedCaches()
 
 // Default to `networkFirst` strategy for all other requests.
 registerRoute(
