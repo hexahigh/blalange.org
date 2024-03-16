@@ -3,7 +3,18 @@
   import patreon from "$lib/svg/patreon2.svg";
 
   let cost = 2000;
-  let donated = 7.93;
+
+  let donations = [
+    {
+      name: "Anon",
+      amount: 7.93,
+    }
+  ]
+
+  let donated = 0;
+  for (let i = 0; i < donations.length; i++) {
+    donated += donations[i].amount;
+  }
 
   let percentage = (donated / cost) * 100;
 
