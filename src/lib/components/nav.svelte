@@ -1,5 +1,4 @@
 <script>
-    import * as conf from "$lib/js/conf.js";
     import { page } from "$app/stores";
     import autoAnimate from "@formkit/auto-animate";
     import logo from "$lib/img/favicon.svg";
@@ -12,7 +11,6 @@
     <img
         src={logo}
         alt="Blålange logo"
-        on:click={conf.fireAll}
         class="rounded-lg hover:animate-spin"
     />
     <p class="krona">Blålange</p>
