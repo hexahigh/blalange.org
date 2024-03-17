@@ -41,6 +41,7 @@
 		"@fontsource/roboto-condensed": "^5.0.15",
 		"@formkit/auto-animate": "^0.8.1",
 		"@sveltejs/adapter-cloudflare": "^2.3.4",
+		"@sveltejs/adapter-node": "^5.0.1",
 		"@tsparticles/svelte": "^3.0.0",
 		"audiomotion-analyzer": "^4.4.0",
 		"flowbite-svelte-icons": "^0.4.5",
