@@ -39,7 +39,7 @@
   }}
 />
 
-<Nav />
+
 <div
   class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
 >

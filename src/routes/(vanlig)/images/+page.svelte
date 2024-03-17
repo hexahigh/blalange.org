@@ -3,5 +3,5 @@
   import ImagesNav from "$lib/components/images-nav.svelte";
 </script>
 
-<Nav />
+
 <ImagesNav />

@@ -16,7 +16,7 @@
   console.log(columns)
 </script>
 
-<Nav />
+
 <ImagesNav />
 
 <div>

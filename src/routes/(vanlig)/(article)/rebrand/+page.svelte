@@ -27,7 +27,7 @@
   }}
 />
 
-<Nav />
+
 
 <div
   class="p-6 max-w-6xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4"
