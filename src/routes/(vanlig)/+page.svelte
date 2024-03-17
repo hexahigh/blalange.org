@@ -1,5 +1,4 @@
 <script>
-  import Nav from "$lib/components/nav.svelte";
   import { MetaTags } from "svelte-meta-tags";
   import Form from "$lib/components/form.svelte";
   import Donate from "$lib/components/donate.svelte";
@@ -29,7 +28,7 @@
 <!--<Countdown />-->
 
 <div class="bg-base text-text">
-  <Nav />
+  
   <div
     class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
     style="background-image: url(/img/bg1.png);"

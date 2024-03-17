@@ -1,0 +1,13 @@
+{
+    "version": {
+        "id": "1.0.0",
+        "name": "Gaia"
+    },
+
+    "versions": [
+        {
+            "id": "1.0.0",
+            "name": "Gaia"
+        }
+    ]
+}
