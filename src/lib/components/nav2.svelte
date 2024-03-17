@@ -4,6 +4,7 @@
     import logo from "$lib/img/favicon.svg";
     import { page } from "$app/stores";
     import autoAnimate from "@formkit/auto-animate";
+    import * as confetti from "$lib/js/confetti.js";
    
     let path;
     let collapse;
@@ -36,7 +37,9 @@
    <nav class="bg-white border-gray-200 dark:bg-gray-900" use:autoAnimate>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-         <img src={logo} class="h-12" alt="Blånange Logo" />
+         <!-- svelte-ignore a11y-click-events-have-key-events -->
+         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+         <img src={logo} class="h-12 hover:animate-spin" on:click={confetti.fireAll} alt="Blånange Logo" />
          <span class="self-center text-2xl font-semibold whitespace-nowrap krona dark:text-white">Blålange</span>
        </a>
        <button

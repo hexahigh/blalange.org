@@ -3,7 +3,7 @@ import { SvelteKitPWA } from "@vite-pwa/sveltekit";
 
 import * as child from "child_process";
 
-let commitHash = "unknown";
+let commitHash = "0000000";
 try {
   commitHash = child.execSync("git rev-parse --short HEAD").toString();
 } catch (e) {

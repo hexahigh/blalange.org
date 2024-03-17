@@ -1,3 +1,5 @@
+import { confetti } from "@tsparticles/confetti"
+
 /**
  * Fires all the confetti.
  */
