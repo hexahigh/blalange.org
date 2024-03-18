@@ -33,7 +33,7 @@
     class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
     style="background-image: url(/img/bg1.png);"
   >
-    <h2 class="text-3xl">Hva er blålange festivalen?</h2>
+    <h1 class="text-3xl">Hva er blålange festivalen?</h1>
     <p class="text-xl">
       Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.
       <br>
