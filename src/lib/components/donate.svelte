@@ -1,6 +1,5 @@
 <script>
   import paypal from "$lib/svg/paypal1.svg";
-  import patreon from "$lib/svg/patreon2.svg";
 
   let cost = 2000;
 
@@ -52,9 +51,6 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img class="w-64 h-64 hover:scale-110 transform transition duration-500 no-drag" draggable="false" src={paypal} alt="Paypal" on:click={() => donate("paypal")} />
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <img class="w-64 h-64 hover:scale-110 transform transition duration-500 no-drag" draggable="false" src={patreon} alt="Patreon" on:click={() => donate("patreon")} />
   </div>
 </div>
 

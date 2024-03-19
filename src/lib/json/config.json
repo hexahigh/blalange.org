@@ -1,12 +1,20 @@
 {
     "version": {
-        "id": "1.0.0",
+        "id": "1.0.2",
         "name": "Gaia"
     },
 
     "versions": [
         {
             "id": "1.0.0",
+            "name": "Gaia"
+        },
+        {
+            "id": "1.0.1",
+            "name": "Gaia"
+        },
+        {
+            "id": "1.0.2",
             "name": "Gaia"
         }
     ]
