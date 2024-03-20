@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^2.1.1
     version: 2.1.1(@sveltejs/kit@1.30.4)
   '@sveltejs/enhanced-img':
-    specifier: ^0.1.8
-    version: 0.1.8(rollup@2.79.1)(svelte@4.2.9)
+    specifier: ^0.1.9
+    version: 0.1.9(rollup@2.79.1)(svelte@4.2.9)
   '@sveltejs/kit':
     specifier: ^1.30.4
     version: 1.30.4(svelte@4.2.9)(vite@4.5.2)
@@ -1956,7 +1956,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@types/estree': 1.0.2
+      '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 2.79.1
@@ -1971,7 +1971,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@types/estree': 1.0.2
+      '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 4.13.0
@@ -2122,8 +2122,8 @@ packages:
       rollup: 4.13.0
     dev: false
 
-  /@sveltejs/enhanced-img@0.1.8(rollup@2.79.1)(svelte@4.2.9):
-    resolution: {integrity: sha512-0cLVR9KiO0/t3VVm64OM7bPHTkdaT2aaz1rwoAhao+EBXR3vMvLoYXLHvz8o9/552PSV8G844RkH7qkGc3YAiQ==}
+  /@sveltejs/enhanced-img@0.1.9(rollup@2.79.1)(svelte@4.2.9):
+    resolution: {integrity: sha512-gUgaiG88P6moWcxZx4YrzMhAlw1TgggKRp7n9gdfCREDeXHysCd1l9GpQR3sh109SM3rNlkiaAzt+iPLT0aG1w==}
     dependencies:
       magic-string: 0.30.5
       svelte-parse-markup: 0.1.2(svelte@4.2.9)
@@ -2550,7 +2550,6 @@ packages:
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
-    dev: false
 
   /@types/node@20.8.4:
     resolution: {integrity: sha512-ZVPnqU58giiCjSxjVUESDtdPk4QR5WQhhINbc9UBrKLU68MX5BF6kbQzTrkwbolyr0X8ChBpXfavr5mZFKZQ5A==}
@@ -3664,7 +3663,7 @@ packages:
   /is-reference@1.2.1:
     resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
     dependencies:
-      '@types/estree': 1.0.2
+      '@types/estree': 1.0.5
     dev: false
 
   /is-reference@3.0.2:
