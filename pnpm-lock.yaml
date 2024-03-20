@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^10.4.18
     version: 10.4.18(postcss@8.4.36)
   flowbite:
-    specifier: ^2.2.1
-    version: 2.2.1
+    specifier: ^2.3.0
+    version: 2.3.0
   flowbite-svelte:
     specifier: ^0.44.24
     version: 0.44.24(svelte@4.2.9)
@@ -3303,13 +3303,6 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       tailwindcss: 3.4.1
-    dev: true
-
-  /flowbite@2.2.1:
-    resolution: {integrity: sha512-iiZyBTtriEDRHrqXZgpKHaxl4B2J8HZUP8Yn1RXozUDKszWHDVj4GxQqMMB9AJHRWOgXV/4E/LJZ/zqQgBUhWA==}
-    dependencies:
-      '@popperjs/core': 2.11.8
-      mini-svg-data-uri: 1.4.4
     dev: true
 
   /flowbite@2.3.0:
