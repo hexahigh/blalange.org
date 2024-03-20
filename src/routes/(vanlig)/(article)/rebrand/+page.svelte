@@ -2,8 +2,9 @@
   import { MetaTags } from "svelte-meta-tags";
   import calendar from "$lib/svg/calendar.svg";
   import person from "$lib/svg/person.svg";
-  import rebrand_logo from "$lib/img/article/rebrand_logo.png"
-  import Nav from "$lib/components/nav.svelte";
+  import rebrand_logo from "$lib/img/article/rebrand_logo.png?enhanced"
+
+  console.log(rebrand_logo)
 </script>
 
 <MetaTags
@@ -15,14 +16,6 @@
     url: "https://blalange.org/rebrand",
     title: "Nytt navn | Blålange",
     description: "Kukfest har byttet navn",
-    images: [
-      {
-        url: {rebrand_logo},
-        width: 1055,
-        height: 1055,
-        alt: "New logo",
-      },
-    ],
     siteName: "Blålange festivalen",
   }}
 />
@@ -33,7 +26,7 @@
   class="p-6 max-w-6xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4"
 >
   <div>
-    <img
+    <enhanced:img
       src={rebrand_logo}
       class="w-screen aspect-[16/9] object-fill rounded-lg"
       alt="Article Image"

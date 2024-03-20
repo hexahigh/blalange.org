@@ -1,7 +1,7 @@
 {
     "version": {
-        "id": "1.0.2",
-        "name": "Gaia"
+        "id": "1.1.0",
+        "name": "Genesis"
     },
 
     "versions": [
@@ -16,6 +16,10 @@
         {
             "id": "1.0.2",
             "name": "Gaia"
+        },
+        {
+            "id": "1.1.0",
+            "name": "Genesis"
         }
     ]
 }
