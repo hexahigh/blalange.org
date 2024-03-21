@@ -4,10 +4,9 @@
 
     function getLatestVersion() {
         const latestVersion = config.versions[config.versions.length - 1];
-        return `${latestVersion.id}.${latestVersion.name}`;
+        return latestVersion
     }
 
-    let latestVersion = getLatestVersion();
 </script>
 
 <footer class="w-full text-center border-t border-grey p-4 pin-b bg-gray-200">
@@ -15,6 +14,6 @@
         <a href="https://github.com/hexahigh/kukfest" class="hover:underline">Kildekode</a>
         <a href="mailto:webmaster@blalange.org" class="hover:underline ml-4">Epost</a>
     </div>
-    <p>Versjon {latestVersion} - {commitHash}</p>
+    <p>Versjon {getLatestVersion().id}.{commitHash} - {getLatestVersion().name}</p>
     <p>{new Date().getFullYear()} © Blålange Festivalen. All rights reserved.</p>
 </footer>
