@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { Collapse } from 'flowbite';
+    import { DarkMode } from 'flowbite-svelte';
     import logo from "$lib/img/favicon.svg";
     import { page } from "$app/stores";
     import autoAnimate from "@formkit/auto-animate";
@@ -69,6 +70,9 @@
            </li>
            <li class="not-current-page">
              <a href="https://merch.blalange.org">Merch</a>
+           </li>
+           <li>
+            <DarkMode />
            </li>
          </ul>
        </div>

@@ -59,9 +59,6 @@ dependencies:
   svelte-leaflet:
     specifier: ^0.2.0
     version: 0.2.0
-  svelte-particles:
-    specifier: ^2.12.0
-    version: 2.12.0(svelte@4.2.9)
   tsparticles:
     specifier: ^3.3.0
     version: 3.3.0
@@ -112,9 +109,6 @@ devDependencies:
   svelte:
     specifier: ^4.2.9
     version: 4.2.9
-  svelte-loading-spinners:
-    specifier: ^0.3.4
-    version: 0.3.4
   svelte-meta-tags:
     specifier: ^3.1.0
     version: 3.1.0(svelte@4.2.9)(typescript@5.2.2)
@@ -5347,10 +5341,6 @@ packages:
       leaflet: 1.9.4
     dev: false
 
-  /svelte-loading-spinners@0.3.4:
-    resolution: {integrity: sha512-vKaW71QMCBcTNijAGc0mUl8k3DQ66iYmp6MB8BMGCXyWk82bTrcLy8FOnSm9fE+8q6TwzD6PLUoYFHt0II93Xw==}
-    dev: true
-
   /svelte-meta-tags@3.1.0(svelte@4.2.9)(typescript@5.2.2):
     resolution: {integrity: sha512-wFBfpktSua1R5rdvQ/aFucvXmRqzDhRYrPpMQ/pL4+KL5QHIzomPf29a5WN3yDR0reSy1PXyQ2ah0+uCYCbi0g==}
     peerDependencies:
@@ -5369,15 +5359,6 @@ packages:
     dependencies:
       svelte: 4.2.9
     dev: true
-
-  /svelte-particles@2.12.0(svelte@4.2.9):
-    resolution: {integrity: sha512-DISZn5RNIt7hP9SORogWmXyIA/MCha6kkcwRCa7fl3leD1+GFHeNMSjdmyhqlfgip82g17WUFxwyA8n/8EM5KQ==}
-    peerDependencies:
-      svelte: '>=3'
-    dependencies:
-      svelte: 4.2.9
-      tsparticles-engine: 2.12.0
-    dev: false
 
   /svelte@4.2.9:
     resolution: {integrity: sha512-hsoB/WZGEPFXeRRLPhPrbRz67PhP6sqYgvwcAs+gWdSQSvNDw+/lTeUJSWe5h2xC97Fz/8QxAOqItwBzNJPU8w==}
@@ -6204,7 +6185,6 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
-    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0

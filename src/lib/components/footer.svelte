@@ -9,7 +9,7 @@
 
 </script>
 
-<footer class="w-full text-center border-t border-grey p-4 pin-b bg-gray-200">
+<footer class="w-full text-center border-t border-grey p-4 pin-b bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
     <div class="flex justify-center mb-4">
         <a href="https://github.com/hexahigh/kukfest" class="hover:underline">Kildekode</a>
         <a href="mailto:webmaster@blalange.org" class="hover:underline ml-4">Epost</a>

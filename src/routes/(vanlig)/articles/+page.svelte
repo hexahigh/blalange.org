@@ -52,7 +52,7 @@
   />
 </div>
 
-<div class="w-full mx-auto p-6 gap-2">
+<div class="w-full mx-auto p-6 gap-2 dark:bg-gray-900 dark:text-white">
   <h2 class="text-2xl">Alle Artikler</h2>
   <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
     <li>
