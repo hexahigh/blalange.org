@@ -12,7 +12,7 @@
 		"@catppuccin/tailwindcss": "^0.1.6",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/enhanced-img": "^0.1.8",
-		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/kit": "^2.5.4",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@vite-pwa/assets-generator": "^0.2.4",
 		"@vite-pwa/sveltekit": "^0.4.0",
