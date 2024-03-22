@@ -70,7 +70,7 @@
              <a href="/articles">Artikler</a>
            </li>
            <li class="not-current-page">
-             <a href="https://merch.blalange.org">Merch</a>
+             <a href="https://shop.blalange.org">Merch</a>
            </li>
            <li>
             <DarkMode class="text-lg">
