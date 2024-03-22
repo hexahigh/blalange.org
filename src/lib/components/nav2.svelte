@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { Collapse } from 'flowbite';
     import { DarkMode } from 'flowbite-svelte';
+    import { SunSolid, MoonSolid } from 'flowbite-svelte-icons'
     import logo from "$lib/img/favicon.svg";
     import { page } from "$app/stores";
     import autoAnimate from "@formkit/auto-animate";
@@ -72,7 +73,10 @@
              <a href="https://merch.blalange.org">Merch</a>
            </li>
            <li>
-            <DarkMode />
+            <DarkMode class="text-lg">
+              <SunSolid slot="lightIcon" color="yellow" />
+              <MoonSolid slot="darkIcon" color="blue" />
+          </DarkMode>
            </li>
          </ul>
        </div>
