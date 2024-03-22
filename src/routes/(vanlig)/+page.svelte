@@ -27,7 +27,7 @@
 
 <!--<Countdown />-->
 
-<div class="bg-white text-black dark:bg-gray-900 dark:text-white">
+<div class="bg-white text-black dark:bg-ctp-base dark:text-white">
   
   <div
     class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
