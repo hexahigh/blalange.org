@@ -9,7 +9,7 @@ export default {
     require('flowbite-typography'),
     require("@catppuccin/tailwindcss")({
       prefix: "ctp",
-      defaultFlavour: "mochas",
+      defaultFlavour: "mocha",
     }),
   ],
 }
