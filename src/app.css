@@ -35,3 +35,6 @@
 body * {
   @apply transition-colors duration-200;
 }
+
+:is(.dark .dark\:mocha) {
+}
