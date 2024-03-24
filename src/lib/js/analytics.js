@@ -20,6 +20,8 @@ async function collect2() {
   const language = navigator.language;
   const unix = new Date().getTime();
   const url = window.location.href;
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
   if (ip == "") {
  ip = await fetch("https://blalange.org/api/ip").then((res) => res.text())
 }
@@ -38,6 +40,8 @@ async function collect2() {
       url: url,
       session: getSessionId(),
       ip: ip,
+      width: screenWidth,
+      height: screenHeight,
     });
   } else {
     console.log("Collect2: Nothing has changed, not running.");
