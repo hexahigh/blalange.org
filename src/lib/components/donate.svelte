@@ -1,14 +1,8 @@
 <script>
   import paypal from "$lib/svg/paypal1.svg";
+  import donations from "$lib/json/donations.json";
 
   let cost = 2000;
-
-  let donations = [
-    {
-      name: "Anon",
-      amount: 7.93,
-    }
-  ]
 
   let donated = 0;
   for (let i = 0; i < donations.length; i++) {
