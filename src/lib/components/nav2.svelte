@@ -1,6 +1,8 @@
 <script>
     import { onMount } from "svelte";
     import { Collapse } from 'flowbite';
+    import { DarkMode } from 'flowbite-svelte';
+    import { SunSolid, MoonSolid } from 'flowbite-svelte-icons'
     import logo from "$lib/img/favicon.svg";
     import { page } from "$app/stores";
     import autoAnimate from "@formkit/auto-animate";
@@ -68,7 +70,13 @@
              <a href="/articles">Artikler</a>
            </li>
            <li class="not-current-page">
-             <a href="https://merch.blalange.org">Merch</a>
+             <a href="https://shop.blalange.org">Merch</a>
+           </li>
+           <li>
+            <DarkMode class="text-lg">
+              <SunSolid slot="lightIcon" color="yellow" />
+              <MoonSolid slot="darkIcon" color="blue" />
+          </DarkMode>
            </li>
          </ul>
        </div>
@@ -77,10 +85,10 @@
    
    <style lang="postcss">
     .current-page {
-       @apply block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500;
+       @apply block py-2 px-3 text-white bg-blue-500 rounded md:bg-transparent md:text-blue-500 md:p-0 dark:text-white md:dark:text-ctp-blue;
     }
    
     .not-current-page {
-       @apply block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent;
+       @apply block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-ctp-blue dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent;
     }
    </style>

@@ -31,3 +31,10 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+body * {
+  @apply transition-colors duration-200;
+}
+
+:is(.dark .dark\:mocha) {
+}

@@ -30,7 +30,7 @@
 
 
 <div
-  class="p-6 max-w-6xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4"
+  class="p-6 max-w-6xl mx-auto bg-white rounded-xl text-black shadow-md flex items-center space-x-4 dark:bg-gray-900 dark:text-white"
 >
   <div>
     <img
@@ -38,7 +38,7 @@
       class="w-screen aspect-[16/9] object-fill rounded-lg"
       alt="Article Image"
     />
-    <div class="text-xl font-medium text-black">
+    <div class="text-xl font-medium">
       Vi har byttet navn!
     </div>
     <p class="text-gray-500">
@@ -47,7 +47,7 @@
     <p class="text-gray-500">
       <img src={calendar} class="w-6 h-6 icon" /> 7 Mars 2024
     </p>
-    <div class=" m-9 text-gray-800">
+    <div class=" m-9 text-gray-800 dark:text-gray-300">
       <p class="mt-2">
         Heihei, vi har nylig byttet navn fra Kukfest til Blålange festivalen, vi byttet det for å være mer inkluderende og mindre krenkende.
         <br>
