@@ -5,7 +5,7 @@
 
 <Nav />
 
-<main>
+<main class="dark:bg-ctp-base">
   <slot />
 </main>
 
