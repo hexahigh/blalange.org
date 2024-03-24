@@ -98,7 +98,7 @@
       <EnvelopeSolid class="h-5 w-5 mr-2 text-blue-500" />
       <input
         bind:value={email}
-        class="border-2 border-blue-500 p-2 w-full rounded-md"
+        class="border-2 border-blue-500 p-2 w-full rounded-md dark:text-black"
         type="email"
         placeholder="john@example.com"
         required
@@ -112,7 +112,7 @@
       <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
       <input
         bind:value={name}
-        class="border-2 border-blue-500 p-2 w-full rounded-md"
+        class="border-2 border-blue-500 p-2 w-full rounded-md dark:text-black"
         type="text"
         placeholder="John Doe"
         required
@@ -143,7 +143,7 @@
       <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
       <textarea
         bind:value={extra}
-        class="border-2 border-blue-500 p-2 w-full rounded-md"
+        class="border-2 border-blue-500 p-2 w-full rounded-md dark:text-black"
         type="text"
         placeholder="Jeg skal spille gitar og..."
         required
