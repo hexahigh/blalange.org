@@ -288,12 +288,35 @@
   }
 </script>
 
-<div class="border border-black w-max">
-  <input bind:value={user} placeholder="user" class="w-10" />
-  <input bind:value={pass} placeholder="pass" class="w-10" type="password" />
-  <button on:click={auth}>Auth</button>
-  <button on:click={getData} class="ml-6">Get data</button>
-  <button on:click={renderAllCharts}>Render</button>
+<div class="flex flex-col items-center">
+  <div class="p-6 mt-10 rounded shadow-md shadow-black w-80 text-center">
+    <input
+      bind:value={user}
+      placeholder="user"
+      class="w-full mb-4 p-2 border-black border-2 rounded"
+    />
+    <input
+      bind:value={pass}
+      placeholder="pass"
+      class="w-full mb-4 p-2 border-black border-2 rounded"
+      type="password"
+    />
+    <button
+      on:click={auth}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
+      >Auth</button
+    >
+    <button
+      on:click={getData}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
+      >Get data</button
+    >
+    <button
+      on:click={renderAllCharts}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+      >Render</button
+    >
+  </div>
 </div>
 
 <canvas class="max-h-screen" id="visitsChart"></canvas>
