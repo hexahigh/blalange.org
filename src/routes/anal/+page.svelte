@@ -3,6 +3,8 @@
   import PocketBase from "pocketbase";
   import Chart from "chart.js/auto";
 
+  import ip_checkpoint from "./ip_checkpoint.json";
+
   const colorPalette = [
     "rgba(255, 99, 132, 0.2)", // Red
     "rgba(54, 162, 235, 0.2)", // Blue
@@ -18,7 +20,7 @@
   let chartVisits;
   let chartUrls;
 
-  const ipCountryCache = {};
+  const ipCache = ip_checkpoint;
 
   let log = "";
 
@@ -66,6 +68,7 @@
     renderUrlsAllTimeChart();
     renderUrlsMonthChart();
     renderMostCountriesChart();
+    renderMostOrganizationsChart();
   }
 
   function renderDeviceTypesChart() {
@@ -377,26 +380,116 @@
     });
   }
 
-  async function ipToCountry(ip) {
+  async function renderMostOrganizationsChart() {
+    // Initialize an object to count organization occurrences
+    const organizationCounts = {};
+
+    let count = 0;
+    // Iterate over each visit to count organization occurrences
+    for (const visit of data) {
+      count++;
+      appendLog(`Processed${count} out of ${data.length} visits...`);
+      const organization = await ipToOrg(visit.ip);
+      if (!organizationCounts[organization]) {
+        organizationCounts[organization] = 0;
+      }
+      organizationCounts[organization]++;
+    }
+    appendLog(`Processed ${data.length} visits.`);
+
+    // Prepare data for the chart
+    const organizationLabels = Object.keys(organizationCounts);
+    const organizationValues = Object.values(organizationCounts);
+
+    const organizationColors = organizationLabels.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
+    // Create the country chart
+    const ctxCountryChart = document
+      .getElementById("organizationChart")
+      .getContext("2d");
+    new Chart(ctxCountryChart, {
+      type: "pie",
+      data: {
+        labels: organizationLabels,
+        datasets: [
+          {
+            data: organizationValues,
+            backgroundColor: organizationColors, // Use the dynamically assigned colors
+            borderColor: colorPalette, // Use the same colors for the border
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Most Visited Organizations",
+          },
+        },
+      },
+    });
+  }
+
+  async function ipData(ip) {
     if (ip === "" || ip === undefined || ip === null) {
       return "Unknown";
     }
 
-    if (ipCountryCache[ip]) {
-      return ipCountryCache[ip];
+    if (ipCache[ip]) {
+      return ipCache[ip];
     }
 
     const response = await fetch(`https://ip.guide/${ip}`);
     const data = await response.json();
-    if (!data.location) {
+
+    ipCache[ip] = data;
+
+    return data;
+  }
+
+  async function ipToCountry(ip) {
+    let data = await ipData(ip);
+
+    // Check if data and data.location are defined
+    if (data && data.location) {
+      let country = data.location.country;
+      if (!country) {
+        country = "Unknown";
+      }
+      return country;
+    } else {
+      // If data or data.location is undefined, return a default value
       return "Unknown";
     }
+  }
 
-    let country = data.location.country;
+  async function ipToOrg(ip) {
+    let data = await ipData(ip);
 
-    ipCountryCache[ip] = country;
+    // Check if data and data.location are defined
+    if (data && data.location) {
+      let org = data.network.autonomous_system.organization;
+      if (!org) {
+        org = "Unknown";
+      }
+      return org;
+    } else {
+      // If data or data.location is undefined, return a default value
+      return "Unknown";
+    }
+  }
 
-    return country;
+  function logIpCountryCache() {
+    // Log the contents of ipCache as json
+    console.log(JSON.stringify(ipCache));
   }
 </script>
 
@@ -425,8 +518,13 @@
     >
     <button
       on:click={renderAllCharts}
-      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
       >Render</button
+    >
+    <button
+      on:click={logIpCountryCache}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+      >Log ipCache</button
     >
   </div>
   <textarea
@@ -442,3 +540,4 @@
 <canvas class="max-h-screen" id="urlsChartAllTime"></canvas>
 <canvas class="max-h-screen" id="countryChart"></canvas>
 <canvas class="max-h-screen" id="deviceTypesChart"></canvas>
+<canvas class="max-h-screen" id="organizationChart"></canvas>
