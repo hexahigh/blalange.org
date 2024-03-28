@@ -2,14 +2,23 @@
   import { onMount } from "svelte";
   import PocketBase from "pocketbase";
   import Chart from "chart.js/auto";
-  import pako from "pako";
+
+  const colorPalette = [
+    "rgba(255, 99, 132, 0.2)", // Red
+    "rgba(54, 162, 235, 0.2)", // Blue
+    "rgba(255, 206, 86, 0.2)", // Yellow
+    "rgba(75, 192, 192, 0.2)", // Green
+    "rgba(153, 102, 255, 0.2)", // Purple
+    // Add more colors as needed
+  ];
 
   let data = [];
   let user = "";
   let pass = "";
   let chartVisits;
   let chartUrls;
-  let ipLocationData;
+
+  const ipCountryCache = {};
 
   let log = "";
 
@@ -18,7 +27,7 @@
   }
 
   async function getData() {
-    appendLog("Loading data...")
+    appendLog("Loading data...");
     const pb = new PocketBase("https://db.080609.xyz");
     data = await pb
       .collection("kf_analytics")
@@ -31,7 +40,7 @@
   }
 
   async function auth() {
-    appendLog("Authenticating")
+    appendLog("Authenticating");
     const pb = new PocketBase("https://db.080609.xyz");
     try {
       await pb.collection("users").authWithPassword(user, pass);
@@ -56,6 +65,7 @@
     renderVisitsChart();
     renderUrlsAllTimeChart();
     renderUrlsMonthChart();
+    renderMostCountriesChart();
   }
 
   function renderDeviceTypesChart() {
@@ -222,6 +232,11 @@
       }
     );
 
+    const colors = urlsPastMonth.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
     // Create the URLs chart for the past month
     const ctxUrlsPastMonth = document
       .getElementById("urlsChartPastMonth")
@@ -233,8 +248,8 @@
         datasets: [
           {
             data: urlsPastMonth.map(([, visits]) => visits),
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: colors,
+            borderColor: colorPalette,
             borderWidth: 1,
           },
         ],
@@ -269,6 +284,11 @@
       return url.includes("https://blalange.org") && visits >= 2;
     });
 
+    const colors = urlsAllTime.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
     // Create the URLs chart for all time
     const ctxUrlsAllTime = document
       .getElementById("urlsChartAllTime")
@@ -280,8 +300,8 @@
         datasets: [
           {
             data: urlsAllTime.map(([, visits]) => visits),
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: colors,
+            borderColor: colorPalette,
             borderWidth: 1,
           },
         ],
@@ -301,76 +321,82 @@
     });
   }
 
-  function isIPv6(ip) {
-    return ip.includes(":");
-  }
+  async function renderMostCountriesChart() {
+    // Initialize an object to count country occurrences
+    const countryCounts = {};
 
-  function toIpNum(ip, type) {
-    switch (type) {
-      case "ipv4":
-        // Split each .
-        let split = ip.split(".");
-        let s = split;
-
-        let num = 16777216 * s[0] + 65536 * s[1] + 256 * s[2] + s[3];
-        return num;
-
-      case "ipv6":
-        // Split each :
-        let split2 = ip.split(":");
-        let num2 = 0;
-        for (let i = 0; i < split2.length; i++) {
-          num2 +=
-            parseInt(split2[i], 16) * Math.pow(65536, split2.length - i - 1);
-        }
-        return num2;
-      default:
-        return null;
+    // Iterate over each visit to count country occurrences
+    for (const visit of data) {
+      appendLog(`Processing ${visit.ip}...`);
+      const countryCode = await ipToCountry(visit.ip);
+      if (!countryCounts[countryCode]) {
+        countryCounts[countryCode] = 0;
+      }
+      countryCounts[countryCode]++;
     }
+    appendLog(`Processed ${data.length} visits.`);
+
+    // Prepare data for the chart
+    const countryLabels = Object.keys(countryCounts);
+    const countryValues = Object.values(countryCounts);
+
+    const countryColors = countryLabels.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
+    // Create the country chart
+    const ctxCountryChart = document
+      .getElementById("countryChart")
+      .getContext("2d");
+    new Chart(ctxCountryChart, {
+      type: "pie",
+      data: {
+        labels: countryLabels,
+        datasets: [
+          {
+            data: countryValues,
+            backgroundColor: countryColors, // Use the dynamically assigned colors
+            borderColor: colorPalette, // Use the same colors for the border
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Most Visited Countries",
+          },
+        },
+      },
+    });
   }
 
   async function ipToCountry(ip) {
-    let num;
-    switch (isIPv6(ip)) {
-      case true:
-        num = toIpNum(ip, "ipv6");
-      case false:
-        num = toIpNum(ip, "ipv4");
-      default:
+    if (ip === "" || ip === undefined || ip === null) {
+      return "Unknown";
     }
 
-    appendLog(`Fetching location data for ${ip}...`);
-
-    console.log("Length: " + ipLocationData.length);
-    for (const item of ipLocationData) {
-      if (item.NUM1 === num || item.NUM2 === num) {
-        return item.CC;
-      }
+    if (ipCountryCache[ip]) {
+      return ipCountryCache[ip];
     }
-  }
 
-  async function loadLocationDB() {
-    appendLog("Loading location data...");
-    // Fetch the gzipped CSV file
-    const response = await fetch("/data/location.csv.gz");
-    //const compressedData = await response.arrayBuffer();
-    let downloadedData = await response.text();
+    const response = await fetch(`https://ip.guide/${ip}`);
+    const data = await response.json();
+    if (!data.location) {
+      return "Unknown";
+    }
 
-    appendLog("Parsing location data...");
+    let country = data.location.country;
 
-    // Remove all "
-    downloadedData = downloadedData.replace(/"/g, "");
+    ipCountryCache[ip] = country;
 
-    // Parse the CSV data into JSON
-    const lines = downloadedData.split("\n");
-    const headers = lines[0].split(",");
-    ipLocationData = lines.slice(1).map((line) => {
-      const values = line.split(",");
-      return headers.reduce((obj, header, index) => {
-        obj[header] = values[index];
-        return obj;
-      }, {});
-    });
+    return country;
   }
 </script>
 
@@ -403,7 +429,10 @@
       >Render</button
     >
   </div>
-  <textarea class="w-3/6 h-auto mt-4 p-2 border-black border-2 rounded" disabled>
+  <textarea
+    class="w-3/6 h-auto mt-4 p-2 border-black border-2 rounded"
+    disabled
+  >
     {log}
   </textarea>
 </div>
@@ -411,4 +440,5 @@
 <canvas class="max-h-screen" id="visitsChart"></canvas>
 <canvas class="max-h-screen" id="urlsChartPastMonth"></canvas>
 <canvas class="max-h-screen" id="urlsChartAllTime"></canvas>
+<canvas class="max-h-screen" id="countryChart"></canvas>
 <canvas class="max-h-screen" id="deviceTypesChart"></canvas>
