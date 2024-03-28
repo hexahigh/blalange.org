@@ -66,6 +66,8 @@ const config = {
 
     "__COMMIT_HASH__": JSON.stringify(commitHash),
   },
+  // gz
+  assetsInclude: ["**/*.gz"],
 };
 
 export default config;

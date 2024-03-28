@@ -35,6 +35,11 @@
       formData.append("image", image);
     }
 
+    if (!email || !name || !filmed) {
+      status = "Fyll ut alle feltene";
+      return;
+    }
+
     try {
       await pb.collection("form").create(formData);
     } catch (error) {
@@ -159,7 +164,7 @@
         <input bind:group={manOrWoman} class="mr-2" type="radio" value="man" />
         <span>Gutt</span>
       </label>
-      <label class="flex items-center">
+      <label class="flex items-center mr-4">
         <input
           bind:group={manOrWoman}
           class="mr-2"
@@ -168,10 +173,19 @@
         />
         <span>Jente</span>
       </label>
+      <label class="flex items-center">
+        <input
+          bind:group={manOrWoman}
+          class="mr-2"
+          type="radio"
+          value="lars"
+        />
+        <span>Lars Oscar</span>
+      </label>
     </div>
   </div>
 
-  {#if manOrWoman === "woman"}
+  <!--{#if manOrWoman === "woman"}
     <label class="flex flex-col mb-4">
       <span class="mb-2">Lokasjon</span>
       <button
@@ -228,7 +242,7 @@
         />
       {/if}
     </label>
-  {/if}
+  {/if}-->
   <button
     on:click={handleSubmit}
     class="bg-blue-500 text-white p-2 mt-4 rounded-md"

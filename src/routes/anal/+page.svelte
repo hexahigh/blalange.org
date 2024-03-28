@@ -3,13 +3,33 @@
   import PocketBase from "pocketbase";
   import Chart from "chart.js/auto";
 
+  import ip_checkpoint from "./ip_checkpoint.json";
+
+  const colorPalette = [
+    "rgba(255, 99, 132, 0.2)", // Red
+    "rgba(54, 162, 235, 0.2)", // Blue
+    "rgba(255, 206, 86, 0.2)", // Yellow
+    "rgba(75, 192, 192, 0.2)", // Green
+    "rgba(153, 102, 255, 0.2)", // Purple
+    // Add more colors as needed
+  ];
+
   let data = [];
   let user = "";
   let pass = "";
   let chartVisits;
   let chartUrls;
 
+  const ipCache = ip_checkpoint;
+
+  let log = "";
+
+  function appendLog(message) {
+    log = log + message + "\n";
+  }
+
   async function getData() {
+    appendLog("Loading data...");
     const pb = new PocketBase("https://db.080609.xyz");
     data = await pb
       .collection("kf_analytics")
@@ -22,8 +42,13 @@
   }
 
   async function auth() {
+    appendLog("Authenticating");
     const pb = new PocketBase("https://db.080609.xyz");
-    await pb.collection("users").authWithPassword(user, pass);
+    try {
+      await pb.collection("users").authWithPassword(user, pass);
+    } catch (error) {
+      appendLog("An error occurred: " + error);
+    }
   }
 
   function categorizeDevice(width, height) {
@@ -42,6 +67,8 @@
     renderVisitsChart();
     renderUrlsAllTimeChart();
     renderUrlsMonthChart();
+    renderMostCountriesChart();
+    renderMostOrganizationsChart();
   }
 
   function renderDeviceTypesChart() {
@@ -208,6 +235,11 @@
       }
     );
 
+    const colors = urlsPastMonth.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
     // Create the URLs chart for the past month
     const ctxUrlsPastMonth = document
       .getElementById("urlsChartPastMonth")
@@ -219,8 +251,8 @@
         datasets: [
           {
             data: urlsPastMonth.map(([, visits]) => visits),
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: colors,
+            borderColor: colorPalette,
             borderWidth: 1,
           },
         ],
@@ -255,6 +287,11 @@
       return url.includes("https://blalange.org") && visits >= 2;
     });
 
+    const colors = urlsAllTime.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
     // Create the URLs chart for all time
     const ctxUrlsAllTime = document
       .getElementById("urlsChartAllTime")
@@ -266,8 +303,8 @@
         datasets: [
           {
             data: urlsAllTime.map(([, visits]) => visits),
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: colors,
+            borderColor: colorPalette,
             borderWidth: 1,
           },
         ],
@@ -286,17 +323,221 @@
       },
     });
   }
+
+  async function renderMostCountriesChart() {
+    // Initialize an object to count country occurrences
+    const countryCounts = {};
+
+    // Iterate over each visit to count country occurrences
+    for (const visit of data) {
+      appendLog(`Processing ${visit.ip}...`);
+      const countryCode = await ipToCountry(visit.ip);
+      if (!countryCounts[countryCode]) {
+        countryCounts[countryCode] = 0;
+      }
+      countryCounts[countryCode]++;
+    }
+    appendLog(`Processed ${data.length} visits.`);
+
+    // Prepare data for the chart
+    const countryLabels = Object.keys(countryCounts);
+    const countryValues = Object.values(countryCounts);
+
+    const countryColors = countryLabels.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
+    // Create the country chart
+    const ctxCountryChart = document
+      .getElementById("countryChart")
+      .getContext("2d");
+    new Chart(ctxCountryChart, {
+      type: "pie",
+      data: {
+        labels: countryLabels,
+        datasets: [
+          {
+            data: countryValues,
+            backgroundColor: countryColors, // Use the dynamically assigned colors
+            borderColor: colorPalette, // Use the same colors for the border
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Most Visited Countries",
+          },
+        },
+      },
+    });
+  }
+
+  async function renderMostOrganizationsChart() {
+    // Initialize an object to count organization occurrences
+    const organizationCounts = {};
+
+    let count = 0;
+    // Iterate over each visit to count organization occurrences
+    for (const visit of data) {
+      count++;
+      appendLog(`Processed${count} out of ${data.length} visits...`);
+      const organization = await ipToOrg(visit.ip);
+      if (!organizationCounts[organization]) {
+        organizationCounts[organization] = 0;
+      }
+      organizationCounts[organization]++;
+    }
+    appendLog(`Processed ${data.length} visits.`);
+
+    // Prepare data for the chart
+    const organizationLabels = Object.keys(organizationCounts);
+    const organizationValues = Object.values(organizationCounts);
+
+    const organizationColors = organizationLabels.map((_, index) => {
+      // Use modulo to cycle through the color palette if there are more countries than colors
+      return colorPalette[index % colorPalette.length];
+    });
+
+    // Create the country chart
+    const ctxCountryChart = document
+      .getElementById("organizationChart")
+      .getContext("2d");
+    new Chart(ctxCountryChart, {
+      type: "pie",
+      data: {
+        labels: organizationLabels,
+        datasets: [
+          {
+            data: organizationValues,
+            backgroundColor: organizationColors, // Use the dynamically assigned colors
+            borderColor: colorPalette, // Use the same colors for the border
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Most Visited Organizations",
+          },
+        },
+      },
+    });
+  }
+
+  async function ipData(ip) {
+    if (ip === "" || ip === undefined || ip === null) {
+      return "Unknown";
+    }
+
+    if (ipCache[ip]) {
+      return ipCache[ip];
+    }
+
+    const response = await fetch(`https://ip.guide/${ip}`);
+    const data = await response.json();
+
+    ipCache[ip] = data;
+
+    return data;
+  }
+
+  async function ipToCountry(ip) {
+    let data = await ipData(ip);
+
+    // Check if data and data.location are defined
+    if (data && data.location) {
+      let country = data.location.country;
+      if (!country) {
+        country = "Unknown";
+      }
+      return country;
+    } else {
+      // If data or data.location is undefined, return a default value
+      return "Unknown";
+    }
+  }
+
+  async function ipToOrg(ip) {
+    let data = await ipData(ip);
+
+    // Check if data and data.location are defined
+    if (data && data.location) {
+      let org = data.network.autonomous_system.organization;
+      if (!org) {
+        org = "Unknown";
+      }
+      return org;
+    } else {
+      // If data or data.location is undefined, return a default value
+      return "Unknown";
+    }
+  }
+
+  function logIpCountryCache() {
+    // Log the contents of ipCache as json
+    console.log(JSON.stringify(ipCache));
+  }
 </script>
 
-<div class="border border-black w-max">
-  <input bind:value={user} placeholder="user" class="w-10" />
-  <input bind:value={pass} placeholder="pass" class="w-10" type="password" />
-  <button on:click={auth}>Auth</button>
-  <button on:click={getData} class="ml-6">Get data</button>
-  <button on:click={renderAllCharts}>Render</button>
+<div class="flex flex-col items-center">
+  <div class="p-6 mt-10 rounded shadow-md shadow-black w-80 text-center">
+    <input
+      bind:value={user}
+      placeholder="user"
+      class="w-full mb-4 p-2 border-black border-2 rounded"
+    />
+    <input
+      bind:value={pass}
+      placeholder="pass"
+      class="w-full mb-4 p-2 border-black border-2 rounded"
+      type="password"
+    />
+    <button
+      on:click={auth}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
+      >Auth</button
+    >
+    <button
+      on:click={getData}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
+      >Get data</button
+    >
+    <button
+      on:click={renderAllCharts}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
+      >Render</button
+    >
+    <button
+      on:click={logIpCountryCache}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+      >Log ipCache</button
+    >
+  </div>
+  <textarea
+    class="w-3/6 h-auto mt-4 p-2 border-black border-2 rounded"
+    disabled
+  >
+    {log}
+  </textarea>
 </div>
 
 <canvas class="max-h-screen" id="visitsChart"></canvas>
 <canvas class="max-h-screen" id="urlsChartPastMonth"></canvas>
 <canvas class="max-h-screen" id="urlsChartAllTime"></canvas>
+<canvas class="max-h-screen" id="countryChart"></canvas>
 <canvas class="max-h-screen" id="deviceTypesChart"></canvas>
+<canvas class="max-h-screen" id="organizationChart"></canvas>
