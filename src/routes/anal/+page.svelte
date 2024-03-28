@@ -2,14 +2,23 @@
   import { onMount } from "svelte";
   import PocketBase from "pocketbase";
   import Chart from "chart.js/auto";
+  import pako from "pako";
 
   let data = [];
   let user = "";
   let pass = "";
   let chartVisits;
   let chartUrls;
+  let ipLocationData;
+
+  let log = "";
+
+  function appendLog(message) {
+    log = log + message + "\n";
+  }
 
   async function getData() {
+    appendLog("Loading data...")
     const pb = new PocketBase("https://db.080609.xyz");
     data = await pb
       .collection("kf_analytics")
@@ -22,8 +31,13 @@
   }
 
   async function auth() {
+    appendLog("Authenticating")
     const pb = new PocketBase("https://db.080609.xyz");
-    await pb.collection("users").authWithPassword(user, pass);
+    try {
+      await pb.collection("users").authWithPassword(user, pass);
+    } catch (error) {
+      appendLog("An error occurred: " + error);
+    }
   }
 
   function categorizeDevice(width, height) {
@@ -286,6 +300,78 @@
       },
     });
   }
+
+  function isIPv6(ip) {
+    return ip.includes(":");
+  }
+
+  function toIpNum(ip, type) {
+    switch (type) {
+      case "ipv4":
+        // Split each .
+        let split = ip.split(".");
+        let s = split;
+
+        let num = 16777216 * s[0] + 65536 * s[1] + 256 * s[2] + s[3];
+        return num;
+
+      case "ipv6":
+        // Split each :
+        let split2 = ip.split(":");
+        let num2 = 0;
+        for (let i = 0; i < split2.length; i++) {
+          num2 +=
+            parseInt(split2[i], 16) * Math.pow(65536, split2.length - i - 1);
+        }
+        return num2;
+      default:
+        return null;
+    }
+  }
+
+  async function ipToCountry(ip) {
+    let num;
+    switch (isIPv6(ip)) {
+      case true:
+        num = toIpNum(ip, "ipv6");
+      case false:
+        num = toIpNum(ip, "ipv4");
+      default:
+    }
+
+    appendLog(`Fetching location data for ${ip}...`);
+
+    console.log("Length: " + ipLocationData.length);
+    for (const item of ipLocationData) {
+      if (item.NUM1 === num || item.NUM2 === num) {
+        return item.CC;
+      }
+    }
+  }
+
+  async function loadLocationDB() {
+    appendLog("Loading location data...");
+    // Fetch the gzipped CSV file
+    const response = await fetch("/data/location.csv.gz");
+    //const compressedData = await response.arrayBuffer();
+    let downloadedData = await response.text();
+
+    appendLog("Parsing location data...");
+
+    // Remove all "
+    downloadedData = downloadedData.replace(/"/g, "");
+
+    // Parse the CSV data into JSON
+    const lines = downloadedData.split("\n");
+    const headers = lines[0].split(",");
+    ipLocationData = lines.slice(1).map((line) => {
+      const values = line.split(",");
+      return headers.reduce((obj, header, index) => {
+        obj[header] = values[index];
+        return obj;
+      }, {});
+    });
+  }
 </script>
 
 <div class="flex flex-col items-center">
@@ -317,6 +403,9 @@
       >Render</button
     >
   </div>
+  <textarea class="w-3/6 h-auto mt-4 p-2 border-black border-2 rounded" disabled>
+    {log}
+  </textarea>
 </div>
 
 <canvas class="max-h-screen" id="visitsChart"></canvas>

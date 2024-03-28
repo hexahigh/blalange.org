@@ -51,6 +51,7 @@
 		"gun": "^0.2020.1239",
 		"kolorist": "^1.8.0",
 		"lorem-ipsum": "^2.0.8",
+		"pako": "^2.1.0",
 		"pocketbase": "^0.21.1",
 		"svelte-leaflet": "^0.2.0",
 		"tsparticles": "^3.3.0",
