@@ -1,6 +1,7 @@
 {
-	"name": "Kukfest",
-	"version": "1.0",
+	"name": "Blålange",
+	"version": "2.0.0",
+	"license": "MPL-2.0",
 	"private": false,
 	"scripts": {
 		"dev": "vite dev",

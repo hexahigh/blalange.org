@@ -39,6 +39,10 @@
         {
             "id": "1.2.5",
             "name": "Cassini"
+        },
+        {
+            "id": "2.0.0",
+            "name": "Ulysses"
         }
     ]
 }
