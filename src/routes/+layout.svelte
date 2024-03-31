@@ -1,4 +1,5 @@
 <script>
+  import { dev } from '$app/environment';
   import "../app.css";
   import { onMount } from "svelte";
   import { startAnalyticsMonitoring } from "$lib/js/analytics.js"; // Adjust the path as necessary
@@ -13,7 +14,11 @@
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '' 
 
   onMount(() => {
-    startAnalyticsMonitoring();
+    if (dev) {
+      console.log("In development mode. No analytics monitoring.");
+    } else {
+      startAnalyticsMonitoring();
+    }
   });
 </script>
 
