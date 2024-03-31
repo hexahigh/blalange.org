@@ -18,6 +18,14 @@
 
   sound.play();
 
+  const stupidAutoPlay = async () => {
+     if (!sound.playing()) {
+      sound.play();
+    }
+  }
+
+  setInterval(stupidAutoPlay, 1000);
+
   $: {
     Howler.volume(volume / 100);
   }
