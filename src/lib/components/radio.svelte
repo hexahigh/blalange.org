@@ -28,6 +28,19 @@
 
   setInterval(stupidAutoPlay, 1000);
 
+  // Resync if we are over 10 seconds away
+  const resync = async () => {
+    if (sound.playing()) {
+      let length = sound.duration();
+      let position = sound.seek();
+      if (position > length - 10) {
+        sound.seek(sound.duration - 1);
+      }
+    }
+  };
+
+  setInterval(resync, 1000);
+
   $: {
     Howler.volume(volume / 100);
   }
