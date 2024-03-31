@@ -19,6 +19,5 @@
             <p>Versjon {getLatestVersion().id}.{commitHash} - {getLatestVersion().name}</p>
             <p>{new Date().getFullYear()} © Blålange Festivalen. All rights reserved.</p>
         </div>
-        <Radio />
     </div>
 </footer>
