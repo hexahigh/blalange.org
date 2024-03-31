@@ -10,7 +10,7 @@
 </script>
 
 <footer class="w-full text-center border-t border-grey p-4 bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
-    <div class="flex justify-center items-center">
+    <div class="md:flex md:justify-center md:items-center">
         <div>
             <div class="flex justify-center mb-4">
                 <a href="https://github.com/hexahigh/kukfest" class="hover:underline">Kildekode</a>
