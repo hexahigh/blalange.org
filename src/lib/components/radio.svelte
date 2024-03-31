@@ -3,22 +3,28 @@
   import { PauseOutline, PlayOutline } from "flowbite-svelte-icons";
   import { onMount } from "svelte";
   import { Howl, Howler } from "howler";
+  import { dev } from "$app/environment";
 
   const stream = "https://radio.blalange.org/stream";
   const status_url = "https://radio.blalange.org/status-json.xsl";
+
+  function devPrint(...msg) {
+    if (dev) {
+      console.log(...msg);
+    }
+  }
 
   let volume = 100;
   let title = "";
   let playing = false;
 
-  var sound = new Howl({
+  let sound = new Howl({
     src: [stream],
     html5: true,
+    mute: true,
   });
 
   sound.play();
-  // Start muted so we are not extremely annoying
-  sound.mute(true);
 
   const stupidAutoPlay = async () => {
      if (!sound.playing()) {
@@ -28,18 +34,19 @@
 
   setInterval(stupidAutoPlay, 1000);
 
-  // Resync if we are over 10 seconds away
+  // Resync
   const resync = async () => {
     if (sound.playing()) {
-      let length = sound.duration();
-      let position = sound.seek();
-      if (position > length - 10) {
-        sound.seek(sound.duration - 1);
-      }
+      sound.unload();
+      sound = new Howl({
+        src: [stream],
+        html5: true,
+      });
+      sound.play();
     }
   };
 
-  setInterval(resync, 1000);
+  setInterval(resync, 15 * 60 * 1000); // Resync every 15 minutes
 
   $: {
     Howler.volume(volume / 100);
