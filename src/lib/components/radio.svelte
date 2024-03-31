@@ -49,7 +49,7 @@
   });
 </script>
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center dark:text-ctp-text">
   <div class="p-6 mt-10 mb-10 rounded shadow-md shadow-black w-80 text-center">
     <h2 class="text-3xl">Blålange radio</h2>
     <p>Den beste radio kanalen for Blålanger</p>
