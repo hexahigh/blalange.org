@@ -9,7 +9,7 @@
 
   let volume = 100;
   let title = "";
-  let playing = true;
+  let playing = false;
 
   var sound = new Howl({
     src: [stream],
@@ -17,6 +17,8 @@
   });
 
   sound.play();
+  // Start muted so we are not extremely annoying
+  sound.mute(true);
 
   const stupidAutoPlay = async () => {
      if (!sound.playing()) {
@@ -58,7 +60,7 @@
 </script>
 
 <div class="flex flex-col items-center justify-center dark:text-ctp-text">
-  <div class="p-6 mt-10 mb-10 rounded shadow-md shadow-black w-80 text-center">
+  <div class="p-6 rounded shadow-md shadow-black w-80 text-center">
     <h2 class="text-3xl">Blålange radio</h2>
     <p>Den beste radio kanalen for Blålanger</p>
     <p>Volume: {volume}</p>
