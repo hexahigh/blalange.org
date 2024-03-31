@@ -3,10 +3,12 @@
   import Nav from "$lib/components/nav2.svelte";
 </script>
 
-<Nav />
+<div class="flex flex-col min-h-screen">
+  <Nav />
 
-<main class="dark:bg-ctp-base">
-  <slot />
-</main>
+  <main class="flex-grow dark:bg-ctp-base">
+    <slot />
+  </main>
 
-<Footer />
+  <Footer />
+</div>
