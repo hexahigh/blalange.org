@@ -1,6 +1,6 @@
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Blalange/nettside)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Blalange/nettside/build.yml?branch=dev&label=Build%20dev)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Blalange/nettside/build.yml?branch=main&label=Build%20prod)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/hexahigh/blalange.org)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hexahigh/blalange.org/build.yml?branch=dev&label=Build%20dev)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hexahigh/blalange.org/build.yml?branch=main&label=Build%20prod)
 
 
 ## Domener:
