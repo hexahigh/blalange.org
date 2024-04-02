@@ -35,8 +35,8 @@
       formData.append("image", image);
     }
 
-    if (!name || !filmed) {
-      status = "Fyll ut alle feltene";
+    if (!name || !filmed || !extra) {
+      status = "Fyll ut alle feltene markert med *";
       return;
     }
 
@@ -111,7 +111,7 @@
   </label>
 
   <label class="flex flex-col mb-4">
-    <span class="mb-2">Navn</span>
+    <span class="mb-2">Navn <span class="text-rose-500">*</span></span>
     <div class="flex items-center">
       <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
       <input
@@ -125,7 +125,7 @@
   </label>
 
   <div class="mb-4">
-    <span class="mb-2">Kan vi filme deg på Blålange Festivalen?</span>
+    <span class="mb-2">Kan vi filme deg på Blålange Festivalen? <span class="text-rose-500">*</span></span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
@@ -140,7 +140,7 @@
   </div>
 
   <label class="flex flex-col mb-4">
-    <span>Hva skal du presentere og hvordan?</span>
+    <span>Hva skal du presentere og hvordan? <span class="text-rose-500">*</span></span>
       <span class="mb-2 text-sm ">Husk å inkludere temaer som: sanger, partylys farger og utstyr</span>
     <div class="flex items-center">
       <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
