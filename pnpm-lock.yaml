@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^3.2.0
     version: 3.2.0(@sveltejs/kit@2.5.5)
   '@sveltejs/enhanced-img':
-    specifier: ^0.1.9
-    version: 0.1.9(rollup@2.79.1)(svelte@4.2.12)
+    specifier: ^0.2.0
+    version: 0.2.0(rollup@2.79.1)(svelte@4.2.12)
   '@sveltejs/kit':
     specifier: ^2.5.5
     version: 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.7)
@@ -2613,12 +2613,12 @@ packages:
       rollup: 4.13.2
     dev: false
 
-  /@sveltejs/enhanced-img@0.1.9(rollup@2.79.1)(svelte@4.2.12):
-    resolution: {integrity: sha512-gUgaiG88P6moWcxZx4YrzMhAlw1TgggKRp7n9gdfCREDeXHysCd1l9GpQR3sh109SM3rNlkiaAzt+iPLT0aG1w==}
+  /@sveltejs/enhanced-img@0.2.0(rollup@2.79.1)(svelte@4.2.12):
+    resolution: {integrity: sha512-W6wG0RxQYoL13LmUl8IBHeQatMXSd2ybrjg/WQuE5EoIJq+wUkf1hUDaMp9PHe4ubpnzWK/c0QaE5Ls+zjHimA==}
     dependencies:
       magic-string: 0.30.8
       svelte-parse-markup: 0.1.2(svelte@4.2.12)
-      vite-imagetools: 6.2.9(rollup@2.79.1)
+      vite-imagetools: 7.0.1(rollup@2.79.1)
     transitivePeerDependencies:
       - rollup
       - svelte
@@ -4262,9 +4262,9 @@ packages:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
     dev: true
 
-  /imagetools-core@6.0.4:
-    resolution: {integrity: sha512-N1qs5qn7u9nR3kboISkYuvJm8MohiphCfBa+wx1UOropVaFis9/mh6wuDPLHJNhl6/64C7q2Pch5NASVKAaSrg==}
-    engines: {node: '>=12.0.0'}
+  /imagetools-core@7.0.0:
+    resolution: {integrity: sha512-6fYbD7u4VIOt6fqKrOlbF77JXgUVyUmEJIPlfYVTuR/S2Ig9cX3gukGiLEU0aSetcfE7CYnhLTPtTEu4mLwhCw==}
+    engines: {node: '>=18.0.0'}
     dependencies:
       sharp: 0.33.3
     dev: true
@@ -5970,12 +5970,12 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  /vite-imagetools@6.2.9(rollup@2.79.1):
-    resolution: {integrity: sha512-C4ZYhgj2vAj43/TpZ06XlDNP0p/7LIeYbgUYr+xG44nM++4HGX6YZBKAYpiBNgiCFUTJ6eXkRppWBrfPMevgmg==}
-    engines: {node: '>=12.0.0'}
+  /vite-imagetools@7.0.1(rollup@2.79.1):
+    resolution: {integrity: sha512-23jnLhkTH0HR9Vd9LxMYnajOLeo0RJNEAHhtlsQP6kfPuOBoTzt54rWbEWB9jmhEXAOflLQpM+FrmilVPAoyGA==}
+    engines: {node: '>=18.0.0'}
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@2.79.1)
-      imagetools-core: 6.0.4
+      imagetools-core: 7.0.0
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -6165,6 +6165,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0
