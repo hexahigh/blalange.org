@@ -35,7 +35,7 @@
       formData.append("image", image);
     }
 
-    if (!email || !name || !filmed) {
+    if (!name || !filmed) {
       status = "Fyll ut alle feltene";
       return;
     }
@@ -105,8 +105,7 @@
         bind:value={email}
         class="border-2 border-blue-500 p-2 w-full rounded-md dark:text-black"
         type="email"
-        placeholder="john@example.com"
-        required
+        placeholder="celvin@blalange.org"
       />
     </div>
   </label>
@@ -119,14 +118,14 @@
         bind:value={name}
         class="border-2 border-blue-500 p-2 w-full rounded-md dark:text-black"
         type="text"
-        placeholder="John Doe"
+        placeholder="Celvin Phau"
         required
       />
     </div>
   </label>
 
   <div class="mb-4">
-    <span class="mb-2">Er du ok med å bli filmet under blålange festivalen?</span>
+    <span class="mb-2">Kan vi filme deg på Blålange Festivalen?</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
@@ -141,9 +140,8 @@
   </div>
 
   <label class="flex flex-col mb-4">
-    <span class="mb-2"
-      >Er det noen ekstra informasjon vi bør vite? Hva du skal gjøre, osv</span
-    >
+    <span>Hva skal du presentere og hvordan?</span>
+      <span class="mb-2 text-sm ">Husk å inkludere temaer som: sanger, partylys farger og utstyr</span>
     <div class="flex items-center">
       <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
       <textarea
@@ -156,7 +154,7 @@
     </div>
   </label>
 
-  <div class="mb-4">
+  <!--div class="mb-4">
     <span class="mb-2">Kjønn</span>
     <div class="flex items-center">
       <label class="flex items-center mr-4">
