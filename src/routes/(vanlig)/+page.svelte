@@ -49,6 +49,7 @@
   <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
     <p>Vil du bli med på neste Festival? Svar på dette skjemaet.</p>
+    <p class="mt-1 text-xs">Felt markert med <span class="text-rose-500">*</span> er nødvendig</p>
     <div class="text-left flex justify-center">
       <Form />
     </div>
