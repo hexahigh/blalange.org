@@ -556,9 +556,17 @@
     >
     <button
       on:click={logIpCountryCache}
-      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
       >Log ipCache</button
     >
+    <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+      <div
+        class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+        style="width: {progress.percentage()}%"
+      >
+        {progress.current()} / {progress.total()}
+      </div>
+    </div>
   </div>
   <textarea
     class="w-3/6 h-auto mt-4 p-2 border-black border-2 rounded"
@@ -566,9 +574,6 @@
   >
     {log}
   </textarea>
-  <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-    <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {progress.percentage}%"> {progress.current} / {progress.total}</div>
-  </div>
 </div>
 
 <canvas class="max-h-screen" id="visitsChart"></canvas>
