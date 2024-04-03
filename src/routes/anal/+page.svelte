@@ -23,10 +23,40 @@
   const ipCache = ip_checkpoint;
 
   let log = "";
+  let progressTotal = 0;
+  let progressCurrent = 0;
 
   function appendLog(message) {
     log = log + message + "\n";
   }
+
+  const progress = {
+    update: (total, current) => {
+      progressTotal = total;
+      progressCurrent = current;
+    },
+    appendTotal: (total) => {
+      progressTotal += total;
+    },
+    appendCurrent: (current) => {
+      progressCurrent += current;
+    },
+    percentage: () => {
+      return (progressCurrent / progressTotal) * 100;
+    },
+    current: (current) => {
+      if (current) {
+        progressCurrent = current;
+      }
+      return progressCurrent;
+    },
+    total: (total) => {
+      if (total) {
+        progressTotal = total;
+      }
+      return progressTotal;
+    },
+  };
 
   async function getData() {
     appendLog("Loading data...");
@@ -39,6 +69,7 @@
     data = data.map((item) => {
       return item;
     });
+    appendLog("Data loaded");
   }
 
   async function auth() {
@@ -46,6 +77,7 @@
     const pb = new PocketBase("https://db.080609.xyz");
     try {
       await pb.collection("users").authWithPassword(user, pass);
+      appendLog("Authentication successful");
     } catch (error) {
       appendLog("An error occurred: " + error);
     }
@@ -388,7 +420,8 @@
     // Iterate over each visit to count organization occurrences
     for (const visit of data) {
       count++;
-      appendLog(`Processed${count} out of ${data.length} visits...`);
+      progress.appendTotal(data.length);
+      progress.appendCurrent(1);
       const organization = await ipToOrg(visit.ip);
       if (!organizationCounts[organization]) {
         organizationCounts[organization] = 0;
@@ -533,6 +566,9 @@
   >
     {log}
   </textarea>
+  <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+    <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {progress.percentage}%"> {progress.current} / {progress.total}</div>
+  </div>
 </div>
 
 <canvas class="max-h-screen" id="visitsChart"></canvas>
