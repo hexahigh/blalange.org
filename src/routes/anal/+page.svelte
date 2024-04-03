@@ -26,6 +26,8 @@
   let progressTotal = 0;
   let progressCurrent = 0;
 
+  const pb = new PocketBase("https://db.080609.xyz");
+
   function appendLog(message) {
     log = log + message + "\n";
   }
@@ -60,7 +62,6 @@
 
   async function getData() {
     appendLog("Loading data...");
-    const pb = new PocketBase("https://db.080609.xyz");
     data = await pb
       .collection("kf_analytics")
       .getFullList(200 /* batch size */, {
@@ -74,7 +75,6 @@
 
   async function auth() {
     appendLog("Authenticating");
-    const pb = new PocketBase("https://db.080609.xyz");
     try {
       await pb.collection("users").authWithPassword(user, pass);
       appendLog("Authentication successful");
