@@ -20,17 +20,48 @@
   let chartVisits;
   let chartUrls;
 
-  const ipCache = ip_checkpoint;
+  let ipCache = ip_checkpoint;
 
   let log = "";
+  let progressTotal = 0;
+  let progressCurrent = 0;
+
+  const pb = new PocketBase("https://db.080609.xyz");
 
   function appendLog(message) {
     log = log + message + "\n";
   }
 
+  const progress = {
+    update: (total, current) => {
+      progressTotal = total;
+      progressCurrent = current;
+    },
+    appendTotal: (total) => {
+      progressTotal = progressTotal + total;
+    },
+    appendCurrent: (current) => {
+      progressCurrent = progressCurrent + current;
+    },
+    percentage: () => {
+      return (progressCurrent / progressTotal) * 100;
+    },
+    current: (current) => {
+      if (current) {
+        progressCurrent = current;
+      }
+      return progressCurrent;
+    },
+    total: (total) => {
+      if (total) {
+        progressTotal = total;
+      }
+      return progressTotal;
+    },
+  };
+
   async function getData() {
     appendLog("Loading data...");
-    const pb = new PocketBase("https://db.080609.xyz");
     data = await pb
       .collection("kf_analytics")
       .getFullList(200 /* batch size */, {
@@ -39,13 +70,14 @@
     data = data.map((item) => {
       return item;
     });
+    appendLog("Data loaded");
   }
 
   async function auth() {
     appendLog("Authenticating");
-    const pb = new PocketBase("https://db.080609.xyz");
     try {
       await pb.collection("users").authWithPassword(user, pass);
+      appendLog("Authentication successful");
     } catch (error) {
       appendLog("An error occurred: " + error);
     }
@@ -328,9 +360,11 @@
     // Initialize an object to count country occurrences
     const countryCounts = {};
 
+    progress.appendTotal(data.length);
+
     // Iterate over each visit to count country occurrences
     for (const visit of data) {
-      appendLog(`Processing ${visit.ip}...`);
+      progress.appendCurrent(1);
       const countryCode = await ipToCountry(visit.ip);
       if (!countryCounts[countryCode]) {
         countryCounts[countryCode] = 0;
@@ -384,11 +418,13 @@
     // Initialize an object to count organization occurrences
     const organizationCounts = {};
 
+    progress.appendTotal(data.length);
+
     let count = 0;
     // Iterate over each visit to count organization occurrences
     for (const visit of data) {
       count++;
-      appendLog(`Processed${count} out of ${data.length} visits...`);
+      progress.appendCurrent(1);
       const organization = await ipToOrg(visit.ip);
       if (!organizationCounts[organization]) {
         organizationCounts[organization] = 0;
@@ -491,6 +527,11 @@
     // Log the contents of ipCache as json
     console.log(JSON.stringify(ipCache));
   }
+
+  function clearIpCache() {
+    // Clear the contents of ipCache
+    ipCache = {};
+  }
 </script>
 
 <div class="flex flex-col items-center">
@@ -523,9 +564,22 @@
     >
     <button
       on:click={logIpCountryCache}
-      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
       >Log ipCache</button
     >
+    <button
+      on:click={clearIpCache}
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2"
+      >Clear ipCache</button
+    >
+    <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+      <div
+        class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+        style="width: {(progressCurrent / progressTotal) * 100}%"
+      >
+        {progressCurrent} / {progressTotal}
+      </div>
+    </div>
   </div>
   <textarea
     class="w-3/6 h-auto mt-4 p-2 border-black border-2 rounded"
