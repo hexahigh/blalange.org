@@ -22,9 +22,12 @@ async function collect2() {
   const url = window.location.href;
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
+  const networkInfo = navigator.connection ? navigator.connection.effectiveType : 'unknown';
+  const referrer = document.referrer;
+
   if (ip == "") {
- ip = await fetch("https://blalange.org/api/ip").then((res) => res.text())
-}
+    ip = await fetch("https://blalange.org/api/ip").then((res) => res.text());
+  }
 
   if (
     userAgent !== lastValues.userAgent ||
@@ -42,6 +45,8 @@ async function collect2() {
       ip: ip,
       width: screenWidth,
       height: screenHeight,
+      network: networkInfo,
+      referrer: referrer
     });
   } else {
     console.log("Collect2: Nothing has changed, not running.");

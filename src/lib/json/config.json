@@ -1,52 +1,93 @@
 {
-    "versions": [
-        {
-            "id": "1.0.0",
-            "name": "Gaia"
-        },
-        {
-            "id": "1.0.1",
-            "name": "Gaia"
-        },
-        {
-            "id": "1.0.2",
-            "name": "Gaia"
-        },
-        {
-            "id": "1.1.0",
-            "name": "Genesis"
-        },
-        {
-            "id": "1.2.0",
-            "name": "Cassini"
-        },
-        {
-            "id": "1.2.1",
-            "name": "Cassini"
-        },
-        {
-            "id": "1.2.2",
-            "name": "Cassini"
-        },
-        {
-            "id": "1.2.3",
-            "name": "Cassini"
-        },
-        {
-            "id": "1.2.4",
-            "name": "Cassini"
-        },
-        {
-            "id": "1.2.5",
-            "name": "Cassini"
-        },
-        {
-            "id": "2.0.0",
-            "name": "Ulysses"
-        },
-        {
-            "id": "2.0.1",
-            "name": "Ulysses"
-        }
-    ]
+  "versions": [
+    {
+      "id": "1.0.0",
+      "name": "Gaia"
+    },
+    {
+      "id": "1.0.1",
+      "name": "Gaia"
+    },
+    {
+      "id": "1.0.2",
+      "name": "Gaia"
+    },
+    {
+      "id": "1.1.0",
+      "name": "Genesis"
+    },
+    {
+      "id": "1.2.0",
+      "name": "Cassini"
+    },
+    {
+      "id": "1.2.1",
+      "name": "Cassini"
+    },
+    {
+      "id": "1.2.2",
+      "name": "Cassini"
+    },
+    {
+      "id": "1.2.3",
+      "name": "Cassini"
+    },
+    {
+      "id": "1.2.4",
+      "name": "Cassini"
+    },
+    {
+      "id": "1.2.5",
+      "name": "Cassini"
+    },
+    {
+      "id": "2.0.0",
+      "name": "Ulysses"
+    },
+    {
+      "id": "2.0.1",
+      "name": "Ulysses"
+    },
+    {
+      "id": "2.0.2",
+      "name": "Ulysses"
+    },
+    {
+      "id": "2.0.3",
+      "name": "Ulysses"
+    },
+    {
+      "id": "2.0.4",
+      "name": "Ulysses"
+    },
+    {
+      "id": "2.0.5",
+      "name": "Ulysses"
+    }
+  ],
+  "potentialNames": [
+    "Gaia",
+    "Genesis",
+    "Cassini",
+    "Ulysses",
+    "New Horizons",
+    "Pioneer",
+    "Helios",
+    "BepiColombo",
+    "Voyager",
+    "Hubble",
+    "Sputnik",
+    "Venera",
+    "Vega",
+    "Akatsuki",
+    "IKAROS",
+    "Mariner",
+    "Phobos",
+    "Nozomi",
+    "Dawn",
+    "Phoenix",
+    "Rosetta",
+    "Dragonfly",
+    "Ferdinand"
+  ]
 }

@@ -1,12 +1,14 @@
 export function getSessionId() {  
-    console.log("I was run!")
     // Check if a session ID already exists in local storage
     let sessionId = localStorage.getItem('sessionId');
 
     // If no session ID exists, generate a new one and store it
     if (!sessionId) {
+        console.log("No session ID found. Generating a new one.");
         sessionId = generateUniqueId();
         localStorage.setItem('sessionId', sessionId);
+    } else {
+        console.log("Existing session ID found");
     }
 
     return sessionId;
