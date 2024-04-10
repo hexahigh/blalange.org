@@ -45,7 +45,7 @@
     };
   });
 
-  $: navbarClass = visible ? 'navbar-open' : '';
+  $: navbarClass = visible ? "navbar-open" : "";
 
   function toggleNav() {
     collapse.toggle();
@@ -139,6 +139,10 @@
 
   .not-current-page {
     @apply block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-ctp-blue dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent;
+  }
+
+  #hamburger {
+    @apply transition-transform duration-500 ease-in-out;
   }
 
   .navbar-open {
