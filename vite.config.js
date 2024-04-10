@@ -58,14 +58,21 @@ const config = {
         dir: "auto",
         categories: ["news", "social", "events"],
       },
+      // Don't precache images
+      injectManifest: {
+        globIgnores: [
+          "**/img/**/*",
+          "**/_app/immutable/assets/**/*.webp",
+        ],
+      },
     }),
   ],
   define: {
     "process.env.NODE_ENV":
       process.env.NODE_ENV === "production" ? '"production"' : '"development"',
 
-    "__COMMIT_HASH__": JSON.stringify(commitHash),
-    "__BUILD_DATE__": JSON.stringify(new Date().toISOString()),
+    __COMMIT_HASH__: JSON.stringify(commitHash),
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
   },
   // gz
   assetsInclude: ["**/*.gz"],
