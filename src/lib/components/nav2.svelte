@@ -151,10 +151,10 @@
 
   @keyframes logoSpin {
     to {
-      transform: rotate(-360deg);
+      transform: rotate(360deg);
     }
   }
   .logo-spin:hover {
-    animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite reverse;
   }
 </style>
