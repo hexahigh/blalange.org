@@ -63,7 +63,7 @@
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <img
         src={logo}
-        class="h-12 hover:animate-spin"
+        class="h-12 logo-spin"
         on:click={confetti.fireAll}
         alt="Blånange Logo"
       />
@@ -147,5 +147,14 @@
 
   .navbar-open {
     @apply rotate-90;
+  }
+
+  @keyframes logoSpin {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  .logo-spin:hover {
+    animation: spin 1s linear infinite;
   }
 </style>
