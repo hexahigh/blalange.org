@@ -25,6 +25,42 @@ export function initialize() {
 }
 
 function enableDevMode() {
+    if (devMode) {
+        console.log("You are already a super cool developer!");
+        return;
+    }
     console.log('Super cool devmode activated!');
     devMode = true;
+    registerCommands();
+}
+
+function registerCommands() {
+    // Register commands by assigning their execute function to the window object
+    commands.forEach(command => {
+        window[command.name] = command.execute;
+    });
+}
+
+let commands = [
+    {
+        name: "dev",
+        description: "Enable dev mode",
+        execute: () => {
+            enableDevMode();
+        }
+    },
+    {
+        name: "dev_help",
+        description: "Show available commands",
+        execute: () => {
+            devHelp();
+        }
+    }
+]
+
+function devHelp() {
+    console.log("Available commands:");
+    commands.forEach(command => {
+        console.log(`- ${command.name}: ${command.description}`);
+    });
 }
