@@ -3,7 +3,7 @@ export let devMode = false;
 export function initialize() {
     if (typeof window !== "undefined") {
         // If the user presses D + E + V then enable dev mode
-        let sequence = ['D', 'E', 'V'];
+        let sequence = ['d', 'e', 'v'];
         let currentIndex = 0;
 
         window.addEventListener('keydown', function(event) {
