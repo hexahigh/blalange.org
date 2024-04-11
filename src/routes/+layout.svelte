@@ -9,7 +9,7 @@
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
   import '@fontsource/material-icons';
-  import { initialize } from "$lib/js/dev.js"
+  import { initialize, checkForDevMode } from "$lib/js/dev.js"
   import { loadConfig } from "$lib/js/config.js";
 
   import { pwaInfo } from 'virtual:pwa-info'; 
@@ -19,6 +19,7 @@
   onMount(() => {
     initialize();
     loadConfig();
+    checkForDevMode();
     if (dev) {
       console.log("In development mode. No analytics monitoring.");
     } else {

@@ -24,6 +24,12 @@ export function initialize() {
     }
 }
 
+export function checkForDevMode() {
+    if (config.devMode) {
+        registerCommands();
+    }
+}
+
 function enableDevMode() {
     if (config.devMode) {
         console.log("You are already a super cool developer!");
