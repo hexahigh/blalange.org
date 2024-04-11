@@ -22,7 +22,7 @@ async function collect2() {
   const url = window.location.href;
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
-  const networkInfo = navigator.connection ? navigator.connection.effectiveType : 'unknown';
+  const networkInfo = navigator.connection ? navigator.connection.type : 'unknown';
   const referrer = document.referrer;
 
   if (ip == "") {

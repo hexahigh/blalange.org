@@ -9,12 +9,14 @@
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
   import '@fontsource/material-icons';
+  import { initialize } from "$lib/js/dev.js"
 
   import { pwaInfo } from 'virtual:pwa-info'; 
 
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '' 
 
   onMount(() => {
+    initialize();
     if (dev) {
       console.log("In development mode. No analytics monitoring.");
     } else {
