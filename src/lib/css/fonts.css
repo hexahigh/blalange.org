@@ -1,3 +1,11 @@
+@import url(./../fonts/rimwordfont/rimwordfont.css);
+
+.rimwordfont {
+  font-family: "RimWordFont";
+  font-style: normal;
+  font-weight: 400;
+}
+
 .krona {
   font-family: "Krona One", sans-serif;
 }
