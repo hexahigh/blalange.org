@@ -51,6 +51,7 @@ let commands = [
     {
         name: "dev",
         description: "Enable dev mode",
+        usage: "dev()",
         execute: () => {
             enableDevMode();
         }
@@ -58,6 +59,7 @@ let commands = [
     {
         name: "dev_help",
         description: "Show available commands",
+        usage: "dev_help()",
         execute: () => {
             devHelp();
         }
@@ -65,6 +67,7 @@ let commands = [
     {
         name: "dev_reset",
         description: "Reset to default config",
+        usage: "dev_reset()",
         execute: () => {
             resetToDefaults();
         }
@@ -72,6 +75,7 @@ let commands = [
     {
         name: "dev_disable_analytics",
         description: "Disable analytics",
+        usage: "dev_disable_analytics()",
         execute: () => {
             config.analyticsEnabled = false;
         }
@@ -79,6 +83,7 @@ let commands = [
     {
         name: "dev_conf_reset",
         description: "Reset config to default",
+        usage: "dev_conf_reset()",
         execute: () => {
             resetToDefaults();
         }
@@ -86,6 +91,7 @@ let commands = [
     {
         name: "dev_conf_save",
         description: "Save config to localStorage",
+        usage: "dev_conf_save()",
         execute: () => {
             saveConfig();
         }
@@ -93,6 +99,7 @@ let commands = [
     {
         name: "dev_conf_load",
         description: "Load config from localStorage",
+        usage: "dev_conf_load()",
         execute: () => {
             loadConfig();
         }
@@ -100,6 +107,7 @@ let commands = [
     {
         name: "dev_conf_print",
         description: "Show current config",
+        usage: "dev_conf_print()",
         execute: () => {
             console.log(config);
         }
@@ -107,16 +115,33 @@ let commands = [
     {
         name: "dev_conf_edit",
         description: "Edit config",
+        usage: "dev_conf_edit(key, value)",
         execute: (key, value) => {
             config[key] = value;
             saveConfig();
         }
+    },
+    {
+        name: "dev_print_commit",
+        description: "Print current commit hash",
+        usage: "dev_print_commit()",
+        execute: () => {
+            console.log(__COMMIT_HASH__);
+        },
+    },
+    {
+        name: "dev_print_build_date",
+        description: "Print build date",
+        usage: "dev_print_build_date()",
+        execute: () => {
+            console.log(__BUILD_DATE__);
+        },
     }
 ]
 
 function devHelp() {
     console.log("Available commands:");
     commands.forEach(command => {
-        console.log(`- ${command.name}: ${command.description}`);
+        console.log(`- ${command.name}: ${command.description} (${command.usage})`);
     });
 }
