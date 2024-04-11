@@ -1,7 +1,8 @@
 import PocketBase from "pocketbase";
 import { getSessionId } from "./session";
+import { config } from "./config";
 
-const pb = new PocketBase("https://db.080609.xyz");
+const pb = new PocketBase(config.dbEndpoint);
 
 let lastValues = {
   userAgent: typeof window !== "undefined" ? "" : "",
@@ -15,6 +16,8 @@ export { startAnalyticsMonitoring };
 
 async function collect2() {
   if (typeof window === "undefined") return; // Exit if not in a browser environment
+
+  if (!config.analyticsEnabled) return; // Exit if analytics are disabled
 
   const userAgent = navigator.userAgent;
   const language = navigator.language;

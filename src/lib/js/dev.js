@@ -1,4 +1,4 @@
-export let devMode = false;
+import { config } from "./config";
 
 export function initialize() {
     if (typeof window !== "undefined") {
@@ -25,12 +25,12 @@ export function initialize() {
 }
 
 function enableDevMode() {
-    if (devMode) {
+    if (config.devMode) {
         console.log("You are already a super cool developer!");
         return;
     }
     console.log('Super cool devmode activated!');
-    devMode = true;
+    config.devMode = true;
     registerCommands();
 }
 
@@ -54,6 +54,21 @@ let commands = [
         description: "Show available commands",
         execute: () => {
             devHelp();
+        }
+    },
+    {
+        name: "dev_disable",
+        description: "Disable dev mode",
+        execute: () => {
+            config.devMode = false;
+            console.log("Dev mode disabled");
+        }
+    },
+    {
+        name: "dev_disable_analytics",
+        description: "Disable analytics",
+        execute: () => {
+            config.analyticsEnabled = false;
         }
     }
 ]
