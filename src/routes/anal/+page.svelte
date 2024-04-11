@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import PocketBase from "pocketbase";
   import Chart from "chart.js/auto";
+  import { config } from "$lib/js/config.js";
 
   import ip_checkpoint from "./ip_checkpoint.json";
 
@@ -26,7 +27,7 @@
   let progressTotal = 0;
   let progressCurrent = 0;
 
-  const pb = new PocketBase("https://db.080609.xyz");
+  const pb = new PocketBase(config.dbEndpoint);
 
   function appendLog(message) {
     log = log + message + "\n";

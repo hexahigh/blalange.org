@@ -72,7 +72,7 @@ const config = {
       process.env.NODE_ENV === "production" ? '"production"' : '"development"',
 
     __COMMIT_HASH__: JSON.stringify(commitHash),
-    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+    __BUILD_DATE__: JSON.stringify(new Date().getTime()),
   },
   // gz
   assetsInclude: ["**/*.gz"],
