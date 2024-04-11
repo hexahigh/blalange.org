@@ -3,6 +3,7 @@
   import Form from "$lib/components/form.svelte";
   import Donate from "$lib/components/donate.svelte";
   import Leaderboard from "$lib/components/leaderboard.svelte";
+  import Faq from "../../lib/components/faq.svelte";
 </script>
 
 <MetaTags
@@ -49,6 +50,7 @@
 
   <Leaderboard />
 
+  <Faq />
   
   <div class="text-center">
     <h2 class="text-3xl">Bli med</h2>
