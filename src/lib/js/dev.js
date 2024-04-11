@@ -1,4 +1,4 @@
-import { config } from "./config";
+import { config, loadConfig, saveConfig, resetToDefaults } from "./config";
 
 export function initialize() {
     if (typeof window !== "undefined") {
@@ -57,11 +57,10 @@ let commands = [
         }
     },
     {
-        name: "dev_disable",
-        description: "Disable dev mode",
+        name: "dev_reset",
+        description: "Reset to default config",
         execute: () => {
-            config.devMode = false;
-            console.log("Dev mode disabled");
+            resetToDefaults();
         }
     },
     {
@@ -69,6 +68,42 @@ let commands = [
         description: "Disable analytics",
         execute: () => {
             config.analyticsEnabled = false;
+        }
+    },
+    {
+        name: "dev_conf_reset",
+        description: "Reset config to default",
+        execute: () => {
+            resetToDefaults();
+        }
+    },
+    {
+        name: "dev_conf_save",
+        description: "Save config to localStorage",
+        execute: () => {
+            saveConfig();
+        }
+    },
+    {
+        name: "dev_conf_load",
+        description: "Load config from localStorage",
+        execute: () => {
+            loadConfig();
+        }
+    },
+    {
+        name: "dev_conf_print",
+        description: "Show current config",
+        execute: () => {
+            console.log(config);
+        }
+    },
+    {
+        name: "dev_conf_edit",
+        description: "Edit config",
+        execute: (key, value) => {
+            config[key] = value;
+            saveConfig();
         }
     }
 ]
