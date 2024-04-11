@@ -1,6 +1,7 @@
 <script>
   import { dev } from '$app/environment';
   import "../app.css";
+  import "$lib/css/fonts.css"
   import { onMount } from "svelte";
   import { startAnalyticsMonitoring } from "$lib/js/analytics.js"; // Adjust the path as necessary
   import "@fontsource/krona-one";

@@ -1,0 +1,8 @@
+/* rimwordfont */
+@font-face {
+	font-family: RimWordFont;
+	font-style: normal;
+	font-weight: 400;
+	src: local("RimWordFont"), url(rimwordfont.woff2) format("woff2"), url(rimwordfont.woff) format("woff");
+}
+

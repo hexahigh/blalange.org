@@ -1,3 +1,5 @@
+export const prerender = true;
+
 const pages = [
   "rebrand",
   "countdown",
@@ -7,6 +9,7 @@ const pages = [
   "articles",
   "webring",
   "form",
+  "radio",
 ];
 
 const site = "https://blalange.org";
