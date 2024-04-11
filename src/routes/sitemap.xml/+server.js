@@ -1,3 +1,5 @@
+export const prerender = true;
+
 const pages = [
   "rebrand",
   "countdown",
