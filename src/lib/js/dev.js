@@ -50,6 +50,7 @@ function enableDevMode() {
         }
         console.log('Super cool devmode activated!');
         play();
+        saveConfig();
         return { ...value, devMode: true };
     });
     registerCommands();
