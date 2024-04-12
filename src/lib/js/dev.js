@@ -6,6 +6,7 @@ import dont_touch from "$lib/audio/dont-touch.wav";
 function play() {
     let sound = new Howl({
         src: [dont_touch],
+        volume: 0.5
     });
     sound.play();
 }
