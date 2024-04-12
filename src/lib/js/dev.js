@@ -1,4 +1,5 @@
 import { config, loadConfig, saveConfig, resetToDefaults } from "./config";
+import { get } from 'svelte/store';
 
 export function initialize() {
     if (typeof window !== "undefined") {
@@ -25,18 +26,22 @@ export function initialize() {
 }
 
 export function checkForDevMode() {
-    if (config.devMode) {
-        registerCommands();
-    }
+    config.subscribe(value => {
+        if (value.devMode) {
+            registerCommands();
+        }
+    })();
 }
 
 function enableDevMode() {
-    if (config.devMode) {
-        console.log("You are already a super cool developer!");
-        return;
-    }
-    console.log('Super cool devmode activated!');
-    config.devMode = true;
+    config.update(value => {
+        if (value.devMode) {
+            console.log("You are already a super cool developer!");
+            return value; // Return the current value if no change is needed
+        }
+        console.log('Super cool devmode activated!');
+        return { ...value, devMode: true };
+    });
     registerCommands();
 }
 
@@ -109,7 +114,7 @@ let commands = [
         description: "Show current config",
         usage: "dev_conf_print()",
         execute: () => {
-            console.log(config);
+            console.log(get(config));
         }
     },
     {
@@ -117,7 +122,10 @@ let commands = [
         description: "Edit config",
         usage: "dev_conf_edit(key, value)",
         execute: (key, value) => {
-            config[key] = value;
+            config.update(currentConfig => {
+                const updatedConfig = { ...currentConfig, [key]: value };
+                return updatedConfig;
+            });
             saveConfig();
         }
     },

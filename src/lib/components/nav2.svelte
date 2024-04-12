@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { DarkMode } from "flowbite-svelte";
   import { SunSolid, MoonSolid } from "flowbite-svelte-icons";
   import logo from "$lib/img/favicon.svg";
@@ -7,6 +7,19 @@
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
   import { config } from "$lib/js/config.js";
+
+
+  let logoAlwaysSpins = false;
+
+  // Subscribe to the config store
+  const unsubscribe = config.subscribe((value) => {
+    logoAlwaysSpins = value.logoAlwaysSpins;
+  });
+
+  // Remember to unsubscribe when the component is destroyed to avoid memory leaks
+  onDestroy(() => {
+    unsubscribe();
+  });
 
   let path;
   let collapse;
@@ -65,6 +78,7 @@
       <img
         src={logo}
         class="h-12 hover:logo-spin"
+        class:logo-spin={logoAlwaysSpins}
         on:click={confetti.fireAll}
         alt="Blålange Logo"
       />
