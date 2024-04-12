@@ -1,8 +1,9 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import PocketBase from "pocketbase";
   import Chart from "chart.js/auto";
   import { config } from "$lib/js/config.js";
+  import { get } from "svelte/store";
 
   import ip_checkpoint from "./ip_checkpoint.json";
 
@@ -27,7 +28,18 @@
   let progressTotal = 0;
   let progressCurrent = 0;
 
-  const pb = new PocketBase(config.dbEndpoint);
+  let pb; // Declare pb outside the subscription to make it accessible elsewhere
+
+  // Subscribe to the config store
+  const unsubscribe = config.subscribe((value) => {
+    // Create a new PocketBase instance whenever dbEndpoint changes
+    pb = new PocketBase(value.dbEndpoint);
+  });
+
+  // Remember to unsubscribe when the component is destroyed to avoid memory leaks
+  onDestroy(() => {
+    unsubscribe();
+  });
 
   function appendLog(message) {
     log = log + message + "\n";

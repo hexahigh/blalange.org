@@ -1,11 +1,25 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { DarkMode } from "flowbite-svelte";
   import { SunSolid, MoonSolid } from "flowbite-svelte-icons";
   import logo from "$lib/img/favicon.svg";
   import { page } from "$app/stores";
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
+  import { config } from "$lib/js/config.js";
+
+
+  let logoAlwaysSpins = false;
+
+  // Subscribe to the config store
+  const unsubscribe = config.subscribe((value) => {
+    logoAlwaysSpins = value.logoAlwaysSpins;
+  });
+
+  // Remember to unsubscribe when the component is destroyed to avoid memory leaks
+  onDestroy(() => {
+    unsubscribe();
+  });
 
   let path;
   let collapse;
@@ -63,9 +77,10 @@
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <img
         src={logo}
-        class="h-12 logo-spin"
+        class="h-12 hover:logo-spin"
+        class:logo-spin={logoAlwaysSpins}
         on:click={confetti.fireAll}
-        alt="Blånange Logo"
+        alt="Blålange Logo"
       />
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap krona dark:text-white"
@@ -154,7 +169,11 @@
       transform: rotate(360deg);
     }
   }
-  .logo-spin:hover {
-    animation: spin 1s linear infinite reverse;
+  .logo-spin {
+    animation: logoSpin 1s linear infinite reverse;
+  }
+
+  .hover\:logo-spin:hover {
+    animation: logoSpin 1s linear infinite reverse;
   }
 </style>
