@@ -142,6 +142,6 @@ let commands = [
 function devHelp() {
     console.log("Available commands:");
     commands.forEach(command => {
-        console.log(`- ${command.name}: ${command.description} (${command.usage})`);
+        console.log(`- ${command.name}: ${command.description} '${command.usage}'`);
     });
 }

@@ -65,9 +65,8 @@
       <img
         src={logo}
         class="h-12 hover:logo-spin"
-        class:logo-spin={config.logoAlwaysSpins}
         on:click={confetti.fireAll}
-        alt="Blånange Logo"
+        alt="Blålange Logo"
       />
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap krona dark:text-white"
@@ -157,7 +156,7 @@
     }
   }
   .logo-spin {
-    animation: spin 1s linear infinite reverse;
+    animation: logoSpin 1s linear infinite reverse;
   }
 
   .hover\:logo-spin:hover {
