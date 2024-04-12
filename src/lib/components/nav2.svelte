@@ -6,6 +6,7 @@
   import { page } from "$app/stores";
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
+  import { config } from "$lib/js/config.js";
 
   let path;
   let collapse;
@@ -63,7 +64,8 @@
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <img
         src={logo}
-        class="h-12 logo-spin"
+        class="h-12 hover:logo-spin"
+        class:logo-spin={config.logoAlwaysSpins}
         on:click={confetti.fireAll}
         alt="Blånange Logo"
       />
@@ -154,7 +156,11 @@
       transform: rotate(360deg);
     }
   }
-  .logo-spin:hover {
+  .logo-spin {
     animation: spin 1s linear infinite reverse;
+  }
+
+  .hover\:logo-spin:hover {
+    animation: logoSpin 1s linear infinite reverse;
   }
 </style>

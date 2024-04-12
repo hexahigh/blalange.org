@@ -2,6 +2,7 @@ const defaultConfig = {
     devMode: false,
     dbEndpoint: "https://db.080609.xyz",
     analyticsEnabled: true,
+    logoAlwaysSpins: false,
 }
 
 
@@ -9,6 +10,7 @@ export let config = {
     devMode: defaultConfig.devMode,
     dbEndpoint: defaultConfig.dbEndpoint,
     analyticsEnabled: defaultConfig.analyticsEnabled,
+    logoAlwaysSpins: defaultConfig.logoAlwaysSpins,
 }
 
 // Function to load config from localStorage
