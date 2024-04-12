@@ -2,7 +2,10 @@ import PocketBase from "pocketbase";
 import { getSessionId } from "./session";
 import { config } from "./config";
 
-const pb = new PocketBase(config.dbEndpoint);
+let pb 
+config.subscribe(value => {
+    pb = new PocketBase(value.dbEndpoint);
+});
 
 let lastValues = {
   userAgent: typeof window !== "undefined" ? "" : "",
