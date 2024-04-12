@@ -1,4 +1,13 @@
 import { config, loadConfig, saveConfig, resetToDefaults } from "./config";
+import { Howl } from "howler";
+import dont_touch from "$lib/audio/dont-touch.wav";
+
+function play() {
+    let sound = new Howl({
+        src: [dont_touch],
+    });
+    sound.play();
+}
 
 export function initialize() {
     if (typeof window !== "undefined") {
@@ -36,6 +45,7 @@ function enableDevMode() {
         return;
     }
     console.log('Super cool devmode activated!');
+    play();
     config.devMode = true;
     registerCommands();
 }
