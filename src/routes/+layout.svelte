@@ -14,7 +14,6 @@
   import { initialize, checkForDevMode } from "$lib/js/dev.js"
   import { loadConfig } from "$lib/js/config.js";
   import { initEgg } from "$lib/js/egg.js";
-  import { initEgg as initEgg2 } from "$lib/js/egg2.js";
 
   import { pwaInfo } from 'virtual:pwa-info'; 
 
@@ -25,7 +24,6 @@
     loadConfig(); // Load the config from local storage
     checkForDevMode(); // Checks if dev mode is enabled in the config
     initEgg(); // Initialize easter egg 1
-    initEgg2(); // Initialize easter egg 2
     if (dev) {
       console.log("In development mode. No analytics monitoring.");
     } else {
