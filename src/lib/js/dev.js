@@ -1,5 +1,15 @@
 import { config, loadConfig, saveConfig, resetToDefaults } from "./config";
+import { Howl } from "howler";
 import { get } from 'svelte/store';
+import dont_touch from "$lib/audio/dont-touch.wav";
+
+function play() {
+    let sound = new Howl({
+        src: [dont_touch],
+        volume: 0.5
+    });
+    sound.play();
+}
 
 export function initialize() {
     if (typeof window !== "undefined") {
@@ -40,6 +50,8 @@ function enableDevMode() {
             return value; // Return the current value if no change is needed
         }
         console.log('Super cool devmode activated!');
+        play();
+        saveConfig();
         return { ...value, devMode: true };
     });
     registerCommands();
