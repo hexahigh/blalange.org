@@ -23,7 +23,7 @@
     initialize(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage
     checkForDevMode(); // Checks if dev mode is enabled in the config
-    initEgg(); // Initialize the egg
+    initEgg(); // Initialize easter egg 1
     if (dev) {
       console.log("In development mode. No analytics monitoring.");
     } else {
