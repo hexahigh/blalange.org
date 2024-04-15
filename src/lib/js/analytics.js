@@ -2,9 +2,12 @@ import PocketBase from "pocketbase";
 import { getSessionId } from "./session";
 import { config } from "./config";
 
-let pb 
+let pb
+let enabled
+
 config.subscribe(value => {
     pb = new PocketBase(value.dbEndpoint);
+    enabled = value.analyticsEnabled
 });
 
 let lastValues = {
@@ -20,7 +23,7 @@ export { startAnalyticsMonitoring };
 async function collect2() {
   if (typeof window === "undefined") return; // Exit if not in a browser environment
 
-  if (!config.analyticsEnabled) return; // Exit if analytics are disabled
+  if (!enabled) return; // Exit if analytics are disabled
 
   const userAgent = navigator.userAgent;
   const language = navigator.language;
