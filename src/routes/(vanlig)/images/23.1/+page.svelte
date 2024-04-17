@@ -1,6 +1,7 @@
 <script>
   import Nav from "$lib/components/nav.svelte";
   import ImagesNav from "$lib/components/images-nav.svelte";
+  import BetterImg from "$lib/components/betterImg.svelte";
 
   const pictureModules = import.meta.glob(
     "$lib/img/image-archive/23.1/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}", { eager: true }
@@ -24,10 +25,12 @@
     {#each columns as column, columnIndex}
       <div class="column">
         {#each column as image, index}
-          <img
+          <BetterImg
             class="image-item rounded"
             src={`${image}`}
             alt="High Resolution Image"
+            width="1920"
+            height="1080"
           />
         {/each}
       </div>
