@@ -1,4 +1,15 @@
 @import url(./../fonts/rimwordfont/rimwordfont.css);
+@import url(./../fonts/symbols-nerd-font/symbols-nerd-font.css);
+@import url(./../fonts/symbols-nerd-font-mono/symbols-nerd-font-mono.css);
+
+
+.symbols {
+  font-family: "Symbols Nerd Font";
+}
+
+.symbols-mono {
+  font-family: "Symbols Nerd Font Mono";
+}
 
 .rimword {
   font-family: "RimWordFont";
