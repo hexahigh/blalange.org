@@ -20,7 +20,7 @@
 		"@vite-pwa/sveltekit": "^0.4.0",
 		"autoprefixer": "^10.4.19",
 		"flowbite": "^2.3.0",
-		"flowbite-svelte": "^0.44.24",
+		"flowbite-svelte": "^0.45.0",
 		"flowbite-typography": "^1.0.3",
 		"postcss": "^8.4.38",
 		"svelte": "^4.2.15",
