@@ -11,6 +11,7 @@
   import { getLatestVersion } from "$lib/js/lib.js";
   import { asciiLogo } from "$lib/js/config.js";
   import { MetaTags } from 'svelte-meta-tags';
+  import axios from "axios";
   import "./style.css";
 
   const user = "root";
@@ -59,6 +60,12 @@
 
   onMount(() => {
     termInput.focus();
+
+    setInterval(() => {
+      if (termInput) {
+        termInput.focus();
+      }
+    }) * 100;
   });
 
   function print(...args) {
@@ -205,6 +212,33 @@
         showInput = false;
         try {
           eval(args.join(" "));
+        }
+        catch (e) {
+          print(e);
+        }
+        showInput = true;
+      },
+    },
+    {
+      name: "execfetch",
+      description: "fetches a javascript file from a url and executes it",
+      usage: "execfetch [url]",
+      hidden: false,
+      execute: (args) => {
+        if (!args[0]) {
+          print("No url provided");
+          return;
+        }
+        showInput = false;
+        try {
+          axios
+            .get(args[0])
+            .then((response) => {
+              eval(response.data);
+            })
+            .catch((error) => {
+              print(error);
+            });
         }
         catch (e) {
           print(e);
