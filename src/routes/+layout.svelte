@@ -3,21 +3,33 @@
   import "@fontsource/lexend-exa";
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
-  import '@fontsource/material-icons';
+  import "@fontsource/material-icons";
 
-  import { dev } from '$app/environment';
+  import { dev } from "$app/environment";
   import "../app.css";
-  import "$lib/css/fonts.css"
-  import { onMount } from "svelte";
+  import "$lib/css/fonts.css";
+  import { onMount, onDestroy } from "svelte";
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics.js";
-  import { initialize, checkForDevMode } from "$lib/js/dev.js"
-  import { loadConfig } from "$lib/js/config.js";
+  import { initialize, checkForDevMode } from "$lib/js/dev.js";
+  import { loadConfig, config } from "$lib/js/config.js";
   import { initEgg } from "$lib/js/egg.js";
 
-  import { pwaInfo } from 'virtual:pwa-info'; 
+  import { pwaInfo } from "virtual:pwa-info";
 
-  $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '' 
+  $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : "";
+
+  let crtMode = false;
+
+  // Subscribe to the config store
+  const unsubscribe = config.subscribe((value) => {
+    crtMode = value.crtMode;
+  });
+
+  // Remember to unsubscribe when the component is destroyed to avoid memory leaks
+  onDestroy(() => {
+    unsubscribe();
+  });
 
   onMount(() => {
     initialize(); // Initialize the dev mode
@@ -32,14 +44,14 @@
   });
 </script>
 
-<svelte:head> 
- 	{@html webManifestLink} 
+<svelte:head>
+  {@html webManifestLink}
 </svelte:head>
 
-<main>
+<main class:crt={crtMode}>
   <slot />
 </main>
 
-{#await import('$lib/components/reloadPrompt.svelte') then { default: ReloadPrompt}}
+{#await import("$lib/components/reloadPrompt.svelte") then { default: ReloadPrompt }}
   <ReloadPrompt />
 {/await}
