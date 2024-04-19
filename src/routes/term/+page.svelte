@@ -1,4 +1,5 @@
 <!-- <script context="module">
+	import { MetaTags } from 'svelte-meta-tags';
 	import { asciiLogo } from './../../lib/js/config.js';
 	export const prerender = true
 </script> -->
@@ -9,6 +10,7 @@
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
   import { asciiLogo } from "$lib/js/config.js";
+  import { MetaTags } from 'svelte-meta-tags';
   import "./style.css";
 
   const user = "root";
@@ -246,6 +248,20 @@
     showInput = true;
   }
 </script>
+
+<MetaTags
+  title="Terminal"
+  titleTemplate="%s | Blålange"
+  description="BlålangeOS"
+  canonical="https://blalange.org/term"
+  openGraph={{
+    url: "https://blalange.org/term",
+    title: "Terminal | Blålange",
+    description:
+      "BlålangeOS",
+    siteName: "Blålange festivalen",
+  }}
+/>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
