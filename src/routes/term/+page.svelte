@@ -19,6 +19,7 @@
   let showInput = true;
 
   let termInput;
+  let terminalContainer;
 
   function enter() {
     let command = termInput.value;
@@ -61,6 +62,9 @@
   function print(...args) {
     // Concatenate all arguments into a single string with newlines
     lineData = [...lineData, { output: args.join("\n"), type: "output" }];
+    if (terminalContainer) {
+      terminalContainer.scrollTop = terminalContainer.scrollHeight;
+    }
   }
 
   function print2() {
@@ -245,7 +249,11 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="terminal crt ibm-bios" on:click={() => termInput.focus()}>
+<div
+  class="terminal crt ibm-bios"
+  on:click={() => termInput.focus()}
+  bind:this={terminalContainer}
+>
   <pre class="output">Welcome to Blåsh</pre>
   <pre class="output">Type 'help' to learn more.</pre>
   {#each lineData as line, i (i)}
