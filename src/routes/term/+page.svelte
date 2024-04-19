@@ -1,4 +1,5 @@
 <!-- <script context="module">
+	import { asciiLogo } from './../../lib/js/config.js';
 	export const prerender = true
 </script> -->
 <script>
@@ -7,13 +8,15 @@
   import { keypress } from "./actions.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
+  import { asciiLogo } from "$lib/js/config.js";
   import "./style.css";
 
-  const user = "blålange";
+  const user = "root";
   const machine = $page.url.host || "localhost";
 
   let lineData = [];
   let histIndex = $history.length;
+  let showInput = true;
 
   let termInput;
 
@@ -176,7 +179,7 @@
       name: "help",
       description: "Print help",
       usage: "help",
-      hidden: true,
+      hidden: false,
       execute: () => {
         let text = [
           "Blålange festivalen blåsh, version " +
@@ -189,23 +192,60 @@
         return print(...text);
       },
     },
+    {
+      name: "clear",
+      description: "clear terminal",
+      usage: "clear",
+      hidden: false,
+      execute: () => {
+        lineData = [];
+      },
+    },
   ];
 
-  function fetch() {
-    let output = [
-      "OS: BlålangeOS",
-      "Host: blalange.org",
-      "Shell: blåsh",
-      "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
-    ];
+  async function fetch() {
+    showInput = false;
+    try {
+      let screenWidth = window.screen.width || window.innerWidth;
+      let screenHeight = window.screen.height || window.innerHeight;
+      let memory = navigator.deviceMemory;
+      let useragent = navigator.userAgent;
+      let info = [
+        "OS: BlålangeOS " + (getLatestVersion().id || ""),
+        "Host: " + machine,
+        "Shell: blåsh",
+        "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
+        "Resolution: " + screenWidth + "x" + screenHeight,
+        "Memory: " + (memory || "?") + "GB",
+        "Useragent: " + useragent,
+      ];
 
-    return print(...output);
+      let output = [];
+
+      for (let i = 0; i < asciiLogo.length; i++) {
+        if (i < info.length) {
+          output.push(asciiLogo[i] + info[i]);
+        } else {
+          output.push(asciiLogo[i]);
+        }
+      }
+
+      // print one line every 50ms
+      for (let i = 0; i < output.length; i++) {
+        print(output[i] + "\n");
+        await new Promise((resolve) => setTimeout(resolve, 50));
+      }
+    } catch (error) {
+      print(error);
+    }
+
+    showInput = true;
   }
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="terminal crt" on:click={() => termInput.focus()}>
+<div class="terminal crt ibm-bios" on:click={() => termInput.focus()}>
   <pre class="output">Welcome to Blåsh</pre>
   <pre class="output">Type 'help' to learn more.</pre>
   {#each lineData as line, i (i)}
@@ -223,16 +263,19 @@
       {/if}
     </span>
   {/each}
-  <p class="prompt">{user}@{machine}:$&nbsp;</p>
-  <input
-    class="input"
-    type="text"
-    spellcheck="false"
-    bind:this={termInput}
-    use:keypress
-    on:enterkey={enter}
-    on:arrowup|preventDefault={arrowUp}
-    on:arrowdown|preventDefault={arrowDown}
-  />
+  {#if showInput}
+    <p class="prompt">{user}@{machine}:$&nbsp;</p>
+    <input
+      class="input"
+      type="text"
+      spellcheck="false"
+      bind:this={termInput}
+      use:keypress
+      on:enterkey={enter}
+      on:arrowup|preventDefault={arrowUp}
+      on:arrowdown|preventDefault={arrowDown}
+    />
+  {/if}
   <div class="clock">{$dateTime}</div>
 </div>
+<div class="scanline"></div>

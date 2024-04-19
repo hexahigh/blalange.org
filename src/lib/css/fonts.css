@@ -4,6 +4,15 @@
 @import url(./../fonts/3270-nerd-font/3270-nerd-font.css);
 @import url(./../fonts/3270-nerd-font-propo/3270-nerd-font-propo.css);
 @import url(./../fonts/3270-nerd-font-mono/3270-nerd-font-mono.css);
+@import url(./../fonts/pxplus-ibm-bios/pxplus-ibm-bios.css);
+
+._3270-mono {
+  font-family: "3270 Nerd Font Mono";
+}
+
+.ibm-bios {
+  font-family: "PxPlus IBM BIOS";
+}
 
 .symbols {
   font-family: "Symbols Nerd Font";

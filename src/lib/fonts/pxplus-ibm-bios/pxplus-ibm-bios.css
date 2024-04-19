@@ -1,0 +1,8 @@
+/* pxplus-ibm-bios */
+@font-face {
+	font-family: PxPlus IBM BIOS;
+	font-style: normal;
+	font-weight: 400;
+	src: local("PxPlus IBM BIOS"), local("PxPlus_IBM_BIOS"), url(pxplus-ibm-bios.woff2) format("woff2"), url(pxplus-ibm-bios.woff) format("woff");
+}
+
