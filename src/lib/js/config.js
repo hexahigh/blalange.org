@@ -4,7 +4,8 @@ const defaultConfig = {
     devMode: false,
     dbEndpoint: "https://db.080609.xyz",
     analyticsEnabled: true,
-    logoAlwaysSpins: false
+    logoAlwaysSpins: false,
+    crtMode: false
 }
 
 

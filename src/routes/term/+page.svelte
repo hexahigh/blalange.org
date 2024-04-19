@@ -56,7 +56,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="terminal" on:click={() => termInput.focus()}>
+<div class="terminal crt min-h-screen" on:click={() => termInput.focus()}>
 	<pre class="output">Type 'help' to learn more.</pre>
 	{#each lineData as line, i (i)}
 		<span>

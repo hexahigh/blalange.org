@@ -1,3 +1,5 @@
+import { page } from "$app/stores";
+
 function print() {
   const args = [...arguments];
   return args.map((text) => `<pre class="output">${text}</pre>`);
@@ -57,4 +59,24 @@ let commands = [
       return args.join(" ");
     },
   },
+  {
+    name: "fetch",
+    description: "for that arch linux flex",
+    usage: "fetch",
+    hidden: false,
+    execute: () => {
+      return fetch();
+    },
+  }
 ];
+
+function fetch () {
+    let output = [
+        "OS: BlålangeOS",
+        "Host: blalange.org",
+        "Shell: blåsh",
+        "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
+    ]
+
+    return print(...output);
+}
