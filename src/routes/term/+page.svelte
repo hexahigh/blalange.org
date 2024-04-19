@@ -69,17 +69,6 @@
     }
   }
 
-  function print2() {
-    const args = [...arguments];
-    return args.map((text) => `<pre class="output">${text}</pre>`);
-  }
-
-  function printWithColor(text, color) {
-    return `<pre class="output" style="color: ${
-      color ?? "inherit"
-    };">${text}</pre>`;
-  }
-
   const handle = (text) => {
     const [command, ...args] = text.trim().split(" ");
     // Find the command in the commands array
@@ -207,6 +196,22 @@
         lineData = [];
       },
     },
+    {
+      name: "exec",
+      description: "execute javascript",
+      usage: "exec [command]",
+      hidden: false,
+      execute: (args) => {
+        showInput = false;
+        try {
+          eval(args.join(" "));
+        }
+        catch (e) {
+          print(e);
+        }
+        showInput = true;
+      },
+    },
   ];
 
   async function fetch() {
@@ -279,7 +284,7 @@
         <pre class="input-old">{line.command}</pre>
         <br />
       {:else if typeof line.output === "string"}
-        <pre class="output">{line.output}</pre>
+        <pre class="output whitespace-pre-wrap">{line.output}</pre>
       {:else}
         {#each line.output as out}
           {@html out}
@@ -290,7 +295,7 @@
   {#if showInput}
     <p class="prompt">{user}@{machine}:$&nbsp;</p>
     <input
-      class="input"
+      class="input w-5/6"
       type="text"
       spellcheck="false"
       bind:this={termInput}
