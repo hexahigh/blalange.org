@@ -1,0 +1,22 @@
+/* 3270-nerd-font-mono-semcond */
+@font-face {
+	font-family: 3270 Nerd Font Mono;
+	font-style: normal;
+	font-weight: 400;
+	src: local("3270 Nerd Font Mono SemCond"), local("3270NFM-SemCond"), url(3270-nerd-font-mono-semcond.woff2) format("woff2");
+}
+/* 3270-nerd-font-mono */
+@font-face {
+	font-family: 3270 Nerd Font Mono;
+	font-style: normal;
+	font-weight: 400;
+	src: local("3270 Nerd Font Mono"), local("3270NFM"), url(3270-nerd-font-mono.woff2) format("woff2");
+}
+/* 3270-nerd-font-mono-cond */
+@font-face {
+	font-family: 3270 Nerd Font Mono;
+	font-style: normal;
+	font-weight: 400;
+	src: local("3270 Nerd Font Mono Cond"), local("3270NFM-Cond"), url(3270-nerd-font-mono-cond.woff2) format("woff2");
+}
+

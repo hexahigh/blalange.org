@@ -6,6 +6,7 @@
   import { page } from "$app/stores";
   import { keypress } from "./actions.js";
   import { dateTime, history } from "./stores.js";
+  import { getLatestVersion } from "$lib/js/lib.js";
   import "./style.css";
 
   const user = "blålange";
@@ -79,18 +80,62 @@
       return foundCommand.execute(args);
     } else {
       // Return a message indicating that the command was not found
-      return print(`Command '${command}' not found. Type 'list' for all commands.`)
+      return print(
+        `Command '${command}' not found. Type 'list' for all commands.`
+      );
     }
   };
 
+  function createHiddenCommand(name, description) {
+    return {
+      name: name,
+      hidden: true,
+      execute: () => {
+        return print(description);
+      },
+    };
+  }
+
+  let hiddenCommands = [
+    createHiddenCommand(
+      "kukfest",
+      "Kukfest was the old name of Blålange festivalen, it was changed in 2024 in order to be more including and less offensive."
+    ),
+    createHiddenCommand(
+      "23",
+      "23 was the first festival hosted, it happened on a minecraft server."
+    ),
+    createHiddenCommand(
+      "23.1",
+      "23.1 was the second festival hosted, it happened on a minecraft server and was smaller than 23."
+    ),
+    createHiddenCommand(
+      "herremann",
+      "Creates logos and helps plan out the festival. Has a very large ego and does not help with the site."
+    ),
+    createHiddenCommand(
+      "boofdev",
+      "Lead developer of blålange festivalen. Helps plan out the festival."
+    ),
+    createHiddenCommand(
+      "celvin",
+      "VIP guest, can clap vrry fast and is very helpful."
+    ),
+    createHiddenCommand(
+      "vincent",
+      "VIP guest, really nice guy who is going to do a silly little dance at Blålange festivalen 24."
+    ),
+  ];
+
   let commands = [
+    ...hiddenCommands,
     {
       name: "ping",
       description: "ping pong",
       usage: "ping",
       hidden: false,
       execute: () => {
-        return print("pong")
+        return print("pong");
       },
     },
     {
@@ -106,7 +151,7 @@
             return `- ${command.name}: ${command.description} Usage: '${command.usage}'`;
           });
         // Join the array into a single string and return it
-		return print(commandDescriptions.join("\n"))
+        return print(commandDescriptions.join("\n"));
       },
     },
     {
@@ -115,7 +160,7 @@
       usage: "echo [text]",
       hidden: false,
       execute: (args) => {
-		return print(args.join(" "))
+        return print(args.join(" "));
       },
     },
     {
@@ -125,6 +170,23 @@
       hidden: false,
       execute: () => {
         return fetch();
+      },
+    },
+    {
+      name: "help",
+      description: "Print help",
+      usage: "help",
+      hidden: true,
+      execute: () => {
+        let text = [
+          "Blålange festivalen blåsh, version " +
+            getLatestVersion().id +
+            " " +
+            getLatestVersion().name,
+          "These shell commands are defined internally.  Type `help' to see this list.",
+          "To view available commands, type `list'.",
+        ];
+        return print(...text);
       },
     },
   ];
@@ -143,22 +205,21 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="terminal crt min-h-screen" on:click={() => termInput.focus()}>
+<div class="terminal crt" on:click={() => termInput.focus()}>
+  <pre class="output">Welcome to Blåsh</pre>
   <pre class="output">Type 'help' to learn more.</pre>
   {#each lineData as line, i (i)}
     <span>
       {#if line.type === "input"}
-	  <p class="prompt">{user}@{machine}:$&nbsp;</p>
+        <p class="prompt">{user}@{machine}:$&nbsp;</p>
         <pre class="input-old">{line.command}</pre>
         <br />
+      {:else if typeof line.output === "string"}
+        <pre class="output">{line.output}</pre>
       {:else}
-        {#if typeof line.output === "string"}
-          <pre class="output">{line.output}</pre>
-        {:else}
-          {#each line.output as out}
-            {@html out}
-          {/each}
-        {/if}
+        {#each line.output as out}
+          {@html out}
+        {/each}
       {/if}
     </span>
   {/each}
@@ -173,5 +234,5 @@
     on:arrowup|preventDefault={arrowUp}
     on:arrowdown|preventDefault={arrowDown}
   />
+  <div class="clock">{$dateTime}</div>
 </div>
-<div class="clock">{$dateTime}</div>

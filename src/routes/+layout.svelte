@@ -8,7 +8,6 @@
   import { dev } from "$app/environment";
   import "../app.css";
   import "$lib/css/fonts.css";
-  import "$lib/css/crt.css";
   import { onMount, onDestroy } from "svelte";
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics.js";

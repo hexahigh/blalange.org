@@ -1,0 +1,22 @@
+/* 3270-nerd-font-propo-semcond */
+@font-face {
+	font-family: 3270 Nerd Font Propo;
+	font-style: normal;
+	font-weight: 400;
+	src: local("3270 Nerd Font Propo SemCond"), local("3270NFP-SemCond"), url(3270-nerd-font-propo-semcond.woff2) format("woff2");
+}
+/* 3270-nerd-font-propo */
+@font-face {
+	font-family: 3270 Nerd Font Propo;
+	font-style: normal;
+	font-weight: 400;
+	src: local("3270 Nerd Font Propo"), local("3270NFP"), url(3270-nerd-font-propo.woff2) format("woff2");
+}
+/* 3270-nerd-font-propo-cond */
+@font-face {
+	font-family: 3270 Nerd Font Propo;
+	font-style: normal;
+	font-weight: 400;
+	src: local("3270 Nerd Font Propo Cond"), local("3270NFP-Cond"), url(3270-nerd-font-propo-cond.woff2) format("woff2");
+}
+

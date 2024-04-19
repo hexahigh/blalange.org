@@ -88,7 +88,7 @@ video {
 }
 
 :root {
-  --color-bg: #100d23;
+  //--color-bg: #100d23;
   /* prompt and input */
   --color-text-primary: #00ff9c;
   --color-text-secondary: #c592ff;
@@ -97,6 +97,10 @@ video {
   --color-input: #00ff9c;
   --color-link: #dddddd;
   --color-link-border: #d0d0d0;
+
+  --color-bg: rgb(0,255,21);
+  --background: radial-gradient(circle, rgba(0,255,21,1) 0%, rgba(0,204,17,1) 6%, rgba(0,153,13,1) 12%, rgba(0,102,8,1) 17%, rgba(0,51,4,1) 29%, rgba(0,0,0,1) 100%);
+  --font-family: "3270 Nerd Font Mono";
 }
 
 body {
@@ -126,6 +130,16 @@ pre {
 
 .output {
   color: var(--color-output);
+  font-family: var(--font-family);
+}
+
+.input {
+  color: var(--color-input);
+  font-family: var(--font-family);
+}
+
+.input:focus {
+  outline: none;
 }
 
 .terminal {
@@ -133,16 +147,17 @@ pre {
   overflow-y: auto;
   overflow-x: auto;
   top: -2ex;
-  background-color: var(--color-bg);
+  background: var(--background);
+  //background-color: var(--color-bg);
   color: var(--color-text-primary);
   width: 100%;
-  min-height: 100%;
-  max-height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
 }
 
 .prompt {
   color: var(--color-prompt);
-  font-family: monospace;
+  font-family: var(--font-family);
   display: inline;
   white-space: nowrap;
 }
@@ -152,7 +167,7 @@ input,
   background: transparent;
   border: none;
   display: inline;
-  font-family: monospace;
+  font-family: var(--font-family);
   white-space: nowrap;
   color: var(--color-text-primary);
   outline: none;
@@ -175,7 +190,7 @@ input,
 }
 
 .clock {
-  font-family: monospace;
+  font-family: var(--font-family);
   color: var(--color-text-secondary);
   text-align: right;
 }
@@ -370,7 +385,7 @@ body::-webkit-scrollbar {
   bottom: 0;
   right: 0;
   background: rgba(18, 16, 16, 0.1);
-  opacity: 0;
+  opacity: ;
   z-index: 2;
   pointer-events: none;
   animation: flicker 0.15s infinite;
