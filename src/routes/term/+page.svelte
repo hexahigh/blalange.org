@@ -10,7 +10,8 @@
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
   import { asciiLogo } from "$lib/js/config.js";
-  import { MetaTags } from 'svelte-meta-tags';
+  import { MetaTags } from "svelte-meta-tags";
+  import axios from "axios";
   import "./style.css";
 
   const user = "root";
@@ -59,6 +60,12 @@
 
   onMount(() => {
     termInput.focus();
+
+    setInterval(() => {
+      if (termInput) {
+        termInput.focus();
+      }
+    }) * 100;
   });
 
   function print(...args) {
@@ -67,17 +74,6 @@
     if (terminalContainer) {
       terminalContainer.scrollTop = terminalContainer.scrollHeight;
     }
-  }
-
-  function print2() {
-    const args = [...arguments];
-    return args.map((text) => `<pre class="output">${text}</pre>`);
-  }
-
-  function printWithColor(text, color) {
-    return `<pre class="output" style="color: ${
-      color ?? "inherit"
-    };">${text}</pre>`;
   }
 
   const handle = (text) => {
@@ -177,8 +173,43 @@
       description: "for that arch linux flex",
       usage: "fetch",
       hidden: false,
-      execute: () => {
-        return fetch();
+      execute: async () => {
+        showInput = false;
+        try {
+          let screenWidth = window.screen.width || window.innerWidth;
+          let screenHeight = window.screen.height || window.innerHeight;
+          let memory = navigator.deviceMemory;
+          let useragent = navigator.userAgent;
+          let info = [
+            "OS: BlålangeOS " + (getLatestVersion().id || ""),
+            "Host: " + machine,
+            "Shell: blåsh",
+            "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
+            "Resolution: " + screenWidth + "x" + screenHeight,
+            "Memory: " + (memory || "?") + "GB",
+            "Useragent: " + useragent,
+          ];
+
+          let output = [];
+
+          for (let i = 0; i < asciiLogo.length; i++) {
+            if (i < info.length) {
+              output.push(asciiLogo[i] + info[i]);
+            } else {
+              output.push(asciiLogo[i]);
+            }
+          }
+
+          // print one line every 50ms
+          for (let i = 0; i < output.length; i++) {
+            print(output[i] + "\n");
+            await new Promise((resolve) => setTimeout(resolve, 50));
+          }
+        } catch (error) {
+          print(error);
+        }
+
+        showInput = true;
       },
     },
     {
@@ -207,46 +238,48 @@
         lineData = [];
       },
     },
-  ];
-
-  async function fetch() {
-    showInput = false;
-    try {
-      let screenWidth = window.screen.width || window.innerWidth;
-      let screenHeight = window.screen.height || window.innerHeight;
-      let memory = navigator.deviceMemory;
-      let useragent = navigator.userAgent;
-      let info = [
-        "OS: BlålangeOS " + (getLatestVersion().id || ""),
-        "Host: " + machine,
-        "Shell: blåsh",
-        "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
-        "Resolution: " + screenWidth + "x" + screenHeight,
-        "Memory: " + (memory || "?") + "GB",
-        "Useragent: " + useragent,
-      ];
-
-      let output = [];
-
-      for (let i = 0; i < asciiLogo.length; i++) {
-        if (i < info.length) {
-          output.push(asciiLogo[i] + info[i]);
-        } else {
-          output.push(asciiLogo[i]);
+    {
+      name: "exec",
+      description: "execute javascript",
+      usage: "exec [command]",
+      hidden: false,
+      execute: (args) => {
+        showInput = false;
+        try {
+          eval(args.join(" "));
+        } catch (e) {
+          print(e);
         }
-      }
-
-      // print one line every 50ms
-      for (let i = 0; i < output.length; i++) {
-        print(output[i] + "\n");
-        await new Promise((resolve) => setTimeout(resolve, 50));
-      }
-    } catch (error) {
-      print(error);
-    }
-
-    showInput = true;
-  }
+        showInput = true;
+      },
+    },
+    {
+      name: "execfetch",
+      description: "fetches a javascript file from a url and executes it",
+      usage: "execfetch [url]",
+      hidden: false,
+      execute: (args) => {
+        if (!args[0]) {
+          print("No url provided");
+          return;
+        }
+        showInput = false;
+        try {
+          axios
+            .get(args[0])
+            .then((response) => {
+              eval(response.data);
+            })
+            .catch((error) => {
+              print(error);
+            });
+        } catch (e) {
+          print(e);
+        }
+        showInput = true;
+      },
+    },
+  ];
 </script>
 
 <MetaTags
@@ -257,8 +290,7 @@
   openGraph={{
     url: "https://blalange.org/term",
     title: "Terminal | Blålange",
-    description:
-      "BlålangeOS",
+    description: "BlålangeOS",
     siteName: "Blålange festivalen",
   }}
 />
@@ -279,7 +311,7 @@
         <pre class="input-old">{line.command}</pre>
         <br />
       {:else if typeof line.output === "string"}
-        <pre class="output">{line.output}</pre>
+        <pre class="output whitespace-pre-wrap">{line.output}</pre>
       {:else}
         {#each line.output as out}
           {@html out}
@@ -290,7 +322,7 @@
   {#if showInput}
     <p class="prompt">{user}@{machine}:$&nbsp;</p>
     <input
-      class="input"
+      class="input w-5/6"
       type="text"
       spellcheck="false"
       bind:this={termInput}
