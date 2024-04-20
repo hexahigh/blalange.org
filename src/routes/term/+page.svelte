@@ -7,12 +7,16 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { keypress } from "./actions.js";
+  import { playSound } from "./functions.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
   import { asciiLogo } from "$lib/js/config.js";
   import { MetaTags } from "svelte-meta-tags";
   import axios from "axios";
   import "./style.css";
+
+  import keystroke from "./soundpacks/typewriter/keystroke.wav";
+  import katching from "./soundpacks/typewriter/katching.wav";
 
   const user = "root";
   const machine = $page.url.host || "localhost";
@@ -71,6 +75,14 @@
   function print(...args) {
     // Concatenate all arguments into a single string with newlines
     lineData = [...lineData, { output: args.join("\n"), type: "output" }];
+    scroll();
+
+    // We call scroll again to ensure that the new lines are visible
+    scroll(100);
+  }
+
+  async function scroll(wait) {
+    await new Promise((resolve) => setTimeout(resolve, wait || 0));
     if (terminalContainer) {
       terminalContainer.scrollTop = terminalContainer.scrollHeight;
     }
@@ -137,6 +149,7 @@
     {
       name: "ping",
       description: "ping pong",
+      long_description: "ping pong bing bong",
       usage: "ping",
       hidden: false,
       execute: () => {
@@ -146,6 +159,7 @@
     {
       name: "list",
       description: "list available commands",
+      long_description: "Pretty self explanatory",
       usage: "list",
       hidden: false,
       execute: () => {
@@ -162,6 +176,7 @@
     {
       name: "echo",
       description: "echo text",
+      long_description: "Have you ever used a terminal?",
       usage: "echo [text]",
       hidden: false,
       execute: (args) => {
@@ -171,6 +186,8 @@
     {
       name: "fetch",
       description: "for that arch linux flex",
+      long_description:
+        "Neofetch like info. No i will not remove the teletyping sound effects, deal with it",
       usage: "fetch",
       hidden: false,
       execute: async () => {
@@ -203,8 +220,11 @@
           // print one line every 50ms
           for (let i = 0; i < output.length; i++) {
             print(output[i] + "\n");
+            playSound(keystroke);
             await new Promise((resolve) => setTimeout(resolve, 50));
           }
+
+          playSound(katching);
         } catch (error) {
           print(error);
         }
@@ -214,24 +234,40 @@
     },
     {
       name: "help",
-      description: "Print help",
-      usage: "help",
+      description: "Print help for a command",
+      long_description: "Prints help for a command. Did you really need to know that?",
+      usage: "help [command]",
       hidden: false,
-      execute: () => {
-        let text = [
-          "Blålange festivalen blåsh, version " +
-            getLatestVersion().id +
-            " " +
-            getLatestVersion().name,
-          "These shell commands are defined internally.  Type `help' to see this list.",
-          "To view available commands, type `list'.",
-        ];
-        return print(...text);
+      execute: (args) => {
+        if (args.length === 0) {
+          let text = [
+            "Blålange festivalen blåsh, version " +
+              getLatestVersion().id +
+              " " +
+              getLatestVersion().name,
+            "Use `help <command>' for more information on a command.",
+            "To view available commands, type `list'.",
+          ];
+          return print(...text);
+        } else {
+          const command = commands.find((command) => command.name === args[0]);
+          if (command) {
+            let text = [
+              `${command.name}: ${command.description}`,
+              `Usage: ${command.usage}`,
+              `Description: ${command.long_description || ""}`,
+            ];
+            return print(...text);
+          } else {
+            return print("Command not found");
+          }
+        }
       },
     },
     {
       name: "clear",
-      description: "clear terminal",
+      description: "Clears the terminal",
+      long_description: "Pretty self explanatory",
       usage: "clear",
       hidden: false,
       execute: () => {
@@ -241,6 +277,10 @@
     {
       name: "exec",
       description: "execute javascript",
+      long_description:
+        "Executes javascript. " +
+        "Note that your code runs in the same scope as the rest of the page, this means you can access functions like print(). " +
+        "While this can be useful for communitcating with the rest of the page, you might accidentally redeclare or overwrite a variable.",
       usage: "exec [command]",
       hidden: false,
       execute: (args) => {
@@ -277,6 +317,16 @@
           print(e);
         }
         showInput = true;
+      },
+    },
+    {
+      name: "httping",
+      description: "ping a website",
+      usage: "httping [url]",
+      hidden: false,
+      execute: () => {
+        print("Not implemented yet");
+        return;
       },
     },
   ];
