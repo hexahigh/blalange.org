@@ -10,7 +10,7 @@
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
   import { asciiLogo } from "$lib/js/config.js";
-  import { MetaTags } from 'svelte-meta-tags';
+  import { MetaTags } from "svelte-meta-tags";
   import axios from "axios";
   import "./style.css";
 
@@ -173,8 +173,43 @@
       description: "for that arch linux flex",
       usage: "fetch",
       hidden: false,
-      execute: () => {
-        return fetch();
+      execute: async () => {
+        showInput = false;
+        try {
+          let screenWidth = window.screen.width || window.innerWidth;
+          let screenHeight = window.screen.height || window.innerHeight;
+          let memory = navigator.deviceMemory;
+          let useragent = navigator.userAgent;
+          let info = [
+            "OS: BlålangeOS " + (getLatestVersion().id || ""),
+            "Host: " + machine,
+            "Shell: blåsh",
+            "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
+            "Resolution: " + screenWidth + "x" + screenHeight,
+            "Memory: " + (memory || "?") + "GB",
+            "Useragent: " + useragent,
+          ];
+
+          let output = [];
+
+          for (let i = 0; i < asciiLogo.length; i++) {
+            if (i < info.length) {
+              output.push(asciiLogo[i] + info[i]);
+            } else {
+              output.push(asciiLogo[i]);
+            }
+          }
+
+          // print one line every 50ms
+          for (let i = 0; i < output.length; i++) {
+            print(output[i] + "\n");
+            await new Promise((resolve) => setTimeout(resolve, 50));
+          }
+        } catch (error) {
+          print(error);
+        }
+
+        showInput = true;
       },
     },
     {
@@ -212,8 +247,7 @@
         showInput = false;
         try {
           eval(args.join(" "));
-        }
-        catch (e) {
+        } catch (e) {
           print(e);
         }
         showInput = true;
@@ -239,53 +273,13 @@
             .catch((error) => {
               print(error);
             });
-        }
-        catch (e) {
+        } catch (e) {
           print(e);
         }
         showInput = true;
       },
     },
   ];
-
-  async function fetch() {
-    showInput = false;
-    try {
-      let screenWidth = window.screen.width || window.innerWidth;
-      let screenHeight = window.screen.height || window.innerHeight;
-      let memory = navigator.deviceMemory;
-      let useragent = navigator.userAgent;
-      let info = [
-        "OS: BlålangeOS " + (getLatestVersion().id || ""),
-        "Host: " + machine,
-        "Shell: blåsh",
-        "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
-        "Resolution: " + screenWidth + "x" + screenHeight,
-        "Memory: " + (memory || "?") + "GB",
-        "Useragent: " + useragent,
-      ];
-
-      let output = [];
-
-      for (let i = 0; i < asciiLogo.length; i++) {
-        if (i < info.length) {
-          output.push(asciiLogo[i] + info[i]);
-        } else {
-          output.push(asciiLogo[i]);
-        }
-      }
-
-      // print one line every 50ms
-      for (let i = 0; i < output.length; i++) {
-        print(output[i] + "\n");
-        await new Promise((resolve) => setTimeout(resolve, 50));
-      }
-    } catch (error) {
-      print(error);
-    }
-
-    showInput = true;
-  }
 </script>
 
 <MetaTags
@@ -296,8 +290,7 @@
   openGraph={{
     url: "https://blalange.org/term",
     title: "Terminal | Blålange",
-    description:
-      "BlålangeOS",
+    description: "BlålangeOS",
     siteName: "Blålange festivalen",
   }}
 />
