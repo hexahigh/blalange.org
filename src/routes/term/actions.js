@@ -1,11 +1,17 @@
 export function keypress(node) {
 	function handleKeypress(e) {
-		if (e.key === 'Enter') {
-			node.dispatchEvent(new CustomEvent('enterkey'))
-		} else if (e.key === 'ArrowUp') {
-			node.dispatchEvent(new CustomEvent('arrowup'))
-		} else if (e.key === 'ArrowDown') {
-			node.dispatchEvent(new CustomEvent('arrowdown'))
+		switch (e.key) {
+			case 'Enter':
+				node.dispatchEvent(new CustomEvent('enterkey'))
+				break
+			case 'ArrowUp':
+				node.dispatchEvent(new CustomEvent('arrowup'))
+				break
+			case 'ArrowDown':
+				node.dispatchEvent(new CustomEvent('arrowdown'))
+				break
+			default:
+				break
 		}
 	}
 
