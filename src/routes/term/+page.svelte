@@ -235,7 +235,8 @@
     {
       name: "help",
       description: "Print help for a command",
-      long_description: "Prints help for a command. Did you really need to know that?",
+      long_description:
+        "Prints help for a command. Did you really need to know that?",
       usage: "help [command]",
       hidden: false,
       execute: (args) => {
@@ -279,14 +280,20 @@
       description: "execute javascript",
       long_description:
         "Executes javascript. " +
-        "Note that your code runs in the same scope as the rest of the page, this means you can access functions like print(). " +
-        "While this can be useful for communitcating with the rest of the page, you might accidentally redeclare or overwrite a variable.",
+        "You can use this to create your own commands. However, you should use execfetch if you are making something big. " +
+        "I was even nice enough to pass a few functions to it. This means you can use functions like print() directly in your code." +
+        "\n\nThe full list of functions passed is: \n" +
+        "- print(string) | prints a string\n\n"+
+        "You can read more about this at https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Function",
       usage: "exec [command]",
       hidden: false,
       execute: (args) => {
         showInput = false;
         try {
-          eval(args.join(" "));
+          // Create a new function with 'print' as an argument and the command as the body
+          const func = new Function("print", args.join(" "));
+          // Call the function with 'print' as the argument
+          func(print);
         } catch (e) {
           print(e);
         }
@@ -308,7 +315,14 @@
           axios
             .get(args[0])
             .then((response) => {
-              eval(response.data);
+              // Find the 'exec' command object
+              const execCommand = commands.find((cmd) => cmd.name === "exec");
+              if (execCommand) {
+                // Call the 'exec' command's execute method with the fetched code
+                execCommand.execute([response.data]);
+              } else {
+                print("Error: 'exec' command not found.");
+              }
             })
             .catch((error) => {
               print(error);
