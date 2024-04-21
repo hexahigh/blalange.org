@@ -284,16 +284,15 @@
         "I was even nice enough to pass a few functions to it. This means you can use functions like print() directly in your code." +
         "\n\nThe full list of functions passed is: \n" +
         "- print(string) | prints a string\n\n"+
+        "- playSound(sound) | plays a sound, you can use a url or a blob\n\n"+
         "You can read more about this at https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Function",
       usage: "exec [command]",
       hidden: false,
       execute: (args) => {
         showInput = false;
         try {
-          // Create a new function with 'print' as an argument and the command as the body
-          const func = new Function("print", args.join(" "));
-          // Call the function with 'print' as the argument
-          func(print);
+          const func = new Function("print", "playSound", args.join(" "));
+          func(print, playSound);
         } catch (e) {
           print(e);
         }
