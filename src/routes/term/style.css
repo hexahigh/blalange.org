@@ -99,7 +99,7 @@ video {
   --color-link-border: #d0d0d0;
 
   /* size of the fake pixels, the second value should be 1.5 times larger than the first */
-  --pixel-size: 100% 4px, 6px 100%;
+  --pixel-size: 100% 6px, 9px 100%;
 
   --color-bg: rgb(0,255,21);
   --background: radial-gradient(circle, rgba(0,255,21,1) 0%, rgba(0,204,17,1) 6%, rgba(0,153,13,1) 12%, rgba(0,102,8,1) 17%, rgba(0,51,4,1) 29%, rgba(0,0,0,1) 100%);
