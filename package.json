@@ -36,7 +36,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/dela-gothic-one": "^5.0.18",
+		"@fontsource/dela-gothic-one": "^5.0.19",
 		"@fontsource/krona-one": "^5.0.12",
 		"@fontsource/lexend-exa": "^5.0.19",
 		"@fontsource/material-icons": "^5.0.17",
