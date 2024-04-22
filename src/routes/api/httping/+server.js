@@ -20,7 +20,8 @@ export async function POST({ request }) {
         finished: 0,
         timeTaken: 0,
         success: false,
-        statuscode: 0
+        statuscode: 0,
+        error: null
     }
 
     // Send HEAD request
@@ -35,7 +36,7 @@ export async function POST({ request }) {
     } catch (error) {
         jsonResponse.finished = Date.now();
         jsonResponse.timeTaken = Date.now() - now;
-        jsonResponse.statuscode = error.response.status;
+        jsonResponse.error = error
         jsonResponse.success = false;
         return new Response(JSON.stringify(jsonResponse), { headers });
     }
