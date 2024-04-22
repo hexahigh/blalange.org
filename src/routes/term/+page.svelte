@@ -10,13 +10,9 @@
   import { playSound } from "./functions.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
-  import { asciiLogo } from "$lib/js/config.js";
   import { MetaTags } from "svelte-meta-tags";
   import axios from "axios";
   import "./style.css";
-
-  import keystroke from "./soundpacks/typewriter/keystroke.wav";
-  import katching from "./soundpacks/typewriter/katching.wav";
 
   const user = "root";
   const machine = $page.url.host || "localhost";
@@ -191,45 +187,9 @@
       usage: "fetch",
       hidden: false,
       execute: async () => {
-        showInput = false;
-        try {
-          let screenWidth = window.screen.width || window.innerWidth;
-          let screenHeight = window.screen.height || window.innerHeight;
-          let memory = navigator.deviceMemory;
-          let useragent = navigator.userAgent;
-          let info = [
-            "OS: BlålangeOS " + (getLatestVersion().id || ""),
-            "Host: " + machine,
-            "Shell: blåsh",
-            "CPU: Blåchip Kosinus-9 (4) 1.094GHz",
-            "Resolution: " + screenWidth + "x" + screenHeight,
-            "Memory: " + (memory || "?") + "GB",
-            "Useragent: " + useragent,
-          ];
+        const module = await import("./commands/fetch");
 
-          let output = [];
-
-          for (let i = 0; i < asciiLogo.length; i++) {
-            if (i < info.length) {
-              output.push(asciiLogo[i] + info[i]);
-            } else {
-              output.push(asciiLogo[i]);
-            }
-          }
-
-          // print one line every 50ms
-          for (let i = 0; i < output.length; i++) {
-            print(output[i] + "\n");
-            playSound(keystroke);
-            await new Promise((resolve) => setTimeout(resolve, 50));
-          }
-
-          playSound(katching);
-        } catch (error) {
-          print(error);
-        }
-
-        showInput = true;
+        module.main(print, playSound, showInput, machine);
       },
     },
     {
@@ -283,8 +243,8 @@
         "You can use this to create your own commands. However, you should use execfetch if you are making something big. " +
         "I was even nice enough to pass a few functions to it. This means you can use functions like print() directly in your code." +
         "\n\nThe full list of functions passed is: \n" +
-        "- print(string) | prints a string\n\n"+
-        "- playSound(sound) | plays a sound, you can use a url or a blob\n\n"+
+        "- print(string) | prints a string\n\n" +
+        "- playSound(sound) | plays a sound, you can use a url or a blob\n\n" +
         "You can read more about this at https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Function",
       usage: "exec [command]",
       hidden: false,
@@ -337,9 +297,17 @@
       description: "ping a website",
       usage: "httping [url]",
       hidden: false,
-      execute: () => {
-        print("Not implemented yet");
-        return;
+      execute: async (args) => {
+		showInput = false;
+        const module = await import("./commands/httping");
+
+		const options = {
+			url: args[0],
+			timeout: args[1]
+		};
+
+        await module.main(print, options);
+		showInput = true;
       },
     },
   ];
@@ -361,7 +329,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-  class="terminal crt ibm-bios"
+  class="terminal crt ibm-bios flex flex-col items-start"
   on:click={() => termInput.focus()}
   bind:this={terminalContainer}
 >
@@ -383,9 +351,10 @@
     </span>
   {/each}
   {#if showInput}
-    <p class="prompt">{user}@{machine}:$&nbsp;</p>
+  <div class="flex items-center">
+    <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
     <input
-      class="input w-5/6"
+      class="input flex-grow"
       type="text"
       spellcheck="false"
       bind:this={termInput}
@@ -394,6 +363,7 @@
       on:arrowup|preventDefault={arrowUp}
       on:arrowdown|preventDefault={arrowDown}
     />
+  </div>
   {/if}
   <div class="clock">{$dateTime}</div>
 </div>
