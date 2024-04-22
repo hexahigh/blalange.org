@@ -4,7 +4,8 @@ export async function POST({ request }) {
 
     const headers = new Headers();
     headers.set('Access-Control-Allow-Origin', '*');
-    headers.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    headers.set('Access-Control-Allow-Headers', 'Content-Type');
+    headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 
     // Get current unix time
     let now = Date.now();
@@ -44,5 +45,7 @@ export async function POST({ request }) {
 export async function OPTIONS({ request }) {
     const headers = new Headers();
     headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    headers.set('Access-Control-Allow-Headers', 'Content-Type');
     return new Response(null, { headers });
 }
