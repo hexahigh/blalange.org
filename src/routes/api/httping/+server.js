@@ -40,3 +40,9 @@ export async function POST({ request }) {
     }
 
 }
+
+export async function OPTIONS({ request }) {
+    const headers = new Headers();
+    headers.set('Access-Control-Allow-Origin', '*');
+    return new Response(null, { headers });
+}
