@@ -16,7 +16,7 @@ export async function main(print,  inOptions = {}) {
     // Get current unix time
     let now = Date.now();
 
-    // Send HEAD request
+    // Send request
     try {
         let jsonBody = {
             url: options.url,
