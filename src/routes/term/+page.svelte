@@ -110,7 +110,9 @@
     };
   }
 
-  let hiddenCommands = lore.map(item => createHiddenCommand(item.name, item.text));
+  let hiddenCommands = lore.map((item) =>
+    createHiddenCommand(item.name, item.text)
+  );
 
   let commands = [
     ...hiddenCommands,
@@ -131,12 +133,37 @@
       usage: "list",
       hidden: false,
       execute: () => {
+        // Sort the commands alphabetically by name
+        const sortedCommands = commands.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
         // Use map to create an array of command descriptions
-        const commandDescriptions = commands
+        const commandDescriptions = sortedCommands
           .filter((command) => !command.hidden)
           .map((command) => {
             return `- ${command.name}: ${command.description} Usage: '${command.usage}'`;
           });
+        // Join the array into a single string and return it
+        return print(commandDescriptions.join("\n"));
+      },
+    },
+    {
+      name: "tsil",
+      description: "sdnammoc elbaliava tsil",
+      long_description: "yrotanalpxe fles ytterP",
+      usage: "tsil",
+      hidden: true,
+      execute: () => {
+        // Sort the commands alphabetically by name
+        const sortedCommands = commands.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
+        // Use map to create an array of command descriptions
+        const commandDescriptions = sortedCommands.map((command) => {
+          return `- ${command.name}: ${command.description} Usage: '${command.usage}'`;
+        });
         // Join the array into a single string and return it
         return print(commandDescriptions.join("\n"));
       },
@@ -270,16 +297,16 @@
       usage: "httping [url]",
       hidden: false,
       execute: async (args) => {
-		showInput = false;
+        showInput = false;
         const module = await import("./commands/httping");
 
-		const options = {
-			url: args[0],
-			timeout: args[1]
-		};
+        const options = {
+          url: args[0],
+          timeout: args[1],
+        };
 
         await module.main(print, options);
-		showInput = true;
+        showInput = true;
       },
     },
   ];
@@ -323,19 +350,19 @@
     </span>
   {/each}
   {#if showInput}
-  <div class="flex items-center">
-    <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
-    <input
-      class="input flex-grow"
-      type="text"
-      spellcheck="false"
-      bind:this={termInput}
-      use:keypress
-      on:enterkey={enter}
-      on:arrowup|preventDefault={arrowUp}
-      on:arrowdown|preventDefault={arrowDown}
-    />
-  </div>
+    <div class="flex items-center">
+      <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
+      <input
+        class="input flex-grow"
+        type="text"
+        spellcheck="false"
+        bind:this={termInput}
+        use:keypress
+        on:enterkey={enter}
+        on:arrowup|preventDefault={arrowUp}
+        on:arrowdown|preventDefault={arrowDown}
+      />
+    </div>
   {/if}
   <div class="clock">{$dateTime}</div>
 </div>
