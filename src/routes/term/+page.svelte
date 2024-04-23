@@ -8,6 +8,7 @@
   import { page } from "$app/stores";
   import { keypress } from "./actions.js";
   import { playSound } from "./functions.js";
+  import { lore } from "./lore.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
   import { MetaTags } from "svelte-meta-tags";
@@ -109,36 +110,7 @@
     };
   }
 
-  let hiddenCommands = [
-    createHiddenCommand(
-      "kukfest",
-      "Kukfest was the old name of Blålange festivalen, it was changed in 2024 in order to be more including and less offensive."
-    ),
-    createHiddenCommand(
-      "23",
-      "23 was the first festival hosted, it happened on a minecraft server."
-    ),
-    createHiddenCommand(
-      "23.1",
-      "23.1 was the second festival hosted, it happened on a minecraft server and was smaller than 23."
-    ),
-    createHiddenCommand(
-      "herremann",
-      "Creates logos and helps plan out the festival. Has a very large ego and does not help with the site."
-    ),
-    createHiddenCommand(
-      "boofdev",
-      "Lead developer of blålange festivalen. Helps plan out the festival."
-    ),
-    createHiddenCommand(
-      "celvin",
-      "VIP guest, can clap vrry fast and is very helpful."
-    ),
-    createHiddenCommand(
-      "vincent",
-      "VIP guest, really nice guy who is going to do a silly little dance at Blålange festivalen 24."
-    ),
-  ];
+  let hiddenCommands = lore.map(item => createHiddenCommand(item.name, item.text));
 
   let commands = [
     ...hiddenCommands,
