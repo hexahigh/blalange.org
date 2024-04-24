@@ -88,11 +88,6 @@
 
     termInput.focus();
 
-    setInterval(() => {
-      if (termInput) {
-        termInput.focus();
-      }
-    }) * 100;
   });
 
   function print(...args) {
@@ -356,8 +351,11 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="terminal crt ibm-bios flex flex-col items-start"
-  on:click={() => termInput.focus()}
-  bind:this={terminalContainer}
+  on:click={() => {
+    if (window.getSelection().toString() === '') {
+      termInput.focus();
+    }
+ }}  bind:this={terminalContainer}
 >
   <pre class="output">Welcome to Blåsh</pre>
   <pre class="output">Type 'help' to learn more.</pre>
