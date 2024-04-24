@@ -38,11 +38,10 @@
     if (inputMode === "confirmExec" && commandToRun) {
       if (command == "CONFIRM" || command == "confirm") {
         handle(commandToRun)
-        inputMode = "default"
       } else {
         print("Not running")
-        inputMode = "default"
       }
+      inputMode = "default"
     }
     termInput.value = "";
 
@@ -189,7 +188,7 @@
 
         // Use map to create an array of command descriptions
         const commandDescriptions = sortedCommands.map((command) => {
-          return `- ${command.name}: ${command.description} Usage: '${command.usage}'`;
+          return `- ${command.name}`;
         });
         // Join the array into a single string and return it
         return print(commandDescriptions.join("\n"));
@@ -288,6 +287,7 @@
     {
       name: "execfetch",
       description: "fetches a javascript file from a url and executes it",
+      long_description: "Fetches a javascript file from a url and executes it. Don't forget about the horrible curse that has been cast on all browsers, CORS.",
       usage: "execfetch [url]",
       hidden: false,
       execute: (args) => {
