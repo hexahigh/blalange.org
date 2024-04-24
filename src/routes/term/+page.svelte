@@ -18,6 +18,16 @@
   const user = "root";
   const machine = $page.url.host || "localhost";
 
+  // Get e parameter from url
+  const params = new URLSearchParams(window.location.search);
+  const commandToRun = params.get("e") || "";
+
+  if (commandToRun) {
+    print(
+      `You entered a special url which will automatically run the command '${commandToRun}'.\n` +
+        `Please CONFIRM or DENY`
+    );
+  }
   let lineData = [];
   let histIndex = $history.length;
   let showInput = true;
@@ -110,7 +120,9 @@
     };
   }
 
-  let hiddenCommands = lore.map(item => createHiddenCommand(item.name, item.text));
+  let hiddenCommands = lore.map((item) =>
+    createHiddenCommand(item.name, item.text)
+  );
 
   let commands = [
     ...hiddenCommands,
@@ -270,16 +282,16 @@
       usage: "httping [url]",
       hidden: false,
       execute: async (args) => {
-		showInput = false;
+        showInput = false;
         const module = await import("./commands/httping");
 
-		const options = {
-			url: args[0],
-			timeout: args[1]
-		};
+        const options = {
+          url: args[0],
+          timeout: args[1],
+        };
 
         await module.main(print, options);
-		showInput = true;
+        showInput = true;
       },
     },
   ];
@@ -323,19 +335,19 @@
     </span>
   {/each}
   {#if showInput}
-  <div class="flex items-center">
-    <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
-    <input
-      class="input flex-grow"
-      type="text"
-      spellcheck="false"
-      bind:this={termInput}
-      use:keypress
-      on:enterkey={enter}
-      on:arrowup|preventDefault={arrowUp}
-      on:arrowdown|preventDefault={arrowDown}
-    />
-  </div>
+    <div class="flex items-center">
+      <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
+      <input
+        class="input flex-grow"
+        type="text"
+        spellcheck="false"
+        bind:this={termInput}
+        use:keypress
+        on:enterkey={enter}
+        on:arrowup|preventDefault={arrowUp}
+        on:arrowdown|preventDefault={arrowDown}
+      />
+    </div>
   {/if}
   <div class="clock">{$dateTime}</div>
 </div>
