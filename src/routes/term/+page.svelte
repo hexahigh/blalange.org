@@ -143,12 +143,37 @@
       usage: "list",
       hidden: false,
       execute: () => {
+        // Sort the commands alphabetically by name
+        const sortedCommands = commands.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
         // Use map to create an array of command descriptions
-        const commandDescriptions = commands
+        const commandDescriptions = sortedCommands
           .filter((command) => !command.hidden)
           .map((command) => {
             return `- ${command.name}: ${command.description} Usage: '${command.usage}'`;
           });
+        // Join the array into a single string and return it
+        return print(commandDescriptions.join("\n"));
+      },
+    },
+    {
+      name: "tsil",
+      description: "sdnammoc elbaliava tsil",
+      long_description: "yrotanalpxe fles ytterP",
+      usage: "tsil",
+      hidden: true,
+      execute: () => {
+        // Sort the commands alphabetically by name
+        const sortedCommands = commands.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
+        // Use map to create an array of command descriptions
+        const commandDescriptions = sortedCommands.map((command) => {
+          return `- ${command.name}: ${command.description} Usage: '${command.usage}'`;
+        });
         // Join the array into a single string and return it
         return print(commandDescriptions.join("\n"));
       },

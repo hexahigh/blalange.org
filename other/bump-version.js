@@ -5,7 +5,7 @@ import path from 'path';
 // Function to append the version and set the name
 function appendVersionAndSetName(newVersion, newName) {
     // Define the path to the config.json file
-    const configPath = path.join(__dirname, './src/lib/json/config.json');
+    const configPath = path.join(__dirname, './src/lib/json/version.json');
 
     // Read the config.json file
     fs.readFile(configPath, 'utf8', (err, data) => {
