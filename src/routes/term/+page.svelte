@@ -18,27 +18,32 @@
   const user = "root";
   const machine = $page.url.host || "localhost";
 
-  // Get e parameter from url
-  const params = new URLSearchParams(window.location.search);
-  const commandToRun = params.get("e") || "";
-
-  if (commandToRun) {
-    print(
-      `You entered a special url which will automatically run the command '${commandToRun}'.\n` +
-        `Please CONFIRM or DENY`
-    );
-  }
   let lineData = [];
   let histIndex = $history.length;
   let showInput = true;
 
+  let commandToRun;
+
   let termInput;
   let terminalContainer;
+
+  let inputMode = "default";
 
   function enter() {
     let command = termInput.value;
     lineData = [...lineData, { command: command, type: "input" }];
-    handle(command);
+    if (inputMode === "default") {
+      handle(command)
+    }
+    if (inputMode === "confirmExec" && commandToRun) {
+      if (command == "CONFIRM" || command == "confirm") {
+        handle(commandToRun)
+        inputMode = "default"
+      } else {
+        print("Not running")
+        inputMode = "default"
+      }
+    }
     termInput.value = "";
 
     if (
@@ -70,6 +75,18 @@
   }
 
   onMount(() => {
+    // Get e parameter from url
+    const params = new URLSearchParams(window.location.search);
+    commandToRun = params.get("e") || "";
+
+    if (commandToRun) {
+      inputMode = "confirmExec";
+      print(
+        `\nYou entered a special url which will automatically run the command '${commandToRun}'.\n` +
+          `Please CONFIRM or DENY`
+      );
+    }
+
     termInput.focus();
 
     setInterval(() => {
