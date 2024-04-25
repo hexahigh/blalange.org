@@ -2,7 +2,7 @@
   import { AccordionItem, Accordion } from "flowbite-svelte";
 
   import itCosts from "$lib/audio/it-costs.ogg";
-  import { Howl, Howler } from "howler";
+  import { Howl, Howler } from "howler/dist/howler.core.min.js";
 
   function play() {
     const sound = new Howl({
