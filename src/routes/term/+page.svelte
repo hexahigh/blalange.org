@@ -4,6 +4,9 @@
 	export const prerender = true
 </script> -->
 <script>
+  /** @type {import('./$types').PageData} */
+  export let data;
+
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { keypress } from "./actions.js";
@@ -33,15 +36,15 @@
     let command = termInput.value;
     lineData = [...lineData, { command: command, type: "input" }];
     if (inputMode === "default") {
-      handle(command)
+      handle(command);
     }
     if (inputMode === "confirmExec" && commandToRun) {
       if (command == "CONFIRM" || command == "confirm") {
-        handle(commandToRun)
+        handle(commandToRun);
       } else {
-        print("Not running")
+        print("Not running");
       }
-      inputMode = "default"
+      inputMode = "default";
     }
     termInput.value = "";
 
@@ -72,23 +75,6 @@
       termInput.value = "";
     }
   }
-
-  onMount(() => {
-    // Get e parameter from url
-    const params = new URLSearchParams(window.location.search);
-    commandToRun = params.get("e") || "";
-
-    if (commandToRun) {
-      inputMode = "confirmExec";
-      print(
-        `\nYou entered a special url which will automatically run the command '${commandToRun}'.\n` +
-          `Please CONFIRM or DENY`
-      );
-    }
-
-    termInput.focus();
-
-  });
 
   function print(...args) {
     // Concatenate all arguments into a single string with newlines
@@ -282,7 +268,8 @@
     {
       name: "execfetch",
       description: "fetches a javascript file from a url and executes it",
-      long_description: "Fetches a javascript file from a url and executes it. Don't forget about the horrible curse that has been cast on all browsers, CORS.",
+      long_description:
+        "Fetches a javascript file from a url and executes it. Don't forget about the horrible curse that has been cast on all browsers, CORS.",
       usage: "execfetch [url]",
       hidden: false,
       execute: (args) => {
@@ -332,6 +319,18 @@
       },
     },
   ];
+
+  if (data.commandToRun) {
+    inputMode = "confirmExec";
+    print(
+      `\nYou entered a special url which will automatically run the command '${commandToRun}'.\n` +
+        `Please CONFIRM or DENY`
+    );
+  }
+
+  onMount(() => {
+    termInput.focus();
+  });
 </script>
 
 <MetaTags
@@ -352,10 +351,11 @@
 <div
   class="terminal crt ibm-bios flex flex-col items-start"
   on:click={() => {
-    if (window.getSelection().toString() === '') {
+    if (window.getSelection().toString() === "") {
       termInput.focus();
     }
- }}  bind:this={terminalContainer}
+  }}
+  bind:this={terminalContainer}
 >
   <pre class="output">Welcome to Blåsh</pre>
   <pre class="output">Type 'help' to learn more.</pre>
