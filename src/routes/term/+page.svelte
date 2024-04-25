@@ -4,10 +4,14 @@
 	export const prerender = true
 </script> -->
 <script>
+  /** @type {import('./$types').PageData} */
+  export let data;
+
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { keypress } from "./actions.js";
   import { playSound } from "./functions.js";
+  import { lore } from "./lore.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
   import { MetaTags } from "svelte-meta-tags";
@@ -21,13 +25,27 @@
   let histIndex = $history.length;
   let showInput = true;
 
+  let commandToRun;
+
   let termInput;
   let terminalContainer;
+
+  let inputMode = "default";
 
   function enter() {
     let command = termInput.value;
     lineData = [...lineData, { command: command, type: "input" }];
-    handle(command);
+    if (inputMode === "default") {
+      handle(command);
+    }
+    if (inputMode === "confirmExec" && commandToRun) {
+      if (command == "CONFIRM" || command == "confirm") {
+        handle(commandToRun);
+      } else {
+        print("Not running");
+      }
+      inputMode = "default";
+    }
     termInput.value = "";
 
     if (
@@ -57,16 +75,6 @@
       termInput.value = "";
     }
   }
-
-  onMount(() => {
-    termInput.focus();
-
-    setInterval(() => {
-      if (termInput) {
-        termInput.focus();
-      }
-    }) * 100;
-  });
 
   function print(...args) {
     // Concatenate all arguments into a single string with newlines
@@ -109,36 +117,9 @@
     };
   }
 
-  let hiddenCommands = [
-    createHiddenCommand(
-      "kukfest",
-      "Kukfest was the old name of Blålange festivalen, it was changed in 2024 in order to be more including and less offensive."
-    ),
-    createHiddenCommand(
-      "23",
-      "23 was the first festival hosted, it happened on a minecraft server."
-    ),
-    createHiddenCommand(
-      "23.1",
-      "23.1 was the second festival hosted, it happened on a minecraft server and was smaller than 23."
-    ),
-    createHiddenCommand(
-      "herremann",
-      "Creates logos and helps plan out the festival. Has a very large ego and does not help with the site."
-    ),
-    createHiddenCommand(
-      "boofdev",
-      "Lead developer of blålange festivalen. Helps plan out the festival."
-    ),
-    createHiddenCommand(
-      "celvin",
-      "VIP guest, can clap vrry fast and is very helpful."
-    ),
-    createHiddenCommand(
-      "vincent",
-      "VIP guest, really nice guy who is going to do a silly little dance at Blålange festivalen 24."
-    ),
-  ];
+  let hiddenCommands = lore.map((item) =>
+    createHiddenCommand(item.name, item.text)
+  );
 
   let commands = [
     ...hiddenCommands,
@@ -159,12 +140,37 @@
       usage: "list",
       hidden: false,
       execute: () => {
+        // Sort the commands alphabetically by name
+        const sortedCommands = commands.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
         // Use map to create an array of command descriptions
-        const commandDescriptions = commands
+        const commandDescriptions = sortedCommands
           .filter((command) => !command.hidden)
           .map((command) => {
             return `- ${command.name}: ${command.description} Usage: '${command.usage}'`;
           });
+        // Join the array into a single string and return it
+        return print(commandDescriptions.join("\n"));
+      },
+    },
+    {
+      name: "tsil",
+      description: "sdnammoc elbaliava tsil",
+      long_description: "yrotanalpxe fles ytterP",
+      usage: "tsil",
+      hidden: true,
+      execute: () => {
+        // Sort the commands alphabetically by name
+        const sortedCommands = commands.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
+        // Use map to create an array of command descriptions
+        const commandDescriptions = sortedCommands.map((command) => {
+          return `- ${command.name}`;
+        });
         // Join the array into a single string and return it
         return print(commandDescriptions.join("\n"));
       },
@@ -262,6 +268,8 @@
     {
       name: "execfetch",
       description: "fetches a javascript file from a url and executes it",
+      long_description:
+        "Fetches a javascript file from a url and executes it. Don't forget about the horrible curse that has been cast on all browsers, CORS.",
       usage: "execfetch [url]",
       hidden: false,
       execute: (args) => {
@@ -298,19 +306,31 @@
       usage: "httping [url]",
       hidden: false,
       execute: async (args) => {
-		showInput = false;
+        showInput = false;
         const module = await import("./commands/httping");
 
-		const options = {
-			url: args[0],
-			timeout: args[1]
-		};
+        const options = {
+          url: args[0],
+          timeout: args[1],
+        };
 
         await module.main(print, options);
-		showInput = true;
+        showInput = true;
       },
     },
   ];
+
+  if (data.commandToRun) {
+    inputMode = "confirmExec";
+    print(
+      `\nYou entered a special url which will automatically run the command '${commandToRun}'.\n` +
+        `Please CONFIRM or DENY`
+    );
+  }
+
+  onMount(() => {
+    termInput.focus();
+  });
 </script>
 
 <MetaTags
@@ -330,7 +350,11 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="terminal crt ibm-bios flex flex-col items-start"
-  on:click={() => termInput.focus()}
+  on:click={() => {
+    if (window.getSelection().toString() === "") {
+      termInput.focus();
+    }
+  }}
   bind:this={terminalContainer}
 >
   <pre class="output">Welcome to Blåsh</pre>
@@ -351,19 +375,19 @@
     </span>
   {/each}
   {#if showInput}
-  <div class="flex items-center">
-    <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
-    <input
-      class="input flex-grow"
-      type="text"
-      spellcheck="false"
-      bind:this={termInput}
-      use:keypress
-      on:enterkey={enter}
-      on:arrowup|preventDefault={arrowUp}
-      on:arrowdown|preventDefault={arrowDown}
-    />
-  </div>
+    <div class="flex items-center">
+      <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
+      <input
+        class="input flex-grow"
+        type="text"
+        spellcheck="false"
+        bind:this={termInput}
+        use:keypress
+        on:enterkey={enter}
+        on:arrowup|preventDefault={arrowUp}
+        on:arrowdown|preventDefault={arrowDown}
+      />
+    </div>
   {/if}
   <div class="clock">{$dateTime}</div>
 </div>

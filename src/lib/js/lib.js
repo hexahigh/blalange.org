@@ -1,4 +1,4 @@
-import version from "$lib/json/config.json";
+import version from "$lib/json/version.json";
 
 export async function isDarkmode() {
   if (typeof window === "undefined") return false;

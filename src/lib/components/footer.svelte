@@ -1,12 +1,6 @@
 <script>
-    import config from "$lib/json/config.json";
-    import Radio from "$lib/components/radio.svelte";
+    import { getLatestVersion } from "$lib/js/lib.js";
     let commitHash = __COMMIT_HASH__;
-
-    function getLatestVersion() {
-        const latestVersion = config.versions[config.versions.length - 1];
-        return latestVersion;
-    }
 </script>
 
 <footer class="w-full text-center border-t border-grey p-4 bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
