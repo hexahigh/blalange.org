@@ -1,4 +1,4 @@
-import { Howl, Howler } from "howler";
+import { Howl, Howler } from "howler/dist/howler.core.min.js";
 import kosinus from "$lib/audio/kosinus.mp3";
 
 

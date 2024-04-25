@@ -1,5 +1,5 @@
 import { config, loadConfig, saveConfig, resetToDefaults } from "./config";
-import { Howl } from "howler";
+import { Howl, Howler } from "howler/dist/howler.core.min.js";
 import { get } from 'svelte/store';
 import dont_touch from "$lib/audio/dont-touch.wav";
 

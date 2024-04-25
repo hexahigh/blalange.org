@@ -9,13 +9,15 @@
 
   import { onMount } from "svelte";
   import { page } from "$app/stores";
+  import { MetaTags } from "svelte-meta-tags";
+  import Fuse from "fuse.js";
+  import axios from "axios";
+
   import { keypress } from "./actions.js";
   import { playSound } from "./functions.js";
   import { lore } from "./lore.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
-  import { MetaTags } from "svelte-meta-tags";
-  import axios from "axios";
   import "./style.css";
 
   const user = "root";
@@ -100,10 +102,19 @@
       // Execute the found command
       return foundCommand.execute(args);
     } else {
+      const options = { keys: ["name"] };
+      const fuse = new Fuse(commands, options);
+      const result = fuse.search(command);
+
+      let response = `Command '${command}' not found.`;
+
+      if (result.length > 0) {
+        response += ` Did you mean ${result[0].item.name}?`;
+      }
+
+      response += `\nType 'list' to see a list of available commands.`;
       // Return a message indicating that the command was not found
-      return print(
-        `Command '${command}' not found. Type 'list' for all commands.`
-      );
+      return print(response);
     }
   };
 

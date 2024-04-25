@@ -2,7 +2,7 @@
   import { Range, Label } from "flowbite-svelte";
   import { PauseOutline, PlayOutline } from "flowbite-svelte-icons";
   import { onMount } from "svelte";
-  import { Howl, Howler } from "howler";
+  import { Howl, Howler } from "howler/dist/howler.core.min.js";
   import { dev } from "$app/environment";
   import vinylSvg from "$lib/svg/vinyl.svg";
 
