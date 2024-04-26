@@ -15,8 +15,8 @@ dependencies:
     specifier: ^5.0.19
     version: 5.0.19
   '@fontsource/material-icons':
-    specifier: ^5.0.17
-    version: 5.0.17
+    specifier: ^5.0.18
+    version: 5.0.18
   '@fontsource/roboto-condensed':
     specifier: ^5.0.15
     version: 5.0.15
@@ -1867,8 +1867,8 @@ packages:
     resolution: {integrity: sha512-NWGA83T3mViektgvHrmlhCgifMEZKynHGX1tzoHz2bKGfTu5frV6gOSgEtKxNsXEisTs2NJh35FWI6wudtIKrw==}
     dev: false
 
-  /@fontsource/material-icons@5.0.17:
-    resolution: {integrity: sha512-0ZQT7nBnDPYjoccv87OIDu3YBDZUIJy3lN2bjn5U7vtSaqRWEdFQjovLW+9rfANaLdMQuDVp0oFCs40gY74GrQ==}
+  /@fontsource/material-icons@5.0.18:
+    resolution: {integrity: sha512-2DL5z2yKWE+kXQrBiUTwIOMQjhs6t+EoPql8Ai4N6t2mjUhBdi2RChW44V3z1WgwupoqILXrAa4/id4/AuruMQ==}
     dev: false
 
   /@fontsource/roboto-condensed@5.0.15:
