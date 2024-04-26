@@ -107,8 +107,8 @@ devDependencies:
     specifier: ^2.3.0
     version: 2.3.0
   flowbite-svelte:
-    specifier: ^0.45.0
-    version: 0.45.0(svelte@4.2.15)
+    specifier: ^0.46.1
+    version: 0.46.1(svelte@4.2.15)
   flowbite-typography:
     specifier: ^1.0.3
     version: 1.0.3(tailwindcss@3.4.3)
@@ -3839,17 +3839,17 @@ packages:
       tailwindcss: 3.4.3
     dev: false
 
-  /flowbite-svelte@0.45.0(svelte@4.2.15):
-    resolution: {integrity: sha512-laYG6CXvQ7huzrqI24jf8mYwBEw3kGesVCpS9WgIg6jUgBPzaYba/R4FPPdKei3LQBRj8V/pzzUERzUPizm7Aw==}
-    engines: {node: '>=20.0.0', pnpm: '>=8.0.0'}
+  /flowbite-svelte@0.46.1(svelte@4.2.15):
+    resolution: {integrity: sha512-GMQP4Fxn4mYu12XTNRbOHMYMklbP29sKFZUZYekryxhWak2zbSlI1ozhBtnrD2WDbFBPqZ64IcyButOkYpz+WQ==}
+    engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
-      svelte: ^4.0.0
+      svelte: ^3.55.1 || ^4.0.0
     dependencies:
       '@floating-ui/dom': 1.6.3
       apexcharts: 3.48.0
       flowbite: 2.3.0
       svelte: 4.2.15
-      tailwind-merge: 2.2.2
+      tailwind-merge: 2.3.0
     dev: true
 
   /flowbite-typography@1.0.3(tailwindcss@3.4.3):
@@ -5516,6 +5516,13 @@ packages:
     resolution: {integrity: sha512-tWANXsnmJzgw6mQ07nE3aCDkCK4QdT3ThPMCzawoYA2Pws7vSTCvz3Vrjg61jVUGfFZPJzxEP+NimbcW+EdaDw==}
     dependencies:
       '@babel/runtime': 7.24.4
+    dev: false
+
+  /tailwind-merge@2.3.0:
+    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
+    dependencies:
+      '@babel/runtime': 7.24.4
+    dev: true
 
   /tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
