@@ -29,7 +29,7 @@
 		"tailwindcss": "^3.4.3",
 		"vite": "^5.2.9",
 		"workbox-cacheable-response": "^7.0.0",
-		"workbox-core": "^7.0.0",
+		"workbox-core": "^7.1.0",
 		"workbox-precaching": "^7.0.0",
 		"workbox-routing": "^7.0.0",
 		"workbox-strategies": "^7.0.0",
