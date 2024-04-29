@@ -28,8 +28,6 @@
   let histIndex = $history.length;
   let showInput = true;
 
-  let commandToRun;
-
   let termInput;
   let terminalContainer;
 
@@ -41,9 +39,9 @@
     if (inputMode === "default") {
       handle(command);
     }
-    if (inputMode === "confirmExec" && commandToRun) {
+    if (inputMode === "confirmExec" && data.commandToRun) {
       if (command == "CONFIRM" || command == "confirm") {
-        handle(commandToRun);
+        handle(data.commandToRun);
       } else {
         print("Not running");
       }
@@ -361,7 +359,7 @@
   if (data.commandToRun) {
     inputMode = "confirmExec";
     print(
-      `\nYou entered a special url which will automatically run the command '${commandToRun}'.\n` +
+      `\nYou entered a special url which will automatically run the command '${data.commandToRun}'.\n` +
         `Please CONFIRM or DENY`
     );
   }
