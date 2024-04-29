@@ -18,6 +18,7 @@
   import { lore } from "./lore.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
+  import { parseFlags } from "./args.js";
   import "./style.css";
 
   const user = "root";
@@ -327,6 +328,32 @@
 
         await module.main(print, options);
         showInput = true;
+      },
+    },
+    {
+      name: "joke",
+      description: "Outputs a random joke",
+      long_description:
+        "Outputs a random joke.\n" +
+        "Available flags are:\n" +
+        "-spicy [bool] | Enables spicy mode",
+      usage: "joke [category] <flags>",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/joke");
+
+        let options = {};
+
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            category: flags.args[0] || "all",
+            spicyMode: flags.flags.spicy === "true",
+          };
+        }
+
+        await module.default(print, options);
       },
     },
   ];
