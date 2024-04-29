@@ -52,7 +52,7 @@
 		"audiomotion-analyzer": "^4.4.0",
 		"axios": "^1.6.8",
 		"chart.js": "^4.4.2",
-		"dayjs": "^1.11.10",
+		"dayjs": "^1.11.11",
 		"flowbite-svelte-icons": "^1.5.0",
 		"fuse.js": "^7.0.0",
 		"howler": "^2.2.4",
