@@ -18,6 +18,7 @@
   import { lore } from "./lore.js";
   import { dateTime, history } from "./stores.js";
   import { getLatestVersion } from "$lib/js/lib.js";
+  import { parseFlags } from "./args.js";
   import "./style.css";
 
   const user = "root";
@@ -26,8 +27,6 @@
   let lineData = [];
   let histIndex = $history.length;
   let showInput = true;
-
-  let commandToRun;
 
   let termInput;
   let terminalContainer;
@@ -40,9 +39,9 @@
     if (inputMode === "default") {
       handle(command);
     }
-    if (inputMode === "confirmExec" && commandToRun) {
+    if (inputMode === "confirmExec" && data.commandToRun) {
       if (command == "CONFIRM" || command == "confirm") {
-        handle(commandToRun);
+        handle(data.commandToRun);
       } else {
         print("Not running");
       }
@@ -329,12 +328,38 @@
         showInput = true;
       },
     },
+    {
+      name: "joke",
+      description: "Outputs a random joke",
+      long_description:
+        "Outputs a random joke.\n" +
+        "Available flags are:\n" +
+        "-spicy [bool] | Enables spicy mode",
+      usage: "joke [category] <flags>",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/joke");
+
+        let options = {};
+
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            category: flags.args[0] || "all",
+            spicyMode: flags.flags.spicy === "true",
+          };
+        }
+
+        await module.default(print, options);
+      },
+    },
   ];
 
   if (data.commandToRun) {
     inputMode = "confirmExec";
     print(
-      `\nYou entered a special url which will automatically run the command '${commandToRun}'.\n` +
+      `\nYou entered a special url which will automatically run the command '${data.commandToRun}'.\n` +
         `Please CONFIRM or DENY`
     );
   }
