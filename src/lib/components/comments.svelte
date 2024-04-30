@@ -41,6 +41,20 @@
     fetchComments();
   }
 
+  function isLoggedIn() {
+    if (!pb) return; // Ensure PocketBase is initialized
+    return pb.authStore.isValid;
+  }
+
+  function getUserName() {
+    if (!pb) return; // Ensure PocketBase is initialized
+
+    if (!pb.authStore.isValid) {
+      return "Anon";
+    }
+    return pb.authStore.model.name;
+  }
+
   async function fetchComments() {
     if (!pb) return; // Ensure PocketBase is initialized
 
@@ -64,12 +78,17 @@
       let name = commentName.toLowerCase();
       name = name.charAt(0).toUpperCase() + name.slice(1);
 
+      if (isLoggedIn()) {
+        name = getUserName();
+      }
+
       const record = await pb.collection("bla_comments").create({
         name: name,
         text: commentText,
         unix: unix,
         post_id: id,
         session_id: getSessionId(),
+        logged_in: isLoggedIn(),
       });
 
       commentError = null;
@@ -89,17 +108,18 @@
   <h3 class="text-xl font-bold mb-4">Kommentarer</h3>
   <div class="mb-4">
     <h4 class="text-md font-semibold">Skriv en kommentar</h4>
+    <p class:hidden={!isLoggedIn()} class="text-green-500">Du er logget inn som: {getUserName()}</p>
     <p>Navn</p>
     <input
       class="w-1/2 p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
       bind:value={commentName}
+      disabled={isLoggedIn()}
     />
     <p>Tekst</p>
     <textarea
       class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
       bind:value={commentText}
     ></textarea>
-
     <button
       class="bg-blue-500 text-white p-2 mt-4 rounded-md"
       on:click={addComment}>Send</button
@@ -115,6 +135,9 @@
       />
       <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
         {comment.name}
+        {#if comment.logged_in}
+          <span class="text-green-500 symbols">✓</span>
+        {/if}
       </p>
       <Tooltip>{comment.session_id}</Tooltip>
       <p class="text-gray-500 dark:text-gray-300">{formatDate(comment.unix)}</p>

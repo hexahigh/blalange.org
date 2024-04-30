@@ -136,6 +136,9 @@
         <li class="not-current-page">
           <a href="https://shop.blalange.org">Merch</a>
         </li>
+        <li class={path === "/login" ? "current-page" : "not-current-page"}>
+          <a href="/login">Login</a>
+        </li>
         <li>
           <DarkMode class="text-lg">
             <SunSolid slot="lightIcon" color="yellow" />
