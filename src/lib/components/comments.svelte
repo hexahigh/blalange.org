@@ -5,6 +5,8 @@
   import { get } from "svelte/store";
   import { createAvatar } from "@dicebear/core";
   import { thumbs } from "@dicebear/collection";
+  import { getSessionId } from "../js/session.js";
+  import { Tooltip } from 'flowbite-svelte';
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
@@ -67,6 +69,7 @@
         text: commentText,
         unix: unix,
         post_id: id,
+        session_id: getSessionId(),
       });
 
       commentError = null;
@@ -113,6 +116,7 @@
       <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
         {comment.name}
       </p>
+      <Tooltip>{comment.session_id}</Tooltip>
       <p class="text-gray-500 dark:text-gray-300">{formatDate(comment.unix)}</p>
     </div>
     <div>
