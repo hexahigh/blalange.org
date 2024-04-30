@@ -3,6 +3,7 @@
     import { MetaTags } from "svelte-meta-tags";
     import calendar from "$lib/svg/calendar.svg";
     import person from "$lib/svg/person.svg";
+    import Comments from "./comments.svelte";
 
     export let img;
     export let title;
@@ -60,6 +61,7 @@
       <div class="m-9 text-gray-800 dark:text-gray-300">
         <slot />
       </div>
+      <Comments id={url + "#" + date} />
     </div>
   </div>
   
