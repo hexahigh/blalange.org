@@ -9,6 +9,24 @@
   let image;
   let success;
 
+  function isLoggedIn() {
+    if (!pb) return; // Ensure PocketBase is initialized
+    return pb.authStore.isValid;
+  }
+
+  function getUserName() {
+    if (!pb) return; // Ensure PocketBase is initialized
+
+    if (!pb.authStore.isValid) {
+      return "Anon";
+    }
+    return pb.authStore.model.name;
+  }
+
+  async function logout() {
+    pb.authStore.clear();
+  }
+
   async function auth() {
     pb.authStore.clear();
     try {
@@ -26,8 +44,13 @@
 </script>
 
 <div class="flex flex-col items-center justify-center min-h-screen">
-  <div class="p-6 mt-10 rounded shadow-md shadow-black w-80 text-center dark:text-white">
+  <div
+    class="p-6 mt-10 rounded shadow-md shadow-black w-80 text-center dark:text-white"
+  >
     <h1 class="text-2xl font-bold mb-4">Login</h1>
+    {#if isLoggedIn()}
+      <p>You are logged in as {getUserName()}</p>
+    {/if}
     <form on:submit|preventDefault>
       <input
         placeholder="Username"
@@ -43,8 +66,14 @@
       <button
         on:click={auth}
         type="button"
-        class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
         >Login</button
+      >
+      <button
+        on:click={logout}
+        type="button"
+        class="w-full p-2 bg-red-500 text-white rounded hover:bg-red-700"
+        >Logout</button
       >
       {#if message}
         <p class="text-red-500">{message}</p>
