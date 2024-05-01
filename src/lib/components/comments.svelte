@@ -121,7 +121,7 @@
       bind:value={commentText}
     ></textarea>
     <button
-      class="bg-blue-500 text-white p-2 mt-4 rounded-md"
+      class="blue-button"
       on:click={addComment}>Send</button
     >
     <p class:hidden={!commentError} class="text-red-500">{commentError}</p>

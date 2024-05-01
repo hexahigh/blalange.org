@@ -125,7 +125,11 @@
   </label>
 
   <div class="mb-4">
-    <span class="mb-2">Kan vi filme deg på Blålange Festivalen? <span class="text-rose-500">*</span></span>
+    <span class="mb-2"
+      >Kan vi filme deg på Blålange Festivalen? <span class="text-rose-500"
+        >*</span
+      ></span
+    >
     <div class="flex items-center">
       <label class="flex items-center mr-4">
         <QuestionCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
@@ -140,8 +144,13 @@
   </div>
 
   <label class="flex flex-col mb-4">
-    <span>Hva skal du presentere og hvordan? <span class="text-rose-500">*</span></span>
-      <span class="mb-2 text-sm ">Husk å inkludere temaer som: sanger, partylys farger og utstyr</span>
+    <span
+      >Hva skal du presentere og hvordan? <span class="text-rose-500">*</span
+      ></span
+    >
+    <span class="mb-2 text-sm"
+      >Husk å inkludere temaer som: sanger, partylys farger og utstyr</span
+    >
     <div class="flex items-center">
       <UserCircleSolid class="h-5 w-5 mr-2 text-blue-500" />
       <textarea
@@ -243,7 +252,7 @@
   {/if}-->
   <button
     on:click={handleSubmit}
-    class="bg-blue-500 text-white p-2 mt-4 rounded-md"
+    class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 mt-4 rounded-lg text-white"
     id="submitButton"
     type="submit">Send inn</button
   >

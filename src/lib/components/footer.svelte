@@ -3,7 +3,7 @@
     let commitHash = __COMMIT_HASH__;
 </script>
 
-<footer class="w-full text-center border-t border-grey p-4 bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
+<footer class="w-full text-center border-t border-grey p-4 bg-gray-200 text-black dark:bg-gray-900 dark:text-white">
     <div class="md:flex md:justify-center md:items-center">
         <div>
             <div class="flex justify-center mb-4">
