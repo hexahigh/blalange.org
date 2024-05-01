@@ -40,7 +40,7 @@
   
   
   <div
-    class="p-6 max-w-6xl mx-auto bg-white rounded-xl text-black shadow-md flex items-center space-x-4 dark:bg-gray-900 dark:text-white"
+    class="p-6 max-w-6xl mx-auto mt-4 bg-white rounded-xl text-black shadow-md flex items-center space-x-4 dark:bg-gray-800 dark:text-white"
   >
     <div>
       <!-- svelte-ignore a11y-img-redundant-alt -->

@@ -7,6 +7,7 @@
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
   import { config } from "$lib/js/config.js";
+  import { toRedirect } from "../js/redirect.js";
 
 
   let logoAlwaysSpins = false;
@@ -134,7 +135,7 @@
           <a href="/articles">Artikler</a>
         </li>
         <li class="not-current-page">
-          <a href="https://shop.blalange.org">Merch</a>
+          <a href={toRedirect("https://shop.blalange.org")}>Merch</a>
         </li>
         <li class={path === "/login" ? "current-page" : "not-current-page"}>
           <a href="/login">Login</a>

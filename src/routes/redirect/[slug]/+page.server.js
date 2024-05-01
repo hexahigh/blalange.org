@@ -3,7 +3,7 @@
 export function load({ params, url }) {
 
     const imageModules = import.meta.glob(
-        "$lib/img/redirect-bg/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}",
+        "$lib/img/redirect-bg/compressed/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}",
         {
           eager: true,
         }
