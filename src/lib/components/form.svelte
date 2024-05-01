@@ -252,7 +252,7 @@
   {/if}-->
   <button
     on:click={handleSubmit}
-    class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 mt-4 rounded-lg text-white"
+    class="blue-btn"
     id="submitButton"
     type="submit">Send inn</button
   >
