@@ -64,6 +64,16 @@
         filter: `post_id = "${id}"`,
       });
       comments = result.items;
+      
+      // Go through each comment and if they are logged in, check if they are verified
+      for (let i = 0; i < comments.length; i++) {
+        if (comments[i].uid) {
+          const record = await pb.collection("users").getOne(comments[i].uid);
+          comments[i].isAdmin = record.isAdmin;
+          comments[i].name = record.username;
+          comments[i].verified = true
+        }
+      }
     } catch (error) {
       console.error("Failed to fetch comments:", error);
     }
@@ -79,8 +89,11 @@
       let name = commentName.toLowerCase();
       name = name.charAt(0).toUpperCase() + name.slice(1);
 
+      let uid
+
       if (isLoggedIn()) {
         name = getUserName();
+        uid = pb.authStore.model.id
       }
 
       const record = await pb.collection("bla_comments").create({
@@ -89,7 +102,7 @@
         unix: unix,
         post_id: id,
         session_id: getSessionId(),
-        logged_in: isLoggedIn(),
+        uid: uid,
       });
 
       commentError = null;
@@ -136,11 +149,15 @@
       />
       <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
         {comment.name}
-        {#if comment.logged_in}
+        {#if comment.verified}
           <span class="text-green-500 symbols">✓</span>
+          <Tooltip>The user was logged in</Tooltip>
+        {/if}
+        {#if comment.isAdmin}
+          <span class="text-blue-500 symbols"></span>
+          <Tooltip>The user is an admin</Tooltip>
         {/if}
       </p>
-      <Tooltip>{comment.session_id}</Tooltip>
       <p class="text-gray-500 dark:text-gray-300">{formatDate(comment.unix)}</p>
     </div>
     <div>
