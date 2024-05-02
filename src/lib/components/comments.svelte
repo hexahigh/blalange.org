@@ -6,7 +6,7 @@
   import { createAvatar } from "@dicebear/core";
   import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "../js/session.js";
-  import { Tooltip } from 'flowbite-svelte';
+  import { Tooltip } from "flowbite-svelte";
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
@@ -28,17 +28,24 @@
   let commentText = "";
 
   let comments = [];
+  let currentPage = 1;
+  let totalCommentsFetched = 0;
+
+  // Options
+  let options = {
+    pageSize: 25,
+  }
 
   let pb = new PocketBase(get(config).dbEndpoint);
 
   // Fetch comments when the component mounts and whenever the `id` prop changes
   onMount(async () => {
-    await fetchComments();
+    await fetchComments(currentPage);
   });
 
   // Reactive statement to fetch comments whenever the `id` prop changes
   $: if (id) {
-    fetchComments();
+    fetchComments(currentPage);
   }
 
   function isLoggedIn() {
@@ -55,25 +62,44 @@
     return pb.authStore.model.username;
   }
 
-  async function fetchComments() {
+  async function fetchComments(page, all) {
     if (typeof window === "undefined") return; // Exit if not in a browser environment
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
-      const result = await pb.collection("bla_comments").getList(1, 100, {
-        filter: `post_id = "${id}"`,
-      });
-      comments = result.items;
-      
+      let result;
+      if (all === true) {
+        result = await pb.collection("bla_comments").getFullList(200, {
+          filter: `post_id = "${id}"`,
+        });
+      } else {
+        result = await pb.collection("bla_comments").getList(page, options.pageSize, {
+          filter: `post_id = "${id}"`,
+        });
+      }
+
+      let resultsToProcess
+
+      if (all === true) {
+        resultsToProcess = result
+      } else {
+        resultsToProcess = result.items
+      }
+
       // Go through each comment and if they are logged in, check if they are verified
-      for (let i = 0; i < comments.length; i++) {
-        if (comments[i].uid) {
-          const record = await pb.collection("users").getOne(comments[i].uid);
-          comments[i].isAdmin = record.isAdmin;
-          comments[i].name = record.username;
-          comments[i].verified = true
+      for (let i = 0; i < resultsToProcess.length; i++) {
+        if (resultsToProcess[i].uid) {
+          const record = await pb
+            .collection("users")
+            .getOne(resultsToProcess[i].uid);
+          resultsToProcess[i].isAdmin = record.isAdmin;
+          resultsToProcess[i].name = record.username;
+          resultsToProcess[i].verified = true;
         }
       }
+
+      comments = [...comments, ...resultsToProcess];
+      totalCommentsFetched += resultsToProcess.length;
     } catch (error) {
       console.error("Failed to fetch comments:", error);
     }
@@ -89,11 +115,11 @@
       let name = commentName.toLowerCase();
       name = name.charAt(0).toUpperCase() + name.slice(1);
 
-      let uid
+      let uid;
 
       if (isLoggedIn()) {
         name = getUserName();
-        uid = pb.authStore.model.id
+        uid = pb.authStore.model.id;
       }
 
       const record = await pb.collection("bla_comments").create({
@@ -116,13 +142,25 @@
       commentError = error.message;
     }
   }
+
+  function loadMoreComments() {
+    currentPage += 1;
+    fetchComments(currentPage);
+  }
+
+  function loadAllComments() {
+    comments = [];
+    fetchComments(1, true);
+  }
 </script>
 
 <div>
   <h3 class="text-xl font-bold mb-4">Kommentarer</h3>
   <div class="mb-4">
     <h4 class="text-md font-semibold">Skriv en kommentar</h4>
-    <p class:hidden={!isLoggedIn()} class="text-green-500">Du er logget inn som: {getUserName()}</p>
+    <p class:hidden={!isLoggedIn()} class="text-green-500">
+      Du er logget inn som: {getUserName()}
+    </p>
     <p>Navn</p>
     <input
       class="w-1/2 p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
@@ -134,10 +172,7 @@
       class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
       bind:value={commentText}
     ></textarea>
-    <button
-      class="blue-button"
-      on:click={addComment}>Send</button
-    >
+    <button class="blue-button" on:click={addComment}>Send</button>
     <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
   </div>
   {#each comments as comment}
@@ -164,4 +199,8 @@
       <p class="text-gray-800 dark:text-gray-300 mb-8">{comment.text}</p>
     </div>
   {/each}
+  {#if totalCommentsFetched > 0}
+    <button on:click={loadMoreComments} class="blue-button">Vis flere</button>
+    <button on:click={loadAllComments} class="blue-button">Vis alle</button>
+  {/if}
 </div>
