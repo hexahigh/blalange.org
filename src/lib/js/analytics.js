@@ -2,7 +2,7 @@ import PocketBase from "pocketbase";
 import { getSessionId } from "./session";
 import { config } from "./config";
 
-let pb
+let pb = new PocketBase("https://db.080609.xyz");
 let enabled
 
 config.subscribe(value => {
@@ -34,6 +34,8 @@ async function collect2() {
   const networkInfo = navigator.connection ? navigator.connection.type : 'unknown';
   const referrer = document.referrer;
 
+  let username;
+
   if (ip == "") {
     ip = await fetch("https://blalange.org/api/ip").then((res) => res.text());
   }
@@ -45,6 +47,10 @@ async function collect2() {
   ) {
     lastValues = { userAgent, language, url };
 
+    if (pb.authStore.isValid) {
+      username = pb.authStore.model.username;
+    }
+
     return await pb.collection("kf_analytics").create({
       useragent: userAgent,
       language: language,
@@ -55,7 +61,8 @@ async function collect2() {
       width: screenWidth,
       height: screenHeight,
       network: networkInfo,
-      referrer: referrer
+      referrer: referrer,
+      username: username,
     });
   } else {
     console.log("Collect2: Nothing has changed, not running.");
