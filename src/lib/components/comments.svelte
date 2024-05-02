@@ -7,6 +7,7 @@
   import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "../js/session.js";
   import { Tooltip } from "flowbite-svelte";
+  import { ShieldCheckOutline, CheckOutline } from 'flowbite-svelte-icons';
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
@@ -186,11 +187,13 @@
       <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
         {comment.name}
         {#if comment.verified}
-          <span class="text-green-500 symbols">✓</span>
+          <span class="text-green-500 symbols">&#xf42e</span>
+          <!-- <CheckOutline class="inline-block text-green-500" size="lg" /> -->
           <Tooltip>The user was logged in</Tooltip>
         {/if}
         {#if comment.isAdmin}
-          <span class="text-blue-500 symbols"></span>
+          <span class="text-blue-500 symbols">&#xf510</span>
+          <!-- <ShieldCheckOutline class="inline-block text-blue-500 object-contain" size="lg" /> -->
           <Tooltip>The user is an admin</Tooltip>
         {/if}
         {#if comment.extraBadges}
