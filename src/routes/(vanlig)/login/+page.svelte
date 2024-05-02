@@ -93,8 +93,14 @@
         on:click={auth}
         type="button"
         class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
-        >{mode}</button
+        >Login</button
       >
+      <button
+      on:click={signup}
+      type="button"
+      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
+      >Signup</button
+    >
       <button
         on:click={logout}
         type="button"
@@ -115,10 +121,5 @@
         </div>
       {/if}
     </form>
-      <p class="mt-4">
-        Don't have an account? <button class="blue-btn" on:click={switchMode("signup")}
-          >Signup</button
-        >
-      </p>
   </div>
 </div>
