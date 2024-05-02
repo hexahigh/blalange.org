@@ -52,10 +52,11 @@
     if (!pb.authStore.isValid) {
       return "Anon";
     }
-    return pb.authStore.model.name;
+    return pb.authStore.model.username;
   }
 
   async function fetchComments() {
+    if (typeof window === "undefined") return; // Exit if not in a browser environment
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {

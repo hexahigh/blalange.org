@@ -8,6 +8,14 @@
   let message;
   let image;
   let success;
+  let email = "";
+  let infoText;
+
+  let mode = "login";
+
+  function switchMode(s) {
+    mode = s
+  }
 
   function isLoggedIn() {
     if (!pb) return; // Ensure PocketBase is initialized
@@ -20,7 +28,7 @@
     if (!pb.authStore.isValid) {
       return "Anon";
     }
-    return pb.authStore.model.name;
+    return pb.authStore.model.username;
   }
 
   async function logout() {
@@ -28,6 +36,10 @@
   }
 
   async function auth() {
+    if (mode === "signup") {
+      await signup();
+      return
+    }
     pb.authStore.clear();
     try {
       await pb.collection("users").authWithPassword(user, pass);
@@ -41,13 +53,27 @@
       image = pb.files.getUrl(record, record.avatar);
     }
   }
+
+  async function signup() {
+    pb.authStore.clear();
+    try {
+      await pb.collection("users").create({
+        username: user,
+        password: pass,
+        passwordConfirm: pass,
+      });
+      infoText = "Signup successful, please login";
+    } catch (error) {
+      message = "An error occurred: " + error;
+    }
+  }
 </script>
 
 <div class="flex flex-col items-center justify-center min-h-screen">
   <div
     class="p-6 mt-10 rounded shadow-md shadow-black w-80 text-center dark:text-white"
   >
-    <h1 class="text-2xl font-bold mb-4">Login</h1>
+    <h1 class="text-2xl font-bold mb-4">Login / Signup</h1>
     {#if isLoggedIn()}
       <p>You are logged in as {getUserName()}</p>
     {/if}
@@ -67,7 +93,7 @@
         on:click={auth}
         type="button"
         class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
-        >Login</button
+        >{mode}</button
       >
       <button
         on:click={logout}
@@ -78,6 +104,9 @@
       {#if message}
         <p class="text-red-500">{message}</p>
       {/if}
+      {#if infoText}
+        <p class="text-green-500">{infoText}</p>
+      {/if}
       {#if success}
         <p class="text-green-500">Success!</p>
         <div class="flex items-center justify-center mt-4">
@@ -86,8 +115,10 @@
         </div>
       {/if}
     </form>
-    <p class="mt-4">
-      Don't have an account? <a class="text-blue-500" href="/signup">Signup</a>
-    </p>
+      <p class="mt-4">
+        Don't have an account? <button class="blue-btn" on:click={switchMode("signup")}
+          >Signup</button
+        >
+      </p>
   </div>
 </div>
