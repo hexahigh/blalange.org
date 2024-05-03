@@ -1,9 +1,9 @@
-export function toRedirect(url) {
+export function toRedirect(url: string): string {
     // Url encode the url
     const encodedUrl = encodeURIComponent(url);
 
     // Get current host
-    let host
+    let host: string;
 
     if (typeof window !== "undefined") {
         host = window.location.origin;

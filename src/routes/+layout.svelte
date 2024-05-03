@@ -4,6 +4,7 @@
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
   import "@fontsource/material-icons";
+  import '@fontsource-variable/material-symbols-outlined';
 
   import { dev } from "$app/environment";
   import "../app.css";
