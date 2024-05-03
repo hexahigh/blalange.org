@@ -88,7 +88,7 @@
   }
 
   async function sortComments() {
-    return
+    return;
     // Sort comments by timestamp
     comments = comments.sort((a, b) => b.unix - a.unix);
   }
@@ -142,45 +142,59 @@
   }
 </script>
 
-<div class="mx-auto max-w-6xl m-4 p-4 rounded-lg dark:bg-gray-800 dark:text-white">
+<div
+  class="mx-auto max-w-6xl m-4 p-4 rounded-lg dark:bg-gray-800 dark:text-white"
+>
   <div class="text-center">
     <h1 class="text-3xl font-bold mb-4 rimword">Episk chat</h1>
   </div>
-  {#each comments as comment}
-    <div class="mb-4 flex items-center">
-      <img
-        class="w-12 h-12 rounded-full mr-3"
-        src={createAvatar(thumbs, { seed: comment.name }).toDataUriSync()}
-        alt={comment.name}
-      />
-      <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
-        {comment.name}
-        {#if comment.verified}
-          <span class="text-green-500 symbols">&#xf42e</span>
-          <!-- <CheckOutline class="inline-block text-green-500" size="lg" /> -->
-          <Tooltip class="text-black dark:text-white bg-gray-300">The user was logged in</Tooltip>
-        {/if}
-        {#if comment.isAdmin}
-          <span class="text-blue-500 symbols">&#xf510</span>
-          <!-- <ShieldCheckOutline class="inline-block text-blue-500 object-contain" size="lg" /> -->
-          <Tooltip class="text-black dark:text-white bg-gray-300">The user is an admin</Tooltip>
-        {/if}
-        {#if comment.extraBadges}
-          {#each comment.extraBadges as badge}
-            <span style={"color: " + badge.color} class="symbols"
-              >{badge.badge}</span
+  <div>
+    {#each comments as comment}
+      <div class="mb-4 flex items-center">
+        <img
+          class="w-12 h-12 rounded-full mr-3"
+          src={createAvatar(thumbs, { seed: comment.name }).toDataUriSync()}
+          alt={comment.name}
+        />
+        <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
+          {comment.name}
+          {#if comment.verified}
+            <span class="text-green-500 symbols">&#xf42e</span>
+            <!-- <CheckOutline class="inline-block text-green-500" size="lg" /> -->
+            <Tooltip class="text-black dark:text-white bg-gray-300"
+              >The user was logged in</Tooltip
             >
-            <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
-          {/each}
-        {/if}
-      </p>
-      <p class="text-gray-500 dark:text-gray-300">{formatDate(comment.unix)}</p>
-    </div>
-    <div>
-      <p class="text-gray-800 dark:text-gray-300 mb-8">{comment.text}</p>
-    </div>
-  {/each}
-  <div class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2">
+          {/if}
+          {#if comment.isAdmin}
+            <span class="text-blue-500 symbols">&#xf510</span>
+            <!-- <ShieldCheckOutline class="inline-block text-blue-500 object-contain" size="lg" /> -->
+            <Tooltip class="text-black dark:text-white bg-gray-300"
+              >The user is an admin</Tooltip
+            >
+          {/if}
+          {#if comment.extraBadges}
+            {#each comment.extraBadges as badge}
+              <span style={"color: " + badge.color} class="symbols"
+                >{badge.badge}</span
+              >
+              <Tooltip class="text-black dark:text-white bg-gray-300"
+                >{badge.hover_text}</Tooltip
+              >
+            {/each}
+          {/if}
+        </p>
+        <p class="text-gray-500 dark:text-gray-300">
+          {formatDate(comment.unix)}
+        </p>
+      </div>
+      <div>
+        <p class="text-gray-800 dark:text-gray-300 mb-8">{comment.text}</p>
+      </div>
+    {/each}
+  </div>
+  <div
+    class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2"
+  >
     <h4 class="text-md font-semibold">Send en melding</h4>
     <p class:hidden={!isLoggedIn()} class="text-green-500">
       Du er logget inn som: {getUserName()}
