@@ -11,6 +11,9 @@ dependencies:
   '@dicebear/core':
     specifier: ^8.0.1
     version: 8.0.1
+  '@fontsource-variable/material-symbols-outlined':
+    specifier: ^5.0.30
+    version: 5.0.30
   '@fontsource/dela-gothic-one':
     specifier: ^5.0.19
     version: 5.0.19
@@ -2181,6 +2184,10 @@ packages:
   /@floating-ui/utils@0.2.2:
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
     dev: true
+
+  /@fontsource-variable/material-symbols-outlined@5.0.30:
+    resolution: {integrity: sha512-Wo+ShLCbG75rYIjHjuPfSOnq5EE0smynt3JymFy7+rmFu8t/O8UDYOREYunHKMneJnYoBA5y2QOV56ifv0FuUw==}
+    dev: false
 
   /@fontsource/dela-gothic-one@5.0.19:
     resolution: {integrity: sha512-OgwDhzlauA93YXpFOlfrdXFfdf+gbZhH3cWEVA71EI4tPeHdcQCKHE6gerIAyHdZCYKx+j9DiPzH4UxjLA97sQ==}

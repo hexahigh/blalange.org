@@ -39,6 +39,7 @@
 	"dependencies": {
 		"@dicebear/collection": "^8.0.1",
 		"@dicebear/core": "^8.0.1",
+		"@fontsource-variable/material-symbols-outlined": "^5.0.30",
 		"@fontsource/dela-gothic-one": "^5.0.19",
 		"@fontsource/krona-one": "^5.0.13",
 		"@fontsource/lexend-exa": "^5.0.20",
