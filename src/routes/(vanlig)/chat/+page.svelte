@@ -9,6 +9,8 @@
   import { Tooltip } from "flowbite-svelte";
   import { ShieldCheckOutline, CheckOutline } from "flowbite-svelte-icons";
 
+  import verifyMessage from "$lib/js/verify-message.ts";
+
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
     const options = {
@@ -112,6 +114,12 @@
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
+
+      if (await verifyMessage(commentText) === false) {
+        commentError = "Dette er ikke en gyldig melding";
+        return;
+      }
+
       let unix = Math.floor(Date.now() / 1000);
 
       // Make name lowercase, except the first letter
@@ -148,7 +156,7 @@
   <div class="text-center">
     <h1 class="text-3xl font-bold mb-4 rimword">Episk chat</h1>
   </div>
-  <div>
+  <div class="chat-messages-container">
     {#each comments as comment}
       <div class="mb-4 flex items-center">
         <img
@@ -214,3 +222,11 @@
     <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
   </div>
 </div>
+
+<style>
+  .chat-messages-container {
+    max-height: 60vh; /* Adjust this value as needed */
+    overflow-y: auto;
+    padding: 1rem; /* Optional: Add some padding inside the container */
+  }
+</style>
