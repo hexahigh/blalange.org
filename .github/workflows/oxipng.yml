@@ -11,8 +11,8 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Get total size of all png files
-              id: get_size
-              run: echo "::set-output name=size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
+              id: png_get_size
+              run: echo "::set-output name=png_size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
 
             #- name: Setup apt repo
             #  run: |
@@ -31,15 +31,15 @@ jobs:
                 sudo dpkg -i /tmp/oxipng.deb
 
             - name: Optimize images
-              run: oxipng -r -Z -o 6 ./src ./static
+              run: oxipng -r -o 6 ./src ./static
 
             - name: Get total size of all png files
-              id: get_new_size
-              run: echo "::set-output name=new-size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
+              id: png_get_new_size
+              run: echo "::set-output name=new_size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
 
             - name: Calculate size difference
-              id: calculate_diff
-              run: echo "::set-output name=size_diff::$((${{ steps.get_size.outputs.size }} - ${{ steps.get_new_size.outputs.new-size }}))"
+              id: png_calculate_diff
+              run: echo "::set-output name=size_diff::$((${{ steps.png_get_size.outputs.size }} - ${{ steps.png_get_new_size.outputs.new_size }}))"
 
             - name: Create new branch and commit changes
               run: |
@@ -54,5 +54,5 @@ jobs:
               uses: peter-evans/create-pull-request@v3
               with:
                 title: "Optimize images"
-                body: "This PR optimizes images, saving ${{ steps.calculate_diff.outputs.size_diff }} bytes of space."
+                body: "This PR optimizes images, saving ${{ steps.png_calculate_diff.outputs.size_diff }} bytes of space."
                 branch: "optimize-images"
