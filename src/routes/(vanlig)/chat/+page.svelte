@@ -9,7 +9,8 @@
   import { Tooltip } from "flowbite-svelte";
   import { ShieldCheckOutline, CheckOutline } from "flowbite-svelte-icons";
 
-  import { verifyMessage, verifyName } from "$lib/js/chat-verifier";
+  import { toRedirect } from "$lib/js/redirect";
+  import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
@@ -116,21 +117,22 @@
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
+      let verifyResult;
 
-      let verifyResult
-
-      verifyResult = await verifyMessage(commentText)
+      verifyResult = await verifyMessage(commentText);
 
       if (!verifyResult.valid) {
-        commentError = verifyResult.error
-        return
+        commentError = verifyResult.error;
+        return;
       }
 
-      verifyResult = await verifyName(commentName)
+      if (!isLoggedIn()) {
+        verifyResult = await verifyName(commentName);
+      }
 
       if (!verifyResult.valid) {
-        commentError = verifyResult.error
-        return
+        commentError = verifyResult.error;
+        return;
       }
 
       let unix = Math.floor(Date.now() / 1000);
@@ -168,7 +170,7 @@
     if (chatContainer) {
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
- }
+  }
 </script>
 
 <div
@@ -217,7 +219,9 @@
         </p>
       </div>
       <div>
-        <p class="text-gray-800 dark:text-gray-300 mb-8">{comment.text}</p>
+        <p class="text-gray-800 dark:text-gray-300 mb-8">
+          {@html processMessageText(comment.text)}
+        </p>
       </div>
     {/each}
   </div>
@@ -244,7 +248,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .chat-messages-container {
     max-height: 60vh; /* Adjust this value as needed */
     height: 60vh;

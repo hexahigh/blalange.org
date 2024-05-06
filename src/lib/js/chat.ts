@@ -1,3 +1,5 @@
+import { toRedirect } from "./redirect";
+
 export async function verifyMessage(message: string): Promise<{ valid: boolean; error?: string }> {
     // Check if message contains only whitespace
     if (message.trim() === "") {
@@ -50,3 +52,15 @@ export async function verifyName(name: string): Promise<{ valid: boolean; error?
 
     return { valid: true };
 }
+
+export function processMessageText(text: string) {
+    // Regular expression to match URLs
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+    // Replace URLs with anchor tags
+    const processedText = text.replace(urlRegex, function(url) {
+      return `<a href="${toRedirect(url)}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+
+    return processedText;
+ }
