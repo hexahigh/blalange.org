@@ -14,10 +14,10 @@ jobs:
               id: get_size
               run: echo "::set-output name=size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
 
-            - name: Setup apt repo
-              run: |
-                 echo "deb [signed-by=/usr/share/keyrings/boofdev.apt.pub] https://apt.080609.xyz stable main" | sudo tee -a /etc/apt/sources.list.d/boofdev.list
-                 sudo curl -sSL -o /usr/share/keyrings/boofdev.apt.pub https://apt.080609.xyz/pgp-key.public
+            #- name: Setup apt repo
+            #  run: |
+            #     echo "deb [signed-by=/usr/share/keyrings/boofdev.apt.pub] https://apt.080609.xyz stable main" | sudo tee -a /etc/apt/sources.list.d/boofdev.list
+            #     sudo curl -sSL -o /usr/share/keyrings/boofdev.apt.pub https://apt.080609.xyz/pgp-key.public
 
             - name: Update apt packages
               run: |
