@@ -1,59 +1,60 @@
 name: Optimize images
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    optimize:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-            - name: Get total size of all png files
-              id: png_get_size
-              run: echo "::set-output name=png_size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
+      - name: Get total size of all png files
+        id: png_get_size
+        run: echo "::set-output name=png_size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
 
-            #- name: Setup apt repo
-            #  run: |
-            #     echo "deb [signed-by=/usr/share/keyrings/boofdev.apt.pub] https://apt.080609.xyz stable main" | sudo tee -a /etc/apt/sources.list.d/boofdev.list
-            #     sudo curl -sSL -o /usr/share/keyrings/boofdev.apt.pub https://apt.080609.xyz/pgp-key.public
+      #- name: Setup apt repo
+      #  run: |
+      #     echo "deb [signed-by=/usr/share/keyrings/boofdev.apt.pub] https://apt.080609.xyz stable main" | sudo tee -a /etc/apt/sources.list.d/boofdev.list
+      #     sudo curl -sSL -o /usr/share/keyrings/boofdev.apt.pub https://apt.080609.xyz/pgp-key.public
 
-            - name: Update apt packages
-              run: |
-                sudo apt update -y
-                sudo apt upgrade -y
-                sudo apt install wget -y
-            
-            - name: Install oxipng
-              run: |
-                wget -O /tmp/oxipng.deb https://github.com/shssoichiro/oxipng/releases/download/v9.1.1/oxipng_9.1.1-1_amd64.deb
-                sudo dpkg -i /tmp/oxipng.deb
+      - name: Update apt packages
+        run: |
+          sudo apt update -y
+          sudo apt upgrade -y
+          sudo apt install wget -y
 
-            - name: Optimize images
-              run: oxipng -r -o 6 ./src ./static
+      - name: Install oxipng
+        run: |
+          wget -O /tmp/oxipng.deb https://github.com/shssoichiro/oxipng/releases/download/v9.1.1/oxipng_9.1.1-1_amd64.deb
+          sudo dpkg -i /tmp/oxipng.deb
 
-            - name: Get total size of all png files
-              id: png_get_new_size
-              run: echo "::set-output name=new_size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
+      - name: Optimize images
+        run: oxipng -r -o 6 ./src ./static
 
-            - name: Calculate size difference
-              id: png_calculate_diff
-              run: echo "::set-output name=size_diff::$((${{ steps.png_get_size.outputs.size }} - ${{ steps.png_get_new_size.outputs.new_size }}))"
+      - name: Get total size of all png files
+        id: png_get_new_size
+        run: echo "::set-output name=new_size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
 
-            - name: Create new branch and commit changes
-              run: |
-                git config --global user.name 'GitHub Actions'
-                git config --global user.email 'actions@github.com'
-                git checkout -b optimize-images
-                git add .
-                git commit -m "Optimize images"
-                git push origin optimize-images
+      - name: Calculate size difference
+        id: png_calculate_diff
+        run: echo "::set-output name=size_diff::$((${{ steps.png_get_size.outputs.size }} - ${{ steps.png_get_new_size.outputs.new_size }}))"
 
-            - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v3
-              with:
-                title: "Optimize images"
-                body: "This PR optimizes images, saving ${{ steps.png_calculate_diff.outputs.size_diff }} bytes of space by compressing PNG files."
-                branch: "optimize-images"
-                base: "dev"
+      - name: Create new branch and commit changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git checkout -b optimize-images
+          git add .
+          git commit -m "Optimize images"
+          git pull origin
+          git push origin optimize-images
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: "Optimize images"
+          body: "This PR optimizes images, saving ${{ steps.png_calculate_diff.outputs.size_diff }} bytes of space by compressing PNG files."
+          branch: "optimize-images"
+          base: "dev"
