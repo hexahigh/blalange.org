@@ -1,0 +1,55 @@
+name: Optimize images
+
+on:
+    workflow_dispatch:
+
+jobs:
+    optimize:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Get total size of all png files
+              id: get_size
+              run: echo "::set-output name=size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
+
+            - name: Setup apt repo
+              run: |
+                echo "deb [signed-by=/usr/share/keyrings/boofdev.apt.pub] https://apt.080609.xyz stable main" | sudo tee -a /etc/apt/sources.list.d/boofdev.list
+                sudo wget -q -O /usr/share/keyrings/boofdev.apt.pub https://apt.080609.xyz/pgp-key.public
+
+            - name: Update apt packages
+              run: |
+                sudo apt update -y
+                sudo apt upgrade -y
+            
+            - name: Install oxipng
+              run: sudo apt install oxipng -y
+
+            - name: Optimize images
+              run: oxipng -r -Z -o 6 ./src ./static
+
+            - name: Get total size of all png files
+              id: get_new_size
+              run: echo "::set-output name=new-size::$(find . -type f -name '*.png' -exec du -cb {} + | grep total$ | awk '{print $1}')"
+
+            - name: Calculate size difference
+              id: calculate_diff
+              run: echo "::set-output name=size_diff::$((${{ steps.get_size.outputs.size }} - ${{ steps.get_new_size.outputs.new-size }}))"
+
+            - name: Create new branch and commit changes
+              run: |
+                git config --global user.name 'GitHub Actions'
+                git config --global user.email 'actions@github.com'
+                git checkout -b optimize-images
+                git add .
+                git commit -m "Optimize images"
+                git push origin optimize-images
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v3
+              with:
+                title: "Optimize images"
+                body: "This PR optimizes images, saving ${{ steps.calculate_diff.outputs.size_diff }} bytes of space."
+                branch: "optimize-images"
