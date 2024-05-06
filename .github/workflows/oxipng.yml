@@ -48,7 +48,6 @@ jobs:
           git checkout -b optimize-images
           git add .
           git commit -m "Optimize images"
-          git pull origin
           git push origin optimize-images
 
       - name: Create Pull Request
