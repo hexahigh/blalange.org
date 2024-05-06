@@ -11,7 +11,7 @@
   import "$lib/css/fonts.css";
   import { onMount, onDestroy } from "svelte";
 
-  import { startAnalyticsMonitoring } from "$lib/js/analytics.js";
+  import { startAnalyticsMonitoring } from "$lib/js/analytics";
   import { initialize, checkForDevMode } from "$lib/js/dev.js";
   import { loadConfig, config } from "$lib/js/config.js";
   import { initEgg } from "$lib/js/egg.js";

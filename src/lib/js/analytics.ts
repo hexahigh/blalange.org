@@ -31,7 +31,7 @@ async function collect2() {
   const url = window.location.href;
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
-  const networkInfo = navigator.connection ? navigator.connection.type : 'unknown';
+  const networkInfo = 'unknown';
   const referrer = document.referrer;
 
   let username;

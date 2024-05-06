@@ -1,9 +1,6 @@
 {
+  "extends": "./.svelte-kit/tsconfig.json",
     "compilerOptions": {
-       "baseUrl": ".",
-       "paths": {
-         "$lib/*": ["src/lib/*"]
-       },
        "target": "es5",
        "lib": ["es5", "dom", "es2015"]
     }

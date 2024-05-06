@@ -9,6 +9,8 @@
   import { Tooltip } from "flowbite-svelte";
   import { ShieldCheckOutline, CheckOutline } from 'flowbite-svelte-icons';
 
+  import { verifyMessage, verifyName } from "$lib/js/chat";
+
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
     const options = {
@@ -111,6 +113,24 @@
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
+      let verifyResult;
+
+verifyResult = await verifyMessage(commentText);
+
+if (!verifyResult.valid) {
+  commentError = verifyResult.error;
+  return;
+}
+
+if (!isLoggedIn()) {
+  verifyResult = await verifyName(commentName);
+}
+
+if (!verifyResult.valid) {
+  commentError = verifyResult.error;
+  return;
+}
+
       let unix = Math.floor(Date.now() / 1000);
 
       // Make name lowercase, except the first letter

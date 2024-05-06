@@ -9,7 +9,8 @@
   import { Tooltip } from "flowbite-svelte";
   import { ShieldCheckOutline, CheckOutline } from "flowbite-svelte-icons";
 
-  import verifyMessage from "$lib/js/verify-message.ts";
+  import { toRedirect } from "$lib/js/redirect";
+  import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
@@ -43,6 +44,7 @@
   onMount(async () => {
     await initialFetch();
     await subscribe();
+    scrollToBottom();
   });
 
   function isLoggedIn() {
@@ -82,6 +84,7 @@
         let processed = await processMessage([e.record]);
         comments = [...comments, ...processed];
         sortComments();
+        scrollToBottom();
       },
       {
         /* other options like expand, custom headers, etc. */
@@ -114,9 +117,21 @@
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
+      let verifyResult;
 
-      if (await verifyMessage(commentText) === false) {
-        commentError = "Dette er ikke en gyldig melding";
+      verifyResult = await verifyMessage(commentText);
+
+      if (!verifyResult.valid) {
+        commentError = verifyResult.error;
+        return;
+      }
+
+      if (!isLoggedIn()) {
+        verifyResult = await verifyName(commentName);
+      }
+
+      if (!verifyResult.valid) {
+        commentError = verifyResult.error;
         return;
       }
 
@@ -148,6 +163,14 @@
       commentError = error.message;
     }
   }
+
+  function scrollToBottom() {
+    if (typeof window === "undefined") return; // Exit if not in a browser environment
+    const chatContainer = document.getElementById("chat-messages-container");
+    if (chatContainer) {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+  }
 </script>
 
 <div
@@ -156,7 +179,7 @@
   <div class="text-center">
     <h1 class="text-3xl font-bold mb-4 rimword">Episk chat</h1>
   </div>
-  <div class="chat-messages-container">
+  <div id="chat-messages-container" class="chat-messages-container">
     {#each comments as comment}
       <div class="mb-4 flex items-center">
         <img
@@ -196,7 +219,9 @@
         </p>
       </div>
       <div>
-        <p class="text-gray-800 dark:text-gray-300 mb-8">{comment.text}</p>
+        <p class="text-gray-800 dark:text-gray-300 mb-8">
+          {@html processMessageText(comment.text)}
+        </p>
       </div>
     {/each}
   </div>
@@ -223,9 +248,10 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .chat-messages-container {
     max-height: 60vh; /* Adjust this value as needed */
+    height: 60vh;
     overflow-y: auto;
     padding: 1rem; /* Optional: Add some padding inside the container */
   }
