@@ -54,5 +54,6 @@ jobs:
               uses: peter-evans/create-pull-request@v3
               with:
                 title: "Optimize images"
-                body: "This PR optimizes images, saving ${{ steps.png_calculate_diff.outputs.size_diff }} bytes of space."
+                body: "This PR optimizes images, saving ${{ steps.png_calculate_diff.outputs.size_diff }} bytes of space by compressing PNG files."
                 branch: "optimize-images"
+                base: "dev"
