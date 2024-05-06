@@ -22,7 +22,6 @@ jobs:
       - name: Update apt packages
         run: |
           sudo apt update -y
-          sudo apt upgrade -y
           sudo apt install wget -y
 
       - name: Install oxipng
