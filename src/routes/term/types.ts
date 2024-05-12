@@ -14,3 +14,12 @@ export type CommandType = {
 };
 
 export type CommandsType = CommandType[];
+
+export interface TextVideo {
+  format_version: number;
+  fps: number;
+  frames: {
+    text: string;
+    num: number;
+  }[];
+}
