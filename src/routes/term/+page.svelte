@@ -410,6 +410,14 @@
 
         let options = {};
 
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            speed: flags.args[0] || 1,
+          };
+        }
+
         await module.default(stdlib, options);
       },
     },
