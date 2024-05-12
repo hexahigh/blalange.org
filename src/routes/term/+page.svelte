@@ -1,4 +1,5 @@
 <!-- <script context="module">
+	import { options } from './../../../.svelte-kit/generated/server/internal.js';
 	import { MetaTags } from 'svelte-meta-tags';
 	import { asciiLogo } from './../../lib/js/config.js';
 	export const prerender = true
@@ -350,6 +351,24 @@
             spicyMode: flags.flags.spicy === "true",
           };
         }
+
+        await module.default(print, options);
+      },
+    },
+    {
+      name: "prime",
+      description: "Prints all primes up to a given number",
+      long_description: "Prints all primes up to a given number",
+      usage: "prime [number]",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/prime");
+
+        let options = {};
+
+        options = {
+          number: args[0],
+        };
 
         await module.default(print, options);
       },
