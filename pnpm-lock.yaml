@@ -80,6 +80,9 @@ dependencies:
   pocketbase:
     specifier: ^0.21.2
     version: 0.21.2
+  tone:
+    specifier: ^14.9.17
+    version: 14.9.17
   tsparticles:
     specifier: ^3.3.0
     version: 3.3.0
@@ -1326,6 +1329,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
+
+  /@babel/runtime@7.24.5:
+    resolution: {integrity: sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.1
+    dev: false
 
   /@babel/template@7.24.0:
     resolution: {integrity: sha512-Bkf2q8lMB0AFpX0NFEqSbx1OkTHf0f+0j82mkw+ZpzBnkk7e9Ql0891vlfgi+kHwOk8tQjiQHpqh4LaSa0fKEA==}
@@ -3402,6 +3412,14 @@ packages:
 
   /audiomotion-analyzer@4.4.0:
     resolution: {integrity: sha512-vba/mHQPF31NkLD+5K/0yRcmd33aaBqKx0T48dav/vc+2AQAizHCMFLxROTsVE27HsGdacwC9H1DsV3YazeKwA==}
+    dev: false
+
+  /automation-events@7.0.5:
+    resolution: {integrity: sha512-Ni6vhZg0mKmVlew1kxWAzWL7QY1LYDdoYgp6yF9OHeskDrjyJp2SqoKoPQYeiMYjeIlbSpnxXm/JI55VcmX5Wg==}
+    engines: {node: '>=18.2.0'}
+    dependencies:
+      '@babel/runtime': 7.24.5
+      tslib: 2.6.2
     dev: false
 
   /autoprefixer@10.4.19(postcss@8.4.38):
@@ -5594,6 +5612,14 @@ packages:
       get-source: 2.0.12
     dev: false
 
+  /standardized-audio-context@25.3.72:
+    resolution: {integrity: sha512-Dvwu2NuqafQqWxUWoo6G9ze/cvVNlFDpmIOA8XjuItrfR0h/REjgjoYCT3Y7nbkUJKGoz8SqqVzR7JATQV4XeQ==}
+    dependencies:
+      '@babel/runtime': 7.24.5
+      automation-events: 7.0.5
+      tslib: 2.6.2
+    dev: false
+
   /stoppable@1.1.0:
     resolution: {integrity: sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw==}
     engines: {node: '>=4', npm: '>=6'}
@@ -5978,6 +6004,13 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: 7.0.0
+
+  /tone@14.9.17:
+    resolution: {integrity: sha512-+Qb7M4NMua+tb5Z52+MEVmjye0fjJuIFBePx423pqr9E6/lHDqZAG+fUAvo+Ujm48q0s9bVLRAyT1ETJJglNtg==}
+    dependencies:
+      standardized-audio-context: 25.3.72
+      tslib: 2.6.2
+    dev: false
 
   /totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}

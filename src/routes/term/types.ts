@@ -1,6 +1,7 @@
 export type StdlibType = {
   print: (...args: any[]) => void;
   lineData: string[];
+  setLineData: (array: any[]) => void;
 };
 
 export type CommandType = {

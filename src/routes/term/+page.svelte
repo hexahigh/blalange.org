@@ -152,6 +152,9 @@
   let stdlib: StdlibType = {
     print: print,
     lineData: lineData,
+    setLineData: (array: any[]) => {
+      lineData = array;
+    }
   }
 
   let commands: CommandsType = [
@@ -392,6 +395,20 @@
         options = {
           number: args[0],
         };
+
+        await module.default(stdlib, options);
+      },
+    },
+    {
+      name: "bad-apple",
+      description: "",
+      long_description: "",
+      usage: "bad-apple",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/apple");
+
+        let options = {};
 
         await module.default(stdlib, options);
       },
