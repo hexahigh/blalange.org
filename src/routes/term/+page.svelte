@@ -4,9 +4,10 @@
 	import { asciiLogo } from './../../lib/js/config.js';
 	export const prerender = true
 </script> -->
-<script>
-  /** @type {import('./$types').PageData} */
+<script lang="ts">
   export let data;
+
+  import type { StdlibType, CommandType, CommandsType } from './types.ts';
 
   import { onMount } from "svelte";
   import { page } from "$app/stores";
@@ -14,7 +15,6 @@
   import Fuse from "fuse.js";
   import axios from "axios";
 
-  import { keypress } from "./actions.js";
   import { playSound } from "./functions.js";
   import { lore } from "./lore.js";
   import { dateTime, history } from "./stores.js";
@@ -78,10 +78,24 @@
     }
   }
 
+  function handleKeypress(e) {
+    switch (e.key) {
+      case "ArrowUp":
+        arrowUp();
+        break;
+      case "ArrowDown":
+        arrowDown();
+        break;
+      case "Enter":
+        enter();
+        break;
+    }
+  }
+
   function print(...args) {
     // Concatenate all arguments into a single string with newlines
     lineData = [...lineData, { output: args.join("\n"), type: "output" }];
-    scroll();
+    scroll(0);
 
     // We call scroll again to ensure that the new lines are visible
     scroll(100);
@@ -118,9 +132,12 @@
     }
   };
 
-  function createHiddenCommand(name, description) {
+  function createHiddenCommand(name: string, description: string) {
     return {
       name: name,
+      description: description,
+      long_description: description,
+      usage: name,
       hidden: true,
       execute: () => {
         return print(description);
@@ -132,7 +149,12 @@
     createHiddenCommand(item.name, item.text)
   );
 
-  let commands = [
+  let stdlib: StdlibType = {
+    print: print,
+    lineData: lineData,
+  }
+
+  let commands: CommandsType = [
     ...hiddenCommands,
     {
       name: "ping",
@@ -314,6 +336,7 @@
     {
       name: "httping",
       description: "ping a website",
+      long_description: "ping a website",
       usage: "httping [url]",
       hidden: false,
       execute: async (args) => {
@@ -370,7 +393,7 @@
           number: args[0],
         };
 
-        await module.default(print, options);
+        await module.default(stdlib, options);
       },
     },
   ];
@@ -437,10 +460,7 @@
         type="text"
         spellcheck="false"
         bind:this={termInput}
-        use:keypress
-        on:enterkey={enter}
-        on:arrowup|preventDefault={arrowUp}
-        on:arrowdown|preventDefault={arrowDown}
+        on:keydown={handleKeypress}
       />
     </div>
   {/if}

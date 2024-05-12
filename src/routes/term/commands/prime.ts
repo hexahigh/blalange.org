@@ -1,3 +1,5 @@
+import type { StdlibType } from "../types";
+
 const defaultOptions = {
     number: 100,
 };
@@ -13,7 +15,7 @@ async function isPrime(n: number): Promise<boolean> {
     return true;
 }
 
-async function printPrimesUpToN(print: any, N: number): Promise<void> {
+async function printPrimesUpToN(print: StdlibType["print"], N: number): Promise<void> {
     for (let i = 2; i <= N; i++) {
         if (await isPrime(i)) {
             print(i);
@@ -23,8 +25,9 @@ async function printPrimesUpToN(print: any, N: number): Promise<void> {
     }
 }
 
-export default function main(print: any, inOptions = {}) {
+export default function main(stdlib: StdlibType, inOptions = {}) {
+    let lib = stdlib;
     const options = { ...defaultOptions, ...inOptions };
 
-    printPrimesUpToN(print, options.number);
+    printPrimesUpToN(lib.print, options.number);
 }
