@@ -2,33 +2,22 @@
   let clazz;
   export let src;
   export let alt;
-  export let width;
-  export let height;
   export { clazz as class };
 
-  let imgServer = "https://img.blalange.org";
+  // If the src is an absolute URL or a relative URL turn it into an absolute URL
+  if (!src.startsWith("http")) {
+    if (typeof window !== "undefined") {
+      src = window.location.origin + src;
+    }
+  }
 
-  // Calculate image sizes to use
-  let sizes = {
-    small: {
-        w: width / 4,
-        h: height / 4,
-    },
-    medium: {
-        w: width / 2,
-        h: height / 2,
-    },
-    large: {
-        w: width,
-        h: height,
-    },
-  };
+  export let imgServer = "https://img.blalange.org";
 </script>
 
 <picture>
   <source
     media="(max-width: 999px)"
-    srcset="{imgServer}/img?u={src}&f=webp&w={sizes.medium.w}&h={sizes.medium.h}"
+    srcset="{imgServer}/img?u={src}&f=webp&w=0.5&h=0.5"
     type="image/webp"
   />
   <source
@@ -41,5 +30,5 @@
     srcset="{imgServer}/img?u={src}&f=png"
     type="image/png"
   />
-  <img class={clazz} {src} {alt} {width} {height} />
+  <img class={clazz} {src} {alt} />
 </picture>
