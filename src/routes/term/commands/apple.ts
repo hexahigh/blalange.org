@@ -7,7 +7,7 @@ import song from "./data/apple.mp3?url";
 const frames = importedFrames as { text: string }[];
 
 const defaultOptions = {
-  speed: 0,
+  speed: 1,
 };
 
 export default function main(stdlib: StdlibType, inOptions = {}) {
@@ -17,13 +17,17 @@ export default function main(stdlib: StdlibType, inOptions = {}) {
   const player = new Tone.Player(song).toDestination();
 
   Tone.loaded().then(() => {
+    if (options.speed) {
+      player.playbackRate = options.speed;
+    }
     player.start();
   });
 
   // Calculate the delay between frames
-  let delay = 33.33;
-  console.log(`Speed set to ${delay} milliseconds`);
-  options.speed = delay; // Update options.speed with calculated delay
+  let defaultDelay = 33.33;
+  let delay = defaultDelay;
+
+  delay = defaultDelay / options.speed;
 
   // Print one frame every options.speed milliseconds
   let i = 0;
@@ -36,5 +40,5 @@ export default function main(stdlib: StdlibType, inOptions = {}) {
       stdlib.print(frames[i].text);
       i++;
     }
-  }, options.speed);
+  }, delay);
 }
