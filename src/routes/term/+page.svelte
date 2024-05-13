@@ -421,6 +421,28 @@
         await module.default(stdlib, options);
       },
     },
+    {
+      name: "go",
+      description: "",
+      long_description: "",
+      usage: "go",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/go-video");
+
+        let options = {};
+
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            speed: flags.args[0] || 1,
+          };
+        }
+
+        await module.default(stdlib, options);
+      },
+    },
   ];
 
   if (data.commandToRun) {
