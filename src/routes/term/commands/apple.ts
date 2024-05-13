@@ -2,7 +2,7 @@ import type { StdlibType, TextVideo } from "../types";
 import { play } from "../video";
 
 
-import json from "./data/apple.json?url";
+import json from "./data/apple.json.gz?url";
 import song from "./data/apple.mp3?url";
 
 const defaultOptions = {

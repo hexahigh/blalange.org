@@ -2,7 +2,7 @@ import type { StdlibType, TextVideo } from "../types";
 import { play } from "../video";
 
 
-import json from "./data/go.json?url";
+import json from "./data/go.json.gz?url";
 import song from "./data/go.mp3?url";
 
 const defaultOptions = {
