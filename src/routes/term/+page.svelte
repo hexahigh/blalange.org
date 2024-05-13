@@ -7,7 +7,7 @@
 <script lang="ts">
   export let data;
 
-  import type { StdlibType, CommandType, CommandsType } from './types.ts';
+  import type { StdlibType, CommandType, CommandsType } from "./types.ts";
 
   import { onMount } from "svelte";
   import { page } from "$app/stores";
@@ -154,8 +154,8 @@
     lineData: lineData,
     setLineData: (array: any[]) => {
       lineData = array;
-    }
-  }
+    },
+  };
 
   let commands: CommandsType = [
     ...hiddenCommands,
@@ -468,12 +468,10 @@
         <p class="prompt">{user}@{machine}:$&nbsp;</p>
         <pre class="input-old">{line.command}</pre>
         <br />
-      {:else if typeof line.output === "string"}
+      {:else if line.type === "output"}
         <pre class="output whitespace-pre-wrap">{line.output}</pre>
-      {:else}
-        {#each line.output as out}
-          {@html out}
-        {/each}
+      {:else if line.type === "outputHtml"}
+        {@html line.output}
       {/if}
     </span>
   {/each}
