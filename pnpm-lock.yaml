@@ -51,8 +51,8 @@ dependencies:
     specifier: ^5.5.0
     version: 5.5.0
   audiomotion-analyzer:
-    specifier: ^4.4.0
-    version: 4.4.0
+    specifier: ^4.5.0
+    version: 4.5.0
   axios:
     specifier: ^1.6.8
     version: 1.6.8
@@ -1335,7 +1335,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: false
 
   /@babel/template@7.24.0:
     resolution: {integrity: sha512-Bkf2q8lMB0AFpX0NFEqSbx1OkTHf0f+0j82mkw+ZpzBnkk7e9Ql0891vlfgi+kHwOk8tQjiQHpqh4LaSa0fKEA==}
@@ -3410,8 +3409,8 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /audiomotion-analyzer@4.4.0:
-    resolution: {integrity: sha512-vba/mHQPF31NkLD+5K/0yRcmd33aaBqKx0T48dav/vc+2AQAizHCMFLxROTsVE27HsGdacwC9H1DsV3YazeKwA==}
+  /audiomotion-analyzer@4.5.0:
+    resolution: {integrity: sha512-qnmB8TSbrxYkTbFgsQeeym0Z/suQx4c0jFg9Yh5+gaPw6J4AFLdfFpagdnDbtNEsj6K7BntgsC3bkdut5rxozg==}
     dev: false
 
   /automation-events@7.0.5:
@@ -5265,7 +5264,7 @@ packages:
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
     dependencies:
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.5
     dev: true
 
   /regexp.prototype.flags@1.5.2:
@@ -6333,7 +6332,7 @@ packages:
       '@apideck/better-ajv-errors': 0.3.6(ajv@8.12.0)
       '@babel/core': 7.24.4
       '@babel/preset-env': 7.24.4(@babel/core@7.24.4)
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.5
       '@rollup/plugin-babel': 5.3.1(@babel/core@7.24.4)(rollup@2.79.1)
       '@rollup/plugin-node-resolve': 15.2.3(rollup@2.79.1)
       '@rollup/plugin-replace': 2.4.2(rollup@2.79.1)
