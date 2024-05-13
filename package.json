@@ -64,6 +64,6 @@
 		"lorem-ipsum": "^2.0.8",
 		"pocketbase": "^0.21.2",
 		"tone": "^14.9.17",
-		"tsparticles": "^3.3.0"
+		"tsparticles": "^3.4.0"
 	}
 }
