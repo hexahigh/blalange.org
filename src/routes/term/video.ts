@@ -22,7 +22,7 @@ export async function play(
 
   // Download video json
   await axios.get(jsonUrl).then((response) => {
-      video = decompress(response.data)
+      video = response.data
     }
   );
 
@@ -64,14 +64,4 @@ export async function play(
       }
     }, delay);
   });
-}
-
-function decompress(data: Uint8Array): TextVideo {
-  try {
-    return JSON.parse(pako.ungzip(data).toString()) as TextVideo;
-  } catch (e) {
-    console.error(e);
-    // Assume data is already decompressed
-    return JSON.parse(data.toString()) as TextVideo;
-  }
 }
