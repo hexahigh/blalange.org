@@ -70,6 +70,7 @@ function decompress(data: Uint8Array): TextVideo {
   try {
     return JSON.parse(pako.ungzip(data).toString()) as TextVideo;
   } catch (e) {
+    console.error(e);
     // Assume data is already decompressed
     return JSON.parse(data.toString()) as TextVideo;
   }
