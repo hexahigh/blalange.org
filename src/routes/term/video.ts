@@ -22,13 +22,9 @@ export async function play(
 
   // Download video json
   await axios.get(jsonUrl).then((response) => {
-    if (shouldBeDecompressed(response)) {
-      stdlib.print("Browser did not decompress json, decompressing manually...");
-      video = JSON.parse(pako.ungzip(response.data).toString()) as TextVideo;
-    } else {
-      video = response.data as TextVideo;
+      video = decompress(response.data)
     }
-  });
+  );
 
   if (video.format_version !== 2) {
     stdlib.print(
@@ -70,11 +66,12 @@ export async function play(
   });
 }
 
-function shouldBeDecompressed(response: AxiosResponse): boolean {
-
-  if (response.headers["content-encoding"] === "gzip") {
-    return false
+function decompress(data: Uint8Array): TextVideo {
+  try {
+    return JSON.parse(pako.ungzip(data).toString()) as TextVideo;
+  } catch (e) {
+    console.error(e);
+    // Assume data is already decompressed
+    return JSON.parse(data.toString()) as TextVideo;
   }
-
-  return true
 }
