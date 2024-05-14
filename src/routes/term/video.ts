@@ -1,6 +1,7 @@
 import type { StdlibType, TextVideo } from "./types";
 import * as Tone from "tone";
 import axios from "axios";
+import * as pako from 'pako';
 
 export async function play(
   stdlib: StdlibType,
@@ -21,7 +22,12 @@ export async function play(
 
   // Download video json
   await axios.get(jsonUrl).then((response) => {
-    video = response.data as TextVideo;
+    if (isGzipped(response.data)) {
+      stdlib.print("Browser did not decompress json, decompressing manually...");
+      video = JSON.parse(pako.ungzip(response.data).toString()) as TextVideo;
+    } else {
+      video = response.data as TextVideo;
+    }
   });
 
   if (video.format_version !== 2) {
@@ -62,4 +68,16 @@ export async function play(
       }
     }, delay);
   });
+}
+
+function isGzipped(data: Uint8Array): boolean {
+  // Gzip header: 1f 8b
+  if (data.length >= 2 && data[0] === 0x1f && data[1] === 0x8b) {
+    return true;
+  }
+  return false;
+}
+
+function decompressGzip(data: Uint8Array): Uint8Array {
+  return pako.ungzip(data)
 }
