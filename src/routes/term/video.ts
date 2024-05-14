@@ -24,7 +24,9 @@ export async function play(
   await axios.get(jsonUrl).then((response) => {
     if (shouldBeDecompressed(response)) {
       stdlib.print("Browser did not decompress json, decompressing manually...");
-      video = JSON.parse(pako.inflate(new Uint8Array(response.data), { to: "string" })) as TextVideo;
+      let decompressed = pako.inflate(new Uint8Array(response.data), { to: "string" })
+      console.log(decompressed)
+      video = JSON.parse(decompressed) as TextVideo;
     } else {
       video = response.data as TextVideo;
     }
