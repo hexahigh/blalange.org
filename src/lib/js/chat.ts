@@ -17,20 +17,15 @@ export async function verifyMessage(message: string): Promise<{ valid: boolean; 
     const whitespaceCount = matches ? matches.length : 0;
     const totalLength = message.length;
     if (whitespaceCount / totalLength > 0.5) {
-        return { valid: false, error: "Your message contains over 50% whitespace or tabs." };
+        return { valid: false, error: "Message cannot contain over 50% whitespace or tabs." };
     }
 
-    if (message.length > 1024) {
-        return { valid: false, error: "Message cannot be longer than 1024 characters." };
+    if (message.length > 2048) {
+        return { valid: false, error: "Message cannot be longer than 2048 characters." };
     }
 
     if (message.length < 2) {
         return { valid: false, error: "Message cannot be shorter than 2 characters." };
-    }
-
-    // Check if the message contains only one letter, number or word
-    if (/^[a-zA-Z0-9]+$/.test(message) && message.split(" ").length === 1) {
-        return { valid: false, error: "Message cannot contain only one letter, number or word." };
     }
 
     return { valid: true };
