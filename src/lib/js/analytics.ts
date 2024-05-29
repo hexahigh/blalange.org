@@ -3,20 +3,17 @@ import { getSessionId } from "./session";
 import { config } from "./config";
 
 let pb = new PocketBase("https://db.080609.xyz");
-let enabled
+let enabled;
 
-config.subscribe(value => {
-    pb = new PocketBase(value.dbEndpoint);
-    enabled = value.analyticsEnabled
+config.subscribe((value) => {
+  pb = new PocketBase(value.dbEndpoint);
+  enabled = value.analyticsEnabled;
 });
 
-let lastValues = {
-  userAgent: typeof window !== "undefined" ? "" : "",
-  language: typeof window !== "undefined" ? "" : "",
-  url: typeof window !== "undefined" ? "" : "",
-};
+let lastUrl = typeof window !== "undefined" ? "" : "";
 
 let ip = "";
+let dnt;
 
 export { startAnalyticsMonitoring };
 
@@ -25,27 +22,28 @@ async function collect2() {
 
   if (!enabled) return; // Exit if analytics are disabled
 
+  if (dnt == undefined) {
+    dnt = navigator.doNotTrack === "1";
+  }
+
   const userAgent = navigator.userAgent;
   const language = navigator.language;
   const unix = new Date().getTime();
   const url = window.location.href;
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
-  const networkInfo = 'unknown';
+  const networkInfo = "unknown"; //! Deprecated, kept because the database has not been updated
   const referrer = document.referrer;
-
-  let username;
 
   if (ip == "") {
     ip = await fetch("https://blalange.org/api/ip").then((res) => res.text());
   }
 
-  if (
-    userAgent !== lastValues.userAgent ||
-    language !== lastValues.language ||
-    url !== lastValues.url
-  ) {
-    lastValues = { userAgent, language, url };
+  // Only run if the url has changed
+  if (lastUrl !== url) {
+    lastUrl = url;
+
+    let username;
 
     if (pb.authStore.isValid) {
       username = pb.authStore.model.username;
@@ -79,7 +77,6 @@ function startAnalyticsMonitoring() {
 
   observer.observe(document, { childList: true, subtree: true });
 
-  // Set up interval to check for changes in navigator.userAgent and navigator.language
   setInterval(async () => {
     await collect2();
   }, 1000); // Check every second
