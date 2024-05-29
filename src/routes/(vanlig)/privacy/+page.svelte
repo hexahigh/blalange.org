@@ -1,6 +1,6 @@
 <script>
   import { MetaTags } from "svelte-meta-tags";
-  let editTime = "Wed, 29 May 2024 14:07:52 +0200";
+  let editTime = "Wed, 29 May 2024 14:23:52 +0200";
 </script>
 
 <MetaTags
@@ -24,7 +24,7 @@
 />
 
 <div class="text-center">
-  <h1 class="text-3xl">Blålange Festivalen Privacy Policy</h1>
+  <h1 class="text-3xl">Blålange Festivalen's Personvernerklæring (Privacy Policy)</h1>
   <p>Sist endret {editTime}</p>
 
   <h2 class="text-2xl mt-8">Hva vi gjør</h2>

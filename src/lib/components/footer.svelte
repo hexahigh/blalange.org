@@ -9,7 +9,7 @@
             <div class="flex justify-center mb-4">
                 <a href="https://github.com/hexahigh/blalange.org" class="hover:underline">Kildekode</a>
                 <a href="mailto:webmaster@blalange.org" class="hover:underline ml-4">Epost</a>
-                <a href="/privacy" class="hover:underline ml-4">Personvern</a>
+                <a href="/privacy" class="hover:underline ml-4">Personvernerklæring</a>
             </div>
             <p>Versjon {getLatestVersion().id}.{commitHash} - {getLatestVersion().name}</p>
             <p>{new Date().getFullYear()} © Blålange Festivalen. All rights reserved.</p>
