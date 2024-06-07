@@ -7,7 +7,7 @@
   import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
-  import { ShieldCheckOutline, CheckOutline } from "flowbite-svelte-icons";
+  import Metatags from "$lib/components/metatags.svelte";
 
   import { toRedirect } from "$lib/js/redirect";
   import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
@@ -190,6 +190,12 @@
     }
   }
 </script>
+
+<Metatags
+  title="Episk chat"
+  description="Episk chat for kule Blålanger"
+  url="/chat"
+/>
 
 <div
   class="mx-auto max-w-6xl m-4 p-4 rounded-lg dark:bg-gray-800 dark:text-white"
