@@ -3,7 +3,7 @@
   import { config } from "$lib/js/config.js";
   import PocketBase from "pocketbase";
   import { get } from "svelte/store";
-  import { createAvatar } from "@dicebear/core";
+  import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
   import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
@@ -41,6 +41,7 @@
   let pb = new PocketBase(get(config).dbEndpoint);
 
   let userCache = [];
+  let avatarCache = []
 
   // Fetch comments when the component mounts and whenever the `id` prop changes
   onMount(async () => {
@@ -199,6 +200,14 @@
       await scrollToBottom(true);
     }
   }
+
+  function genAvatar(type: any, seed: string): DicebearResult {
+    if (avatarCache[seed]) {
+      return avatarCache[seed];
+    } else {
+      return avatarCache[seed] = createAvatar(type, { seed: seed })
+    }
+  }
 </script>
 
 <Metatags
@@ -218,7 +227,7 @@
       <div class="mb-4 flex items-center">
         <img
           class="w-12 h-12 rounded-full mr-3"
-          src={createAvatar(thumbs, { seed: comment.name }).toDataUriSync()}
+          src={genAvatar(thumbs, comment.name).toDataUriSync()}
           alt={comment.name}
         />
         <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
