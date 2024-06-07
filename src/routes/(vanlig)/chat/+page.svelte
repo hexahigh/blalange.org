@@ -40,6 +40,8 @@
 
   let pb = new PocketBase(get(config).dbEndpoint);
 
+  let userCache = [];
+
   // Fetch comments when the component mounts and whenever the `id` prop changes
   onMount(async () => {
     await initialFetch();
@@ -102,11 +104,19 @@
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].uid) {
-        const record = await pb.collection("users").getOne(messages[i].uid);
+        let record: any
+        // Check if it is in the cache
+        if (userCache[messages[i].uid]) {
+          record = userCache[messages[i].uid];
+        } else {
+          record = await pb.collection("users").getOne(messages[i].uid);
+        }
         messages[i].isAdmin = record.isAdmin;
         messages[i].name = record.username;
         messages[i].verified = true;
         messages[i].extraBadges = record.extra.extraBadges;
+
+        userCache[messages[i].uid] = record;
       }
     }
 
