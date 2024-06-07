@@ -1,5 +1,5 @@
-<script>
-  import { onMount, onDestroy } from "svelte";
+<script lang="ts">
+  import { onMount, onDestroy, tick } from "svelte";
   import { config } from "$lib/js/config.js";
   import PocketBase from "pocketbase";
   import { get } from "svelte/store";
@@ -14,14 +14,14 @@
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
-    const options = {
+    const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "long",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
     };
-    return date.toLocaleDateString(date.getTimezoneOffset() / 60, options);
+    return date.toLocaleDateString(undefined, options);
   }
 
   let commentError = null;
@@ -164,11 +164,29 @@
     }
   }
 
-  function scrollToBottom() {
+  //TODO: This function seems overly complex and looks messy. It should be refactored.
+  async function scrollToBottom(itself: boolean = false) {
     if (typeof window === "undefined") return; // Exit if not in a browser environment
     const chatContainer = document.getElementById("chat-messages-container");
+
+    const treshold = 500;
+
+    const scrollTopMax =
+      chatContainer.scrollHeight - chatContainer.clientHeight;
+
     if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      // If the difference between the scroll position and the max scroll position is less than the treshold, scroll to the bottom
+      if (scrollTopMax - chatContainer.scrollTop < treshold) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+    }
+
+    // exit if called from itself
+    if (itself) {
+      return;
+    } else {
+      await tick();
+      await scrollToBottom(true);
     }
   }
 </script>
