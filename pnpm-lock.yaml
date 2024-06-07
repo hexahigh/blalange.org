@@ -51,8 +51,8 @@ dependencies:
     specifier: ^5.5.0
     version: 5.5.0
   audiomotion-analyzer:
-    specifier: ^4.4.0
-    version: 4.4.0
+    specifier: ^4.5.0
+    version: 4.5.0
   axios:
     specifier: ^1.6.8
     version: 1.6.8
@@ -3538,8 +3538,8 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /audiomotion-analyzer@4.4.0:
-    resolution: {integrity: sha512-vba/mHQPF31NkLD+5K/0yRcmd33aaBqKx0T48dav/vc+2AQAizHCMFLxROTsVE27HsGdacwC9H1DsV3YazeKwA==}
+  /audiomotion-analyzer@4.5.0:
+    resolution: {integrity: sha512-qnmB8TSbrxYkTbFgsQeeym0Z/suQx4c0jFg9Yh5+gaPw6J4AFLdfFpagdnDbtNEsj6K7BntgsC3bkdut5rxozg==}
     dev: false
 
   /automation-events@7.0.5:
