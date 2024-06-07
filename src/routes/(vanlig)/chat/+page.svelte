@@ -1,5 +1,5 @@
-<script>
-  import { onMount, onDestroy } from "svelte";
+<script lang="ts">
+  import { onMount, onDestroy, tick } from "svelte";
   import { config } from "$lib/js/config.js";
   import PocketBase from "pocketbase";
   import { get } from "svelte/store";
@@ -7,21 +7,21 @@
   import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
-  import { ShieldCheckOutline, CheckOutline } from "flowbite-svelte-icons";
+  import Metatags from "$lib/components/metatags.svelte";
 
   import { toRedirect } from "$lib/js/redirect";
   import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
-    const options = {
+    const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "long",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
     };
-    return date.toLocaleDateString(date.getTimezoneOffset() / 60, options);
+    return date.toLocaleDateString(undefined, options);
   }
 
   let commentError = null;
@@ -164,14 +164,38 @@
     }
   }
 
-  function scrollToBottom() {
+  //TODO: This function seems overly complex and looks messy. It should be refactored.
+  async function scrollToBottom(itself: boolean = false) {
     if (typeof window === "undefined") return; // Exit if not in a browser environment
     const chatContainer = document.getElementById("chat-messages-container");
+
+    const treshold = 500;
+
+    const scrollTopMax =
+      chatContainer.scrollHeight - chatContainer.clientHeight;
+
     if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      // If the difference between the scroll position and the max scroll position is less than the treshold, scroll to the bottom
+      if (scrollTopMax - chatContainer.scrollTop < treshold) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+    }
+
+    // exit if called from itself
+    if (itself) {
+      return;
+    } else {
+      await tick();
+      await scrollToBottom(true);
     }
   }
 </script>
+
+<Metatags
+  title="Episk chat"
+  description="Episk chat for kule Blålanger"
+  url="/chat"
+/>
 
 <div
   class="mx-auto max-w-6xl m-4 p-4 rounded-lg dark:bg-gray-800 dark:text-white"
