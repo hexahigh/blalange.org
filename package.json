@@ -12,6 +12,7 @@
 	},
 	"devDependencies": {
 		"@catppuccin/tailwindcss": "^0.1.6",
+		"@iconify/svelte": "^4.0.2",
 		"@sveltejs/adapter-auto": "^3.2.0",
 		"@sveltejs/enhanced-img": "^0.2.0",
 		"@sveltejs/kit": "^2.5.10",

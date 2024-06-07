@@ -8,6 +8,7 @@
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
+  import Icon from "@iconify/svelte";
 
   import { toRedirect } from "$lib/js/redirect";
   import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
@@ -41,7 +42,7 @@
   let pb = new PocketBase(get(config).dbEndpoint);
 
   let userCache = [];
-  let avatarCache = []
+  let avatarCache = [];
 
   // Fetch comments when the component mounts and whenever the `id` prop changes
   onMount(async () => {
@@ -105,7 +106,7 @@
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].uid) {
-        let record: any
+        let record: any;
         // Check if it is in the cache
         if (userCache[messages[i].uid]) {
           record = userCache[messages[i].uid];
@@ -205,7 +206,7 @@
     if (avatarCache[seed]) {
       return avatarCache[seed];
     } else {
-      return avatarCache[seed] = createAvatar(type, { seed: seed })
+      return (avatarCache[seed] = createAvatar(type, { seed: seed }));
     }
   }
 </script>
@@ -233,27 +234,34 @@
         <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
           {comment.name}
           {#if comment.verified}
-            <span class="text-green-500 symbols">&#xf42e</span>
-            <!-- <CheckOutline class="inline-block text-green-500" size="lg" /> -->
+            <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
+            <Icon class="inline text-green-500" icon="lucide:check" />
             <Tooltip class="text-black dark:text-white bg-gray-300"
               >The user was logged in</Tooltip
             >
           {/if}
           {#if comment.isAdmin}
-            <span class="text-blue-500 symbols">&#xf510</span>
-            <!-- <ShieldCheckOutline class="inline-block text-blue-500 object-contain" size="lg" /> -->
+            <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
+            <Icon class="inline text-blue-500" icon="lucide:shield-check" />
             <Tooltip class="text-black dark:text-white bg-gray-300"
               >The user is an admin</Tooltip
             >
           {/if}
           {#if comment.extraBadges}
             {#each comment.extraBadges as badge}
-              <span style={"color: " + badge.color} class="symbols"
-                >{badge.badge}</span
-              >
-              <Tooltip class="text-black dark:text-white bg-gray-300"
-                >{badge.hover_text}</Tooltip
-              >
+              {#if badge.v2}
+                <Icon style={"color: " + badge.color} class="inline" icon={badge.badge} />
+                <Tooltip class="text-black dark:text-white bg-gray-300"
+                  >{badge.hover_text}</Tooltip
+                >
+              {:else}
+                <span style={"color: " + badge.color} class="symbols"
+                  >{badge.badge}</span
+                >
+                <Tooltip class="text-black dark:text-white bg-gray-300"
+                  >{badge.hover_text}</Tooltip
+                >
+              {/if}
             {/each}
           {/if}
         </p>
