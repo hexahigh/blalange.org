@@ -1,3 +1,12 @@
+<!--
+@component metatags
+@description This is a wrapper component for svelte-meta-tags.
+@prop {string} title - The title of the page.
+@prop {string} description - The description of the page.
+@prop {string} url - The URL of the page.
+@prop {OpenGraphImage[]} images - The images to use for the page. If unset the logo will be used.
+-->
+
 <script lang="ts">
   import { MetaTags } from "svelte-meta-tags";
   import logo from "$lib/img/favicon.svg?url";
