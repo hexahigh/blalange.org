@@ -7,7 +7,8 @@
   import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "../js/session.js";
   import { Tooltip } from "flowbite-svelte";
-  import { ShieldCheckOutline, CheckOutline } from 'flowbite-svelte-icons';
+  import { ShieldCheckOutline, CheckOutline } from "flowbite-svelte-icons";
+  import Icon from "@iconify/svelte";
 
   import { verifyMessage, verifyName } from "$lib/js/chat";
 
@@ -37,7 +38,7 @@
   // Options
   let options = {
     pageSize: 25,
-  }
+  };
 
   let pb = new PocketBase(get(config).dbEndpoint);
 
@@ -76,17 +77,19 @@
           filter: `post_id = "${id}"`,
         });
       } else {
-        result = await pb.collection("bla_comments").getList(page, options.pageSize, {
-          filter: `post_id = "${id}"`,
-        });
+        result = await pb
+          .collection("bla_comments")
+          .getList(page, options.pageSize, {
+            filter: `post_id = "${id}"`,
+          });
       }
 
-      let resultsToProcess
+      let resultsToProcess;
 
       if (all === true) {
-        resultsToProcess = result
+        resultsToProcess = result;
       } else {
-        resultsToProcess = result.items
+        resultsToProcess = result.items;
       }
 
       // Go through each comment and if they are logged in, check if they are verified
@@ -115,21 +118,21 @@
     try {
       let verifyResult;
 
-verifyResult = await verifyMessage(commentText);
+      verifyResult = await verifyMessage(commentText);
 
-if (!verifyResult.valid) {
-  commentError = verifyResult.error;
-  return;
-}
+      if (!verifyResult.valid) {
+        commentError = verifyResult.error;
+        return;
+      }
 
-if (!isLoggedIn()) {
-  verifyResult = await verifyName(commentName);
-}
+      if (!isLoggedIn()) {
+        verifyResult = await verifyName(commentName);
+      }
 
-if (!verifyResult.valid) {
-  commentError = verifyResult.error;
-  return;
-}
+      if (!verifyResult.valid) {
+        commentError = verifyResult.error;
+        return;
+      }
 
       let unix = Math.floor(Date.now() / 1000);
 
@@ -207,19 +210,38 @@ if (!verifyResult.valid) {
       <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
         {comment.name}
         {#if comment.verified}
-          <span class="text-green-500 symbols">&#xf42e</span>
-          <!-- <CheckOutline class="inline-block text-green-500" size="lg" /> -->
-          <Tooltip>The user was logged in</Tooltip>
+          <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
+          <Icon class="inline text-green-500" icon="lucide:check" />
+          <Tooltip class="text-black dark:text-white bg-gray-300"
+            >The user was logged in</Tooltip
+          >
         {/if}
         {#if comment.isAdmin}
-          <span class="text-blue-500 symbols">&#xf510</span>
-          <!-- <ShieldCheckOutline class="inline-block text-blue-500 object-contain" size="lg" /> -->
-          <Tooltip>The user is an admin</Tooltip>
+          <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
+          <Icon class="inline text-blue-500" icon="lucide:shield-check" />
+          <Tooltip class="text-black dark:text-white bg-gray-300"
+            >The user is an admin</Tooltip
+          >
         {/if}
         {#if comment.extraBadges}
           {#each comment.extraBadges as badge}
-            <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
-            <Tooltip>{badge.hover_text}</Tooltip>
+            {#if badge.v2}
+              <Icon
+                style={"color: " + badge.color}
+                class="inline"
+                icon={badge.badge}
+              />
+              <Tooltip class="text-black dark:text-white bg-gray-300"
+                >{badge.hover_text}</Tooltip
+              >
+            {:else}
+              <span style={"color: " + badge.color} class="symbols"
+                >{badge.badge}</span
+              >
+              <Tooltip class="text-black dark:text-white bg-gray-300"
+                >{badge.hover_text}</Tooltip
+              >
+            {/if}
           {/each}
         {/if}
       </p>
