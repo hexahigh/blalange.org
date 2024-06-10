@@ -35,7 +35,7 @@
 
   onMount(() => {
     addAPIProvider("", {
-      resources: ["/api/icon"],
+      resources: ["https://api.iconify.design", "/api/icon"],
     });
     initialize(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage
