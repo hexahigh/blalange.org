@@ -25,6 +25,7 @@
     return date.toLocaleDateString(undefined, options);
   }
 
+
   let commentError = null;
 
   let commentName = "";
@@ -250,7 +251,11 @@
           {#if comment.extraBadges}
             {#each comment.extraBadges as badge}
               {#if badge.v2}
-                <Icon style={"color: " + badge.color} class="inline" icon={badge.badge} />
+                <Icon
+                  style={"color: " + badge.color}
+                  class="inline"
+                  icon={badge.badge}
+                />
                 <Tooltip class="text-black dark:text-white bg-gray-300"
                   >{badge.hover_text}</Tooltip
                 >

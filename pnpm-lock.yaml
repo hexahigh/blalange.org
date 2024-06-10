@@ -35,6 +35,9 @@ importers:
       '@formkit/auto-animate':
         specifier: ^0.8.2
         version: 0.8.2
+      '@iconify/json':
+        specifier: ^2.2.218
+        version: 2.2.218
       '@sveltejs/adapter-cloudflare':
         specifier: ^4.4.0
         version: 4.4.0(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.15)(vite@5.2.11(@types/node@20.12.7)(terser@5.30.4)))(svelte@4.2.15)(vite@5.2.11(@types/node@20.12.7)(terser@5.30.4)))(wrangler@3.52.0(@cloudflare/workers-types@4.20240423.0))
@@ -1329,6 +1332,9 @@ packages:
 
   '@formkit/auto-animate@0.8.2':
     resolution: {integrity: sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==}
+
+  '@iconify/json@2.2.218':
+    resolution: {integrity: sha512-CawiYMzJPULh3muZQCnr8t92rDNoUGRbJTBCYeQQm5E3eZGkMEeHp8DtGO/XkM0lbTL6+sAWROy+XrCl4q6ViQ==}
 
   '@iconify/svelte@4.0.2':
     resolution: {integrity: sha512-6BSrU85FzGfhQD3bTXpnkCCvBAglEt8T9QednVnXAYm4C+d3464y+pYMzhQNJm5mPId2cuiw+2wXlDflXllHDw==}
@@ -3010,6 +3016,9 @@ packages:
 
   path-to-regexp@6.2.2:
     resolution: {integrity: sha512-GQX3SSMokngb36+whdpRXE+3f9V8UzyAorlYvOGx87ufGHehNTn5lCxrKtLyZ4Yl/wEKnNnr98ZzOwwDZV5ogw==}
+
+  pathe@1.1.2:
+    resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
 
   periscopic@3.1.0:
     resolution: {integrity: sha512-vKiQ8RRtkl9P+r/+oefh25C3fhybptkHKCZSPlcXiJux2tJF55GnEj3BVn4A5gKfq9NWWXXrxkHBwVPUfH0opw==}
@@ -4873,6 +4882,11 @@ snapshots:
 
   '@formkit/auto-animate@0.8.2': {}
 
+  '@iconify/json@2.2.218':
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 1.1.2
+
   '@iconify/svelte@4.0.2(svelte@4.2.15)':
     dependencies:
       '@iconify/types': 2.0.0
@@ -6678,6 +6692,8 @@ snapshots:
       minipass: 7.0.4
 
   path-to-regexp@6.2.2: {}
+
+  pathe@1.1.2: {}
 
   periscopic@3.1.0:
     dependencies:
