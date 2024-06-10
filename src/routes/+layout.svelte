@@ -15,6 +15,7 @@
   import { initialize, checkForDevMode } from "$lib/js/dev.js";
   import { loadConfig, config } from "$lib/js/config.js";
   import { initEgg } from "$lib/js/egg.js";
+  import { addAPIProvider } from "@iconify/svelte";
 
   import { pwaInfo } from "virtual:pwa-info";
 
@@ -33,6 +34,9 @@
   });
 
   onMount(() => {
+    addAPIProvider("", {
+      resources: ["https://api.iconify.design"],
+    });
     initialize(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage
     checkForDevMode(); // Checks if dev mode is enabled in the config
