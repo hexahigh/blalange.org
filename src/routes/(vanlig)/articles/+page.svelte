@@ -8,25 +8,6 @@
   export let data;
 
   let articles = data.articles;
-  let doneLoading = true;
-
-  async function getArticles() {
-    // Import all articles from the database
-    articles = await pb.collection("art_articles").getFullList({
-      fields:
-        "name, date, description, image, artId, id, collectionId, collectionName  ",
-    });
-
-    for (let i = 0; i < articles.length; i++) {
-      // Fetch the image
-      let image = pb.files.getUrl(articles[i], articles[i].image);
-      articles[i].image = image;
-    }
-    doneLoading = true;
-  }
-
-  //* Moved to page.ts
-  //getArticles();
 </script>
 
 <MetaTags
@@ -50,10 +31,10 @@
   }}
 />
 
-<div
-  class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-ctp-base p-6 grid grid-container gap-2"
->
-  {#if doneLoading}
+{#if !data.errorOccurred}
+  <div
+    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-ctp-base p-6 grid grid-container gap-2"
+  >
     {#each articles as article}
       <ArticleCard
         title={article.name}
@@ -63,11 +44,11 @@
         image={article.image}
       />
     {/each}
-  {:else}
-    <h3 class="text-xl">Laster artikler...</h3>
-  {/if}
-</div>
-
+  </div>
+{:else}
+  <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
+  <p>{data.errorMessage}</p>
+{/if}
 <div class="w-full mx-auto p-6 gap-2 dark:bg-ctp-base dark:text-white">
   <h2 class="text-2xl">Alle Artikler</h2>
   <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
