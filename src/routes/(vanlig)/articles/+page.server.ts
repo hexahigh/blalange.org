@@ -20,7 +20,7 @@ export async function load({ params, url }) {
         }
       }
 
-    getArticles();
+    await getArticles();
 
     return { articles };
 }
