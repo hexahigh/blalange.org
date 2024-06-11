@@ -1,21 +1,32 @@
 <script>
-	import rebrand_logo from '$lib/img/article/rebrand_logo.png';
+  import PocketBase from "pocketbase";
   import { MetaTags } from "svelte-meta-tags";
-  import Nav from "$lib/components/nav.svelte";
-  import hugo2 from "$lib/img/people/hugo2.jpg"
   import ArticleCard from "$lib/components/articleCard.svelte";
-  import { LoremIpsum } from "lorem-ipsum";
 
-  const lorem = new LoremIpsum({
-    sentencesPerParagraph: {
-      max: 8,
-      min: 4,
-    },
-    wordsPerSentence: {
-      max: 16,
-      min: 4,
-    },
-  });
+  const pb = new PocketBase("https://db.080609.xyz");
+
+  export let data;
+
+  let articles = data.articles;
+  let doneLoading = true;
+
+  async function getArticles() {
+    // Import all articles from the database
+    articles = await pb.collection("art_articles").getFullList({
+      fields:
+        "name, date, description, image, artId, id, collectionId, collectionName  ",
+    });
+
+    for (let i = 0; i < articles.length; i++) {
+      // Fetch the image
+      let image = pb.files.getUrl(articles[i], articles[i].image);
+      articles[i].image = image;
+    }
+    doneLoading = true;
+  }
+
+  //* Moved to page.ts
+  //getArticles();
 </script>
 
 <MetaTags
@@ -39,17 +50,22 @@
   }}
 />
 
-
 <div
   class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-ctp-base p-6 grid grid-container gap-2"
 >
-  <ArticleCard
-    image={rebrand_logo}
-    date="07.03.2024"
-    title="Vi har byttet navn!"
-    description="Vi har ditcha Kukfest branden og har byttet navn"
-    link="/rebrand"
-  />
+  {#if doneLoading}
+    {#each articles as article}
+      <ArticleCard
+        title={article.name}
+        date={article.date}
+        description={article.description}
+        link={"/a/" + article.artId}
+        image={article.image}
+      />
+    {/each}
+  {:else}
+    <h3 class="text-xl">Laster artikler...</h3>
+  {/if}
 </div>
 
 <div class="w-full mx-auto p-6 gap-2 dark:bg-ctp-base dark:text-white">
@@ -62,9 +78,8 @@
           Mars
           <ol class="ps-5 mt-2 space-y-1 list-decimal list-inside">
             <li>
-              <a
-                href="/rebrand"
-                class="hover:underline text-blue-600">Vi har byttet navn!</a
+              <a href="/rebrand" class="hover:underline text-blue-600"
+                >Vi har byttet navn!</a
               >
             </li>
           </ol>

@@ -28,9 +28,9 @@
     title={title}
     titleTemplate="%s | Blålange"
     description={description}
-    canonical="https://blalange.org{url}"
+    canonical="https://blalange.org/a/{url}"
     openGraph={{
-      url: `https://blalange.org${url}`,
+      url: `https://blalange.org/a/${url}`,
       title: `${title} | Blålange`,
       description: description,
       siteName: "Blålange festivalen",
@@ -61,7 +61,7 @@
       <div class="m-9 text-gray-800 dark:text-gray-300">
         <slot />
       </div>
-      <Comments id={url + "#" + date} />
+      <Comments id={url} />
     </div>
   </div>
   

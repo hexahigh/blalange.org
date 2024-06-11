@@ -21,7 +21,7 @@
 >
   <a href={link}>
     <a href={link}>
-      <img class="rounded-t-lg" src={image} alt="" />
+      <img class="rounded-t-lg object-fill w-full" src={image} alt="" />
     </a>
     <div class="p-5">
       <h5
