@@ -1,11 +1,10 @@
 import { writable } from "svelte/store";
 
-const defaultConfig = {
+export const defaultConfig = {
   devMode: false,
   dbEndpoint: "https://db.080609.xyz",
   analyticsEnabled: true,
   logoAlwaysSpins: false,
-  crtMode: false,
 };
 
 export const config = writable({

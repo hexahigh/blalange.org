@@ -6,7 +6,7 @@
   import { page } from "$app/stores";
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
-  import { config } from "$lib/js/config.js";
+  import { config } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
 
 

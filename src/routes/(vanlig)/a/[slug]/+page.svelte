@@ -6,8 +6,6 @@
   import { type DataType } from "./types";
   import Article from "$lib/components/article.svelte";
 
-  const pb = new PocketBase("https://db.080609.xyz");
-
   let name = data.article.name;
   let date = data.article.date;
   let authors = data.authors;

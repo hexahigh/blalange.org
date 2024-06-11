@@ -4,8 +4,6 @@
   import { MetaTags } from "svelte-meta-tags";
   import ArticleCard from "$lib/components/articleCard.svelte";
 
-  const pb = new PocketBase("https://db.080609.xyz");
-
   export let data;
 
   let articles = data.articles;

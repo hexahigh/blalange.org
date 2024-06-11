@@ -1,8 +1,9 @@
 import PocketBase from "pocketbase";
 import { getSessionId } from "./session";
-import { config } from "./config";
+import { config, defaultConfig } from "./config";
 
-let pb = new PocketBase("https://db.080609.xyz");
+let pb = new PocketBase(defaultConfig.dbEndpoint);
+
 let enabled;
 
 config.subscribe((value) => {

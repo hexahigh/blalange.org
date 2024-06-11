@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy, tick } from "svelte";
-  import { config } from "$lib/js/config.js";
+  import { config, defaultConfig } from "$lib/js/config";
   import PocketBase from "pocketbase";
   import { get } from "svelte/store";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
@@ -40,7 +40,11 @@
     pageSize: 25,
   };
 
-  let pb = new PocketBase(get(config).dbEndpoint);
+  let pb = new PocketBase(defaultConfig.dbEndpoint);
+
+  config.subscribe((value) => {
+    pb = new PocketBase(value.dbEndpoint);
+  });
 
   let userCache = [];
   let avatarCache = [];

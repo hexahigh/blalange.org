@@ -6,8 +6,13 @@
     UserCircleSolid,
     QuestionCircleSolid,
   } from "flowbite-svelte-icons";
+  import { config, defaultConfig } from "$lib/js/config";
 
-  const pb = new PocketBase("https://db.080609.xyz");
+  let pb = new PocketBase(defaultConfig.dbEndpoint);
+
+  config.subscribe((value) => {
+    pb = new PocketBase(value.dbEndpoint);
+  });
 
   let email = "";
   let name = "";

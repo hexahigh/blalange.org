@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import PocketBase from "pocketbase";
   import Chart from "chart.js/auto";
-  import { config } from "$lib/js/config.js";
+  import { config } from "$lib/js/config.ts";
   import { get } from "svelte/store";
 
   import ip_checkpoint from "./ip_checkpoint.json";
