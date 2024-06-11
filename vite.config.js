@@ -76,6 +76,9 @@ const config = {
   },
   // gz
   assetsInclude: ["**/*.gz"],
+  optimizeDeps: {
+    exclude: ["@iconify/json"], // Most hosting sites run out of memory when this is included
+  }
 };
 
 export default config;
