@@ -13,7 +13,7 @@
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics";
   import { initialize, checkForDevMode } from "$lib/js/dev.js";
-  import { loadConfig, config } from "$lib/js/config.js";
+  import { loadConfig, config } from "$lib/js/config.ts";
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider } from "@iconify/svelte";
 

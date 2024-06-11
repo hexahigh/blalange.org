@@ -1,6 +1,6 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-  import { config } from "$lib/js/config.js";
+  import { config, defaultConfig } from "$lib/js/config";
   import PocketBase from "pocketbase";
   import { get } from "svelte/store";
   import { createAvatar } from "@dicebear/core";
@@ -40,7 +40,11 @@
     pageSize: 25,
   };
 
-  let pb = new PocketBase(get(config).dbEndpoint);
+  let pb = new PocketBase(defaultConfig.dbEndpoint);
+
+  config.subscribe((value) => {
+    pb = new PocketBase(value.dbEndpoint);
+  });
 
   // Fetch comments when the component mounts and whenever the `id` prop changes
   onMount(async () => {

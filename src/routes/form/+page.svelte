@@ -1,6 +1,13 @@
 <script>
   import { onMount } from "svelte";
   import PocketBase from "pocketbase";
+  import { config, defaultConfig } from "$lib/js/config";
+
+  let pb = new PocketBase(defaultConfig.dbEndpoint);
+
+config.subscribe((value) => {
+  pb = new PocketBase(value.dbEndpoint);
+});
 
   let data = [];
   let user = "";
@@ -9,18 +16,16 @@
   onMount(async () => {});
 
   async function getData() {
-    const pb = new PocketBase("https://db.080609.xyz");
     data = await pb.collection("form").getFullList(200 /* batch size */, {
       sort: "-created",
     });
-    data = data.map(item => {
+    data = data.map((item) => {
       item.imageUrl = pb.files.getUrl(item, item.image);
       return item;
     });
   }
 
   async function auth() {
-    const pb = new PocketBase("https://db.080609.xyz");
     await pb.collection("users").authWithPassword(user, pass);
   }
 </script>

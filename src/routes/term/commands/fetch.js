@@ -1,4 +1,4 @@
-import { asciiLogo } from "$lib/js/config.js";
+import { asciiLogo } from "$lib/js/config.ts";
 import { getLatestVersion } from "$lib/js/lib.js";
 
 import keystroke from "./../soundpacks/typewriter/keystroke.wav";
