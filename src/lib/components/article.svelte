@@ -61,7 +61,7 @@
       <div class="m-9 text-gray-800 dark:text-gray-300">
         <slot />
       </div>
-      <Comments id={url + "#" + date} />
+      <Comments id={url} />
     </div>
   </div>
   

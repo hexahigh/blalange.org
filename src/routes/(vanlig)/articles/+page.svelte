@@ -5,8 +5,10 @@
 
   const pb = new PocketBase("https://db.080609.xyz");
 
-  let articles = [];
-  let doneLoading = false;
+  export let data;
+
+  let articles = data.articles;
+  let doneLoading = true;
 
   async function getArticles() {
     // Import all articles from the database
@@ -23,7 +25,8 @@
     doneLoading = true;
   }
 
-  getArticles();
+  //* Moved to page.ts
+  //getArticles();
 </script>
 
 <MetaTags
