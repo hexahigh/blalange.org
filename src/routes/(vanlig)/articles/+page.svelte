@@ -49,26 +49,6 @@
   <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
   <p>{data.errorMessage}</p>
 {/if}
-<div class="w-full mx-auto p-6 gap-2 dark:bg-ctp-base dark:text-white">
-  <h2 class="text-2xl">Alle Artikler</h2>
-  <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
-    <li>
-      2024
-      <ol class="ps-5 mt-2 space-y-1 list-disc list-inside">
-        <li>
-          Mars
-          <ol class="ps-5 mt-2 space-y-1 list-decimal list-inside">
-            <li>
-              <a href="/rebrand" class="hover:underline text-blue-600"
-                >Vi har byttet navn!</a
-              >
-            </li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-  </ul>
-</div>
 
 <style>
   .grid-container {
