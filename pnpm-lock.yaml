@@ -12,8 +12,8 @@ dependencies:
     specifier: ^8.0.1
     version: 8.0.1
   '@fontsource-variable/material-symbols-outlined':
-    specifier: ^5.0.30
-    version: 5.0.30
+    specifier: ^5.0.33
+    version: 5.0.33
   '@fontsource/dela-gothic-one':
     specifier: ^5.0.19
     version: 5.0.19
@@ -1344,7 +1344,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: false
 
   /@babel/template@7.24.0:
     resolution: {integrity: sha512-Bkf2q8lMB0AFpX0NFEqSbx1OkTHf0f+0j82mkw+ZpzBnkk7e9Ql0891vlfgi+kHwOk8tQjiQHpqh4LaSa0fKEA==}
@@ -2207,8 +2206,8 @@ packages:
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
     dev: true
 
-  /@fontsource-variable/material-symbols-outlined@5.0.30:
-    resolution: {integrity: sha512-Wo+ShLCbG75rYIjHjuPfSOnq5EE0smynt3JymFy7+rmFu8t/O8UDYOREYunHKMneJnYoBA5y2QOV56ifv0FuUw==}
+  /@fontsource-variable/material-symbols-outlined@5.0.33:
+    resolution: {integrity: sha512-iMzOFsDN+8iQhDmRWoVWZV/Gy6q1ET2aA1YzAkXZn4XVqNs+9CRm0zQMGnvg0OkQme8nx2FAaejzE1eNtJo/WA==}
     dev: false
 
   /@fontsource/dela-gothic-one@5.0.19:
@@ -5419,7 +5418,7 @@ packages:
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
     dependencies:
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.7
     dev: true
 
   /regexp.prototype.flags@1.5.2:
@@ -6487,7 +6486,7 @@ packages:
       '@apideck/better-ajv-errors': 0.3.6(ajv@8.12.0)
       '@babel/core': 7.24.4
       '@babel/preset-env': 7.24.4(@babel/core@7.24.4)
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.7
       '@rollup/plugin-babel': 5.3.1(@babel/core@7.24.4)(rollup@2.79.1)
       '@rollup/plugin-node-resolve': 15.2.3(rollup@2.79.1)
       '@rollup/plugin-replace': 2.4.2(rollup@2.79.1)
