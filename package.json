@@ -57,7 +57,7 @@
 		"@xterm/xterm": "^5.5.0",
 		"audiomotion-analyzer": "^4.5.0",
 		"axios": "^1.6.8",
-		"chart.js": "^4.4.2",
+		"chart.js": "^4.4.3",
 		"dayjs": "^1.11.11",
 		"flowbite-svelte-icons": "^1.6.1",
 		"fuse.js": "^7.0.0",
