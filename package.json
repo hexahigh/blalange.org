@@ -65,7 +65,7 @@
 		"kolorist": "^1.8.0",
 		"lorem-ipsum": "^2.0.8",
 		"pako": "^2.1.0",
-		"pocketbase": "^0.21.2",
+		"pocketbase": "^0.21.3",
 		"tone": "^14.9.17",
 		"tsparticles": "^3.4.0"
 	}
