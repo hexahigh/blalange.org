@@ -53,7 +53,7 @@
 		"@sveltejs/adapter-node": "^5.0.1",
 		"@tsparticles/confetti": "^3.3.0",
 		"@tsparticles/engine": "^3.4.0",
-		"@tsparticles/svelte": "^3.0.0",
+		"@tsparticles/svelte": "^3.1.1",
 		"@xterm/xterm": "^5.5.0",
 		"audiomotion-analyzer": "^4.5.0",
 		"axios": "^1.6.8",
