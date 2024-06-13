@@ -1,8 +1,9 @@
 import { skipWaiting, clientsClaim } from 'workbox-core';
 import { precacheAndRoute, createHandlerBoundToURL, cleanupOutdatedCaches } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { NetworkFirst } from 'workbox-strategies';
+import { CacheFirst, NetworkFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { ExpirationPlugin } from 'workbox-expiration';
 
 skipWaiting();
 clientsClaim();
@@ -18,6 +19,40 @@ precacheAndRoute(self.__WB_MANIFEST);
 
 // clean old assets
 cleanupOutdatedCaches()
+
+registerRoute(
+  ({ url }) => url.href.match(/^https:\/\/db\.080609\.xyz\/api\/collections\/art_articles.*$/),
+  new CacheFirst({
+    cacheName: 'article-cache',
+    plugins: [
+      // Ensure that only requests that result in a 200 status are cached
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 60 * 0.25, // 15 min
+        maxEntries: 100,
+      })
+    ],
+  })
+);
+
+registerRoute(
+  ({ url }) => url.href.match(/^https:\/\/db\.080609\.xyz\/api\/collections\/art_authors.*$/),
+  new CacheFirst({
+    cacheName: 'author-cache',
+    plugins: [
+      // Ensure that only requests that result in a 200 status are cached
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 60 * 24 * 7, // 1 week
+        maxEntries: 100,
+      })
+    ],
+  })
+);
 
 // Default to `networkFirst` strategy for all other requests.
 registerRoute(

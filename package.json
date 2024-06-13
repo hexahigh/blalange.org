@@ -67,6 +67,7 @@
 		"pako": "^2.1.0",
 		"pocketbase": "^0.21.2",
 		"tone": "^14.9.17",
-		"tsparticles": "^3.4.0"
+		"tsparticles": "^3.4.0",
+		"workbox-expiration": "^7.1.0"
 	}
 }
