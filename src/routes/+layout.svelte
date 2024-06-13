@@ -45,10 +45,6 @@
   });
 </script>
 
-{#await import("$lib/components/reloadPrompt.svelte") then { default: ReloadPrompt }}
-  <ReloadPrompt />
-{/await}
-
 <main class:crt={crtMode}>
   <slot />
 </main>

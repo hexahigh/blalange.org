@@ -18,12 +18,11 @@ self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") self.skipWaiting();
 });
 
-/*
- * I am keeping this code here incase we ever stop using vite-pwa
- * -Simon
- */
-/*const excludes = [
-  /.*\/webring\/.*\.gif$/, // Block all webring gifs
+const excludes = [
+  /.*\/img\/webring\/.*$/, // Block all webring images
+  /.*\/img\/23\.1\/.*$/,
+  /.*_app\/immutable\/assets\/.*\.webp$/,
+  /.*\/vid\/.*$/,
 ]
 
 // Function to check if a URL should be excluded
@@ -39,9 +38,7 @@ const precache_list = [...build,...files,...prerendered,]
   }));
 
 // Precache assets
-precacheAndRoute(precache_list);*/
-
-precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(precache_list);
 
 // clean old assets
 cleanupOutdatedCaches();
