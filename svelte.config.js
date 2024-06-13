@@ -9,10 +9,10 @@ const config = {
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     adapter: adapter(),
     files: {
-      serviceWorker: "src/sw.js",
+      serviceWorker: "src/service-worker.js",
     },
     serviceWorker: {
-      register: true,
+      register: false,
     },
   },
   preprocess: vitePreprocess(),

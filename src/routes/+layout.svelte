@@ -4,7 +4,7 @@
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
   import "@fontsource/material-icons";
-  import '@fontsource-variable/material-symbols-outlined';
+  import "@fontsource-variable/material-symbols-outlined";
 
   import { dev } from "$app/environment";
   import "../app.css";
@@ -30,8 +30,19 @@
   });
 
   onMount(() => {
+    if ("serviceWorker" in navigator && !dev) {
+        navigator.serviceWorker.register("/service-worker.js").then((registration) => {
+            console.log("SW registered: ", registration);
+        }).catch((error) => {
+            console.log("SW registration failed: ", error);
+        })
+    }
     addAPIProvider("", {
-      resources: ["https://api.iconify.design", "https://api.simplesvg.com", "https://api.unisvg.com"],
+      resources: [
+        "https://api.iconify.design",
+        "https://api.simplesvg.com",
+        "https://api.unisvg.com",
+      ],
     });
     initialize(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage

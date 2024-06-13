@@ -56,7 +56,7 @@ registerRoute(
         statuses: [200],
       }),
       new ExpirationPlugin({
-        maxAgeSeconds: 60 * 60 * 0.25, // 15 min
+        maxAgeSeconds: 60 * 5, // 5 min
         maxEntries: 100,
       }),
     ],
@@ -76,7 +76,7 @@ registerRoute(
         statuses: [200],
       }),
       new ExpirationPlugin({
-        maxAgeSeconds: 60 * 60 * 24 * 7, // 1 week
+        maxAgeSeconds: 60 * 60 * 24 * 1, // 1 day
         maxEntries: 100,
       }),
     ],
