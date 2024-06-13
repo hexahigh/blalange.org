@@ -68,6 +68,7 @@
 		"pocketbase": "^0.21.2",
 		"tone": "^14.9.17",
 		"tsparticles": "^3.4.0",
+		"workbox-build": "^7.1.1",
 		"workbox-expiration": "^7.1.0"
 	}
 }

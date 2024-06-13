@@ -17,10 +17,6 @@
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider } from "@iconify/svelte";
 
-  import { pwaInfo } from "virtual:pwa-info";
-
-  $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : "";
-
   let crtMode = false;
 
   // Subscribe to the config store
@@ -49,14 +45,10 @@
   });
 </script>
 
-<svelte:head>
-  {@html webManifestLink}
-</svelte:head>
+{#await import("$lib/components/reloadPrompt.svelte") then { default: ReloadPrompt }}
+  <ReloadPrompt />
+{/await}
 
 <main class:crt={crtMode}>
   <slot />
 </main>
-
-{#await import("$lib/components/reloadPrompt.svelte") then { default: ReloadPrompt }}
-  <ReloadPrompt />
-{/await}
