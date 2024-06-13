@@ -35,7 +35,7 @@
 
   onMount(() => {
     addAPIProvider("", {
-      resources: ["https://api.iconify.design"],
+      resources: ["https://api.iconify.design", "https://api.simplesvg.com", "https://api.unisvg.com"],
     });
     initialize(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage

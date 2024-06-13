@@ -46,7 +46,7 @@
       <!-- svelte-ignore a11y-img-redundant-alt -->
       <img
         src={img}
-        class="w-screen aspect-[16/9] object-fill rounded-lg"
+        class="w-screen aspect-[16/9] object-contain rounded-lg"
         alt="Article Image"
       />
       <div class="text-xl font-medium">

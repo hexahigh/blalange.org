@@ -21,7 +21,9 @@ export async function load({ params, url }) {
 
     for (let i = 0; i < articles.length; i++) {
       // Fetch the image
-      let image = pb.files.getUrl(articles[i], articles[i].image);
+      let image = pb.files.getUrl(articles[i], articles[i].image, {
+        thumb: "128x0",
+      });
       articles[i].image = image;
 
       if (articles[i].hidden === true) {
