@@ -26,12 +26,19 @@ export async function load({ params, url }) {
       });
       articles[i].image = image;
 
+      articles[i].date = new Date(articles[i].date).getTime();
+
       if (articles[i].hidden === true) {
         // Remove the article if it is hidden
         articles.splice(i, 1);
         i--;
       }
     }
+
+    // Sort the articles by date
+    articles.sort((a, b) => {
+      return b.date - a.date;
+    });
   }
 
   try {

@@ -20,9 +20,9 @@ self.addEventListener("message", (event) => {
 
 const excludes = [
   /.*\/img\/webring\/.*$/, // Block all webring images
-  /.*\/img\/23\.1\/.*$/,
   /.*_app\/immutable\/assets\/.*\.webp$/,
   /.*\/vid\/.*$/,
+  /^(?!.*\/(404|500)\.jpg$).*\.jpg$/, // Exclude all JPEG images except 404.jpg and 500.jpg
 ]
 
 // Function to check if a URL should be excluded
