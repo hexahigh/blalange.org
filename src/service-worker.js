@@ -22,12 +22,19 @@ const excludes = [
   /.*\/img\/webring\/.*$/, // Block all webring images
   /.*_app\/immutable\/assets\/.*\.webp$/,
   /.*\/vid\/.*$/,
-  /^(?!.*\/(404|500)\.jpg$).*\.jpg$/, // Exclude all JPEG images except 404.jpg and 500.jpg
+  /.*\/img\/cat\/.*$/,
+  /.*\/\.well-known\/.*$/,
+]
+
+// Includes overrides excludes
+const includes = [
+  /.*\/img\/cat\/404.jpg$/,
+  /.*\/img\/cat\/500.jpg$/,
 ]
 
 // Function to check if a URL should be excluded
 const shouldExclude = (url) => {
-  return excludes.some(pattern => pattern.test(url));
+  return excludes.some(pattern => pattern.test(url)) && !includes.some(pattern => pattern.test(url))
 }
 
 const precache_list = [...build,...files,...prerendered,]
