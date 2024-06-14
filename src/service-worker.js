@@ -24,6 +24,7 @@ const excludes = [
   /.*\/vid\/.*$/,
   /.*\/img\/cat\/.*$/,
   /.*\/\.well-known\/.*$/,
+  /.*_app\/immutable\/assets\/.*\.woff$/,
 ]
 
 // Includes overrides excludes
