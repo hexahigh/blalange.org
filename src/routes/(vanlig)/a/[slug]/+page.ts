@@ -7,7 +7,7 @@ export async function load({ params, url }) {
 
     let articleId = params.slug;
 
-    const article = await pb
+    let article = await pb
       .collection("art_articles")
       .getFirstListItem('artId = "' + articleId + '"');
 
@@ -17,6 +17,8 @@ export async function load({ params, url }) {
 
     // Fetch the image
     const imgUrl = await pb.files.getUrl(article, article.image);
+
+    article.date = new Date(article.date).getTime();
 
     // Fetch the author names
     const authors = await Promise.all(
