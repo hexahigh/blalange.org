@@ -25,7 +25,6 @@
     return date.toLocaleDateString(undefined, options);
   }
 
-
   let commentError = null;
 
   let commentName = "";
@@ -123,7 +122,23 @@
         messages[i].verified = true;
         messages[i].extraBadges = record.extra.extraBadges;
 
+        // Get avatar
+        messages[i].avatar = pb.files.getUrl(record, record.avatar, {
+          thumb: "100x100",
+        });
+
+        // If the avatar is empty, fall back to the generated avatar
+        if (!messages[i].avatar || messages[i].avatar === "") {
+          messages[i].avatar = genAvatar(thumbs, messages[i].name).toDataUriSync();
+        }
+
+        // Store in cache
         userCache[messages[i].uid] = record;
+      } else {
+        messages[i].avatar = genAvatar(
+          thumbs,
+          messages[i].name
+        ).toDataUriSync();
       }
     }
 
@@ -233,7 +248,7 @@
       <div class="mb-4 flex items-center">
         <img
           class="w-12 h-12 rounded-full mr-3"
-          src={genAvatar(thumbs, comment.name).toDataUriSync()}
+          src={comment.avatar}
           alt={comment.name}
         />
         <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
