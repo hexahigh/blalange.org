@@ -1,4 +1,32 @@
-export const prerender = true;
+import PocketBase from "pocketbase";
+import { config, defaultConfig } from "$lib/js/config";
+
+//export const prerender = true;
+
+let pb = new PocketBase(defaultConfig.dbEndpoint);
+
+config.subscribe((value) => {
+  pb = new PocketBase(value.dbEndpoint);
+});
+
+const site = "https://blalange.org";
+
+const articles = async () => {
+  try {
+    let articles = await pb.collection("art_articles").getFullList({
+      fields: "artId",
+    });
+    return articles;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+const articleUrls = async () => {
+  let articleList = await articles();
+  return articleList.map((article) => `a/${article.artId}`);
+};
 
 const pages = [
   "rebrand",
@@ -10,9 +38,8 @@ const pages = [
   "webring",
   "form",
   "radio",
+  ...(await articleUrls()),
 ];
-
-const site = "https://blalange.org";
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {
