@@ -1,5 +1,5 @@
 <script>
-	import Icon from '@iconify/svelte';
+	import 'iconify-icon'
   import PocketBase from "pocketbase";
   import { MetaTags } from "svelte-meta-tags";
   import ArticleCard from "$lib/components/articleCard.svelte";
@@ -47,7 +47,7 @@
 {:else}
 <div class="mx-auto text-center flex flex-col justify-center items-center">
   <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
-  <Icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500" />
+  <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500" />
   <p>{data.errorMessage}</p>
 </div>
 {/if}

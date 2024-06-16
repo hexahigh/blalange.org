@@ -2,6 +2,8 @@ import PocketBase from "pocketbase";
 import { config, defaultConfig } from "$lib/js/config";
 
 export async function load({ params, url }) {
+  const urlParams = url.searchParams;
+  const fakeError = urlParams.get("fe");
   let pb = new PocketBase(defaultConfig.dbEndpoint);
 
   config.subscribe((value) => {
@@ -42,6 +44,9 @@ export async function load({ params, url }) {
   }
 
   try {
+    if (fakeError) {
+      throw new Error("Fake error");
+    }
     await getArticles();
   } catch (error) {
     console.error(error);

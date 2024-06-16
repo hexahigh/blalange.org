@@ -61,6 +61,7 @@
 		"flowbite-svelte-icons": "^1.6.1",
 		"fuse.js": "^7.0.0",
 		"howler": "^2.2.4",
+		"iconify-icon": "^2.1.0",
 		"kolorist": "^1.8.0",
 		"lorem-ipsum": "^2.0.8",
 		"pako": "^2.1.0",
