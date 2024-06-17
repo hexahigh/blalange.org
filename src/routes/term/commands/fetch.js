@@ -1,10 +1,7 @@
 import { asciiLogo } from "$lib/js/config.ts";
 import { getLatestVersion } from "$lib/js/lib.js";
 
-import keystroke from "./../soundpacks/typewriter/keystroke.wav";
-import katching from "./../soundpacks/typewriter/katching.wav";
-
-export async function main(print, playSound, showInput, machine) {
+export async function main(print, showInput, machine) {
   showInput = false;
   try {
     let screenWidth = window.screen.width || window.innerWidth;
@@ -32,11 +29,8 @@ export async function main(print, playSound, showInput, machine) {
     // print one line every 50ms
     for (let i = 0; i < output.length; i++) {
       print(output[i] + "\n");
-      playSound(keystroke);
       await new Promise((resolve) => setTimeout(resolve, 50));
     }
-
-    playSound(katching);
   } catch (error) {
     print(error);
   }

@@ -6,10 +6,11 @@
 <footer class="w-full text-center p-4 bg-gray-200 text-black dark:bg-gray-900 dark:text-white">
     <div class="md:flex md:justify-center md:items-center">
         <div>
-            <div class="flex justify-center mb-4">
+            <div class="flex justify-center mb-4 gap-3">
                 <a href="https://github.com/hexahigh/blalange.org" class="hover:underline">Kildekode</a>
-                <a href="mailto:webmaster@blalange.org" class="hover:underline ml-4">Epost</a>
-                <a href="/privacy" class="hover:underline ml-4">Personvernerklæring</a>
+                <a href="mailto:webmaster@blalange.org" class="hover:underline">Epost</a>
+                <a href="/privacy" class="hover:underline">Personvernerklæring</a>
+                <a href="https://dev.blalange-org.pages.dev" class="hover:underline">Beta</a>
             </div>
             <p>Versjon {getLatestVersion().id}.{commitHash} - {getLatestVersion().name}</p>
             <p>{new Date().getFullYear()} © Blålange Festivalen. All rights reserved.</p>

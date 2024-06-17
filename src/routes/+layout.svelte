@@ -4,7 +4,6 @@
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
   import "@fontsource/material-icons";
-  import "@fontsource-variable/material-symbols-outlined";
 
   import { dev } from "$app/environment";
   import "../app.css";
@@ -15,7 +14,7 @@
   import { initialize, checkForDevMode } from "$lib/js/dev.js";
   import { loadConfig, config } from "$lib/js/config.ts";
   import { initEgg } from "$lib/js/egg.js";
-  import { addAPIProvider } from "@iconify/svelte";
+  import { addAPIProvider } from "iconify-icon";
 
   let crtMode = false;
 
@@ -29,6 +28,14 @@
     unsubscribe();
   });
 
+  addAPIProvider("", {
+      resources: [
+        "https://api.iconify.design",
+        "https://api.simplesvg.com",
+        "https://api.unisvg.com",
+      ],
+    });
+
   onMount(() => {
     if ("serviceWorker" in navigator && !dev) {
         navigator.serviceWorker.register("/service-worker.js").then((registration) => {
@@ -37,13 +44,6 @@
             console.log("SW registration failed: ", error);
         })
     }
-    addAPIProvider("", {
-      resources: [
-        "https://api.iconify.design",
-        "https://api.simplesvg.com",
-        "https://api.unisvg.com",
-      ],
-    });
     initialize(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage
     checkForDevMode(); // Checks if dev mode is enabled in the config

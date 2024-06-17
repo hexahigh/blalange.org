@@ -8,7 +8,7 @@
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
-  import Icon from "@iconify/svelte";
+  import "iconify-icon";
 
   import { toRedirect } from "$lib/js/redirect";
   import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
@@ -24,7 +24,6 @@
     };
     return date.toLocaleDateString(undefined, options);
   }
-
 
   let commentError = null;
 
@@ -123,7 +122,26 @@
         messages[i].verified = true;
         messages[i].extraBadges = record.extra.extraBadges;
 
+        // Get avatar
+        messages[i].avatar = pb.files.getUrl(record, record.avatar, {
+          thumb: "100x100",
+        });
+
+        // If the avatar is empty, fall back to the generated avatar
+        if (!messages[i].avatar || messages[i].avatar === "") {
+          messages[i].avatar = genAvatar(
+            thumbs,
+            messages[i].name
+          ).toDataUriSync();
+        }
+
+        // Store in cache
         userCache[messages[i].uid] = record;
+      } else {
+        messages[i].avatar = genAvatar(
+          thumbs,
+          messages[i].name
+        ).toDataUriSync();
       }
     }
 
@@ -233,21 +251,21 @@
       <div class="mb-4 flex items-center">
         <img
           class="w-12 h-12 rounded-full mr-3"
-          src={genAvatar(thumbs, comment.name).toDataUriSync()}
+          src={comment.avatar}
           alt={comment.name}
         />
         <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
           {comment.name}
           {#if comment.verified}
             <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
-            <Icon class="inline text-green-500" icon="lucide:check" />
+            <iconify-icon class="text-green-500" icon="lucide:check" />
             <Tooltip class="text-black dark:text-white bg-gray-300"
               >The user was logged in</Tooltip
             >
           {/if}
           {#if comment.isAdmin}
             <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
-            <Icon class="inline text-blue-500" icon="lucide:shield-check" />
+            <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
             <Tooltip class="text-black dark:text-white bg-gray-300"
               >The user is an admin</Tooltip
             >
@@ -255,9 +273,8 @@
           {#if comment.extraBadges}
             {#each comment.extraBadges as badge}
               {#if badge.v2}
-                <Icon
+                <iconify-icon
                   style={"color: " + badge.color}
-                  class="inline"
                   icon={badge.badge}
                 />
                 <Tooltip class="text-black dark:text-white bg-gray-300"
@@ -314,5 +331,11 @@
     height: 60vh;
     overflow-y: auto;
     padding: 1rem; /* Optional: Add some padding inside the container */
+  }
+
+  iconify-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
   }
 </style>

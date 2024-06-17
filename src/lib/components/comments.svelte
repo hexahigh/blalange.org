@@ -7,8 +7,7 @@
   import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "../js/session.js";
   import { Tooltip } from "flowbite-svelte";
-  import { ShieldCheckOutline, CheckOutline } from "flowbite-svelte-icons";
-  import Icon from "@iconify/svelte";
+  import "iconify-icon";
 
   import { verifyMessage, verifyName } from "$lib/js/chat";
 
@@ -215,14 +214,14 @@
         {comment.name}
         {#if comment.verified}
           <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
-          <Icon class="inline text-green-500" icon="lucide:check" />
+          <iconify-icon class="text-green-500" icon="lucide:check" />
           <Tooltip class="text-black dark:text-white bg-gray-300"
             >The user was logged in</Tooltip
           >
         {/if}
         {#if comment.isAdmin}
           <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
-          <Icon class="inline text-blue-500" icon="lucide:shield-check" />
+          <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
           <Tooltip class="text-black dark:text-white bg-gray-300"
             >The user is an admin</Tooltip
           >
@@ -230,9 +229,8 @@
         {#if comment.extraBadges}
           {#each comment.extraBadges as badge}
             {#if badge.v2}
-              <Icon
+              <iconify-icon
                 style={"color: " + badge.color}
-                class="inline"
                 icon={badge.badge}
               />
               <Tooltip class="text-black dark:text-white bg-gray-300"
@@ -260,3 +258,11 @@
     <button on:click={loadAllComments} class="blue-button">Vis alle</button>
   {/if}
 </div>
+
+<style>
+  iconify-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+</style>

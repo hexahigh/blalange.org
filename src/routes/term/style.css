@@ -88,7 +88,6 @@ video {
 }
 
 :root {
-  //--color-bg: #100d23;
   /* prompt and input */
   --color-text-primary: #00ff9c;
   --color-text-secondary: #c592ff;
@@ -151,7 +150,6 @@ pre {
   overflow-x: auto;
   top: -2ex;
   background: var(--background);
-  //background-color: var(--color-bg);
   color: var(--color-text-primary);
   width: 100%;
   min-height: 100vh;
