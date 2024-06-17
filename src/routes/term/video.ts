@@ -1,7 +1,6 @@
 import type { StdlibType, TextVideo } from "./types";
 import * as Tone from "tone";
 import axios, { type AxiosResponse } from "axios";
-import * as pako from 'pako';
 
 export async function play(
   stdlib: StdlibType,

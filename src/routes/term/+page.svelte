@@ -225,7 +225,7 @@
       name: "fetch",
       description: "for that arch linux flex",
       long_description:
-        "Neofetch like info. No i will not remove the teletyping sound effects, deal with it",
+        "Neofetch like info.",
       usage: "fetch",
       hidden: false,
       execute: async () => {
