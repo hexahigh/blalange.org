@@ -5,7 +5,7 @@ import {
   cleanupOutdatedCaches,
 } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
-import { CacheFirst, NetworkFirst } from "workbox-strategies";
+import { CacheFirst, NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
 import { CacheableResponsePlugin } from "workbox-cacheable-response";
 import { ExpirationPlugin } from "workbox-expiration";
 
@@ -56,7 +56,7 @@ registerRoute(
     url.href.match(
       /^https:\/\/db\.080609\.xyz\/api\/collections\/art_articles.*$/
     ),
-  new CacheFirst({
+  new StaleWhileRevalidate({
     cacheName: "article-cache",
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
