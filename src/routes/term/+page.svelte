@@ -231,7 +231,7 @@
       execute: async () => {
         const module = await import("./commands/fetch");
 
-        module.main(print, playSound, showInput, machine);
+        module.main(print, showInput, machine);
       },
     },
     {
