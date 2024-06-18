@@ -29,12 +29,12 @@
   });
 
   addAPIProvider("", {
-      resources: [
-        "https://api.iconify.design",
-        "https://api.simplesvg.com",
-        "https://api.unisvg.com",
-      ],
-    });
+    resources: [
+      "https://api.iconify.design",
+      "https://api.simplesvg.com",
+      "https://api.unisvg.com",
+    ],
+  });
 
   onMount(() => {
     initialize(); // Initialize the dev mode
@@ -50,15 +50,18 @@
 </script>
 
 <svelte:head>
-<script>
-   if ("serviceWorker" in navigator && !dev) {
-        navigator.serviceWorker.register("/service-worker.js").then((registration) => {
-            console.log("SW registered: ", registration);
-        }).catch((error) => {
-            console.log("SW registration failed: ", error);
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((registration) => {
+          console.log("SW registered: ", registration);
         })
+        .catch((error) => {
+          console.log("SW registration failed: ", error);
+        });
     }
-</script>
+  </script>
 </svelte:head>
 
 <main class:crt={crtMode}>
