@@ -37,13 +37,6 @@
     });
 
   onMount(() => {
-    if ("serviceWorker" in navigator && !dev) {
-        navigator.serviceWorker.register("/service-worker.js").then((registration) => {
-            console.log("SW registered: ", registration);
-        }).catch((error) => {
-            console.log("SW registration failed: ", error);
-        })
-    }
     initialize(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage
     checkForDevMode(); // Checks if dev mode is enabled in the config
@@ -55,6 +48,18 @@
     }
   });
 </script>
+
+<svelte:head>
+<script>
+   if ("serviceWorker" in navigator && !dev) {
+        navigator.serviceWorker.register("/service-worker.js").then((registration) => {
+            console.log("SW registered: ", registration);
+        }).catch((error) => {
+            console.log("SW registration failed: ", error);
+        })
+    }
+</script>
+</svelte:head>
 
 <main class:crt={crtMode}>
   <slot />
