@@ -50,18 +50,20 @@
 </script>
 
 <svelte:head>
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then((registration) => {
-          console.log("SW registered: ", registration);
-        })
-        .catch((error) => {
-          console.log("SW registration failed: ", error);
-        });
-    }
-  </script>
+  {#if !dev}
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then((registration) => {
+            console.log("SW registered: ", registration);
+          })
+          .catch((error) => {
+            console.log("SW registration failed: ", error);
+          });
+      }
+    </script>
+  {/if}
 </svelte:head>
 
 <main class:crt={crtMode}>
