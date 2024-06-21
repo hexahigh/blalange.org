@@ -3,7 +3,7 @@
     "short_name": "Blålange",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
+    "background_color": "#1e1e2e",
     "lang": "nb",
     "scope": "./",
     "icons": [
@@ -31,7 +31,7 @@
       }
     ],
     "theme_color": "#000000",
-    "id": "kuk-2023-9921832113",
+    "id": "blalange-org",
     "description": "Blålange Festivalen er en norsk festival som skjer et par ganger i áret.",
     "dir": "auto",
     "categories": [
