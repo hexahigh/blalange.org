@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy, tick } from "svelte";
   import { config, defaultConfig } from "$lib/js/config";
-  import PocketBase from "pocketbase";
+  import PocketBase, { type RecordModel } from "pocketbase";
   import { get } from "svelte/store";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
   import { thumbs } from "@dicebear/collection";
@@ -52,7 +52,7 @@
   onMount(async () => {
     await initialFetch();
     await subscribe();
-    scrollToBottom();
+    scrollToBottom(false, true); // Force scroll to bottom
   });
 
   function isLoggedIn() {
@@ -74,11 +74,17 @@
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
-      let result = await pb.collection("bla_chat").getFullList(200, {});
+      let totalPages = 1;
 
-      let processed = await processMessage(result);
+      for (let i = 1; i <= totalPages; i++) {
+        let result = await pb
+          .collection("bla_chat")
+          .getList(i, options.pageSize, { sort: "+created" });
+        totalPages = result.totalPages;
+        let processed = await processMessage(result.items);
 
-      comments = [...comments, ...processed];
+        comments = [...comments, ...processed];
+      }
       sortComments();
     } catch (error) {
       console.error("Failed to fetch comments:", error);
@@ -106,7 +112,7 @@
     comments = comments.sort((a, b) => b.unix - a.unix);
   }
 
-  async function processMessage(messages) {
+  async function processMessage(messages: RecordModel[]) {
     let startTime = performance.now();
 
     let stageTimes = {
@@ -114,9 +120,9 @@
       genAvatar: 0,
       loggedInStuff: {
         userFetch: 0,
-        total: 0
-      }
-    }
+        total: 0,
+      },
+    };
 
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
@@ -169,8 +175,12 @@
       stageTimes.processMessageText += performance.now() - startTime;
     }
 
-    console.log(`[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`);
-    console.log(`[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`);
+    console.log(
+      `[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`
+    );
+    console.log(
+      `[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`
+    );
 
     return messages;
   }
@@ -227,7 +237,10 @@
   }
 
   //TODO: This function seems overly complex and looks messy. It should be refactored.
-  async function scrollToBottom(itself: boolean = false) {
+  async function scrollToBottom(
+    itself: boolean = false,
+    force: boolean = false
+  ) {
     if (typeof window === "undefined") return; // Exit if not in a browser environment
     const chatContainer = document.getElementById("chat-messages-container");
 
@@ -238,7 +251,7 @@
 
     if (chatContainer) {
       // If the difference between the scroll position and the max scroll position is less than the treshold, scroll to the bottom
-      if (scrollTopMax - chatContainer.scrollTop < treshold) {
+      if (scrollTopMax - chatContainer.scrollTop < treshold || force) {
         chatContainer.scrollTop = chatContainer.scrollHeight;
       }
     }
@@ -369,7 +382,7 @@
   .comment-text :global(.blocked-word) {
     background-color: black;
     color: black;
-    @apply hover:no-underline hover:text-inherit hover:bg-inherit
+    @apply hover:no-underline hover:text-inherit hover:bg-inherit;
   }
 
   .comment-text :global(.link) {
