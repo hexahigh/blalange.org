@@ -116,7 +116,6 @@ function isBadWord(word: string): boolean {
   let checkWord;
   if (options.contains) {
     checkWord = (wordToCheck: string): boolean => {
-      //return badWords.some((badWord) => wordToCheck.includes(badWord));
       return badWords.some((badWord) => wordToCheck.includes(badWord));
     };
   } else {
