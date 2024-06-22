@@ -235,16 +235,16 @@
 </script>
 
 <Metatags
-  title="Episk chat"
+  title="Chat"
   description="Episk chat for kule Blålanger"
   url="/chat"
 />
 
 <div
-  class="mx-auto max-w-6xl m-4 p-4 rounded-lg dark:bg-gray-800 dark:text-white"
+  class="mx-auto max-w-6xl m-4 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 dark:text-white"
 >
   <div class="text-center">
-    <h1 class="text-3xl font-bold mb-4 rimword">Episk chat</h1>
+    <h1 class="text-3xl font-bold mb-4 rimword">Chat</h1>
   </div>
   <div id="chat-messages-container" class="chat-messages-container">
     {#each comments as comment}
@@ -296,7 +296,7 @@
         </p>
       </div>
       <div>
-        <p class="text-gray-800 dark:text-gray-300 mb-8">
+        <p class="text-gray-800 dark:text-gray-300 mb-8 comment-text">
           {@html processMessageText(comment.text)}
         </p>
       </div>
@@ -337,5 +337,15 @@
     display: inline-block;
     width: 1em;
     height: 1em;
+  }
+
+  .comment-text :global(.blocked-word) {
+    background-color: black;
+    color: black;
+    @apply hover:no-underline hover:text-inherit hover:bg-inherit
+  }
+
+  .comment-text :global(.link) {
+    @apply text-blue-500 hover:underline;
   }
 </style>
