@@ -107,15 +107,29 @@
   }
 
   async function processMessage(messages) {
+    let startTime = performance.now();
+
+    let stageTimes = {
+      processMessageText: 0,
+      genAvatar: 0,
+      loggedInStuff: {
+        userFetch: 0,
+        total: 0
+      }
+    }
+
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].uid) {
+        let startTime = performance.now();
         let record: any;
         // Check if it is in the cache
         if (userCache[messages[i].uid]) {
           record = userCache[messages[i].uid];
         } else {
+          let startTime = performance.now();
           record = await pb.collection("users").getOne(messages[i].uid);
+          stageTimes.loggedInStuff.userFetch += performance.now() - startTime;
         }
         messages[i].isAdmin = record.isAdmin;
         messages[i].name = record.username;
@@ -129,21 +143,34 @@
 
         // If the avatar is empty, fall back to the generated avatar
         if (!messages[i].avatar || messages[i].avatar === "") {
+          let startTime = performance.now();
           messages[i].avatar = genAvatar(
             thumbs,
             messages[i].name
           ).toDataUriSync();
+          stageTimes.genAvatar += performance.now() - startTime;
         }
 
         // Store in cache
         userCache[messages[i].uid] = record;
+
+        stageTimes.loggedInStuff.total += performance.now() - startTime;
       } else {
+        let startTime = performance.now();
         messages[i].avatar = genAvatar(
           thumbs,
           messages[i].name
         ).toDataUriSync();
+        stageTimes.genAvatar += performance.now() - startTime;
       }
+
+      let startTime = performance.now();
+      messages[i].text = processMessageText(messages[i].text);
+      stageTimes.processMessageText += performance.now() - startTime;
     }
+
+    console.log(`[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`);
+    console.log(`[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`);
 
     return messages;
   }
@@ -297,7 +324,7 @@
       </div>
       <div>
         <p class="text-gray-800 dark:text-gray-300 mb-8 comment-text">
-          {@html processMessageText(comment.text)}
+          {@html comment.text}
         </p>
       </div>
     {/each}
