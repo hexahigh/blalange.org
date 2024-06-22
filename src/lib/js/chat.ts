@@ -95,7 +95,7 @@ export function processMessageText(text: string) {
  */
 function isBadWord(word: string): boolean {
   let options = {
-    contains: true,
+    contains: true, // VERY SLOW (up to 20x slower), should be disabled if the list is big
   };
   // Convert the word to lowercase to ensure case-insensitive checking.
   word = word.toLowerCase();
