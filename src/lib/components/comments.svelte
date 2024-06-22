@@ -9,7 +9,7 @@
   import { Tooltip } from "flowbite-svelte";
   import "iconify-icon";
 
-  import { verifyMessage, verifyName } from "$lib/js/chat";
+  import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
 
   function formatDate(unixTimestamp) {
     const date = new Date(unixTimestamp * 1000);
@@ -250,7 +250,7 @@
       <p class="text-gray-500 dark:text-gray-300">{formatDate(comment.unix)}</p>
     </div>
     <div>
-      <p class="text-gray-800 dark:text-gray-300 mb-8">{comment.text}</p>
+      <p class="text-gray-800 dark:text-gray-300 mb-8 comment-text">{@html processMessageText(comment.text)}</p>
     </div>
   {/each}
   {#if totalCommentsFetched > 0}
@@ -259,10 +259,20 @@
   {/if}
 </div>
 
-<style>
+<style lang="postcss">
   iconify-icon {
     display: inline-block;
     width: 1em;
     height: 1em;
+  }
+
+  .comment-text :global(.blocked-word) {
+    background-color: black;
+    color: black;
+    @apply hover:no-underline hover:text-inherit hover:bg-inherit
+  }
+
+  .comment-text :global(.link) {
+    @apply text-blue-500 hover:underline;
   }
 </style>
