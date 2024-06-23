@@ -106,6 +106,8 @@
           resultsToProcess[i].verified = true;
           resultsToProcess[i].extraBadges = record.extra.extraBadges;
         }
+
+        resultsToProcess[i].text = await processMessageText(resultsToProcess[i].text);
       }
 
       comments = [...comments, ...resultsToProcess];
@@ -250,7 +252,7 @@
       <p class="text-gray-500 dark:text-gray-300">{formatDate(comment.unix)}</p>
     </div>
     <div>
-      <p class="text-gray-800 dark:text-gray-300 mb-8 comment-text">{@html processMessageText(comment.text)}</p>
+      <p class="text-gray-800 dark:text-gray-300 mb-8 comment-text">{@html comment.text}</p>
     </div>
   {/each}
   {#if totalCommentsFetched > 0}
