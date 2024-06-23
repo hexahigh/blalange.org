@@ -29,6 +29,9 @@ let options = {
     ],
     useDOMPurify: true,
     fallback: true, // Fallback to custom method if DOMPurify is not supported
+    DOMPurifySettings: {
+      FORBID_TAGS: ["img", "svg"]
+    } as DOMPurify.Config
   },
 };
 
@@ -178,7 +181,7 @@ async function cleanHtml(text: string): Promise<string> {
       text = text.replace(regexes, options.cleanHtml.replacementString);
     }
   } else {
-    text = DOMPurify.sanitize(text);
+    text = DOMPurify.sanitize(text, options.cleanHtml.DOMPurifySettings) as string;
   }
 
   return text;
