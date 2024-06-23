@@ -171,7 +171,7 @@
       }
 
       let startTime = performance.now();
-      messages[i].text = processMessageText(messages[i].text);
+      messages[i].text = await processMessageText(messages[i].text);
       stageTimes.processMessageText += performance.now() - startTime;
     }
 
@@ -288,64 +288,67 @@
   </div>
   <div id="chat-messages-container" class="chat-messages-container">
     {#each comments as comment}
-      <div class="mb-4 flex items-center">
-        <img
-          class="w-12 h-12 rounded-full mr-3"
-          src={comment.avatar}
-          alt={comment.name}
-        />
-        <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
-          {comment.name}
-          {#if comment.verified}
-            <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
-            <iconify-icon class="text-green-500" icon="lucide:check" />
-            <Tooltip class="text-black dark:text-white bg-gray-300"
-              >The user was logged in</Tooltip
-            >
-          {/if}
-          {#if comment.isAdmin}
-            <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
-            <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
-            <Tooltip class="text-black dark:text-white bg-gray-300"
-              >The user is an admin</Tooltip
-            >
-          {/if}
-          {#if comment.extraBadges}
-            {#each comment.extraBadges as badge}
-              {#if badge.v2}
-                <iconify-icon
-                  style={"color: " + badge.color}
-                  icon={badge.badge}
-                />
-                <Tooltip class="text-black dark:text-white bg-gray-300"
-                  >{badge.hover_text}</Tooltip
-                >
-              {:else}
-                <span style={"color: " + badge.color} class="symbols"
-                  >{badge.badge}</span
-                >
-                <Tooltip class="text-black dark:text-white bg-gray-300"
-                  >{badge.hover_text}</Tooltip
-                >
-              {/if}
-            {/each}
-          {/if}
-        </p>
-        <p class="text-gray-500 dark:text-gray-300">
-          {formatDate(comment.unix)}
-        </p>
-      </div>
-      <div>
-        <p class="text-gray-800 dark:text-gray-300 mb-8 comment-text">
-          {@html comment.text}
-        </p>
-      </div>
+      {#if comment.text}
+        <div class="mb-4 flex items-center">
+          <img
+            class="w-12 h-12 rounded-full mr-3"
+            src={comment.avatar}
+            alt={comment.name}
+          />
+          <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
+            {comment.name}
+            {#if comment.verified}
+              <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
+              <iconify-icon class="text-green-500" icon="lucide:check" />
+              <Tooltip class="text-black dark:text-white bg-gray-300"
+                >The user was logged in</Tooltip
+              >
+            {/if}
+            {#if comment.isAdmin}
+              <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
+              <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
+              <Tooltip class="text-black dark:text-white bg-gray-300"
+                >The user is an admin</Tooltip
+              >
+            {/if}
+            {#if comment.extraBadges}
+              {#each comment.extraBadges as badge}
+                {#if badge.v2}
+                  <iconify-icon
+                    style={"color: " + badge.color}
+                    icon={badge.badge}
+                  />
+                  <Tooltip class="text-black dark:text-white bg-gray-300"
+                    >{badge.hover_text}</Tooltip
+                  >
+                {:else}
+                  <span style={"color: " + badge.color} class="symbols"
+                    >{badge.badge}</span
+                  >
+                  <Tooltip class="text-black dark:text-white bg-gray-300"
+                    >{badge.hover_text}</Tooltip
+                  >
+                {/if}
+              {/each}
+            {/if}
+          </p>
+          <p class="text-gray-500 dark:text-gray-300">
+            {formatDate(comment.unix)}
+          </p>
+        </div>
+        <div>
+          <p class="text-gray-800 dark:text-gray-300 mb-8 comment-text">
+            {@html comment.text}
+          </p>
+        </div>
+      {/if}
     {/each}
   </div>
   <div
     class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2"
   >
     <h4 class="text-md font-semibold">Send en melding</h4>
+    <p class="mt-1 text-xs"><span class="text-red-500">*</span> Du kan bruke markdown</p>
     <p class:hidden={!isLoggedIn()} class="text-green-500">
       Du er logget inn som: {getUserName()}
     </p>

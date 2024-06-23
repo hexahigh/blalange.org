@@ -1,6 +1,36 @@
 import { toRedirect } from "./redirect";
 import Fuse from "fuse.js";
 import { words as badWords } from "./badwords";
+import DOMPurify from "dompurify";
+import { marked } from "marked";
+
+let options = {
+  badWord: {
+    contains: true, // VERY SLOW (up to 20x slower), should be disabled if the list is big
+  },
+  cleanHtml: {
+    replacementString: "",
+    regexes: [
+      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, // Script
+      /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, // Style
+      /<link\b[^<]*(?:(?!<\/link>)<[^<]*)*<\/link>/gi, // Link
+      /<meta\b[^<]*(?:(?!<\/meta>)<[^<]*)*<\/meta>/gi, // Meta
+      /<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, // Iframe
+      /<frame\b[^<]*(?:(?!<\/frame>)<[^<]*)*<\/frame>/gi, // Frame
+      /<frameset\b[^<]*(?:(?!<\/frameset>)<[^<]*)*<\/frameset>/gi, // Frameset
+      /<embed\b[^<]*(?:(?!<\/embed>)<[^<]*)*<\/embed>/gi, // Embed
+      /<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, // Object
+      /<applet\b[^<]*(?:(?!<\/applet>)<[^<]*)*<\/applet>/gi, // Applet
+      /<form\b[^<]*(?:(?!<\/form>)<[^<]*)*<\/form>/gi, // Form
+      /<input\b[^<]*(?:(?!<\/input>)<[^<]*)*<\/input>/gi, // Input
+      /<textarea\b[^<]*(?:(?!<\/textarea>)<[^<]*)*<\/textarea>/gi, // Textarea
+      /<base\b[^<]*(?:(?!<\/base>)<[^<]*)*<\/base>/gi, // Base
+      /<eventsource\b[^<]*(?:(?!<\/eventsource>)<[^<]*)*<\/eventsource>/gi, // Eventsource
+    ],
+    useDOMPurify: true,
+    fallback: true, // Fallback to custom method if DOMPurify is not supported
+  },
+};
 
 export async function verifyMessage(
   message: string
@@ -63,17 +93,23 @@ export async function verifyName(
   return { valid: true };
 }
 
-export function processMessageText(text: string) {
+export async function processMessageText(text: string): Promise<string> {
   let processedText = text;
+
+  // We need to clean the html first, because we add html to the message later
+  processedText = await cleanHtml(processedText);
 
   // Check each word in the message
   const words = processedText.split(" ");
   for (let i = 0; i < words.length; i++) {
-    if (isBadWord(words[i])) {
+    if (await isBadWord(words[i])) {
       words[i] = `<span class="blocked-word">${words[i]}</span>`;
     }
   }
   processedText = words.join(" ");
+
+  // Convert markdown to html
+  processedText = await markdownToHtml(processedText);
 
   // Regular expression to match URLs
   const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -93,10 +129,7 @@ export function processMessageText(text: string) {
  * @param {string} word - The word to check against the list of bad words.
  * @returns {boolean} True if the word is considered bad, false otherwise.
  */
-function isBadWord(word: string): boolean {
-  let options = {
-    contains: true, // VERY SLOW (up to 20x slower), should be disabled if the list is big
-  };
+async function isBadWord(word: string): Promise<boolean> {
   // Convert the word to lowercase to ensure case-insensitive checking.
   word = word.toLowerCase();
 
@@ -114,7 +147,7 @@ function isBadWord(word: string): boolean {
   ];
 
   let checkWord;
-  if (options.contains) {
+  if (options.badWord.contains) {
     checkWord = (wordToCheck: string): boolean => {
       return badWords.some((badWord) => wordToCheck.includes(badWord));
     };
@@ -144,4 +177,23 @@ function isBadWord(word: string): boolean {
 
   // Finally, check if the original word itself is in the badWords list.
   return checkWord(word);
+}
+
+async function cleanHtml(text: string): Promise<string> {
+  if (
+    !options.cleanHtml.useDOMPurify ||
+    (!DOMPurify.isSupported && options.cleanHtml.fallback)
+  ) {
+    for (const regexes of options.cleanHtml.regexes) {
+      text = text.replace(regexes, options.cleanHtml.replacementString);
+    }
+  } else {
+    text = DOMPurify.sanitize(text);
+  }
+
+  return text;
+}
+
+async function markdownToHtml(text: string): Promise<string> {
+  return marked.parse(text);
 }
