@@ -391,4 +391,8 @@
   .comment-text :global(.link) {
     @apply text-blue-500 hover:underline;
   }
+
+  .comment-text :global(a) {
+    @apply text-blue-500 hover:underline;
+  }
 </style>

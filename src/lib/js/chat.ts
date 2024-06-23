@@ -111,16 +111,6 @@ export async function processMessageText(text: string): Promise<string> {
   // Convert markdown to html
   processedText = await markdownToHtml(processedText);
 
-  // Regular expression to match URLs
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-
-  // Replace URLs with anchor tags
-  processedText = processedText.replace(urlRegex, function (url) {
-    return `<a href="${toRedirect(
-      url
-    )}" target="_blank" rel="noopener noreferrer" class="link">${url}</a>`;
-  });
-
   return processedText;
 }
 
