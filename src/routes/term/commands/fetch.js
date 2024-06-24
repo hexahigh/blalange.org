@@ -1,5 +1,5 @@
 import { asciiLogo } from "$lib/js/config.ts";
-import { getLatestVersion } from "$lib/js/lib.js";
+import { latestVersion } from "$lib/js/version";
 
 export async function main(print, showInput, machine) {
   showInput = false;
@@ -8,7 +8,7 @@ export async function main(print, showInput, machine) {
     let screenHeight = window.screen.height || window.innerHeight;
     let memory = navigator.deviceMemory;
     let info = [
-      "OS: BlålangeOS " + (getLatestVersion().id || ""),
+      "OS: BlålangeOS " + (latestVersion.id || ""),
       "Host: " + machine,
       "Shell: blåsh",
       "CPU: Blåchip Kosinus-9 (4) 1.094GHz",

@@ -114,6 +114,8 @@ export async function processMessageText(text: string): Promise<string> {
   // Convert markdown to html
   processedText = await markdownToHtml(processedText);
 
+  processedText = await cleanHtml(processedText);
+
   return processedText;
 }
 

@@ -1,7 +1,7 @@
 import PocketBase from "pocketbase";
 import { config, defaultConfig } from "$lib/js/config";
 
-//export const prerender = true;
+export const prerender = true;
 
 let pb = new PocketBase(defaultConfig.dbEndpoint);
 

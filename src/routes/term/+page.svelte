@@ -10,7 +10,7 @@
   import type { StdlibType, CommandType, CommandsType } from "./types.ts";
 
   import { onMount } from "svelte";
-  import { page } from "$app/stores";
+  import { page } from "$app/stores"; 
   import { MetaTags } from "svelte-meta-tags";
   import Fuse from "fuse.js";
   import axios from "axios";
@@ -18,7 +18,7 @@
   import { playSound } from "./functions.js";
   import { lore } from "./lore.js";
   import { dateTime, history } from "./stores.js";
-  import { getLatestVersion } from "$lib/js/lib.js";
+  import { latestVersion } from "$lib/js/version";
   import { parseFlags } from "./args.js";
   import "./style.css";
 
@@ -245,9 +245,9 @@
         if (args.length === 0) {
           let text = [
             "Blålange festivalen blåsh, version " +
-              getLatestVersion().id +
+              latestVersion.id +
               " " +
-              getLatestVersion().name,
+              latestVersion.name,
             "Use `help <command>' for more information on a command.",
             "To view available commands, type `list'.",
           ];
