@@ -1,5 +1,5 @@
 import { asciiLogo } from "$lib/js/config.ts";
-import { getLatestVersion } from "$lib/js/lib.js";
+import { getLatestVersion } from "$lib/js/version";
 
 export async function main(print, showInput, machine) {
   showInput = false;
