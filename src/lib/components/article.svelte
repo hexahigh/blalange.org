@@ -1,8 +1,7 @@
 <script>
   import { MetaTags } from "svelte-meta-tags";
-  import calendar from "$lib/svg/calendar.svg";
-  import person from "$lib/svg/person.svg";
   import Comments from "./comments.svelte";
+  import "iconify-icon";
 
   export let img;
   export let title;
@@ -55,11 +54,11 @@
       {title}
     </div>
     <p class="text-gray-500 dark:text-gray-300">
-      <span class="symbols"></span>
+      <iconify-icon icon="mdi:account" width="20" height="20" />
       {author}
     </p>
     <p class="text-gray-500 dark:text-gray-300">
-      <span class="symbols"></span>
+      <iconify-icon icon="mdi:calendar" width="20" height="20" />
       {formatDate(date)}
     </p>
     <div class="m-9 text-gray-800 dark:text-gray-300">

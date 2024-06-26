@@ -23,7 +23,7 @@
 </script>
 
 <div class="text-center max-w-4xl mx-auto mt-10 mb-4 border-b-2 border-dashed">
-  <h3 class="text-3xl font-bold mb-4">Doner</h3>
+  <h3 class="text-3xl font-bold mb-4 krona">Doner</h3>
   <p>
     Vi mister mye penger av Blålange festivalen, du kan hjelpe oss med å donere!
   </p>

@@ -3,7 +3,7 @@
   import "@fontsource/lexend-exa";
   import "@fontsource/dela-gothic-one";
   import "@fontsource/roboto-condensed";
-  import "@fontsource/material-icons";
+  import "@fontsource-variable/inter";
 
   import { dev } from "$app/environment";
   import "../app.css";

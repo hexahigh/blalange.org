@@ -35,7 +35,7 @@
     class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
     style="background-image: url(/img/bg1.png);"
   >
-    <h1 class="text-3xl">Hva er blålange festivalen?</h1>
+    <h1 class="text-3xl krona">Hva er blålange festivalen?</h1>
     <p class="text-xl">
       Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.
       <br>
@@ -49,11 +49,9 @@
   <Donate />
 
   <Leaderboard />
-
-  <Faq />
   
   <div class="text-center">
-    <h2 class="text-3xl">Bli med</h2>
+    <h2 class="text-3xl font-bold krona">Bli med</h2>
     <p>Vil du bli med på neste Festival? Svar på dette skjemaet.</p>
     <p class="mt-1 text-xs">Felt markert med <span class="text-rose-500">*</span> er nødvendig</p>
     <div class="text-left flex justify-center">
