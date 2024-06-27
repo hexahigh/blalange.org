@@ -40,9 +40,11 @@
   };
 
   let pb = new PocketBase(defaultConfig.dbEndpoint);
+  let devMode: boolean;
 
   config.subscribe((value) => {
     pb = new PocketBase(value.dbEndpoint);
+    devMode = value.devMode;
   });
 
   let userCache = [];
@@ -191,12 +193,14 @@
       stageTimes.processMessageText += performance.now() - startTime;
     }
 
-    console.log(
-      `[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`
-    );
-    console.log(
-      `[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`
-    );
+    if (devMode) {
+      console.log(
+        `[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`
+      );
+      console.log(
+        `[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`
+      );
+    }
 
     return messages;
   }
@@ -364,7 +368,9 @@
     class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2"
   >
     <h4 class="text-md font-semibold">Send en melding</h4>
-    <p class="mt-1 text-xs"><span class="text-red-500">*</span> Du kan bruke markdown</p>
+    <p class="mt-1 text-xs">
+      <span class="text-red-500">*</span> Du kan bruke markdown
+    </p>
     <p class:hidden={!isLoggedIn()} class="text-green-500">
       Du er logget inn som: {getUserName()}
     </p>
