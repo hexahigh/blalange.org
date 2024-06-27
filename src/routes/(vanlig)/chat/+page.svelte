@@ -124,6 +124,9 @@
       },
     };
 
+    let chatTextCacheLS = localStorage.getItem("chatTextCache");
+    let chatTextCache = JSON.parse(chatTextCacheLS || "{}");
+
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].uid) {
@@ -171,7 +174,20 @@
       }
 
       let startTime = performance.now();
-      messages[i].text = await processMessageText(messages[i].text);
+      if (chatTextCache && chatTextCache[messages[i].id]) {
+        messages[i].text = chatTextCache[messages[i].id];
+      } else {
+        messages[i].text = await processMessageText(messages[i].text);
+
+        // Store in cache
+        if (!chatTextCache) {
+          chatTextCache = {};
+        }
+        chatTextCache[messages[i].id] = messages[i].text;
+        try {
+          localStorage.setItem("chatTextCache", JSON.stringify(chatTextCache));
+        } catch (error) {}
+      }
       stageTimes.processMessageText += performance.now() - startTime;
     }
 
