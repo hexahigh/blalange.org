@@ -4,6 +4,7 @@ import { config, defaultConfig } from "$lib/js/config";
 export async function load({ params, url }) {
   const urlParams = url.searchParams;
   const fakeError = urlParams.get("fe");
+  const multiply = urlParams.get("m");
   let pb = new PocketBase(defaultConfig.dbEndpoint);
 
   config.subscribe((value) => {
@@ -30,6 +31,11 @@ export async function load({ params, url }) {
 
       articles[i].date = new Date(articles[i].date).getTime();
 
+      // If the description is longer than 32 characters, truncate it
+      if (articles[i].description.length > 3200) {
+        articles[i].description = articles[i].description.slice(0, 32) + "...";
+      }
+
       if (articles[i].hidden === true) {
         // Remove the article if it is hidden
         articles.splice(i, 1);
@@ -41,6 +47,13 @@ export async function load({ params, url }) {
     articles.sort((a, b) => {
       return b.date - a.date;
     });
+
+    // If multiply is set then duplicate the articles
+    if (multiply) {
+      for (let i = 0; i < multiply; i++) {
+        articles = articles.concat(articles);
+      }
+    }
   }
 
   try {

@@ -8,7 +8,7 @@
 <div
   class="text-center max-w-4xl mx-auto mt-10 mb-4 pb-10 border-b-2 border-dashed"
 >
-  <h3 class="text-3xl font-bold mb-4">Topp sponsorere</h3>
+  <h3 class="text-3xl font-bold mb-4 krona">Topp sponsorere</h3>
   <ul class="list-none p-0">
     {#each sortedDonations as donation, index}
       <li class="py-2 border-b border-gray-200">

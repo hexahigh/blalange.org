@@ -22,3 +22,32 @@ body * {
 .blue-btn {
   @apply blue-button
 }
+
+.text-overflow-clip {
+  text-overflow: clip;
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+
+body {
+  font-family: "Inter Variable", sans-serif;
+  font-weight: 400;
+}
+
+.krona {
+  font-family: "Krona One", sans-serif;
+}
+
+.dela {
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-condensed {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
