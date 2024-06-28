@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import "@fontsource/krona-one";
   import "@fontsource/lexend-exa";
   import "@fontsource/dela-gothic-one";
@@ -11,22 +11,10 @@
   import { onMount, onDestroy } from "svelte";
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics";
-  import { initialize, checkForDevMode } from "$lib/js/dev.js";
-  import { loadConfig, config } from "$lib/js/config.ts";
+  import { initialize as initializeDev, checkForDevMode } from "$lib/js/dev";
+  import { loadConfig, config } from "$lib/js/config";
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider } from "iconify-icon";
-
-  let crtMode = false;
-
-  // Subscribe to the config store
-  const unsubscribe = config.subscribe((value) => {
-    crtMode = value.crtMode;
-  });
-
-  // Remember to unsubscribe when the component is destroyed to avoid memory leaks
-  onDestroy(() => {
-    unsubscribe();
-  });
 
   addAPIProvider("", {
     resources: [
@@ -37,7 +25,7 @@
   });
 
   onMount(() => {
-    initialize(); // Initialize the dev mode
+    initializeDev(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage
     checkForDevMode(); // Checks if dev mode is enabled in the config
     initEgg(); // Initialize easter egg 1
@@ -66,6 +54,6 @@
   {/if}
 </svelte:head>
 
-<main class:crt={crtMode}>
+<main>
   <slot />
 </main>

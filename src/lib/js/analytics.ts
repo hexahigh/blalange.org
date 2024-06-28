@@ -4,11 +4,13 @@ import { config, defaultConfig } from "./config";
 
 let pb = new PocketBase(defaultConfig.dbEndpoint);
 
-let enabled;
+let enabled: boolean;
+let devMode: boolean;
 
 config.subscribe((value) => {
   pb = new PocketBase(value.dbEndpoint);
   enabled = value.analyticsEnabled;
+  devMode = value.devMode;
 });
 
 let lastUrl = typeof window !== "undefined" ? "" : "";
@@ -63,7 +65,7 @@ async function collect2() {
       referrer: referrer,
       username: username,
     });
-  } else {
+  } else if (devMode) {
     console.log("Collect2: Nothing has changed, not running.");
   }
 }

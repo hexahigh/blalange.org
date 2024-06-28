@@ -25,9 +25,11 @@ const excludes = [
   /.*\/img\/cat\/.*$/,
   /.*\/\.well-known\/.*$/,
   /.*_app\/immutable\/assets\/.*\.woff$/,
+  /.*\/robots\.txt$/,
+  /.*\/sitemap\.xml$/,
 ]
 
-// Includes overrides excludes
+// Includes override excludes
 const includes = [
   /.*\/img\/cat\/404.jpg$/,
   /.*\/img\/cat\/500.jpg$/,
@@ -50,6 +52,26 @@ precacheAndRoute(precache_list);
 
 // clean old assets
 cleanupOutdatedCaches();
+
+registerRoute(
+  ({ url }) =>
+    url.href.match(
+      /^https:\/\/db\.080609\.xyz\/api\/collections\/users.*$/
+    ),
+  new StaleWhileRevalidate({
+    cacheName: "user-cache",
+    plugins: [
+      // Ensure that only requests that result in a 200 status are cached
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 5, // 5 min
+        maxEntries: 500,
+      }),
+    ],
+  })
+);
 
 registerRoute(
   ({ url }) =>

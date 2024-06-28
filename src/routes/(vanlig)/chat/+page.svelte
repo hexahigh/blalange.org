@@ -40,9 +40,11 @@
   };
 
   let pb = new PocketBase(defaultConfig.dbEndpoint);
+  let devMode: boolean;
 
   config.subscribe((value) => {
     pb = new PocketBase(value.dbEndpoint);
+    devMode = value.devMode;
   });
 
   let userCache = [];
@@ -124,6 +126,9 @@
       },
     };
 
+    let chatTextCacheLS = localStorage.getItem("chatTextCache");
+    let chatTextCache = JSON.parse(chatTextCacheLS || "{}");
+
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].uid) {
@@ -171,16 +176,31 @@
       }
 
       let startTime = performance.now();
-      messages[i].text = await processMessageText(messages[i].text);
+      if (chatTextCache && chatTextCache[messages[i].id]) {
+        messages[i].text = chatTextCache[messages[i].id];
+      } else {
+        messages[i].text = await processMessageText(messages[i].text);
+
+        // Store in cache
+        if (!chatTextCache) {
+          chatTextCache = {};
+        }
+        chatTextCache[messages[i].id] = messages[i].text;
+        try {
+          localStorage.setItem("chatTextCache", JSON.stringify(chatTextCache));
+        } catch (error) {}
+      }
       stageTimes.processMessageText += performance.now() - startTime;
     }
 
-    console.log(
-      `[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`
-    );
-    console.log(
-      `[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`
-    );
+    if (devMode) {
+      console.log(
+        `[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`
+      );
+      console.log(
+        `[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`
+      );
+    }
 
     return messages;
   }
@@ -348,7 +368,9 @@
     class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2"
   >
     <h4 class="text-md font-semibold">Send en melding</h4>
-    <p class="mt-1 text-xs"><span class="text-red-500">*</span> Du kan bruke markdown</p>
+    <p class="mt-1 text-xs">
+      <span class="text-red-500">*</span> Du kan bruke markdown
+    </p>
     <p class:hidden={!isLoggedIn()} class="text-green-500">
       Du er logget inn som: {getUserName()}
     </p>
@@ -378,6 +400,7 @@
 
   iconify-icon {
     display: inline-block;
+    font-size: large;
     width: 1em;
     height: 1em;
   }
