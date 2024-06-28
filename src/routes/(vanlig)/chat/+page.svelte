@@ -400,6 +400,7 @@
 
   iconify-icon {
     display: inline-block;
+    font-size: large;
     width: 1em;
     height: 1em;
   }
