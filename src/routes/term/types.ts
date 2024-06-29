@@ -18,8 +18,19 @@ export type CommandsType = CommandType[];
 export interface TextVideo {
   format_version: number;
   fps: number;
+  /**
+   * 'gzip'
+   */
+  compression: string;
+  /**
+   * 'base64'
+   */
+  encoding: string;
+  /**
+   * Encoded frames is an encoded and compressed string representation of the 'frames' array.
+   */
+  encodedFrames: string;
   frames: {
     text: string;
-    num: number;
   }[];
 }
