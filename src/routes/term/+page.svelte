@@ -400,13 +400,35 @@
       },
     },
     {
-      name: "bad-apple",
-      description: "",
+      name: "apple",
+      description: "Bad apple",
       long_description: "",
-      usage: "bad-apple",
+      usage: "apple",
       hidden: false,
       execute: async (args) => {
         const module = await import("./commands/apple");
+
+        let options = {};
+
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            speed: flags.args[0] || 1,
+          };
+        }
+
+        await module.default(stdlib, options);
+      },
+    },
+    {
+      name: "apple-hd",
+      description: "Bad apple in \"glorious\" 480p",
+      long_description: "",
+      usage: "apple-hd",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/apple-hd");
 
         let options = {};
 
