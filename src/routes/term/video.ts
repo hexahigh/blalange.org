@@ -25,6 +25,8 @@ export async function play(
     player = new Tone.Player(audioUrl).toDestination();
   }
 
+  let scaleFactor;
+
   let video: TextVideo;
 
   // Download video json
@@ -74,6 +76,28 @@ export async function play(
     video.frames = JSON.parse(decompressedFrames);
   }
 
+  if (!options.autoScale && !options.textSize) {
+    if (!video.width) {
+      stdlib.print(
+        "Video width is undefined, guessing from 100th frame. This may be inaccurate."
+      );
+      // Split newlines
+      try {
+        video.width = video.frames[99].text.split("\n")[0].length;
+      } catch (e) {
+        try {
+          video.width = video.frames[0].text.split("\n")[0].length;
+        } catch (e) {
+          console.error(e)
+        }
+        console.error(e);
+      }
+    }
+      // Calculate the scale
+      scaleFactor = 100 / video.width;
+      stdlib.print("Scale Factor: " + scaleFactor);
+  }
+
   stdlib.print(
     "Your video will start in 5 seconds, if the video looks weird then you might need to zoom out."
   );
@@ -109,12 +133,8 @@ export async function play(
       stdlib.setTextSize(options.textSize);
     }
 
-    if (!options.autoScale && !options.textSize && video.width !== 100) {
-      // Calculate the scale
-      let scaleFactor = 100 / video.width * 16
-      stdlib.print("Scale Factor: " + scaleFactor);
-
-      stdlib.setTextSize(scaleFactor);
+    if (!options.autoScale && !options.textSize) {
+      stdlib.setTextSize(scaleFactor * 16);
     }
 
     stdlib.setShowInput(false);
