@@ -155,6 +155,13 @@
     setLineData: (array: any[]) => {
       lineData = array;
     },
+    setTextSize: (size: number) => {
+      terminalContainer.style.fontSize = `${size}px`;
+    },
+    showInput: showInput,
+    setShowInput: (show: boolean) => {
+      showInput = show;
+    }
   };
 
   let commands: CommandsType = [
@@ -474,6 +481,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
+  id="terminalContainer"
   class="terminal crt ibm-bios flex flex-col items-start"
   on:click={() => {
     if (window.getSelection().toString() === "") {

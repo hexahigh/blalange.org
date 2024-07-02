@@ -2,12 +2,19 @@ import type { StdlibType, TextVideo } from "./types";
 import * as Tone from "tone";
 import axios, { type AxiosResponse } from "axios";
 import Pako from "pako";
+import fitty from "fitty";
+
+type PlayOptions = {
+  speed?: number;
+  autoScale?: boolean;
+  textSize?: number;
+};
 
 export async function play(
   stdlib: StdlibType,
   jsonUrl: string,
   audioUrl: string,
-  speed: number = 1
+  options: PlayOptions
 ) {
   stdlib.print("Loading, please wait...");
 
@@ -61,23 +68,25 @@ export async function play(
         // Pako
         let data = Pako.inflate(binData);
         // Convert gunzipped byteArray back to ascii string:
-        decompressedFrames = new TextDecoder("utf-8").decode(data)
+        decompressedFrames = new TextDecoder("utf-8").decode(data);
         break;
     }
     video.frames = JSON.parse(decompressedFrames);
   }
 
-  stdlib.print("Your video will start in 5 seconds, if the video looks weird then you might need to zoom out.");
-  await new Promise(resolve => setTimeout(resolve, 5000));
+  stdlib.print(
+    "Your video will start in 5 seconds, if the video looks weird then you might need to zoom out."
+  );
+  await new Promise((resolve) => setTimeout(resolve, 5000));
 
   Tone.loaded().then(() => {
-    if (speed) {
-      player.playbackRate = speed;
+    if (options.speed) {
+      player.playbackRate = options.speed;
     }
     player.start();
 
     // Calculate the delay between frames
-    let defaultDelay = 33.33;
+    let defaultDelay = 33.33; // 30 fps
     let delay = defaultDelay;
 
     try {
@@ -86,7 +95,21 @@ export async function play(
       console.error(e);
     }
 
-    delay = delay / speed;
+    delay = delay / options.speed;
+
+    let fitter;
+
+    if (options.autoScale) {
+      fitter = fitty("#terminalContainer", {
+        minSize: 1,
+      });
+    }
+
+    if (options.textSize) {
+      stdlib.setTextSize(options.textSize);
+    }
+
+    stdlib.setShowInput(false);
 
     // Print one frame every options.speed milliseconds
     let i = 0;
@@ -98,7 +121,17 @@ export async function play(
         stdlib.setLineData([]);
         stdlib.print(video.frames[i].text);
         i++;
+      } else {
+        stdlib.setShowInput(true);
+        player.stop();
+        stdlib.setLineData([]);
+        if (options.autoScale) {
+          fitter[0].unsubscribe();
+        }
+        return;
       }
+      return;
     }, delay);
+    return;
   });
 }

@@ -2,6 +2,9 @@ export type StdlibType = {
   print: (...args: any[]) => void;
   lineData: string[];
   setLineData: (array: any[]) => void;
+  setTextSize: (size: number) => void;
+  showInput: boolean;
+  setShowInput: (bool: boolean) => void;
 };
 
 export type CommandType = {
