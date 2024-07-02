@@ -109,6 +109,14 @@ export async function play(
       stdlib.setTextSize(options.textSize);
     }
 
+    if (!options.autoScale && !options.textSize && video.width !== 100) {
+      // Calculate the scale
+      let scaleFactor = 100 / video.width * 16
+      stdlib.print("Scale Factor: " + scaleFactor);
+
+      stdlib.setTextSize(scaleFactor);
+    }
+
     stdlib.setShowInput(false);
 
     // Print one frame every options.speed milliseconds

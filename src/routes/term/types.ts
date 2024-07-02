@@ -21,6 +21,7 @@ export type CommandsType = CommandType[];
 export interface TextVideo {
   format_version: number;
   fps: number;
+  width: number;
   /**
    * 'gzip'
    */
