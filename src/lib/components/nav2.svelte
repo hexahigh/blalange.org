@@ -71,7 +71,7 @@
   $: path = $page.url.pathname;
 </script>
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900" use:autoAnimate>
+<nav class="bg-white border-gray-200 dark:bg-gray-900" {...$$restProps} use:autoAnimate>
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >

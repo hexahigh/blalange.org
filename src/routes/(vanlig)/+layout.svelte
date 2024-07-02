@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  <Nav />
+  <Nav id="nav" />
 
   <main class="flex-grow dark:bg-ctp-base text-black dark:text-white">
     <slot />
