@@ -85,12 +85,12 @@ export async function play(
       try {
         video.width = video.frames[99].text.split("\n")[0].length;
       } catch (e) {
+        // Fallback to trying the first frame
         try {
           video.width = video.frames[0].text.split("\n")[0].length;
-        } catch (e) {
-          console.error(e)
+        } catch (e2) {
+          console.error("An error occured while guessing the video width, when trying to get the width of the 100th frame this exception occurred:", e, "and when trying to get the width of the first frame this exception occurred:", e2 );
         }
-        console.error(e);
       }
     }
       // Calculate the scale
