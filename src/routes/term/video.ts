@@ -2,7 +2,6 @@ import type { StdlibType, TextVideo } from "./types";
 import * as Tone from "tone";
 import axios, { type AxiosResponse } from "axios";
 import Pako from "pako";
-import fitty from "fitty";
 
 type PlayOptions = {
   speed?: number;
@@ -89,13 +88,18 @@ export async function play(
         try {
           video.width = video.frames[0].text.split("\n")[0].length;
         } catch (e2) {
-          console.error("An error occured while guessing the video width, when trying to get the width of the 100th frame this exception occurred:", e, "and when trying to get the width of the first frame this exception occurred:", e2 );
+          console.error(
+            "An error occured while guessing the video width, when trying to get the width of the 100th frame this exception occurred:",
+            e,
+            "and when trying to get the width of the first frame this exception occurred:",
+            e2
+          );
         }
       }
     }
-      // Calculate the scale
-      scaleFactor = 100 / video.width;
-      stdlib.print("Scale Factor: " + scaleFactor);
+    // Calculate the scale
+    scaleFactor = 100 / video.width;
+    stdlib.print("Scale Factor: " + scaleFactor);
   }
 
   stdlib.print(
@@ -121,23 +125,9 @@ export async function play(
 
     delay = delay / options.speed;
 
-    let fitter;
+    stdlib.setTextSize(scaleFactor * 16);
 
-    if (options.autoScale) {
-      fitter = fitty("#terminalContainer", {
-        minSize: 1,
-      });
-    }
-
-    if (options.textSize) {
-      stdlib.setTextSize(options.textSize);
-    }
-
-    if (!options.autoScale && !options.textSize) {
-      stdlib.setTextSize(scaleFactor * 16);
-    }
-
-    stdlib.setShowInput(false);
+    stdlib.hideStuff();
 
     // Print one frame every options.speed milliseconds
     let i = 0;
@@ -150,12 +140,9 @@ export async function play(
         stdlib.print(video.frames[i].text);
         i++;
       } else {
-        stdlib.setShowInput(true);
+        stdlib.showStuff;
         player.stop();
         stdlib.setLineData([]);
-        if (options.autoScale) {
-          fitter[0].unsubscribe();
-        }
         return;
       }
       return;

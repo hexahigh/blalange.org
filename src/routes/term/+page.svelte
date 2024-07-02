@@ -28,6 +28,7 @@
   let lineData = [];
   let histIndex = $history.length;
   let showInput = true;
+  let hideStuff = false;
 
   let termInput;
   let terminalContainer;
@@ -161,6 +162,12 @@
     showInput: showInput,
     setShowInput: (show: boolean) => {
       showInput = show;
+    },
+    hideStuff: () => {
+      hideStuff = true
+    },
+    showStuff: () => {
+      hideStuff = false
     }
   };
 
@@ -490,8 +497,8 @@
   }}
   bind:this={terminalContainer}
 >
-  <pre class="output">Welcome to Blåsh</pre>
-  <pre class="output">Type 'help' to learn more.</pre>
+  <pre class="output" class:hidden={hideStuff}>Welcome to Blåsh</pre>
+  <pre class="output" class:hidden={hideStuff}>Type 'help' to learn more.</pre>
   {#each lineData as line, i (i)}
     <span>
       {#if line.type === "input"}
@@ -505,7 +512,7 @@
       {/if}
     </span>
   {/each}
-  {#if showInput}
+  {#if showInput && !hideStuff}
     <div class="flex items-center">
       <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
       <input
@@ -517,6 +524,6 @@
       />
     </div>
   {/if}
-  <div class="clock">{$dateTime}</div>
+  <div class="clock" class:hidden={hideStuff}>{$dateTime}</div>
 </div>
 <div class="scanline"></div>

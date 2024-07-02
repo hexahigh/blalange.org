@@ -5,6 +5,8 @@ export type StdlibType = {
   setTextSize: (size: number) => void;
   showInput: boolean;
   setShowInput: (bool: boolean) => void;
+  hideStuff: () => void;
+  showStuff: () => void;
 };
 
 export type CommandType = {
