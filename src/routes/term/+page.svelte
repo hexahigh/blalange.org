@@ -457,6 +457,28 @@
         await module.default(stdlib, options);
       },
     },
+    {
+      name: "lovers",
+      description: "Uraomate lovers in 640p",
+      long_description: "",
+      usage: "lovers",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/lovers");
+
+        let options = {};
+
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            speed: flags.args[0] || 1,
+          };
+        }
+
+        await module.default(stdlib, options);
+      },
+    },
   ];
 
   if (data.commandToRun) {

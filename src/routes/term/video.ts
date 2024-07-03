@@ -75,32 +75,34 @@ export async function play(
     video.frames = JSON.parse(decompressedFrames);
   }
 
-  if (!options.autoScale && !options.textSize) {
-    if (!video.width) {
-      stdlib.print(
-        "Video width is undefined, guessing from 100th frame. This may be inaccurate."
-      );
-      // Split newlines
+  if (!video.width) {
+    stdlib.print(
+      "Video width is undefined, guessing from 100th frame. This may be inaccurate."
+    );
+    // Split newlines
+    try {
+      video.width = video.frames[99].text.split("\n")[0].length;
+    } catch (e) {
+      // Fallback to trying the first frame
       try {
-        video.width = video.frames[99].text.split("\n")[0].length;
-      } catch (e) {
-        // Fallback to trying the first frame
-        try {
-          video.width = video.frames[0].text.split("\n")[0].length;
-        } catch (e2) {
-          console.error(
-            "An error occured while guessing the video width, when trying to get the width of the 100th frame this exception occurred:",
-            e,
-            "and when trying to get the width of the first frame this exception occurred:",
-            e2
-          );
-        }
+        video.width = video.frames[0].text.split("\n")[0].length;
+      } catch (e2) {
+        console.error(
+          "An error occured while guessing the video width, when trying to get the width of the 100th frame this exception occurred:",
+          e,
+          "and when trying to get the width of the first frame this exception occurred:",
+          e2
+        );
       }
     }
-    // Calculate the scale
-    scaleFactor = 100 / video.width;
-    stdlib.print("Scale Factor: " + scaleFactor);
   }
+
+  // Calculate the scale
+  scaleFactor = 100 / video.width;
+
+  stdlib.print("Scale Factor: " + scaleFactor);
+  stdlib.print("Fps: " + video.fps);
+  stdlib.print("Width: " + video.width);
 
   stdlib.print(
     "Your video will start in 5 seconds, if the video looks weird then you might need to zoom out."
@@ -132,10 +134,16 @@ export async function play(
     // Print one frame every options.speed milliseconds
     let i = 0;
     const framesLength = video.frames.length; // Store the length of the frames array
+    let lastTime = 0
     setInterval(() => {
+      // Check if i is within the bounds of the frames array
       if (i < framesLength) {
-        // Check if i is within the bounds of the frames array
-        // Clear lineData
+        // Check if we are over 1s out of sync
+        if (getPos(video.fps, i).sec - lastTime > 1) {
+          player.seek(getPos(video.fps, i).sec);
+          lastTime = getPos(video.fps, i).sec
+        }
+        // Print the frame
         stdlib.setLineData([]);
         stdlib.print(video.frames[i].text);
         i++;
@@ -145,8 +153,16 @@ export async function play(
         stdlib.setLineData([]);
         return;
       }
-      return;
     }, delay);
-    return;
   });
+}
+
+function getPos(fps: number, frame: number) {
+  let ms = (frame / fps) * 1000;
+  let seconds = Math.floor(ms / 1000);
+
+  return {
+    ms: ms,
+    sec: seconds,
+  };
 }
