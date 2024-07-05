@@ -5,15 +5,20 @@ import Pako from "pako";
 
 type PlayOptions = {
   speed?: number;
-  autoScale?: boolean;
-  textSize?: number;
+  // Maximum delay between audio and video before skipping
+  delayToSkip?: number;
 };
+
+let defaultOptions = {
+  speed: 1,
+  delayToSkip: 100,
+}
 
 export async function play(
   stdlib: StdlibType,
   jsonUrl: string,
   audioUrl: string,
-  options: PlayOptions
+  options: PlayOptions = defaultOptions
 ) {
   stdlib.print("Loading, please wait...");
 
@@ -134,14 +139,28 @@ export async function play(
     // Print one frame every options.speed milliseconds
     let i = 0;
     const framesLength = video.frames.length; // Store the length of the frames array
-    let lastTime = 0
+    let startTime = Date.now()
+    let skippedInARow: number = 0
     setInterval(() => {
       // Check if i is within the bounds of the frames array
       if (i < framesLength) {
-        // Check if we are over 1s out of sync
-        if (getPos(video.fps, i).sec - lastTime > 1) {
-          player.seek(getPos(video.fps, i).sec);
-          lastTime = getPos(video.fps, i).sec
+        let sinceStart = Date.now() - startTime
+        let frame = timeToFrame(video.fps, sinceStart);
+        let delayMs = Math.abs(frameToTime(video.fps, i).ms - frameToTime(video.fps, frame).ms);
+        if (delayMs > options.delayToSkip) {
+          console.log(delayMs, "out of sync. Skipping to", frame)
+          // Skip to the correct frame
+          i = Math.round(frame)
+          if (skippedInARow >= 5) {
+            console.log("We seem to be stuck in a loop, setting max delay to:", options.delayToSkip + 10)
+            options.delayToSkip = options.delayToSkip + 10
+            skippedInARow = 0
+          } else {
+            skippedInARow++
+          }
+          return;
+        } else {
+          skippedInARow = 0
         }
         // Print the frame
         stdlib.setLineData([]);
@@ -157,7 +176,7 @@ export async function play(
   });
 }
 
-function getPos(fps: number, frame: number) {
+function frameToTime(fps: number, frame: number) {
   let ms = (frame / fps) * 1000;
   let seconds = Math.floor(ms / 1000);
 
@@ -165,4 +184,15 @@ function getPos(fps: number, frame: number) {
     ms: ms,
     sec: seconds,
   };
+}
+
+/**
+ * A function that calculates the frame number based on the frames per second and time.
+ *
+ * @param {number} fps - The frames per second
+ * @param {number} time - The time in milliseconds
+ * @return {number} The frame number calculated based on the input time and fps
+ */
+function timeToFrame(fps: number, time: number): number {
+  return (time / 1000) * fps;
 }
