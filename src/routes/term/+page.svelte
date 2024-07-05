@@ -491,7 +491,7 @@
   id="terminalContainer"
   class="terminal crt ibm-bios flex flex-col items-start"
   on:click={() => {
-    if (window.getSelection().toString() === "") {
+    if (window.getSelection().toString() === "" && termInput) {
       termInput.focus();
     }
   }}
