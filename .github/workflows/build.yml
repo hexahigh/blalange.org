@@ -25,9 +25,9 @@ jobs:
         node-version: '21'
 
     - name: Setup pnpm
-      uses: pnpm/action-setup@v2
+      uses: pnpm/action-setup@v4
       with:
-        version: 8
+        version: 9
 
     - name: Install dependencies
       run: pnpm i
@@ -47,9 +47,9 @@ jobs:
         node-version: '21'
 
     - name: Setup pnpm
-      uses: pnpm/action-setup@v2
+      uses: pnpm/action-setup@v4
       with:
-        version: 8
+        version: 9
 
     - name: Install dependencies
       run: pnpm i
