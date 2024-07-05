@@ -157,11 +157,11 @@ importers:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
       flowbite:
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^2.4.1
+        version: 2.4.1(rollup@2.79.1)
       flowbite-svelte:
         specifier: ^0.46.1
-        version: 0.46.1(svelte@4.2.18)
+        version: 0.46.1(rollup@2.79.1)(svelte@4.2.18)
       flowbite-typography:
         specifier: ^1.0.3
         version: 1.0.3(tailwindcss@3.4.4)
@@ -2558,6 +2558,9 @@ packages:
   fitty@2.4.2:
     resolution: {integrity: sha512-GNhWgImK4+wEkgEZjBkQMyu5NLSmmryg/CaRP7zYby+TWzCrUou6BHL+iqbjKzJRXMyzuJkH+LBB1+lh4oO77g==}
 
+  flowbite-datepicker@1.3.0:
+    resolution: {integrity: sha512-CLVqzuoE2vkUvWYK/lJ6GzT0be5dlTbH3uuhVwyB67+PjqJWABm2wv68xhBf5BqjpBxvTSQ3mrmLHpPJ2tvrSQ==}
+
   flowbite-svelte-icons@1.6.1:
     resolution: {integrity: sha512-Kw/7BzA6fqlFq7tBNudwX0KVU4cbyyXcMcgHTraMwGBtvBQan0RKMbvWwqm4JZNvLGAvRv1BM2EF7rzo/oam1Q==}
     peerDependencies:
@@ -2576,8 +2579,8 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
 
-  flowbite@2.3.0:
-    resolution: {integrity: sha512-pm3JRo8OIJHGfFYWgaGpPv8E+UdWy0Z3gEAGufw+G/1dusaU/P1zoBLiQpf2/+bYAi+GBQtPVG86KYlV0W+AFQ==}
+  flowbite@2.4.1:
+    resolution: {integrity: sha512-I++vDsSOOlzHNuxY2OcFMNVC4CNzpPU2K14YHJ81cYrANXdzgizqniMB/1KQ219x8fqw+S0msY9Q45ZSXDqAPw==}
 
   follow-redirects@1.15.6:
     resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
@@ -6388,19 +6391,28 @@ snapshots:
 
   fitty@2.4.2: {}
 
+  flowbite-datepicker@1.3.0(rollup@2.79.1):
+    dependencies:
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@2.79.1)
+      flowbite: 2.4.1(rollup@2.79.1)
+    transitivePeerDependencies:
+      - rollup
+
   flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.3.0)(tailwindcss@3.4.4):
     dependencies:
       svelte: 4.2.18
       tailwind-merge: 2.3.0
       tailwindcss: 3.4.4
 
-  flowbite-svelte@0.46.1(svelte@4.2.18):
+  flowbite-svelte@0.46.1(rollup@2.79.1)(svelte@4.2.18):
     dependencies:
       '@floating-ui/dom': 1.6.5
       apexcharts: 3.49.1
-      flowbite: 2.3.0
+      flowbite: 2.4.1(rollup@2.79.1)
       svelte: 4.2.18
       tailwind-merge: 2.3.0
+    transitivePeerDependencies:
+      - rollup
 
   flowbite-typography@1.0.3(tailwindcss@3.4.4):
     dependencies:
@@ -6409,10 +6421,13 @@ snapshots:
       lodash.merge: 4.6.2
       tailwindcss: 3.4.4
 
-  flowbite@2.3.0:
+  flowbite@2.4.1(rollup@2.79.1):
     dependencies:
       '@popperjs/core': 2.11.8
+      flowbite-datepicker: 1.3.0(rollup@2.79.1)
       mini-svg-data-uri: 1.4.4
+    transitivePeerDependencies:
+      - rollup
 
   follow-redirects@1.15.6: {}
 
