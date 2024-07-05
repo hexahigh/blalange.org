@@ -9,7 +9,7 @@ type PlayOptions = {
   delayToSkip?: number;
 };
 
-let defaultOptions = {
+const defaultOptions: PlayOptions = {
   speed: 1,
   delayToSkip: 100,
 }
@@ -18,8 +18,11 @@ export async function play(
   stdlib: StdlibType,
   jsonUrl: string,
   audioUrl: string,
-  options: PlayOptions = defaultOptions
+  options: PlayOptions
 ) {
+
+  options = { ...defaultOptions, ...options };
+
   stdlib.print("Loading, please wait...");
 
   let player = new Tone.Player();
@@ -147,6 +150,7 @@ export async function play(
         let sinceStart = Date.now() - startTime
         let frame = timeToFrame(video.fps, sinceStart);
         let delayMs = Math.abs(frameToTime(video.fps, i).ms - frameToTime(video.fps, frame).ms);
+        console.log(delayMs)
         if (delayMs > options.delayToSkip) {
           console.log(delayMs, "out of sync. Skipping to", frame)
           // Skip to the correct frame
