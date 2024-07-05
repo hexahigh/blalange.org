@@ -2,6 +2,11 @@ export type StdlibType = {
   print: (...args: any[]) => void;
   lineData: string[];
   setLineData: (array: any[]) => void;
+  setTextSize: (size: number) => void;
+  showInput: boolean;
+  setShowInput: (bool: boolean) => void;
+  hideStuff: () => void;
+  showStuff: () => void;
 };
 
 export type CommandType = {
@@ -18,6 +23,7 @@ export type CommandsType = CommandType[];
 export interface TextVideo {
   format_version: number;
   fps: number;
+  width: number;
   /**
    * 'gzip'
    */

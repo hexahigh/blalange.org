@@ -18,6 +18,6 @@ export default function main(stdlib: StdlibType, inOptions = {}) {
     speed = options.speed
   }
 
-  play(stdlib, json, song, speed);
+  play(stdlib, json, song, { speed: speed });
 
 }

@@ -1,13 +1,15 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-  import { DarkMode } from "flowbite-svelte";
-  import { SunSolid, MoonSolid } from "flowbite-svelte-icons";
-  import logo from "$lib/img/favicon.svg";
   import { page } from "$app/stores";
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
   import { config } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
+  import "iconify-icon"
+  
+  import logo from "$lib/img/favicon.svg";
+  import DarkmodeSwitcher from "./darkmode-switcher.svelte";
+  import { DarkMode } from "flowbite-svelte";
 
 
   let logoAlwaysSpins = false;
@@ -69,7 +71,7 @@
   $: path = $page.url.pathname;
 </script>
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900" use:autoAnimate>
+<nav class="bg-white border-gray-200 dark:bg-gray-900" {...$$restProps} use:autoAnimate>
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >
@@ -133,16 +135,16 @@
           <a href={toRedirect("https://shop.blalange.org")}>Merch</a>
         </li>
         <li class={path === "/chat" ? "current-page" : "not-current-page"}>
-          <a href="/chat">Chat</a>
+          <a href="/chat">Chat</a>  
         </li>
         <li class={path === "/login" ? "current-page" : "not-current-page"}>
           <a href="/login">Login</a>
         </li>
-        <li>
-          <DarkMode class="text-lg">
-            <SunSolid slot="lightIcon" color="yellow" />
-            <MoonSolid slot="darkIcon" color="blue" />
-          </DarkMode>
+        <li class="mx-auto md:m-0">
+          <DarkmodeSwitcher class="h-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm">
+            <iconify-icon slot="lightIcon" icon="line-md:moon-filled-loop" class="text-blue-500" width="24" />
+            <iconify-icon slot="darkIcon" icon="line-md:sun-rising-filled-loop" class="text-yellow-500" width="24" />
+          </DarkmodeSwitcher>
         </li>
       </ul>
     </div>

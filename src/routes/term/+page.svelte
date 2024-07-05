@@ -28,6 +28,7 @@
   let lineData = [];
   let histIndex = $history.length;
   let showInput = true;
+  let hideStuff = false;
 
   let termInput;
   let terminalContainer;
@@ -155,6 +156,19 @@
     setLineData: (array: any[]) => {
       lineData = array;
     },
+    setTextSize: (size: number) => {
+      terminalContainer.style.fontSize = `${size}px`;
+    },
+    showInput: showInput,
+    setShowInput: (show: boolean) => {
+      showInput = show;
+    },
+    hideStuff: () => {
+      hideStuff = true
+    },
+    showStuff: () => {
+      hideStuff = false
+    }
   };
 
   let commands: CommandsType = [
@@ -442,7 +456,7 @@
 
         await module.default(stdlib, options);
       },
-    },
+    }
   ];
 
   if (data.commandToRun) {
@@ -474,16 +488,17 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
+  id="terminalContainer"
   class="terminal crt ibm-bios flex flex-col items-start"
   on:click={() => {
-    if (window.getSelection().toString() === "") {
+    if (window.getSelection().toString() === "" && termInput) {
       termInput.focus();
     }
   }}
   bind:this={terminalContainer}
 >
-  <pre class="output">Welcome to Blåsh</pre>
-  <pre class="output">Type 'help' to learn more.</pre>
+  <pre class="output" class:hidden={hideStuff}>Welcome to Blåsh</pre>
+  <pre class="output" class:hidden={hideStuff}>Type 'help' to learn more.</pre>
   {#each lineData as line, i (i)}
     <span>
       {#if line.type === "input"}
@@ -497,7 +512,7 @@
       {/if}
     </span>
   {/each}
-  {#if showInput}
+  {#if showInput && !hideStuff}
     <div class="flex items-center">
       <p class="prompt mr-auto">{user}@{machine}:$&nbsp;</p>
       <input
@@ -509,6 +524,6 @@
       />
     </div>
   {/if}
-  <div class="clock">{$dateTime}</div>
+  <div class="clock" class:hidden={hideStuff}>{$dateTime}</div>
 </div>
 <div class="scanline"></div>

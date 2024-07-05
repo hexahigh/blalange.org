@@ -1,6 +1,7 @@
 {
   "format_version": 3,
   "fps": 30,
+  "width": 100,
   "encoding": "base64",
   "compression": "gzip",
   "frames": [],
