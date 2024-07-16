@@ -116,6 +116,8 @@ export async function processMessageText(text: string): Promise<string> {
 
   processedText = await cleanHtml(processedText);
 
+  processedText = await modifyAnchorTags(processedText);
+
   return processedText;
 }
 
@@ -191,4 +193,14 @@ async function cleanHtml(text: string): Promise<string> {
 
 async function markdownToHtml(text: string): Promise<string> {
   return marked.parse(text);
+}
+
+async function modifyAnchorTags(htmlContent: string): Promise<string> {
+  // Regex pattern to match <a href="URL">, capturing the URL part
+  const regex = /<a href="([^"]*)"/g;
+
+  // Replace function to use toRedirect on the captured URL
+  const replacedContent = htmlContent.replace(regex, (_, url) => `<a href="${toRedirect(url)}"`);
+
+  return replacedContent;
 }
