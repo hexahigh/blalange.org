@@ -37,15 +37,15 @@ let options = {
 
 export async function verifyMessage(
   message: string
-): Promise<{ valid: boolean; error?: string }> {
+): Promise<{ valid: boolean; error?: string, errorCode?: string }> {
   // Check if message contains only whitespace
   if (message.trim() === "") {
-    return { valid: false, error: "Message cannot be empty." };
+    return { valid: false, error: "Message cannot be empty.", errorCode: "MSG_EMPTY" };
   }
 
   // Check if message contains only numbers
   if (/^\d+$/.test(message)) {
-    return { valid: false, error: "Message cannot contain only numbers." };
+    return { valid: false, error: "Message cannot contain only numbers.", errorCode: "MSG_ONLY_NUMBERS" };
   }
 
   // Check if message contains over 50% whitespace or tabs
@@ -57,6 +57,7 @@ export async function verifyMessage(
     return {
       valid: false,
       error: "Message cannot contain over 50% whitespace or tabs.",
+      errorCode: "MSG_WHITESPACE",
     };
   }
 
@@ -64,6 +65,7 @@ export async function verifyMessage(
     return {
       valid: false,
       error: "Message cannot be longer than 2048 characters.",
+      errorCode: "MSG_TOO_LONG",
     };
   }
 
@@ -71,6 +73,7 @@ export async function verifyMessage(
     return {
       valid: false,
       error: "Message cannot be shorter than 2 characters.",
+      errorCode: "MSG_TOO_SHORT",
     };
   }
 
@@ -79,18 +82,24 @@ export async function verifyMessage(
 
 export async function verifyName(
   name: string
-): Promise<{ valid: boolean; error?: string }> {
+): Promise<{ valid: boolean; error?: string, errorCode?: string }> {
   // Check if name is empty
   if (name.trim() === "") {
-    return { valid: false, error: "Name cannot be empty." };
+    return { valid: false, error: "Name cannot be empty.", errorCode: "NAME_EMPTY" };
   }
 
   if (name.length > 32) {
-    return { valid: false, error: "Name cannot be longer than 32 characters." };
+    return { valid: false, error: "Name cannot be longer than 32 characters.", errorCode: "NAME_TOO_LONG" };
   }
 
   if (name.length <= 3) {
-    return { valid: false, error: "Name cannot be shorter than 3 characters." };
+    return { valid: false, error: "Name cannot be shorter than 3 characters.", errorCode: "NAME_TOO_SHORT" };
+  }
+
+  // Check if name contains special characters
+  const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  if (specialChars.test(name)) {
+    return { valid: false, error: "Name cannot contain special characters.", errorCode: "NAME_SPECIAL_CHARS" };
   }
 
   return { valid: true };

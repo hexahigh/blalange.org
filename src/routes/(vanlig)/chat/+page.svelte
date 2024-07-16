@@ -210,12 +210,10 @@
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
-      let verifyResult;
-
-      verifyResult = await verifyMessage(commentText);
+      let verifyResult = await verifyMessage(commentText);
 
       if (!verifyResult.valid) {
-        commentError = verifyResult.error;
+        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
         return;
       }
 
@@ -224,7 +222,7 @@
       }
 
       if (!verifyResult.valid) {
-        commentError = verifyResult.error;
+        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
         return;
       }
 
