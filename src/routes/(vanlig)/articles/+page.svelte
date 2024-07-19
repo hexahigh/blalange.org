@@ -10,13 +10,13 @@
 </script>
 
 <MetaTags
-  title="Balleblad"
+  title="Blåblad"
   titleTemplate="%s | Blålange"
   description="Nyhetssiden til Blålange festivalen"
   canonical="https://blalange.org/articles/"
   openGraph={{
     url: "https://blalange.org/articles",
-    title: "Balleblad | Blålange",
+    title: "Blåblad | Blålange",
     description: "Nyhetssiden til Blålange festivalen",
     images: [
       {
