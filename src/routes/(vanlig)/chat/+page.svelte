@@ -37,6 +37,7 @@
   // Options
   let options = {
     pageSize: 25,
+    avatarPack: thumbs,
   };
 
   let pb = new PocketBase(defaultConfig.dbEndpoint);
@@ -156,7 +157,7 @@
         if (!messages[i].avatar || messages[i].avatar === "") {
           let startTime = performance.now();
           messages[i].avatar = genAvatar(
-            thumbs,
+            options.avatarPack,
             messages[i].name
           ).toDataUriSync();
           stageTimes.genAvatar += performance.now() - startTime;
@@ -169,7 +170,7 @@
       } else {
         let startTime = performance.now();
         messages[i].avatar = genAvatar(
-          thumbs,
+          options.avatarPack,
           messages[i].name
         ).toDataUriSync();
         stageTimes.genAvatar += performance.now() - startTime;
@@ -209,12 +210,10 @@
     if (!pb) return; // Ensure PocketBase is initialized
 
     try {
-      let verifyResult;
-
-      verifyResult = await verifyMessage(commentText);
+      let verifyResult = await verifyMessage(commentText);
 
       if (!verifyResult.valid) {
-        commentError = verifyResult.error;
+        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
         return;
       }
 
@@ -223,7 +222,7 @@
       }
 
       if (!verifyResult.valid) {
-        commentError = verifyResult.error;
+        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
         return;
       }
 

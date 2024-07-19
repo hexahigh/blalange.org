@@ -5,6 +5,7 @@ export const defaultConfig = {
   dbEndpoint: "https://db.080609.xyz",
   analyticsEnabled: true,
   logoAlwaysSpins: false,
+  primaryDomain: "blalange.org",
 };
 
 export const config = writable({
