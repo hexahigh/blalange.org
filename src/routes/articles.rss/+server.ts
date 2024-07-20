@@ -15,6 +15,7 @@ export async function GET({ url }) {
   const metadata = {
     title: "Blåblad",
     description: "Nyheter fra Blåblad",
+    webmaster: "simon@blalange.org",
     link: `${url.origin}/articles`,
     lastBuildDate: formatDateForRSS(articles[0].date),
     pubDate: formatDateForRSS(articles[0].date),
@@ -26,9 +27,15 @@ export async function GET({ url }) {
             <title>${metadata.title}</title>
             <link>${metadata.link}</link>
             <description>${metadata.description}</description>
-            <language>nb</language>
+            <language>nb-no</language>
             <lastBuildDate>${metadata.lastBuildDate}</lastBuildDate>
             <pubDate>${metadata.pubDate}</pubDate>
+            <webMaster>${metadata.webmaster}</webMaster>
+            <image>
+                <title>${metadata.title}</title>
+                <url>${url.origin}/favicon.png</url>
+                <link>${metadata.link}</link>
+            </image>
             <atom:link href="${metadata.link}.rss" rel="self" type="application/rss+xml" />
        `;
 
@@ -46,6 +53,7 @@ export async function GET({ url }) {
                 <description>${article.description}</description>
                 <guid isPermaLink="false">${article.artId}</guid>
                 <pubDate>${formatDateForRSS(article.date)}</pubDate>
+                <author>${article.author}</author>
             </item>
             `;
     })
@@ -58,6 +66,7 @@ export async function GET({ url }) {
   });
 }
 
+// Pain
 function formatDateForRSS(date) {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
