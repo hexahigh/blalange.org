@@ -45,20 +45,20 @@
   <h4 class="text-2xl">Doner nå!</h4>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-  <div class="flex justify-center gap-16">
+  <div class="flex flex-col sm:flex-row justify-center gap-16">
     <img
-      class="w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
-      draggable="false"
-      src={paypal}
-      alt="Paypal"
-      on:click={() => donate("paypal")}
+        class="w-full sm:w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
+        draggable="false"
+        src={paypal}
+        alt="Paypal"
+        on:click={() => donate("paypal")}
     />
     <img
-      class="w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
-      draggable="false"
-      src={opencollective}
-      alt="OpenCollective"
-      on:click={() => donate("openCollective")}
+        class="w-full sm:w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
+        draggable="false"
+        src={opencollective}
+        alt="OpenCollective"
+        on:click={() => donate("openCollective")}
     />
-  </div>
+</div>
 </div>
