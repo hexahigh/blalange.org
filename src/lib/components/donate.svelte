@@ -1,5 +1,6 @@
 <script>
   import paypal from "$lib/svg/paypal1.svg";
+  import opencollective from "$lib/svg/openCollective_2021.svg";
   import donations from "$lib/json/donations.json";
 
   let cost = 2000;
@@ -13,13 +14,14 @@
 
   async function donate(service) {
     if (service == "paypal") {
-      window.open("https://www.paypal.com/donate/?hosted_button_id=N2US62KK87SB4");
+      window.open(
+        "https://www.paypal.com/donate/?hosted_button_id=N2US62KK87SB4"
+      );
     }
-    if (service == "patreon") {
-      window.open("https://www.patreon.com/boofdev");
+    if (service == "openCollective") {
+      window.open("https://opencollective.com/blalange");
     }
   }
-
 </script>
 
 <div class="text-center max-w-4xl mx-auto mt-10 mb-4 border-b-2 border-dashed">
@@ -41,10 +43,22 @@
   </div>
 
   <h4 class="text-2xl">Doner nå!</h4>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <div class="flex justify-center gap-16">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <img class="w-64 h-64 hover:scale-110 transform transition duration-500 no-drag" draggable="false" src={paypal} alt="Paypal" on:click={() => donate("paypal")} />
+    <img
+      class="w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
+      draggable="false"
+      src={paypal}
+      alt="Paypal"
+      on:click={() => donate("paypal")}
+    />
+    <img
+      class="w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
+      draggable="false"
+      src={opencollective}
+      alt="OpenCollective"
+      on:click={() => donate("openCollective")}
+    />
   </div>
 </div>
-
