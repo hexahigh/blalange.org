@@ -10,15 +10,13 @@ export async function GET({ url }) {
     sort: "-created",
     expand: "authors",
   });
-
-  console.log(url);
-
+  
   const metadata = {
     title: "Blåblad",
     description: "Nyheter fra Blåblad",
     webmaster: "simon@blalange.org",
     link: `${url.origin}/articles`,
-    lastBuildDate: formatDateForRSS(articles[0].date),
+    lastBuildDate: formatDateForRSS(new Date()),
     pubDate: formatDateForRSS(articles[0].date),
   };
 
