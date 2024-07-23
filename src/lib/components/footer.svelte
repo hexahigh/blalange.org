@@ -4,7 +4,7 @@
 </script>
 
 <footer
-  class="w-full text-center p-4 bg-gray-200 text-black dark:bg-gray-900 dark:text-white"
+  class="w-full text-center p-4 bg-gray-200 text-black dark:bg-ctp-crust dark:text-white"
 >
   <div class="md:flex md:justify-center md:items-center">
     <div>

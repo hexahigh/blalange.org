@@ -71,7 +71,7 @@
   $: path = $page.url.pathname;
 </script>
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900" {...$$restProps} use:autoAnimate>
+<nav class="bg-white border-gray-200 dark:bg-ctp-crust" {...$$restProps} use:autoAnimate>
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >
@@ -119,7 +119,7 @@
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul
-        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-ctp-crust md:dark:bg-ctp-crust dark:border-gray-700"
       >
         <li class={path === "/" ? "current-page" : "not-current-page"}>
           <a href="/">Hjem</a>

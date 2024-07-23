@@ -21,7 +21,7 @@
 </script>
 
 <div
-  class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
+  class="bg-white border border-gray-200 rounded-lg shadow dark:bg-ctp-mantle dark:border-gray-700 transform transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
 >
   <a href={link}>
     <a href={link}>
