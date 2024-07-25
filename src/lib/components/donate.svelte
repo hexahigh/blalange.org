@@ -49,13 +49,6 @@
     <img
         class="w-full sm:w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
         draggable="false"
-        src={paypal}
-        alt="Paypal"
-        on:click={() => donate("paypal")}
-    />
-    <img
-        class="w-full sm:w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
-        draggable="false"
         src={opencollective}
         alt="OpenCollective"
         on:click={() => donate("openCollective")}
