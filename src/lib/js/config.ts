@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { thumbs } from "@dicebear/collection";
 
 export const defaultConfig = {
   devMode: false,
@@ -6,6 +7,7 @@ export const defaultConfig = {
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",
+  dicebearCollection: thumbs,
 };
 
 export const config = writable({
