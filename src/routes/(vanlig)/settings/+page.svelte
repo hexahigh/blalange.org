@@ -2,14 +2,14 @@
   import PocketBase from "pocketbase";
   import { defaultConfig, config } from "$lib/js/config";
   import Metatags from "$lib/components/metatags.svelte";
+  import { onMount } from "svelte";
 
   const pb = new PocketBase(defaultConfig.dbEndpoint);
 
   let message;
   let messageType = "info";
-  let success;
 
-  let profilePicture = getPfp();
+  let profilePicture
   let selectedFile; // Variable to hold the reference to the selected file
 
   function isLoggedIn() {
@@ -17,10 +17,12 @@
     return pb.authStore.isValid;
   }
 
-  function getPfp() {
+  async function getPfp() {
     if (!pb || !pb.authStore.isValid) return; // Ensure PocketBase is initialized
 
-    return pb.files.getUrl(pb.authStore.model, pb.authStore.model.avatar, {
+    const record = await pb.collection("users").getOne(pb.authStore.model.id);
+
+    return pb.files.getUrl(record, record.avatar, {
       thumb: "100x100",
     });
   }
@@ -35,20 +37,23 @@
 
       message = "Profilbildet ble lagret.";
       messageType = "success";
-      success = true;
 
-      profilePicture = getPfp(); // Refresh the profile picture after successful upload
+      profilePicture = await getPfp(); // Refresh the profile picture after successful upload
     } catch (error) {
       console.error("Feil under opplasting av profilbilde:", error);
       message = "Kunne ikke lagre profilbildet.";
       messageType = "error";
-      success = false;
     }
   }
 
   function handleFileSelect(event) {
     selectedFile = event.target.files[0]; // Update the selectedFile variable on file selection
+    profilePicture = URL.createObjectURL(selectedFile);
   }
+
+  onMount(async () => {
+    profilePicture = await getPfp();
+  });
 </script>
 
 <Metatags
@@ -81,9 +86,9 @@
       {/if}
     {/if}
     {#if isLoggedIn()}
-      <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">
+      <div>
         <h2 class="text-2xl font-bold mb-4">Konto innstillinger</h2>
-        <div>
+        <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">
           <h3 class="text-xl font-bold mb-4">Profilbilde:</h3>
           <img src={profilePicture} alt="Profilbilde" class="w-20 h-20 mb-4" />
           <div>
