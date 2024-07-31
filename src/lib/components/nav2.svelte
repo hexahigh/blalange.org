@@ -58,6 +58,8 @@
   onMount(async () => {
     await getStuff();
 
+    console.log("Document is: " + document.readyState);
+
     const targetEl = document.getElementById("navbar-default");
     const triggerEl = document.getElementById("hamburger");
 
