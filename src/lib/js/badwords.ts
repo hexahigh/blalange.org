@@ -58,6 +58,7 @@ export let words = [
     "slut",
     "tit",
     "tits",
+    "tv2.no",
     "twat",
     "wanker",
 ]
