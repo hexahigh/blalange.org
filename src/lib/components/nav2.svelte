@@ -7,11 +7,11 @@
   import { toRedirect } from "$lib/js/redirect";
   import "iconify-icon";
   import PocketBase from "pocketbase";
-  
+
   import personSvg from "$lib/svg/person.svg";
   import logo from "$lib/img/favicon.svg";
   import DarkmodeSwitcher from "./darkmode-switcher.svelte";
-  import { DarkMode } from "flowbite-svelte";
+  import { Dropdown } from "flowbite-svelte";
 
   let logoAlwaysSpins = false;
 
@@ -97,30 +97,29 @@
         if (triggerElProfile.hasAttribute("aria-expanded")) {
           visibleProfile = triggerElProfile.getAttribute("aria-expanded") === "true";
         }
-    },
-    expand: () => {
-      targetElProfile.classList.remove("hidden");
-      if (triggerElProfile) {
-        triggerElProfile.setAttribute("aria-expanded", "true");
-      }
-      visibleProfile = true;
-    },
-    collapse: () => {
-      targetElProfile.classList.add("hidden");
-      if (triggerElProfile) {
-        triggerElProfile.setAttribute("aria-expanded", "false");
-      }
-      visibleProfile = false;
-    },
-    toggle: () => {
-      if (visibleProfile) {
-        collapseProfile.collapse();
-      } else {
-        collapseProfile.expand();
-      }
-    },
-  };
-
+      },
+      expand: () => {
+        targetElProfile.classList.remove("hidden");
+        if (triggerElProfile) {
+          triggerElProfile.setAttribute("aria-expanded", "true");
+        }
+        visibleProfile = true;
+      },
+      collapse: () => {
+        targetElProfile.classList.add("hidden");
+        if (triggerElProfile) {
+          triggerElProfile.setAttribute("aria-expanded", "false");
+        }
+        visibleProfile = false;
+      },
+      toggle: () => {
+        if (visibleProfile) {
+          collapseProfile.collapse();
+        } else {
+          collapseProfile.expand();
+        }
+      },
+    };
   });
 
   $: navbarClass = visible ? "navbar-open" : "";
@@ -189,7 +188,6 @@
         </li>
         <li>
           <button
-            on:click={toggleNavProfile}
             class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             id="user-menu-button"
             aria-expanded="false"
@@ -203,51 +201,53 @@
               <img class="w-8 h-8 rounded-full" src={personSvg} alt="user photo" />
             {/if}
           </button>
-          <div
-            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-            id="user-dropdown"
-          >
-            {#if pb.authStore.isValid}
-              <div class="px-4 py-3">
-                <span class="block text-sm text-gray-900 dark:text-white">{userStuff.name}</span>
-                <span class="block text-sm text-gray-500 truncate dark:text-gray-400">{userStuff.email}</span>
-              </div>
-              <ul class="py-2" aria-labelledby="user-menu-button">
-                <li>
-                  <a
-                    href="/settings"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >Innstillinger</a
-                  >
-                </li>
-                <li>
-                  <a
-                    on:click={() => pb.authStore.clear()}
-                    href=""
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >Logg ut</a
-                  >
-                </li>
-              </ul>
-            {:else}
-              <ul class="py-2" aria-labelledby="user-menu-button">
-                <li>
-                  <a
-                    href="/settings"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >Innstillinger</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/login"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >Logg inn</a
-                  >
-                </li>
-              </ul>
-            {/if}
-          </div>
+          <Dropdown>
+            <div
+              class="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+              id="user-dropdown"
+            >
+              {#if pb.authStore.isValid}
+                <div class="px-4 py-3">
+                  <span class="block text-sm text-gray-900 dark:text-white">{userStuff.name}</span>
+                  <span class="block text-sm text-gray-500 truncate dark:text-gray-400">{userStuff.email}</span>
+                </div>
+                <ul class="py-2" aria-labelledby="user-menu-button">
+                  <li>
+                    <a
+                      href="/settings"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >Innstillinger</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      on:click={() => pb.authStore.clear()}
+                      href=""
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >Logg ut</a
+                    >
+                  </li>
+                </ul>
+              {:else}
+                <ul class="py-2" aria-labelledby="user-menu-button">
+                  <li>
+                    <a
+                      href="/settings"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >Innstillinger</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/login"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >Logg inn</a
+                    >
+                  </li>
+                </ul>
+              {/if}
+            </div>
+          </Dropdown>
         </li>
         <li class="mx-auto md:m-0">
           <DarkmodeSwitcher
