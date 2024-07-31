@@ -12,6 +12,7 @@
   import logo from "$lib/img/favicon.svg";
   import DarkmodeSwitcher from "./darkmode-switcher.svelte";
   import { Dropdown } from "flowbite-svelte";
+  import Popper from "./popper.svelte";
 
   let logoAlwaysSpins = false;
 
@@ -201,7 +202,15 @@
               <img class="w-8 h-8 rounded-full" src={personSvg} alt="user photo" />
             {/if}
           </button>
-          <Dropdown>
+          <Popper
+            activeContent
+            trigger="click"
+            placement="bottom"
+            arrow=false
+            rounded=true
+            shadow=true
+            on:show
+          >
             <div
               class="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
               id="user-dropdown"
@@ -247,7 +256,7 @@
                 </ul>
               {/if}
             </div>
-          </Dropdown>
+          </Popper>
         </li>
         <li class="mx-auto md:m-0">
           <DarkmodeSwitcher
