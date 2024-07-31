@@ -7,8 +7,7 @@
   import { toRedirect } from "$lib/js/redirect";
   import "iconify-icon";
   import PocketBase from "pocketbase";
-  import { Collapse } from "flowbite";
-
+  
   import personSvg from "$lib/svg/person.svg";
   import logo from "$lib/img/favicon.svg";
   import DarkmodeSwitcher from "./darkmode-switcher.svelte";
@@ -58,8 +57,6 @@
   onMount(async () => {
     await getStuff();
 
-    console.log("Document is: " + document.readyState);
-
     const targetEl = document.getElementById("navbar-default");
     const triggerEl = document.getElementById("hamburger");
 
@@ -95,7 +92,35 @@
     const targetElProfile = document.getElementById("user-dropdown");
     const triggerElProfile = document.getElementById("user-menu-button");
 
-    collapseProfile = new Collapse(targetElProfile);
+    collapseProfile = {
+      init: () => {
+        if (triggerElProfile.hasAttribute("aria-expanded")) {
+          visibleProfile = triggerElProfile.getAttribute("aria-expanded") === "true";
+        }
+    },
+    expand: () => {
+      targetElProfile.classList.remove("hidden");
+      if (triggerElProfile) {
+        triggerElProfile.setAttribute("aria-expanded", "true");
+      }
+      visibleProfile = true;
+    },
+    collapse: () => {
+      targetElProfile.classList.add("hidden");
+      if (triggerElProfile) {
+        triggerElProfile.setAttribute("aria-expanded", "false");
+      }
+      visibleProfile = false;
+    },
+    toggle: () => {
+      if (visibleProfile) {
+        collapseProfile.collapse();
+      } else {
+        collapseProfile.expand();
+      }
+    },
+  };
+
   });
 
   $: navbarClass = visible ? "navbar-open" : "";
