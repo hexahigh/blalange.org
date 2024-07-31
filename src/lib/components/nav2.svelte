@@ -3,16 +3,20 @@
   import { page } from "$app/stores";
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
-  import { config } from "$lib/js/config.ts";
+  import { config, defaultConfig } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
-  import "iconify-icon"
-  
+  import "iconify-icon";
+  import PocketBase from "pocketbase";
+  import { Collapse } from "flowbite";
+
+  import personSvg from "$lib/svg/person.svg";
   import logo from "$lib/img/favicon.svg";
   import DarkmodeSwitcher from "./darkmode-switcher.svelte";
   import { DarkMode } from "flowbite-svelte";
 
-
   let logoAlwaysSpins = false;
+
+  const pb = new PocketBase(defaultConfig.dbEndpoint);
 
   // Subscribe to the config store
   const unsubscribe = config.subscribe((value) => {
@@ -24,11 +28,36 @@
     unsubscribe();
   });
 
+  let userStuff = {
+    profilePicture: "",
+    name: "",
+    email: "",
+  };
+  let userRecord;
+
+  async function getStuff() {
+    if (!pb || !pb.authStore.isValid) return; // Ensure PocketBase is initialized
+
+    userRecord = await pb.collection("users").getOne(pb.authStore.model.id);
+
+    userStuff = {
+      profilePicture: pb.files.getUrl(userRecord, userRecord.avatar, {
+        thumb: "100x100",
+      }),
+      name: userRecord.username,
+      email: userRecord.email,
+    };
+  }
+
   let path;
   let collapse;
+  let collapseProfile;
+  let visibleProfile = false;
   let visible = false;
 
-  onMount(() => {
+  onMount(async () => {
+    await getStuff();
+
     const targetEl = document.getElementById("navbar-default");
     const triggerEl = document.getElementById("hamburger");
 
@@ -60,6 +89,11 @@
         }
       },
     };
+
+    const targetElProfile = document.getElementById("user-dropdown");
+    const triggerElProfile = document.getElementById("user-menu-button");
+
+    collapseProfile = new Collapse(targetElProfile);
   });
 
   $: navbarClass = visible ? "navbar-open" : "";
@@ -68,13 +102,15 @@
     collapse.toggle();
   }
 
+  function toggleNavProfile() {
+    collapseProfile.toggle();
+  }
+
   $: path = $page.url.pathname;
 </script>
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900" {...$$restProps} use:autoAnimate>
-  <div
-    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
-  >
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -85,10 +121,7 @@
         on:click={confetti.fireAll}
         alt="Blålange Logo"
       />
-      <span
-        class="self-center text-2xl font-semibold whitespace-nowrap krona dark:text-white"
-        >Blålange</span
-      >
+      <span class="self-center text-2xl font-semibold whitespace-nowrap krona dark:text-white">Blålange</span>
     </a>
     <button
       on:click={toggleNav}
@@ -101,13 +134,7 @@
       aria-expanded="false"
     >
       <span class="sr-only">Open main menu</span>
-      <svg
-        class="w-5 h-5"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 17 14"
-      >
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
         <path
           stroke="currentColor"
           stroke-linecap="round"
@@ -124,24 +151,81 @@
         <li class={path === "/" ? "current-page" : "not-current-page"}>
           <a href="/">Hjem</a>
         </li>
-        <li
-          class={path.includes("/articles")
-            ? "current-page"
-            : "not-current-page"}
-        >
+        <li class={path.includes("/articles") ? "current-page" : "not-current-page"}>
           <a href="/articles">Artikler</a>
         </li>
         <li class="not-current-page">
           <a href={toRedirect("https://shop.blalange.org")}>Merch</a>
         </li>
         <li class={path === "/chat" ? "current-page" : "not-current-page"}>
-          <a href="/chat">Chat</a>  
+          <a href="/chat">Chat</a>
         </li>
-        <li class={path === "/login" ? "current-page" : "not-current-page"}>
-          <a href="/login">Login</a>
+        <li>
+          <button
+            on:click={toggleNavProfile}
+            class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            id="user-menu-button"
+            aria-expanded="false"
+            data-dropdown-toggle="user-dropdown"
+            data-dropdown-placement="bottom"
+          >
+            <span class="sr-only">Open user menu</span>
+            {#if pb.authStore.isValid}
+              <img class="w-8 h-8 rounded-full" src={userStuff.profilePicture} alt="user photo" />
+            {:else}
+              <img class="w-8 h-8 rounded-full" src={personSvg} alt="user photo" />
+            {/if}
+          </button>
+          <div
+            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+            id="user-dropdown"
+          >
+            {#if pb.authStore.isValid}
+              <div class="px-4 py-3">
+                <span class="block text-sm text-gray-900 dark:text-white">{userStuff.name}</span>
+                <span class="block text-sm text-gray-500 truncate dark:text-gray-400">{userStuff.email}</span>
+              </div>
+              <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                  <a
+                    href="/settings"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Innstillinger</a
+                  >
+                </li>
+                <li>
+                  <a
+                    on:click={() => pb.authStore.clear()}
+                    href=""
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Logg ut</a
+                  >
+                </li>
+              </ul>
+            {:else}
+              <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                  <a
+                    href="/settings"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Innstillinger</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/login"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Logg inn</a
+                  >
+                </li>
+              </ul>
+            {/if}
+          </div>
         </li>
         <li class="mx-auto md:m-0">
-          <DarkmodeSwitcher class="h-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm">
+          <DarkmodeSwitcher
+            class="h-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm"
+          >
             <iconify-icon slot="lightIcon" icon="line-md:moon-filled-loop" class="text-blue-500" width="24" />
             <iconify-icon slot="darkIcon" icon="line-md:sun-rising-filled-loop" class="text-yellow-500" width="24" />
           </DarkmodeSwitcher>
