@@ -217,19 +217,6 @@
     <br />
     <a href="mailto:copr@blalange.org">copr@blalange.org</a>
   </p>
-
-  <h2>GENERAL INFORMATION</h2>
-  <p>
-    Entire Agreement. The TOS constitutes the entire agreement between you and Blålange Festivalen and governs your use of the Blålange Festivalen
-    Service, superseding any prior agreements between you and Blålange Festivalen with respect to the Blålange Festivalen Service.. Choice of Law and
-    Forum. The TOS and the relationship between you and Blålange Festivalen shall be governed by the laws of the State of California
-    without regard to its conflict of law provisions. You and Blålange Festivalen agree to submit to the personal and exclusive
-    jurisdiction of the courts located within the county of Santa Clara, California. Waiver and Severability of Terms.
-    The failure of Blålange Festivalen to exercise or enforce any right or provision of the TOS shall not constitute a waiver of such
-    right or provision. If any provision of the TOS is found by a court of competent jurisdiction to be invalid, the
-    parties nevertheless agree that the court should endeavor to give effect to the parties' intentions as reflected in
-    the provision, and the other provisions of the TOS remain in full force and effect.
-  </p>
 </div>
 
 <style lang="postcss">
