@@ -53,6 +53,7 @@
     "@fontsource/lexend-exa": "^5.0.20",
     "@fontsource/roboto-condensed": "^5.0.16",
     "@formkit/auto-animate": "^0.8.2",
+    "@imgproxy/imgproxy-node": "^1.0.6",
     "@sveltejs/adapter-cloudflare": "^4.6.1",
     "@sveltejs/adapter-node": "^5.0.1",
     "@tsparticles/confetti": "^3.4.0",

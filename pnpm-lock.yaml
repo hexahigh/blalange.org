@@ -38,6 +38,9 @@ importers:
       '@formkit/auto-animate':
         specifier: ^0.8.2
         version: 0.8.2
+      '@imgproxy/imgproxy-node':
+        specifier: ^1.0.6
+        version: 1.0.6
       '@sveltejs/adapter-cloudflare':
         specifier: ^4.6.1
         version: 4.6.1(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.3(@types/node@20.14.9)(terser@5.31.1)))(svelte@4.2.18)(vite@5.3.3(@types/node@20.14.9)(terser@5.31.1)))(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))
@@ -1479,6 +1482,12 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [x64]
     os: [win32]
+
+  '@imgproxy/imgproxy-js-core@1.0.8':
+    resolution: {integrity: sha512-3oBneumj7b/YCeyLteKyKaidQSrDhEHnZMiVBHO0Hshju/YSplbzSeACZGwai7LyD3YMMpsK/kLIodXU6wbtMw==}
+
+  '@imgproxy/imgproxy-node@1.0.6':
+    resolution: {integrity: sha512-Evdg3Ywry4RzIKTtQnHO3KsSKHa000GcdY4nRM2JRNdAgATv7fBD82nj6qzTgcqxpqcywnT1Sd2XGxxVg7ZC+w==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -5005,6 +5014,12 @@ snapshots:
 
   '@img/sharp-win32-x64@0.33.4':
     optional: true
+
+  '@imgproxy/imgproxy-js-core@1.0.8': {}
+
+  '@imgproxy/imgproxy-node@1.0.6':
+    dependencies:
+      '@imgproxy/imgproxy-js-core': 1.0.8
 
   '@isaacs/cliui@8.0.2':
     dependencies:
