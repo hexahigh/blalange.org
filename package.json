@@ -76,7 +76,7 @@
     "marked": "^13.0.0",
     "pako": "^2.1.0",
     "pocketbase": "^0.21.2",
-    "tailwind-merge": "^2.3.0",
+    "tailwind-merge": "^2.5.0",
     "tone": "^15.1.2",
     "tsparticles": "^3.4.0",
     "workbox-build": "^7.1.1",
