@@ -82,7 +82,7 @@ importers:
         version: 2.4.2
       flowbite-svelte-icons:
         specifier: ^1.6.1
-        version: 1.6.1(svelte@4.2.18)(tailwind-merge@2.3.0)(tailwindcss@3.4.4)
+        version: 1.6.1(svelte@4.2.18)(tailwind-merge@2.5.2)(tailwindcss@3.4.4)
       fuse.js:
         specifier: ^7.0.0
         version: 7.0.0
@@ -108,8 +108,8 @@ importers:
         specifier: ^0.21.2
         version: 0.21.3
       tailwind-merge:
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^2.5.2
+        version: 2.5.2
       tone:
         specifier: ^15.1.2
         version: 15.1.2
@@ -3442,8 +3442,8 @@ packages:
     resolution: {integrity: sha512-h5IS/hKkuVCbKSieR9uQCj9w+zLHoPh+ce19bBYyqF53g6mnPB8sAtIbe1s9dh2S2fCmYX2xel1Ln3PJBbK4kw==}
     engines: {node: '>= 0.8.0'}
 
-  tailwind-merge@2.3.0:
-    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
+  tailwind-merge@2.5.2:
+    resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
 
   tailwindcss@3.4.4:
     resolution: {integrity: sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==}
@@ -6168,10 +6168,10 @@ snapshots:
 
   fitty@2.4.2: {}
 
-  flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.3.0)(tailwindcss@3.4.4):
+  flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.5.2)(tailwindcss@3.4.4):
     dependencies:
       svelte: 4.2.18
-      tailwind-merge: 2.3.0
+      tailwind-merge: 2.5.2
       tailwindcss: 3.4.4
 
   flowbite-svelte@0.46.1(svelte@4.2.18):
@@ -6180,7 +6180,7 @@ snapshots:
       apexcharts: 3.49.1
       flowbite: 2.3.0
       svelte: 4.2.18
-      tailwind-merge: 2.3.0
+      tailwind-merge: 2.5.2
 
   flowbite-typography@1.0.3(tailwindcss@3.4.4):
     dependencies:
@@ -7218,9 +7218,7 @@ snapshots:
     dependencies:
       svg.js: 2.7.1
 
-  tailwind-merge@2.3.0:
-    dependencies:
-      '@babel/runtime': 7.24.7
+  tailwind-merge@2.5.2: {}
 
   tailwindcss@3.4.4:
     dependencies:
