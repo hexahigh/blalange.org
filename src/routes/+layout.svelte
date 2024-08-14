@@ -14,7 +14,9 @@
   import { initialize as initializeDev, checkForDevMode } from "$lib/js/dev";
   import { loadConfig, config } from "$lib/js/config";
   import { initEgg } from "$lib/js/egg.js";
-  import { addAPIProvider } from "iconify-icon";
+  import { addAPIProvider, loadIcons } from "iconify-icon";
+
+  import "$lib/js/polyfills/main"
 
   addAPIProvider("", {
     resources: [
@@ -23,6 +25,13 @@
       "https://api.unisvg.com",
     ],
   });
+
+  loadIcons(
+     [
+      "line-md:sunny-filled-loop", // Navbar
+      "line-md:moon-filled-loop", // Navbar
+     ]
+  );
 
   onMount(() => {
     initializeDev(); // Initialize the dev mode

@@ -263,7 +263,7 @@
             class="h-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm"
           >
             <iconify-icon slot="lightIcon" icon="line-md:moon-filled-loop" class="text-blue-500" width="24" />
-            <iconify-icon slot="darkIcon" icon="line-md:sun-rising-filled-loop" class="text-yellow-500" width="24" />
+            <iconify-icon slot="darkIcon" icon="line-md:sunny-filled-loop" class="text-yellow-500" width="24" />
           </DarkmodeSwitcher>
         </li>
       </ul>
