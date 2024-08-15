@@ -1,6 +1,6 @@
 <script lang="ts">
   import PocketBase from "pocketbase";
-  import { defaultConfig, config } from "$lib/js/config";
+  import { defaultConfig, config, saveConfig, editKey } from "$lib/js/config";
   import Metatags from "$lib/components/metatags.svelte";
   import { onMount } from "svelte";
 
@@ -16,6 +16,10 @@
 
   let emailChange = {
     newEmail: "",
+  };
+
+  let fontChange = {
+    selectElement: null,
   };
 
   function isLoggedIn() {
@@ -67,6 +71,11 @@
       messageType = "error";
       message = "Noe gikk galt, er du sikker at eposten er riktig?";
     }
+  }
+
+  async function saveFont() {
+    const font = fontChange.selectElement.options[fontChange.selectElement.selectedIndex].value;
+    editKey("font.family", font);
   }
 
   function handleFileSelect(event) {
@@ -139,5 +148,24 @@
         </div>
       </div>
     {/if}
+    <div class="space-y-4 mt-8">
+      <h2 class="text-2xl font-bold mb-4">Utseende</h2>
+      <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">
+        <h3 class="text-xl font-bold mb-4">Font:</h3>
+        <label for="font-select">Velg en font</label>
+        <select
+          bind:this={fontChange.selectElement}
+          value={$config.font.family}
+          id="font-select"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option value="Inter Variable">Inter</option>
+          <option value="Krona One">Krona One</option>
+          <option value="PxPlus IBM BIOS">PxPlus IBM BIOS</option>
+          <option value="RimWordFont">RimWord</option>
+        </select>
+        <button class="blue-button mt-4" on:click={saveFont}>Lagre font</button>
+      </div>
+    </div>
   </div>
 </section>

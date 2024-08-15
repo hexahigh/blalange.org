@@ -1,10 +1,4 @@
 <script lang="ts">
-  import "@fontsource/krona-one";
-  import "@fontsource/lexend-exa";
-  import "@fontsource/dela-gothic-one";
-  import "@fontsource/roboto-condensed";
-  import "@fontsource-variable/inter";
-
   import { dev } from "$app/environment";
   import "../app.css";
   import "$lib/css/fonts.css";
@@ -16,27 +10,26 @@
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider, loadIcons } from "iconify-icon";
 
-  import "$lib/js/polyfills/main"
+  import "$lib/js/polyfills/main";
 
   addAPIProvider("", {
-    resources: [
-      "https://api.iconify.design",
-      "https://api.simplesvg.com",
-      "https://api.unisvg.com",
-    ],
+    resources: ["https://api.iconify.design", "https://api.simplesvg.com", "https://api.unisvg.com"],
   });
 
-  loadIcons(
-     [
-      "line-md:sunny-filled-loop", // Navbar
-      "line-md:moon-filled-loop", // Navbar
-     ]
-  );
+  loadIcons([
+    "line-md:sunny-filled-loop", // Navbar
+    "line-md:moon-filled-loop", // Navbar
+  ]);
 
   onMount(() => {
-    initializeDev(); // Initialize the dev mode
     loadConfig(); // Load the config from local storage
+    initializeDev(); // Initialize the dev mode
     checkForDevMode(); // Checks if dev mode is enabled in the config
+
+    config.subscribe((value) => {
+      document.documentElement.style.setProperty('--font-family', value.font.family);
+    })
+    
     initEgg(); // Initialize easter egg 1
     if (dev) {
       console.log("In development mode. No analytics monitoring.");
