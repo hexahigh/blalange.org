@@ -35,7 +35,7 @@
   // Options
   let options = {
     pageSize: 25,
-    avatarPack: $config.dicebearCollection,
+    avatarPack: defaultConfig.dicebearCollection,
   };
 
   let pb = new PocketBase(defaultConfig.dbEndpoint);
