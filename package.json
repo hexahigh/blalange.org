@@ -57,7 +57,7 @@
     "@sveltejs/adapter-cloudflare": "^4.6.1",
     "@sveltejs/adapter-node": "^5.0.1",
     "@tsparticles/confetti": "^3.4.0",
-    "@tsparticles/engine": "^3.4.0",
+    "@tsparticles/engine": "^3.5.0",
     "@tsparticles/svelte": "^3.0.0",
     "@types/dompurify": "^3.0.5",
     "@xterm/xterm": "^5.5.0",
