@@ -7,10 +7,20 @@ export const defaultConfig = {
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",
-  dicebearCollection: thumbs,
+  dicebearCollection: thumbs, //* Does not work, should be removed in a future version
   font: {
     family: "Inter Variable",
     weight: 400,
+  },
+  tos: {
+    lastUpdated: "22-08-2024",
+  },
+  privacy: {
+    lastUpdated: "22-08-2024",
+  },
+  emails: {
+    copyrightAgent: "hexahigh0@gmail.com",
+    privacyAgent: "hexahigh0@gmail.com",
   }
 };
 

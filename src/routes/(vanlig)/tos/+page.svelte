@@ -10,7 +10,9 @@
 />
 
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <h1>ACCEPTANCE OF TERMS</h1>
+  <h1>TERMS OF SERVICE</h1>
+  <p class="text-center">Last updated: {defaultConfig.tos.lastUpdated}</p>
+  <h2>ACCEPTANCE OF TERMS</h2>
   <p>
     Blålange Festivalen provides the information on this Web site as provided in these Terms of Service (“TOS”).
     Blålange Festivalen may update the TOS at any time and without prior notice by posting a new version at https://{defaultConfig.primaryDomain}/tos.
@@ -215,7 +217,7 @@
     <br />
     By email:
     <br />
-    <a href="mailto:copr@blalange.org">copr@blalange.org</a>
+    <a href="mailto:{defaultConfig.emails.copyrightAgent}">{defaultConfig.emails.copyrightAgent}</a>
   </p>
 </div>
 
