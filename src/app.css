@@ -1,18 +1,33 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource/krona-one";
+@import "@fontsource/lexend-exa";
+@import "@fontsource/dela-gothic-one";
+@import "@fontsource/roboto-condensed";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.fixed-background-img {
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 body * {
   @apply transition-colors duration-200;
 }
 
+html {
+  font-family: "Inter Variable"; /* Default font */
+}
+
+body {
+  font-family: var(--font-family); /* This variable is declared onMount in the root +layout.svelte */
+}
+
 :is(.dark .dark\:mocha) {
+}
+
+.fixed-background-img {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .blue-button {
@@ -29,11 +44,6 @@ body * {
 
 .text-overflow-ellipsis {
   text-overflow: ellipsis;
-}
-
-body {
-  font-family: "Inter Variable", sans-serif;
-  font-weight: 400;
 }
 
 .krona {

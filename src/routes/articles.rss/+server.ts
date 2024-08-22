@@ -8,16 +8,15 @@ let pb = new PocketBase(defaultConfig.dbEndpoint);
 export async function GET({ url }) {
   let articles = await pb.collection("art_articles").getFullList(100, {
     sort: "-created",
+    expand: "authors",
   });
-
-  console.log(url);
-
+  
   const metadata = {
     title: "Blåblad",
     description: "Nyheter fra Blåblad",
     webmaster: "simon@blalange.org",
     link: `${url.origin}/articles`,
-    lastBuildDate: formatDateForRSS(articles[0].date),
+    lastBuildDate: formatDateForRSS(new Date()),
     pubDate: formatDateForRSS(articles[0].date),
   };
 
@@ -46,6 +45,7 @@ export async function GET({ url }) {
 
   const content = articles
     .map((article) => {
+      const authors = article.expand.authors.map((author) => author.name).join(", ");
       return `
             <item>
                 <title>${article.name}</title>
@@ -53,7 +53,7 @@ export async function GET({ url }) {
                 <description>${article.description}</description>
                 <guid isPermaLink="false">${article.artId}</guid>
                 <pubDate>${formatDateForRSS(article.date)}</pubDate>
-                <author>${article.author}</author>
+                <author>${authors}</author>
             </item>
             `;
     })

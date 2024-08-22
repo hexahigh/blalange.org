@@ -16,6 +16,7 @@
         <a href="mailto:webmaster@blalange.org" class="hover:underline">Epost</a
         >
         <a href="/privacy" class="hover:underline">Personvernerklæring</a>
+        <a href="/tos" class="hover:underline">TOS</a>
         <a href="https://dev.blalange-org.pages.dev" class="hover:underline"
           >Beta</a
         >

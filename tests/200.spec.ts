@@ -62,6 +62,16 @@ test("All footer links are 200", async ({ page }) => {
   }
 });
 
+test("Sitemap is 200", async ({ page }) => {
+  const response = await page.goto("/sitemap.xml");
+  expect(response.status()).toBe(200);
+});
+
+test("Rss is 200", async ({ page }) => {
+  const response = await page.goto("/articles.rss");
+  expect(response.status()).toBe(200);
+});
+
 function validateUrl(url: string): boolean {
   let valid = true;
   if (url.startsWith("mailto:")) {

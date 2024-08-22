@@ -14,6 +14,9 @@ importers:
       '@dicebear/core':
         specifier: ^8.0.1
         version: 8.0.1(sharp@0.32.6)
+      '@floating-ui/dom':
+        specifier: ^1.6.8
+        version: 1.6.8
       '@fontsource-variable/inter':
         specifier: ^5.0.18
         version: 5.0.18
@@ -21,8 +24,8 @@ importers:
         specifier: ^5.0.33
         version: 5.0.33
       '@fontsource/dela-gothic-one':
-        specifier: ^5.0.19
-        version: 5.0.19
+        specifier: ^5.0.20
+        version: 5.0.20
       '@fontsource/krona-one':
         specifier: ^5.0.13
         version: 5.0.13
@@ -35,6 +38,9 @@ importers:
       '@formkit/auto-animate':
         specifier: ^0.8.2
         version: 0.8.2
+      '@imgproxy/imgproxy-node':
+        specifier: ^1.0.6
+        version: 1.0.6
       '@sveltejs/adapter-cloudflare':
         specifier: ^4.6.1
         version: 4.6.1(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.3(@types/node@20.14.9)(terser@5.31.1)))(svelte@4.2.18)(vite@5.3.3(@types/node@20.14.9)(terser@5.31.1)))(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))
@@ -76,7 +82,7 @@ importers:
         version: 2.4.2
       flowbite-svelte-icons:
         specifier: ^1.6.1
-        version: 1.6.1(svelte@4.2.18)(tailwind-merge@2.3.0)(tailwindcss@3.4.4)
+        version: 1.6.1(svelte@4.2.18)(tailwind-merge@2.5.2)(tailwindcss@3.4.4)
       fuse.js:
         specifier: ^7.0.0
         version: 7.0.0
@@ -102,8 +108,8 @@ importers:
         specifier: ^0.21.2
         version: 0.21.3
       tailwind-merge:
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^2.5.2
+        version: 2.5.2
       tone:
         specifier: ^15.1.2
         version: 15.1.2
@@ -1329,11 +1335,11 @@ packages:
   '@floating-ui/core@1.6.2':
     resolution: {integrity: sha512-+2XpQV9LLZeanU4ZevzRnGFg2neDeKHgFLjP6YLW+tly0IvrhqT4u8enLGjLH3qeh85g19xY5rsAusfwTdn5lg==}
 
-  '@floating-ui/dom@1.6.5':
-    resolution: {integrity: sha512-Nsdud2X65Dz+1RHjAIP0t8z5e2ff/IRbei6BqFrl1urT8sDVzM1HMQ+R0XcU5ceRfyO3I6ayeqIfh+6Wb8LGTw==}
+  '@floating-ui/dom@1.6.8':
+    resolution: {integrity: sha512-kx62rP19VZ767Q653wsP1XZCGIirkE09E0QUGNYTM/ttbbQHqcGPdSfWFxUyyNLc/W6aoJRBajOSXhP6GXjC0Q==}
 
-  '@floating-ui/utils@0.2.2':
-    resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
+  '@floating-ui/utils@0.2.5':
+    resolution: {integrity: sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==}
 
   '@fontsource-variable/inter@5.0.18':
     resolution: {integrity: sha512-rJzSrtJ3b7djiGFvRuTe6stDfbYJGhdQSfn2SI2WfXviee7Er0yKAHE5u7FU7OWVQQQ1x3+cxdmx9NdiAkcrcA==}
@@ -1341,8 +1347,8 @@ packages:
   '@fontsource-variable/material-symbols-outlined@5.0.33':
     resolution: {integrity: sha512-iMzOFsDN+8iQhDmRWoVWZV/Gy6q1ET2aA1YzAkXZn4XVqNs+9CRm0zQMGnvg0OkQme8nx2FAaejzE1eNtJo/WA==}
 
-  '@fontsource/dela-gothic-one@5.0.19':
-    resolution: {integrity: sha512-OgwDhzlauA93YXpFOlfrdXFfdf+gbZhH3cWEVA71EI4tPeHdcQCKHE6gerIAyHdZCYKx+j9DiPzH4UxjLA97sQ==}
+  '@fontsource/dela-gothic-one@5.0.20':
+    resolution: {integrity: sha512-vydGuSHjwCP2cP7qvt93VdnPG//olC1i74SrykyJZysLJqssItGYKVlzNFUFepK8dbhxZztJJJoBPmFEBpWWeg==}
 
   '@fontsource/krona-one@5.0.13':
     resolution: {integrity: sha512-sCHCe9uPruGJMlR4yDrAKKV6GJisbHd9ZsmmTA5R8mZoxO8FNzsSSz8BeecKCZPa0DfxUCnR/zD4jbKLJLDH9A==}
@@ -1476,6 +1482,12 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [x64]
     os: [win32]
+
+  '@imgproxy/imgproxy-js-core@1.0.8':
+    resolution: {integrity: sha512-3oBneumj7b/YCeyLteKyKaidQSrDhEHnZMiVBHO0Hshju/YSplbzSeACZGwai7LyD3YMMpsK/kLIodXU6wbtMw==}
+
+  '@imgproxy/imgproxy-node@1.0.6':
+    resolution: {integrity: sha512-Evdg3Ywry4RzIKTtQnHO3KsSKHa000GcdY4nRM2JRNdAgATv7fBD82nj6qzTgcqxpqcywnT1Sd2XGxxVg7ZC+w==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -3430,8 +3442,8 @@ packages:
     resolution: {integrity: sha512-h5IS/hKkuVCbKSieR9uQCj9w+zLHoPh+ce19bBYyqF53g6mnPB8sAtIbe1s9dh2S2fCmYX2xel1Ln3PJBbK4kw==}
     engines: {node: '>= 0.8.0'}
 
-  tailwind-merge@2.3.0:
-    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
+  tailwind-merge@2.5.2:
+    resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
 
   tailwindcss@3.4.4:
     resolution: {integrity: sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==}
@@ -4898,20 +4910,20 @@ snapshots:
 
   '@floating-ui/core@1.6.2':
     dependencies:
-      '@floating-ui/utils': 0.2.2
+      '@floating-ui/utils': 0.2.5
 
-  '@floating-ui/dom@1.6.5':
+  '@floating-ui/dom@1.6.8':
     dependencies:
       '@floating-ui/core': 1.6.2
-      '@floating-ui/utils': 0.2.2
+      '@floating-ui/utils': 0.2.5
 
-  '@floating-ui/utils@0.2.2': {}
+  '@floating-ui/utils@0.2.5': {}
 
   '@fontsource-variable/inter@5.0.18': {}
 
   '@fontsource-variable/material-symbols-outlined@5.0.33': {}
 
-  '@fontsource/dela-gothic-one@5.0.19': {}
+  '@fontsource/dela-gothic-one@5.0.20': {}
 
   '@fontsource/krona-one@5.0.13': {}
 
@@ -5002,6 +5014,12 @@ snapshots:
 
   '@img/sharp-win32-x64@0.33.4':
     optional: true
+
+  '@imgproxy/imgproxy-js-core@1.0.8': {}
+
+  '@imgproxy/imgproxy-node@1.0.6':
+    dependencies:
+      '@imgproxy/imgproxy-js-core': 1.0.8
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -6150,19 +6168,19 @@ snapshots:
 
   fitty@2.4.2: {}
 
-  flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.3.0)(tailwindcss@3.4.4):
+  flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.5.2)(tailwindcss@3.4.4):
     dependencies:
       svelte: 4.2.18
-      tailwind-merge: 2.3.0
+      tailwind-merge: 2.5.2
       tailwindcss: 3.4.4
 
   flowbite-svelte@0.46.1(svelte@4.2.18):
     dependencies:
-      '@floating-ui/dom': 1.6.5
+      '@floating-ui/dom': 1.6.8
       apexcharts: 3.49.1
       flowbite: 2.3.0
       svelte: 4.2.18
-      tailwind-merge: 2.3.0
+      tailwind-merge: 2.5.2
 
   flowbite-typography@1.0.3(tailwindcss@3.4.4):
     dependencies:
@@ -7200,9 +7218,7 @@ snapshots:
     dependencies:
       svg.js: 2.7.1
 
-  tailwind-merge@2.3.0:
-    dependencies:
-      '@babel/runtime': 7.24.7
+  tailwind-merge@2.5.2: {}
 
   tailwindcss@3.4.4:
     dependencies:

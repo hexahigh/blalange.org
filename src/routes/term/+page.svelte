@@ -456,6 +456,28 @@
 
         await module.default(stdlib, options);
       },
+    },
+    {
+      name: "pootis",
+      description: "",
+      long_description: "The intro from \"Pootis Engage //EXTREME\"",
+      usage: "pootis",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/pootis");
+
+        let options = {};
+
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            speed: flags.args[0] || 1,
+          };
+        }
+
+        await module.default(stdlib, options);
+      },
     }
   ];
 

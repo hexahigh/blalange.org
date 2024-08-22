@@ -1,21 +1,17 @@
 <script>
-  import { Avatar } from "flowbite-svelte";
+  import logoSvg from "$lib/img/favicon.svg";
   import PocketBase from "pocketbase";
+  import { defaultConfig, config } from "$lib/js/config";
+  import Metatags from "$lib/components/metatags.svelte";
 
-  const pb = new PocketBase("https://db.080609.xyz");
+  const pb = new PocketBase(defaultConfig.dbEndpoint);
+
   let user;
   let pass;
+
   let message;
-  let image;
+  let messageType = "info";
   let success;
-  let email = "";
-  let infoText;
-
-  let mode = "login";
-
-  function switchMode(s) {
-    mode = s
-  }
 
   function isLoggedIn() {
     if (!pb) return; // Ensure PocketBase is initialized
@@ -31,15 +27,8 @@
     return pb.authStore.model.username;
   }
 
-  async function logout() {
-    pb.authStore.clear();
-  }
+  async function login() {
 
-  async function auth() {
-    if (mode === "signup") {
-      await signup();
-      return
-    }
     pb.authStore.clear();
     try {
       await pb.collection("users").authWithPassword(user, pass);
@@ -49,77 +38,80 @@
 
     if (pb.authStore.isValid) {
       success = true;
-      const record = await pb.collection("users").getOne(pb.authStore.model.id);
-      image = pb.files.getUrl(record, record.avatar);
+      messageType = "success";
+      message = "Hei " + getUserName() + ", du er nå innlogget";
     }
   }
 
-  async function signup() {
-    pb.authStore.clear();
-    try {
-      await pb.collection("users").create({
-        username: user,
-        password: pass,
-        passwordConfirm: pass,
-      });
-      infoText = "Signup successful, please login";
-    } catch (error) {
-      message = "An error occurred: " + error;
+  async function requestReset() {
+    if (!user) {
+      messageType = "error";
+      message = "Vennligst skriv inn en epostadresse for å tilbakestille passordet";
+      return;
+    }
+    let result = await pb.collection('users').requestPasswordReset(user);
+
+    if (result) {
+      messageType = "success";
+      message = "Eposten er blitt sendt til deg";
+    } else {
+      messageType = "error";
+      message = "Noe gikk galt, er du sikker at eposten er riktig?";
     }
   }
+
 </script>
 
-<div class="flex flex-col items-center justify-center min-h-screen">
-  <div
-    class="p-6 mt-10 rounded shadow-md shadow-black w-80 text-center dark:text-white"
-  >
-    <h1 class="text-2xl font-bold mb-4">Login / Signup</h1>
-    {#if isLoggedIn()}
-      <p>You are logged in as {getUserName()}</p>
-    {/if}
-    <form on:submit|preventDefault>
-      <input
-        placeholder="Username"
-        bind:value={user}
-        class="w-full mb-4 p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
-      />
-      <input
-        placeholder="Password"
-        type="password"
-        bind:value={pass}
-        class="w-full mb-4 p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
-      />
-      <button
-        on:click={auth}
-        type="button"
-        class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
-        >Login</button
-      >
-      <button
-      on:click={signup}
-      type="button"
-      class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
-      >Signup</button
-    >
-      <button
-        on:click={logout}
-        type="button"
-        class="w-full p-2 bg-red-500 text-white rounded hover:bg-red-700"
-        >Logout</button
-      >
-      {#if message}
-        <p class="text-red-500">{message}</p>
-      {/if}
-      {#if infoText}
-        <p class="text-green-500">{infoText}</p>
-      {/if}
-      {#if success}
-        <p class="text-green-500">Success!</p>
-        <div class="flex items-center justify-center mt-4">
-          <img src={image} alt="Avatar" class="w-10 h-10 rounded-full" />
-          <p>Hello {user}!</p>
-        </div>
-      {/if}
-    </form>
+<Metatags
+  title="Logg inn"
+  description="Logg inn på blalange.org"
+  url="/login"
+/>
+
+<section class="dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+          <img class="w-8 h-8 mr-2" src={logoSvg} alt="logo">
+          Blålange    
+      </a>
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  Logg inn
+              </h1>
+              <form class="space-y-4 md:space-y-6" on:submit|preventDefault>
+                  <div>
+                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Epost eller Brukernavn</label>
+                      <input bind:value={user} type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                  </div>
+                  <div>
+                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                      <input bind:value={pass} type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                  </div>
+                  <div class="flex items-center justify-between">
+                      <a on:click={requestReset} href="" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Glemt passordet?</a>
+                  </div>
+                  {#if message}
+                    {#if messageType == "error"}
+                    <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                        {message}
+                    </div>
+                    {:else if messageType == "info"}
+                    <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+                        {message}
+                    </div>
+                    {:else if messageType == "success"}
+                    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                        {message}
+                    </div>
+                    {/if}
+                  {/if}
+                  <button type="none" on:click={login} class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Logg inn</button>
+                  <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Har du ikke en konto? <a href="/signup" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Lag en nå!</a>
+                  </p>
+              </form>
+          </div>
+      </div>
   </div>
-</div>
+</section>

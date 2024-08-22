@@ -2,9 +2,7 @@
   import { onMount, onDestroy, tick } from "svelte";
   import { config, defaultConfig } from "$lib/js/config";
   import PocketBase, { type RecordModel } from "pocketbase";
-  import { get } from "svelte/store";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
-  import { thumbs } from "@dicebear/collection";
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
@@ -37,7 +35,7 @@
   // Options
   let options = {
     pageSize: 25,
-    avatarPack: thumbs,
+    avatarPack: defaultConfig.dicebearCollection,
   };
 
   let pb = new PocketBase(defaultConfig.dbEndpoint);

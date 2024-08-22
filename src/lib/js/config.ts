@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { thumbs } from "@dicebear/collection";
 
 export const defaultConfig = {
   devMode: false,
@@ -6,6 +7,21 @@ export const defaultConfig = {
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",
+  dicebearCollection: thumbs, //* Does not work, should be removed in a future version
+  font: {
+    family: "Inter Variable",
+    weight: 400,
+  },
+  tos: {
+    lastUpdated: "22-08-2024",
+  },
+  privacy: {
+    lastUpdated: "22-08-2024",
+  },
+  emails: {
+    copyrightAgent: "hexahigh0@gmail.com",
+    privacyAgent: "hexahigh0@gmail.com",
+  }
 };
 
 export const config = writable({
@@ -67,6 +83,7 @@ export function loadConfig() {
     config.set({ ...defaultConfig, ...parsedConfig });
   } else {
     config.set(defaultConfig);
+    saveConfig();
   }
 }
 
@@ -81,5 +98,30 @@ export function saveConfig() {
 // Resets config to defaults and saves it
 export function resetToDefaults() {
   config.set(defaultConfig);
+  saveConfig();
+}
+
+export function editKey(key: string, value: any) {
+  config.update((config) => {
+    const keys = key.split('.');
+    let currentLevel = config;
+
+    for (let i = 0; i < keys.length; i++) {
+      const currentKey = keys[i];
+      if (i === keys.length - 1) {
+        // This is the deepest level, set the value here
+        currentLevel[currentKey] = value;
+      } else {
+        // If the property doesn't exist yet, initialize it as an empty object
+        if (!currentLevel[currentKey]) {
+          currentLevel[currentKey] = {};
+        }
+        // Go deeper
+        currentLevel = currentLevel[currentKey];
+      }
+    }
+
+    return config;
+  });
   saveConfig();
 }

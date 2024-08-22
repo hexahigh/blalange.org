@@ -10,11 +10,6 @@
     "url": "http://links.twibright.com/"
   },
   {
-    "name": "Linux mint",
-    "imageUrl": "https://blalange.org/img/webring/linux_mint.gif",
-    "url": "https://linuxmint.com"
-  },
-  {
     "name": "GNU nano",
     "imageUrl": "https://blalange.org/img/webring/gnunano.gif",
     "url": "https://www.nano-editor.org/"
@@ -23,15 +18,5 @@
     "url": "https://lain.la",
     "imageUrl": "https://blalange.org/img/webring/lain-la.png",
     "name": "lain.la"
-  },
-  {
-    "url": "https://github.com",
-    "imageUrl": "https://blalange.org/img/webring/github.gif",
-    "name": "GitHub"
-  },
-  {
-    "url": "https://gitea.com",
-    "imageUrl": "https://blalange.org/img/webring/gitea.gif",
-    "name": "Gitea"
   }
 ]

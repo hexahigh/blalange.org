@@ -32,7 +32,7 @@
 
 {#if !data.errorOccurred}
   <div
-    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-ctp-base p-6 grid grid-container gap-2"
+    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
   >
     {#each articles as article}
       <ArticleCard
