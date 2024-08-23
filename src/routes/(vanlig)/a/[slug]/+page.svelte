@@ -6,7 +6,6 @@
   import Comments from "$lib/components/comments.svelte";
   import "iconify-icon";
   import { type DataType } from "./types";
-  import Article from "$lib/components/article.svelte";
 
   let name = data.article.name;
   let date = data.article.date;
