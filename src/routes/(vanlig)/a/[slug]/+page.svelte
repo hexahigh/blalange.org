@@ -66,4 +66,8 @@
   #articleText :global(h2) {
     @apply text-xl font-medium;
   }
+
+  #articleText :global(h3) {
+    @apply text-lg font-medium;
+  }
 </style>
