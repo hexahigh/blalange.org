@@ -24,7 +24,7 @@
       <p>Versjon {latestVersion.id}.{commitHash} - {latestVersion.name}</p>
       <Tooltip class="text-black dark:text-white bg-gray-300">Built {new Date(buildDate).toLocaleString()}</Tooltip>
       <p>
-        {new Date().getFullYear()} © Blålange Festivalen. All rights reserved.
+        {new Date().getFullYear()} © Blålange. All rights reserved.
       </p>
       <p>
         The content of this project itself is licensed under the <a

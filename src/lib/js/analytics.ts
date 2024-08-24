@@ -35,7 +35,6 @@ async function collect2() {
   const url = window.location.href;
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
-  const networkInfo = "unknown"; //! Deprecated, kept because the database has not been updated
   const referrer = document.referrer;
 
   if (ip == "") {
@@ -47,9 +46,11 @@ async function collect2() {
     lastUrl = url;
 
     let username;
+    let uid
 
     if (pb.authStore.isValid) {
       username = pb.authStore.model.username;
+      uid = pb.authStore.model.id;
     }
 
     return await pb.collection("kf_analytics").create({
@@ -61,9 +62,10 @@ async function collect2() {
       ip: ip,
       width: screenWidth,
       height: screenHeight,
-      network: networkInfo,
       referrer: referrer,
       username: username,
+      user: uid,
+      uid: uid,
     });
   } else if (devMode) {
     console.log("Collect2: Nothing has changed, not running.");

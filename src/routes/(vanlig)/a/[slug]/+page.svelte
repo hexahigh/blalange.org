@@ -55,14 +55,14 @@
       <iconify-icon icon="mdi:calendar" width="20" height="20" />
       {formatDate(date)}
     </p>
-    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300">
+    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300">
       {@html text}
     </div>
     <Comments id={artId} />
   </div>
 </div>
 
-<style lang="postcss">
+<style lang="postcss">
   #articleText :global(h2) {
     @apply text-xl font-medium;
   }
