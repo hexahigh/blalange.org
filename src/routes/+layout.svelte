@@ -27,7 +27,7 @@
     checkForDevMode(); // Checks if dev mode is enabled in the config
 
     config.subscribe((value) => {
-      document.documentElement.style.setProperty('--font-family', value.font.family);
+      document.documentElement.style.setProperty('--font-family-var', value.font.family);
     })
     
     initEgg(); // Initialize easter egg 1
