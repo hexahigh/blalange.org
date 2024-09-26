@@ -78,9 +78,7 @@
       let totalPages = 1;
 
       for (let i = 1; i <= totalPages; i++) {
-        let result = await pb
-          .collection("bla_chat")
-          .getList(i, options.pageSize, { sort: "+created" });
+        let result = await pb.collection("bla_chat").getList(i, options.pageSize, { sort: "+created" });
         totalPages = result.totalPages;
         let processed = await processMessage(result.items);
 
@@ -103,7 +101,7 @@
       },
       {
         /* other options like expand, custom headers, etc. */
-      }
+      },
     );
   }
 
@@ -130,75 +128,75 @@
 
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
-      if (messages[i].uid) {
-        let startTime = performance.now();
-        let record: any;
-        // Check if it is in the cache
-        if (userCache[messages[i].uid]) {
-          record = userCache[messages[i].uid];
+      try {
+        if (messages[i].uid) {
+          let startTime = performance.now();
+          let record: any;
+          // Check if it is in the cache
+          if (userCache[messages[i].uid]) {
+            record = userCache[messages[i].uid];
+          } else {
+            let startTime = performance.now();
+            record = await pb.collection("users").getOne(messages[i].uid);
+            stageTimes.loggedInStuff.userFetch += performance.now() - startTime;
+          }
+          messages[i].isAdmin = record.isAdmin;
+          messages[i].name = record.username;
+          messages[i].verified = true;
+          if (record.extra) {
+            messages[i].extraBadges = record.extra.extraBadges;
+          } else {
+            messages[i].extraBadges = [];
+          }
+
+          // Get avatar
+          messages[i].avatar = pb.files.getUrl(record, record.avatar, {
+            thumb: "100x100",
+          });
+
+          // If the avatar is empty, fall back to the generated avatar
+          if (!messages[i].avatar || messages[i].avatar === "") {
+            let startTime = performance.now();
+            messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
+            stageTimes.genAvatar += performance.now() - startTime;
+          }
+
+          // Store in cache
+          userCache[messages[i].uid] = record;
+
+          stageTimes.loggedInStuff.total += performance.now() - startTime;
         } else {
           let startTime = performance.now();
-          record = await pb.collection("users").getOne(messages[i].uid);
-          stageTimes.loggedInStuff.userFetch += performance.now() - startTime;
-        }
-        messages[i].isAdmin = record.isAdmin;
-        messages[i].name = record.username;
-        messages[i].verified = true;
-        messages[i].extraBadges = record.extra.extraBadges;
-
-        // Get avatar
-        messages[i].avatar = pb.files.getUrl(record, record.avatar, {
-          thumb: "100x100",
-        });
-
-        // If the avatar is empty, fall back to the generated avatar
-        if (!messages[i].avatar || messages[i].avatar === "") {
-          let startTime = performance.now();
-          messages[i].avatar = genAvatar(
-            options.avatarPack,
-            messages[i].name
-          ).toDataUriSync();
+          messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
           stageTimes.genAvatar += performance.now() - startTime;
         }
 
-        // Store in cache
-        userCache[messages[i].uid] = record;
-
-        stageTimes.loggedInStuff.total += performance.now() - startTime;
-      } else {
         let startTime = performance.now();
-        messages[i].avatar = genAvatar(
-          options.avatarPack,
-          messages[i].name
-        ).toDataUriSync();
-        stageTimes.genAvatar += performance.now() - startTime;
-      }
+        if (chatTextCache && chatTextCache[messages[i].id]) {
+          messages[i].text = chatTextCache[messages[i].id];
+        } else {
+          messages[i].text = await processMessageText(messages[i].text);
 
-      let startTime = performance.now();
-      if (chatTextCache && chatTextCache[messages[i].id]) {
-        messages[i].text = chatTextCache[messages[i].id];
-      } else {
-        messages[i].text = await processMessageText(messages[i].text);
-
-        // Store in cache
-        if (!chatTextCache) {
-          chatTextCache = {};
+          // Store in cache
+          if (!chatTextCache) {
+            chatTextCache = {};
+          }
+          chatTextCache[messages[i].id] = messages[i].text;
+          try {
+            localStorage.setItem("chatTextCache", JSON.stringify(chatTextCache));
+          } catch (error) {}
         }
-        chatTextCache[messages[i].id] = messages[i].text;
-        try {
-          localStorage.setItem("chatTextCache", JSON.stringify(chatTextCache));
-        } catch (error) {}
+        stageTimes.processMessageText += performance.now() - startTime;
+      } catch (error) {
+        if (devMode) {
+          console.error("An error occurred while processing a message:", error);
+        }
       }
-      stageTimes.processMessageText += performance.now() - startTime;
     }
 
     if (devMode) {
-      console.log(
-        `[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`
-      );
-      console.log(
-        `[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`
-      );
+      console.log(`[Chat] Processed ${messages.length} messages in ${performance.now() - startTime}ms`);
+      console.log(`[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`);
     }
 
     return messages;
@@ -243,6 +241,7 @@
         unix: unix,
         session_id: getSessionId(),
         uid: uid,
+        user: uid,
       });
 
       commentError = null;
@@ -254,17 +253,13 @@
   }
 
   //TODO: This function seems overly complex and looks messy. It should be refactored.
-  async function scrollToBottom(
-    itself: boolean = false,
-    force: boolean = false
-  ) {
+  async function scrollToBottom(itself: boolean = false, force: boolean = false) {
     if (typeof window === "undefined") return; // Exit if not in a browser environment
     const chatContainer = document.getElementById("chat-messages-container");
 
     const treshold = 500;
 
-    const scrollTopMax =
-      chatContainer.scrollHeight - chatContainer.clientHeight;
+    const scrollTopMax = chatContainer.scrollHeight - chatContainer.clientHeight;
 
     if (chatContainer) {
       // If the difference between the scroll position and the max scroll position is less than the treshold, scroll to the bottom
@@ -291,15 +286,9 @@
   }
 </script>
 
-<Metatags
-  title="Chat"
-  description="Episk chat for kule Blålanger"
-  url="/chat"
-/>
+<Metatags title="Chat" description="Episk chat for kule Blålanger" url="/chat" />
 
-<div
-  class="mx-auto max-w-6xl m-4 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 dark:text-white"
->
+<div class="mx-auto max-w-6xl m-4 p-4 rounded-lg bg-gray-200 dark:bg-gray-800 dark:text-white">
   <div class="text-center">
     <h1 class="text-3xl font-bold mb-4 rimword">Chat</h1>
   </div>
@@ -307,44 +296,27 @@
     {#each comments as comment}
       {#if comment.text}
         <div class="mb-4 flex items-center">
-          <img
-            class="w-12 h-12 rounded-full mr-3"
-            src={comment.avatar}
-            alt={comment.name}
-          />
+          <img class="w-12 h-12 rounded-full mr-3" src={comment.avatar} alt={comment.name} />
           <p class="text-gray-500 dark:text-gray-300 mr-4 font-bold">
             {comment.name}
             {#if comment.verified}
               <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
               <iconify-icon class="text-green-500" icon="lucide:check" />
-              <Tooltip class="text-black dark:text-white bg-gray-300"
-                >The user was logged in</Tooltip
-              >
+              <Tooltip class="text-black dark:text-white bg-gray-300">The user was logged in</Tooltip>
             {/if}
             {#if comment.isAdmin}
               <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
               <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
-              <Tooltip class="text-black dark:text-white bg-gray-300"
-                >The user is an admin</Tooltip
-              >
+              <Tooltip class="text-black dark:text-white bg-gray-300">The user is an admin</Tooltip>
             {/if}
             {#if comment.extraBadges}
               {#each comment.extraBadges as badge}
                 {#if badge.v2}
-                  <iconify-icon
-                    style={"color: " + badge.color}
-                    icon={badge.badge}
-                  />
-                  <Tooltip class="text-black dark:text-white bg-gray-300"
-                    >{badge.hover_text}</Tooltip
-                  >
+                  <iconify-icon style={"color: " + badge.color} icon={badge.badge} />
+                  <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
                 {:else}
-                  <span style={"color: " + badge.color} class="symbols"
-                    >{badge.badge}</span
-                  >
-                  <Tooltip class="text-black dark:text-white bg-gray-300"
-                    >{badge.hover_text}</Tooltip
-                  >
+                  <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
+                  <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
                 {/if}
               {/each}
             {/if}
@@ -361,9 +333,7 @@
       {/if}
     {/each}
   </div>
-  <div
-    class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2"
-  >
+  <div class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2">
     <h4 class="text-md font-semibold">Send en melding</h4>
     <p class="mt-1 text-xs">
       <span class="text-red-500">*</span> Du kan bruke markdown

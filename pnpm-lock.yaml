@@ -18,8 +18,8 @@ importers:
         specifier: ^1.6.8
         version: 1.6.8
       '@fontsource-variable/inter':
-        specifier: ^5.0.18
-        version: 5.0.18
+        specifier: ^5.1.0
+        version: 5.1.0
       '@fontsource-variable/material-symbols-outlined':
         specifier: ^5.0.33
         version: 5.0.33
@@ -51,8 +51,8 @@ importers:
         specifier: ^3.4.0
         version: 3.4.0
       '@tsparticles/engine':
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.5.0
+        version: 3.5.0
       '@tsparticles/svelte':
         specifier: ^3.0.0
         version: 3.1.1(svelte@4.2.18)
@@ -107,6 +107,9 @@ importers:
       pocketbase:
         specifier: ^0.21.2
         version: 0.21.3
+      super-sitemap:
+        specifier: ^0.15.1
+        version: 0.15.1(svelte@4.2.18)
       tailwind-merge:
         specifier: ^2.5.2
         version: 2.5.2
@@ -161,19 +164,19 @@ importers:
         version: 0.2.4
       autoprefixer:
         specifier: ^10.4.19
-        version: 10.4.19(postcss@8.4.38)
+        version: 10.4.19(postcss@8.4.47)
       flowbite:
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^2.5.1
+        version: 2.5.1(rollup@2.79.1)
       flowbite-svelte:
-        specifier: ^0.46.1
-        version: 0.46.1(svelte@4.2.18)
+        specifier: ^0.46.18
+        version: 0.46.18(rollup@2.79.1)(svelte@4.2.18)
       flowbite-typography:
         specifier: ^1.0.3
         version: 1.0.3(tailwindcss@3.4.4)
       postcss:
-        specifier: ^8.4.38
-        version: 8.4.38
+        specifier: ^8.4.47
+        version: 8.4.47
       svelte:
         specifier: ^4.2.18
         version: 4.2.18
@@ -1335,14 +1338,20 @@ packages:
   '@floating-ui/core@1.6.2':
     resolution: {integrity: sha512-+2XpQV9LLZeanU4ZevzRnGFg2neDeKHgFLjP6YLW+tly0IvrhqT4u8enLGjLH3qeh85g19xY5rsAusfwTdn5lg==}
 
+  '@floating-ui/dom@1.6.11':
+    resolution: {integrity: sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ==}
+
   '@floating-ui/dom@1.6.8':
     resolution: {integrity: sha512-kx62rP19VZ767Q653wsP1XZCGIirkE09E0QUGNYTM/ttbbQHqcGPdSfWFxUyyNLc/W6aoJRBajOSXhP6GXjC0Q==}
 
   '@floating-ui/utils@0.2.5':
     resolution: {integrity: sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==}
 
-  '@fontsource-variable/inter@5.0.18':
-    resolution: {integrity: sha512-rJzSrtJ3b7djiGFvRuTe6stDfbYJGhdQSfn2SI2WfXviee7Er0yKAHE5u7FU7OWVQQQ1x3+cxdmx9NdiAkcrcA==}
+  '@floating-ui/utils@0.2.8':
+    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@fontsource-variable/inter@5.1.0':
+    resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
 
   '@fontsource-variable/material-symbols-outlined@5.0.33':
     resolution: {integrity: sha512-iMzOFsDN+8iQhDmRWoVWZV/Gy6q1ET2aA1YzAkXZn4XVqNs+9CRm0zQMGnvg0OkQme8nx2FAaejzE1eNtJo/WA==}
@@ -1746,8 +1755,8 @@ packages:
   '@tsparticles/confetti@3.4.0':
     resolution: {integrity: sha512-tf1MQPKCHFii6aMSIL836y6PmlJ6ZCuZlb6xiuBcaNURhBGMKYZoCTUoSM3M6+LVJ936PVZFtqlU1q8vyk1/Mw==}
 
-  '@tsparticles/engine@3.4.0':
-    resolution: {integrity: sha512-OqoMZYJCoiihNnexnnSmInEMNXr0Z8CmE1HSiFVeifgK1qUlonTFe2G09KdvNT8ZdvmIC513yTpFJNDbnMZYRQ==}
+  '@tsparticles/engine@3.5.0':
+    resolution: {integrity: sha512-RCwrJ2SvSYdhXJ24oUCjSUKEZQ9lXwObOWMvfMC9vS6/bk+Qo0N7Xx8AfumqzP/LebB1YJdlCvuoJMauAon0Pg==}
 
   '@tsparticles/interaction-external-attract@3.4.0':
     resolution: {integrity: sha512-6enSRkoXyK0JvW8bJuj2xAUuu9VzDiFvRCPaL+5dcLcDpjheh8nWpGzrgo8p9VxLL5VRYv7PxnYPMviBMQ7WzA==}
@@ -1975,14 +1984,22 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
-  apexcharts@3.49.1:
-    resolution: {integrity: sha512-MqGtlq/KQuO8j0BBsUJYlRG8VBctKwYdwuBtajHgHTmSgUU3Oai+8oYN/rKCXwXzrUlYA+GiMgotAIbXY2BCGw==}
+  apexcharts@3.53.0:
+    resolution: {integrity: sha512-QESZHZY3w9LPQ64PGh1gEdfjYjJ5Jp+Dfy0D/CLjsLOPTpXzdxwlNMqRj+vPbTcP0nAHgjWv1maDqcEq6u5olw==}
 
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
 
   aria-query@5.3.0:
     resolution: {integrity: sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==}
+
+  array-back@3.1.0:
+    resolution: {integrity: sha512-TkuxA4UCOvxuDK6NZYXCalszEzj+TLszyASooky+i742l9TqsOdYCMJJupxRic61hwquNtppB3hgcuq9SVSH1Q==}
+    engines: {node: '>=6'}
+
+  array-back@4.0.2:
+    resolution: {integrity: sha512-NbdMezxqf94cnNfWLL7V/im0Ub+Anbb0IoZhvzie8+4HJ4nMQuzHuy49FkGYCJK2yAloZ3meiB6AVMClbrI1vg==}
+    engines: {node: '>=8'}
 
   array-buffer-byte-length@1.0.1:
     resolution: {integrity: sha512-ahC5W1xgou+KTXix4sAO8Ki12Q+jf4i0+tmk3sC+zgcynshkHxzpXdImBehiUYKKKDwvfFiJl1tZt6ewscS1Mg==}
@@ -2170,6 +2187,14 @@ packages:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
 
+  command-line-args@5.2.1:
+    resolution: {integrity: sha512-H4UfQhZyakIjC74I9d34fGYDwk3XpSr17QhEd0Q3I9Xq1CETHo4Hcuo87WyWHpAF1aSLjLRf5lD9ZGX2qStUvg==}
+    engines: {node: '>=4.0.0'}
+
+  command-line-usage@6.1.3:
+    resolution: {integrity: sha512-sH5ZSPr+7UStsloltmDh7Ce5fb8XPlHyoPzTpyyMuYCtervL65+ubVZ6Q61cFtFl62UyJlc8/JwERRbAFPUqgw==}
+    engines: {node: '>=8.0.0'}
+
   commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
@@ -2302,6 +2327,11 @@ packages:
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
 
+  directory-tree@3.5.2:
+    resolution: {integrity: sha512-DsOqeZEHkZnZrVOJG3mE/J9M6J8PulImiC6I1ZpoprVlfno8GvLOPDMkxiJihklLK7B9aVudG463L1+S/kzjiw==}
+    engines: {node: '>=10.0'}
+    hasBin: true
+
   dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
 
@@ -2414,6 +2444,10 @@ packages:
   fast-json-stable-stringify@2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
 
+  fast-xml-parser@4.4.1:
+    resolution: {integrity: sha512-xkjOecfnKGkSsOwtZ5Pz7Us/T6mrbPQrq0nh+aCO5V9nk5NLWmasAHumTKjiPJPWANe+kAZ84Jc8ooJkzZ88Sw==}
+    hasBin: true
+
   fastq@1.17.1:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
 
@@ -2424,8 +2458,15 @@ packages:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
 
+  find-replace@3.0.0:
+    resolution: {integrity: sha512-6Tb2myMioCAgv5kfvP5/PkZZ/ntTpVK39fHY7WkWBgvbeE+VHd/tZuZ4mrC+bxh4cfOZeYKVPaJIZtZXV7GNCQ==}
+    engines: {node: '>=4.0.0'}
+
   fitty@2.4.2:
     resolution: {integrity: sha512-GNhWgImK4+wEkgEZjBkQMyu5NLSmmryg/CaRP7zYby+TWzCrUou6BHL+iqbjKzJRXMyzuJkH+LBB1+lh4oO77g==}
+
+  flowbite-datepicker@1.3.0:
+    resolution: {integrity: sha512-CLVqzuoE2vkUvWYK/lJ6GzT0be5dlTbH3uuhVwyB67+PjqJWABm2wv68xhBf5BqjpBxvTSQ3mrmLHpPJ2tvrSQ==}
 
   flowbite-svelte-icons@1.6.1:
     resolution: {integrity: sha512-Kw/7BzA6fqlFq7tBNudwX0KVU4cbyyXcMcgHTraMwGBtvBQan0RKMbvWwqm4JZNvLGAvRv1BM2EF7rzo/oam1Q==}
@@ -2434,19 +2475,19 @@ packages:
       tailwind-merge: ^2.0.0
       tailwindcss: ^3.3.2
 
-  flowbite-svelte@0.46.1:
-    resolution: {integrity: sha512-GMQP4Fxn4mYu12XTNRbOHMYMklbP29sKFZUZYekryxhWak2zbSlI1ozhBtnrD2WDbFBPqZ64IcyButOkYpz+WQ==}
+  flowbite-svelte@0.46.18:
+    resolution: {integrity: sha512-SUWrzdWWuYAcF4joIi2owCVu8i4SKUbfTvq90Urad5uUyIfGc/bB7DfFrFOlzKbLaL41VeOOzlNILw0bbw97Iw==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
-      svelte: ^3.55.1 || ^4.0.0
+      svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
 
   flowbite-typography@1.0.3:
     resolution: {integrity: sha512-UbdQFIIOb7xx2TS+QQrqr79B6ZSkSZurxYWzV0npth6Wns3/j7KfeDJoH9QFU+Zs7zjrvejNtyzgzWLWyCrdiA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
 
-  flowbite@2.3.0:
-    resolution: {integrity: sha512-pm3JRo8OIJHGfFYWgaGpPv8E+UdWy0Z3gEAGufw+G/1dusaU/P1zoBLiQpf2/+bYAi+GBQtPVG86KYlV0W+AFQ==}
+  flowbite@2.5.1:
+    resolution: {integrity: sha512-7jP1jy9c3QP7y+KU9lc8ueMkTyUdMDvRP+lteSWgY5TigSZjf9K1kqZxmqjhbx2gBnFQxMl1GAjVThCa8cEpKA==}
 
   follow-redirects@1.15.6:
     resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
@@ -2816,6 +2857,9 @@ packages:
   locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
 
+  lodash.camelcase@4.3.0:
+    resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
+
   lodash.castarray@4.4.0:
     resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
 
@@ -3018,6 +3062,9 @@ packages:
   picocolors@1.0.1:
     resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
 
+  picocolors@1.1.0:
+    resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
+
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -3084,12 +3131,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.4.38:
-    resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
-    engines: {node: ^10 || ^12 || >=14}
-
-  postcss@8.4.39:
-    resolution: {integrity: sha512-0vzE+lAiG7hZl1/9I8yzKLx3aR9Xbof3fBHKunvMfOCYAtMhrsnccJY2iTURb9EZd5+pLuiNV9/c/GZJOHsgIw==}
+  postcss@8.4.47:
+    resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   prebuild-install@7.1.2:
@@ -3137,6 +3180,10 @@ packages:
   readdirp@3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
+
+  reduce-flatten@2.0.0:
+    resolution: {integrity: sha512-EJ4UNY/U1t2P/2k6oqotuX2Cc3T6nxJwsM0N0asT7dhrtH1ltUxDn4NalSYmPE2rCkVpcf/X6R0wDwcFpzhd4w==}
+    engines: {node: '>=6'}
 
   regenerate-unicode-properties@10.1.1:
     resolution: {integrity: sha512-X007RyZLsCJVVrjgEFVpLUTZwyOZk3oiL75ZcuYjlIWd6rNJtOjkBwQc5AsRrpbKVkxN6sklw/k/9m2jJYOf8Q==}
@@ -3300,6 +3347,10 @@ packages:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
 
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
+    engines: {node: '>=0.10.0'}
+
   source-map-support@0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
 
@@ -3374,10 +3425,18 @@ packages:
     resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
     engines: {node: '>=0.10.0'}
 
+  strnum@1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
+
   sucrase@3.35.0:
     resolution: {integrity: sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==}
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
+
+  super-sitemap@0.15.1:
+    resolution: {integrity: sha512-HqJvO/6qnioGSvoNM6xmSMHkM/YqZsV5sFa7YSgj6VLt5NPJL1z/t8PAgJ1tvoHckxxx9kjobS0LyuuEXH6rCw==}
+    peerDependencies:
+      svelte: '>=4.0.0 <6.0.0'
 
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -3441,6 +3500,10 @@ packages:
   svg.select.js@3.0.1:
     resolution: {integrity: sha512-h5IS/hKkuVCbKSieR9uQCj9w+zLHoPh+ce19bBYyqF53g6mnPB8sAtIbe1s9dh2S2fCmYX2xel1Ln3PJBbK4kw==}
     engines: {node: '>= 0.8.0'}
+
+  table-layout@1.0.2:
+    resolution: {integrity: sha512-qd/R7n5rQTRFi+Zf2sk5XVVd9UQl6ZkduPFC3S7WEGJAmetDTjY3qPN50eSKzwuzEyQKy5TN2TiZdkIjos2L6A==}
+    engines: {node: '>=8.0.0'}
 
   tailwind-merge@2.5.2:
     resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
@@ -3553,6 +3616,14 @@ packages:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  typical@4.0.0:
+    resolution: {integrity: sha512-VAH4IvQ7BDFYglMd7BPRDfLgxZZX4O4TFcRDA6EN5X7erNJJq+McIEp8np9aVtxrCJ6qx4GTYVfOWNjcqwZgRw==}
+    engines: {node: '>=8'}
+
+  typical@5.2.0:
+    resolution: {integrity: sha512-dvdQgNDNJo+8B2uBQoqdb11eUCE1JQXhvjC/CZtgvZseVd5TYMXnq0+vuUemXbd/Se29cTaUuPX3YIc2xgbvIg==}
+    engines: {node: '>=8'}
 
   ufo@1.5.3:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
@@ -3670,6 +3741,10 @@ packages:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
     hasBin: true
+
+  wordwrapjs@4.0.1:
+    resolution: {integrity: sha512-kKlNACbvHrkpIw6oPeYDSmdCTu2hdMHoyXLTcUKala++lx5Y+wjJ/e474Jqv5abnVmwxw08DiTuHmw69lJGksA==}
+    engines: {node: '>=8.0.0'}
 
   workbox-background-sync@7.1.0:
     resolution: {integrity: sha512-rMbgrzueVWDFcEq1610YyDW71z0oAXLfdRHRQcKw4SGihkfOK0JUEvqWHFwA6rJ+6TClnMIn7KQI5PNN1XQXwQ==}
@@ -4912,6 +4987,11 @@ snapshots:
     dependencies:
       '@floating-ui/utils': 0.2.5
 
+  '@floating-ui/dom@1.6.11':
+    dependencies:
+      '@floating-ui/core': 1.6.2
+      '@floating-ui/utils': 0.2.8
+
   '@floating-ui/dom@1.6.8':
     dependencies:
       '@floating-ui/core': 1.6.2
@@ -4919,7 +4999,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.5': {}
 
-  '@fontsource-variable/inter@5.0.18': {}
+  '@floating-ui/utils@0.2.8': {}
+
+  '@fontsource-variable/inter@5.1.0': {}
 
   '@fontsource-variable/material-symbols-outlined@5.0.33': {}
 
@@ -5295,7 +5377,7 @@ snapshots:
 
   '@tsparticles/basic@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
       '@tsparticles/move-base': 3.4.0
       '@tsparticles/shape-circle': 3.4.0
       '@tsparticles/updater-color': 3.4.0
@@ -5306,7 +5388,7 @@ snapshots:
   '@tsparticles/confetti@3.4.0':
     dependencies:
       '@tsparticles/basic': 3.4.0
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
       '@tsparticles/plugin-emitters': 3.4.0
       '@tsparticles/plugin-motion': 3.4.0
       '@tsparticles/shape-cards': 3.4.0
@@ -5322,142 +5404,142 @@ snapshots:
       '@tsparticles/updater-tilt': 3.4.0
       '@tsparticles/updater-wobble': 3.4.0
 
-  '@tsparticles/engine@3.4.0': {}
+  '@tsparticles/engine@3.5.0': {}
 
   '@tsparticles/interaction-external-attract@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-bounce@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-bubble@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-connect@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-grab@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-pause@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-push@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-remove@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-repulse@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-slow@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-external-trail@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-particles-attract@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-particles-collisions@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/interaction-particles-links@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/move-base@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/move-parallax@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/plugin-absorbers@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/plugin-easing-quad@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/plugin-emitters-shape-circle@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
       '@tsparticles/plugin-emitters': 3.4.0
 
   '@tsparticles/plugin-emitters-shape-square@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
       '@tsparticles/plugin-emitters': 3.4.0
 
   '@tsparticles/plugin-emitters@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/plugin-motion@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-cards@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-circle@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-emoji@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-heart@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-image@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-line@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-polygon@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-square@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-star@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/shape-text@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/slim@3.4.0':
     dependencies:
       '@tsparticles/basic': 3.4.0
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
       '@tsparticles/interaction-external-attract': 3.4.0
       '@tsparticles/interaction-external-bounce': 3.4.0
       '@tsparticles/interaction-external-bubble': 3.4.0
@@ -5485,56 +5567,56 @@ snapshots:
 
   '@tsparticles/svelte@3.1.1(svelte@4.2.18)':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
       svelte: 4.2.18
 
   '@tsparticles/updater-color@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-destroy@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-life@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-opacity@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-out-modes@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-roll@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-rotate@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-size@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-stroke-color@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-tilt@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-twinkle@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-wobble@3.4.0':
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
 
   '@types/cookie@0.6.0': {}
 
@@ -5613,7 +5695,7 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  apexcharts@3.49.1:
+  apexcharts@3.53.0:
     dependencies:
       '@yr/monotone-cubic-spline': 1.0.3
       svg.draggable.js: 2.2.2
@@ -5628,6 +5710,10 @@ snapshots:
   aria-query@5.3.0:
     dependencies:
       dequal: 2.0.3
+
+  array-back@3.1.0: {}
+
+  array-back@4.0.2: {}
 
   array-buffer-byte-length@1.0.1:
     dependencies:
@@ -5662,14 +5748,14 @@ snapshots:
       '@babel/runtime': 7.24.7
       tslib: 2.6.3
 
-  autoprefixer@10.4.19(postcss@8.4.38):
+  autoprefixer@10.4.19(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.1
       caniuse-lite: 1.0.30001632
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
-      postcss: 8.4.38
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -5866,6 +5952,20 @@ snapshots:
     dependencies:
       delayed-stream: 1.0.0
 
+  command-line-args@5.2.1:
+    dependencies:
+      array-back: 3.1.0
+      find-replace: 3.0.0
+      lodash.camelcase: 4.3.0
+      typical: 4.0.0
+
+  command-line-usage@6.1.3:
+    dependencies:
+      array-back: 4.0.2
+      chalk: 2.4.2
+      table-layout: 1.0.2
+      typical: 5.2.0
+
   commander@2.20.3: {}
 
   commander@4.1.1: {}
@@ -5973,6 +6073,11 @@ snapshots:
   devalue@5.0.0: {}
 
   didyoumean@1.2.2: {}
+
+  directory-tree@3.5.2:
+    dependencies:
+      command-line-args: 5.2.1
+      command-line-usage: 6.1.3
 
   dlv@1.1.3: {}
 
@@ -6154,6 +6259,10 @@ snapshots:
 
   fast-json-stable-stringify@2.1.0: {}
 
+  fast-xml-parser@4.4.1:
+    dependencies:
+      strnum: 1.0.5
+
   fastq@1.17.1:
     dependencies:
       reusify: 1.0.4
@@ -6166,7 +6275,18 @@ snapshots:
     dependencies:
       to-regex-range: 5.0.1
 
+  find-replace@3.0.0:
+    dependencies:
+      array-back: 3.1.0
+
   fitty@2.4.2: {}
+
+  flowbite-datepicker@1.3.0(rollup@2.79.1):
+    dependencies:
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@2.79.1)
+      flowbite: 2.5.1(rollup@2.79.1)
+    transitivePeerDependencies:
+      - rollup
 
   flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.5.2)(tailwindcss@3.4.4):
     dependencies:
@@ -6174,13 +6294,15 @@ snapshots:
       tailwind-merge: 2.5.2
       tailwindcss: 3.4.4
 
-  flowbite-svelte@0.46.1(svelte@4.2.18):
+  flowbite-svelte@0.46.18(rollup@2.79.1)(svelte@4.2.18):
     dependencies:
-      '@floating-ui/dom': 1.6.8
-      apexcharts: 3.49.1
-      flowbite: 2.3.0
+      '@floating-ui/dom': 1.6.11
+      apexcharts: 3.53.0
+      flowbite: 2.5.1(rollup@2.79.1)
       svelte: 4.2.18
       tailwind-merge: 2.5.2
+    transitivePeerDependencies:
+      - rollup
 
   flowbite-typography@1.0.3(tailwindcss@3.4.4):
     dependencies:
@@ -6189,10 +6311,13 @@ snapshots:
       lodash.merge: 4.6.2
       tailwindcss: 3.4.4
 
-  flowbite@2.3.0:
+  flowbite@2.5.1(rollup@2.79.1):
     dependencies:
       '@popperjs/core': 2.11.8
+      flowbite-datepicker: 1.3.0(rollup@2.79.1)
       mini-svg-data-uri: 1.4.4
+    transitivePeerDependencies:
+      - rollup
 
   follow-redirects@1.15.6: {}
 
@@ -6523,6 +6648,8 @@ snapshots:
 
   locate-character@3.0.0: {}
 
+  lodash.camelcase@4.3.0: {}
+
   lodash.castarray@4.4.0: {}
 
   lodash.debounce@4.0.8: {}
@@ -6691,6 +6818,8 @@ snapshots:
 
   picocolors@1.0.1: {}
 
+  picocolors@1.1.0: {}
+
   picomatch@2.3.1: {}
 
   pify@2.3.0: {}
@@ -6709,28 +6838,28 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-import@15.1.0(postcss@8.4.38):
+  postcss-import@15.1.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.38
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  postcss-js@4.0.1(postcss@8.4.38):
+  postcss-js@4.0.1(postcss@8.4.47):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.38
+      postcss: 8.4.47
 
-  postcss-load-config@4.0.2(postcss@8.4.38):
+  postcss-load-config@4.0.2(postcss@8.4.47):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.4.5
     optionalDependencies:
-      postcss: 8.4.38
+      postcss: 8.4.47
 
-  postcss-nested@6.0.1(postcss@8.4.38):
+  postcss-nested@6.0.1(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.38
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.0
 
   postcss-selector-parser@6.1.0:
@@ -6740,17 +6869,11 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.4.38:
+  postcss@8.4.47:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.1
-      source-map-js: 1.2.0
-
-  postcss@8.4.39:
-    dependencies:
-      nanoid: 3.3.7
-      picocolors: 1.0.1
-      source-map-js: 1.2.0
+      picocolors: 1.1.0
+      source-map-js: 1.2.1
 
   prebuild-install@7.1.2:
     dependencies:
@@ -6808,6 +6931,8 @@ snapshots:
   readdirp@3.6.0:
     dependencies:
       picomatch: 2.3.1
+
+  reduce-flatten@2.0.0: {}
 
   regenerate-unicode-properties@10.1.1:
     dependencies:
@@ -7033,6 +7158,8 @@ snapshots:
 
   source-map-js@1.2.0: {}
 
+  source-map-js@1.2.1: {}
+
   source-map-support@0.5.21:
     dependencies:
       buffer-from: 1.1.2
@@ -7135,6 +7262,8 @@ snapshots:
 
   strip-json-comments@2.0.1: {}
 
+  strnum@1.0.5: {}
+
   sucrase@3.35.0:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
@@ -7144,6 +7273,12 @@ snapshots:
       mz: 2.7.0
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
+
+  super-sitemap@0.15.1(svelte@4.2.18):
+    dependencies:
+      directory-tree: 3.5.2
+      fast-xml-parser: 4.4.1
+      svelte: 4.2.18
 
   supports-color@5.5.0:
     dependencies:
@@ -7218,6 +7353,13 @@ snapshots:
     dependencies:
       svg.js: 2.7.1
 
+  table-layout@1.0.2:
+    dependencies:
+      array-back: 4.0.2
+      deep-extend: 0.6.0
+      typical: 5.2.0
+      wordwrapjs: 4.0.1
+
   tailwind-merge@2.5.2: {}
 
   tailwindcss@3.4.4:
@@ -7236,11 +7378,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.1
-      postcss: 8.4.38
-      postcss-import: 15.1.0(postcss@8.4.38)
-      postcss-js: 4.0.1(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)
-      postcss-nested: 6.0.1(postcss@8.4.38)
+      postcss: 8.4.47
+      postcss-import: 15.1.0(postcss@8.4.47)
+      postcss-js: 4.0.1(postcss@8.4.47)
+      postcss-load-config: 4.0.2(postcss@8.4.47)
+      postcss-nested: 6.0.1(postcss@8.4.47)
       postcss-selector-parser: 6.1.0
       resolve: 1.22.8
       sucrase: 3.35.0
@@ -7340,7 +7482,7 @@ snapshots:
 
   tsparticles@3.4.0:
     dependencies:
-      '@tsparticles/engine': 3.4.0
+      '@tsparticles/engine': 3.5.0
       '@tsparticles/interaction-external-trail': 3.4.0
       '@tsparticles/plugin-absorbers': 3.4.0
       '@tsparticles/plugin-emitters': 3.4.0
@@ -7393,6 +7535,10 @@ snapshots:
       possible-typed-array-names: 1.0.0
 
   typescript@5.4.5: {}
+
+  typical@4.0.0: {}
+
+  typical@5.2.0: {}
 
   ufo@1.5.3: {}
 
@@ -7465,7 +7611,7 @@ snapshots:
   vite@5.3.3(@types/node@20.14.9)(terser@5.31.1):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.39
+      postcss: 8.4.47
       rollup: 4.18.0
     optionalDependencies:
       '@types/node': 20.14.9
@@ -7503,6 +7649,11 @@ snapshots:
   which@2.0.2:
     dependencies:
       isexe: 2.0.0
+
+  wordwrapjs@4.0.1:
+    dependencies:
+      reduce-flatten: 2.0.0
+      typical: 5.2.0
 
   workbox-background-sync@7.1.0:
     dependencies:

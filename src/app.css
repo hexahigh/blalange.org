@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  font-family: var(--font-family); /* This variable is declared onMount in the root +layout.svelte */
+  font-family: var(--font-family-var); /* This variable is declared onMount in the root +layout.svelte */
 }
 
 :is(.dark .dark\:mocha) {

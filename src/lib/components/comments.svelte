@@ -80,11 +80,9 @@
           filter: `post_id = "${id}"`,
         });
       } else {
-        result = await pb
-          .collection("bla_comments")
-          .getList(page, options.pageSize, {
-            filter: `post_id = "${id}"`,
-          });
+        result = await pb.collection("bla_comments").getList(page, options.pageSize, {
+          filter: `post_id = "${id}"`,
+        });
       }
 
       let resultsToProcess;
@@ -98,13 +96,15 @@
       // Go through each comment and if they are logged in, check if they are verified
       for (let i = 0; i < resultsToProcess.length; i++) {
         if (resultsToProcess[i].uid) {
-          const record = await pb
-            .collection("users")
-            .getOne(resultsToProcess[i].uid);
+          const record = await pb.collection("users").getOne(resultsToProcess[i].uid);
           resultsToProcess[i].isAdmin = record.isAdmin;
           resultsToProcess[i].name = record.username;
           resultsToProcess[i].verified = true;
-          resultsToProcess[i].extraBadges = record.extra.extraBadges;
+          if (record.extra) {
+            messages[i].extraBadges = record.extra.extraBadges;
+          } else {
+            messages[i].extraBadges = [];
+          }
         }
 
         resultsToProcess[i].text = await processMessageText(resultsToProcess[i].text);
@@ -217,34 +217,21 @@
         {#if comment.verified}
           <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
           <iconify-icon class="text-green-500" icon="lucide:check" />
-          <Tooltip class="text-black dark:text-white bg-gray-300"
-            >The user was logged in</Tooltip
-          >
+          <Tooltip class="text-black dark:text-white bg-gray-300">The user was logged in</Tooltip>
         {/if}
         {#if comment.isAdmin}
           <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
           <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
-          <Tooltip class="text-black dark:text-white bg-gray-300"
-            >The user is an admin</Tooltip
-          >
+          <Tooltip class="text-black dark:text-white bg-gray-300">The user is an admin</Tooltip>
         {/if}
         {#if comment.extraBadges}
           {#each comment.extraBadges as badge}
             {#if badge.v2}
-              <iconify-icon
-                style={"color: " + badge.color}
-                icon={badge.badge}
-              />
-              <Tooltip class="text-black dark:text-white bg-gray-300"
-                >{badge.hover_text}</Tooltip
-              >
+              <iconify-icon style={"color: " + badge.color} icon={badge.badge} />
+              <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
             {:else}
-              <span style={"color: " + badge.color} class="symbols"
-                >{badge.badge}</span
-              >
-              <Tooltip class="text-black dark:text-white bg-gray-300"
-                >{badge.hover_text}</Tooltip
-              >
+              <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
+              <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
             {/if}
           {/each}
         {/if}
@@ -271,7 +258,7 @@
   .comment-text :global(.blocked-word) {
     background-color: black;
     color: black;
-    @apply hover:no-underline hover:text-inherit hover:bg-inherit
+    @apply hover:no-underline hover:text-inherit hover:bg-inherit;
   }
 
   .comment-text :global(.link) {
