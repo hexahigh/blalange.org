@@ -140,11 +140,8 @@
       }
 
       let unix = Math.floor(Date.now() / 1000);
-
-      // Make name lowercase, except the first letter
-      let name = commentName.toLowerCase();
-      name = name.charAt(0).toUpperCase() + name.slice(1);
-
+      
+      let name = commentName
       let uid;
 
       if (isLoggedIn()) {
