@@ -63,7 +63,7 @@
     "@xterm/xterm": "^5.5.0",
     "audiomotion-analyzer": "^4.5.0",
     "axios": "^1.6.8",
-    "chart.js": "^4.4.2",
+    "chart.js": "^4.4.4",
     "dayjs": "^1.11.11",
     "dompurify": "^3.1.5",
     "fitty": "^2.4.2",
