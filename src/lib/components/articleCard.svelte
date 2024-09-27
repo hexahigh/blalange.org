@@ -16,7 +16,9 @@
 
   function formatDate(date) {
     const d = new Date(date);
-    return d.toLocaleString();
+    return d.toLocaleString(
+      "no-nb",
+    );
   }
 </script>
 
