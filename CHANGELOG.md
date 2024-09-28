@@ -55,3 +55,16 @@ Version v3.0.3 of the website is now available. This release focuses on bug fixe
 - **dependabot:** Bump @tsparticles/engine from 3.4.0 to 3.5.0 ([b1633d4](https://github.com/hexahigh/blalange.org/commit/b1633d4))
 - **dependabot:** Bump @fontsource-variable/inter from 5.0.18 to 5.1.0 ([4d913f0](https://github.com/hexahigh/blalange.org/commit/4d913f0))
 - **dependabot:** Bump flowbite-svelte from 0.46.1 to 0.46.18 ([77638df](https://github.com/hexahigh/blalange.org/commit/77638df))
+- 
+## 3.0.4 - 2024-09-28
+Version v3.0.4 of the website is now available. This release focuses on bug fixes and minor improvements.
+
+### 🐞 Fixes
+Fixing bugs.
+- 🐞 fix(article): Fix article dates ([3a487ee](https://github.com/hexahigh/blalange.org/commit/3a487ee))
+- 🐞 fix(chat): Improve chat errors ([f96b5a9](https://github.com/hexahigh/blalange.org/commit/f96b5a9))
+- 🐞 fix(comments): Comments not loading ([82f70d5](https://github.com/hexahigh/blalange.org/commit/82f70d5))
+
+### 🎈 Performance
+Optimization-related, such as improving performance or experience.
+- 🎈 perf(chat & comments): Remove case limit ([3bcbbe8](https://github.com/hexahigh/blalange.org/commit/3bcbbe8))
