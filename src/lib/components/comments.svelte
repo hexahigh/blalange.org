@@ -101,9 +101,9 @@
           resultsToProcess[i].name = record.username;
           resultsToProcess[i].verified = true;
           if (record.extra) {
-            messages[i].extraBadges = record.extra.extraBadges;
+            resultsToProcess[i].extraBadges = record.extra.extraBadges;
           } else {
-            messages[i].extraBadges = [];
+            resultsToProcess[i].extraBadges = [];
           }
         }
 
