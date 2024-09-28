@@ -189,7 +189,10 @@
         stageTimes.processMessageText += performance.now() - startTime;
       } catch (error) {
         if (devMode) {
-          console.error("An error occurred while processing a message:", error);
+          console.error("An error occurred while processing message with id " + messages[i].id + ":", error);
+          // Remove the message from the list
+          messages.splice(i, 1);
+          i--;
         }
       }
     }
@@ -224,10 +227,7 @@
 
       let unix = Math.floor(Date.now() / 1000);
 
-      // Make name lowercase, except the first letter
-      let name = commentName.toLowerCase();
-      name = name.charAt(0).toUpperCase() + name.slice(1);
-
+      let name = commentName
       let uid;
 
       if (isLoggedIn()) {
