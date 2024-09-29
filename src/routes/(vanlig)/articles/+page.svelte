@@ -38,15 +38,16 @@
     class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-4"
   >
     {#each articles as article}
-    <div style="display: inline-block; vertical-align: top; width: 100%;">
-      <ArticleCard
-        title={article.name}
-        date={article.date}
-        description={article.description}
-        link={"/a/" + article.artId}
-        image={article.image}
-      />
-    </div>
+      <div style="display: inline-block; vertical-align: top; width: 100%;">
+        <ArticleCard
+          title={article.name}
+          date={article.date}
+          description={article.description}
+          link={"/a/" + article.artId}
+          image={article.image}
+          class="mt-8"
+        />
+      </div>
     {/each}
   </div>
 {:else}
