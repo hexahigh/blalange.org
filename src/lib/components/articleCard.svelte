@@ -8,11 +8,15 @@
 -->
 
 <script>
+  let clazz;
   export let image;
   export let title;
   export let description;
   export let link;
   export let date;
+  export { clazz as class };
+
+  import { twMerge } from 'tailwind-merge'
 
   function formatDate(date) {
     const d = new Date(date);
@@ -23,7 +27,7 @@
 </script>
 
 <div
-  class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
+  class={twMerge('bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105', clazz)}
 >
   <a href={link}>
     <a href={link}>

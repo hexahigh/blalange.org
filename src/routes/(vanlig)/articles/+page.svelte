@@ -1,5 +1,5 @@
 <script>
-	import 'iconify-icon'
+  import "iconify-icon";
   import PocketBase from "pocketbase";
   import { MetaTags } from "svelte-meta-tags";
   import ArticleCard from "$lib/components/articleCard.svelte";
@@ -31,10 +31,14 @@
 />
 
 {#if !data.errorOccurred}
-  <div
+  <!--<div
     class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
+  >-->
+  <div
+    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-4"
   >
     {#each articles as article}
+    <div style="display: inline-block; vertical-align: top; width: 100%;">
       <ArticleCard
         title={article.name}
         date={article.date}
@@ -42,14 +46,15 @@
         link={"/a/" + article.artId}
         image={article.image}
       />
+    </div>
     {/each}
   </div>
 {:else}
-<div class="mx-auto text-center flex flex-col justify-center items-center">
-  <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
-  <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500" />
-  <p>{data.errorMessage}</p>
-</div>
+  <div class="mx-auto text-center flex flex-col justify-center items-center">
+    <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
+    <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500" />
+    <p>{data.errorMessage}</p>
+  </div>
 {/if}
 
 <style>

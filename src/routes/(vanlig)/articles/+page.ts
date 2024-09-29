@@ -5,6 +5,7 @@ export async function load({ params, url }) {
   const urlParams = url.searchParams;
   const fakeError = urlParams.get("fe");
   const multiply = urlParams.get("m");
+  const randomize = urlParams.get("r");
   let pb = new PocketBase(defaultConfig.dbEndpoint);
 
   config.subscribe((value) => {
@@ -25,7 +26,7 @@ export async function load({ params, url }) {
     for (let i = 0; i < articles.length; i++) {
       // Fetch the image
       let image = pb.files.getUrl(articles[i], articles[i].image, {
-        thumb: "128x0",
+        thumb: "512x0",
       });
       articles[i].image = image;
 
@@ -52,6 +53,14 @@ export async function load({ params, url }) {
     if (multiply) {
       for (let i = 0; i < multiply; i++) {
         articles = articles.concat(articles);
+      }
+    }
+
+    // If randomize is set then shuffle the articles
+    if (randomize) {
+      for (let i = articles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [articles[i], articles[j]] = [articles[j], articles[i]];
       }
     }
   }
