@@ -57,7 +57,7 @@
       <iconify-icon icon="mdi:calendar" width="20" height="20" />
       {formatDate(date)}
     </p>
-    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300">
+    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300 whitespace-break-spaces">
       {@html text}
     </div>
     <Comments id={artId} />
