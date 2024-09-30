@@ -15,6 +15,8 @@
   export let link;
   export let date;
   export { clazz as class };
+  export let width = 'auto';
+  export let height = 'auto';
 
   import { twMerge } from 'tailwind-merge'
 
@@ -28,6 +30,7 @@
 
 <div
   class={twMerge('bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105', clazz)}
+  style={`width: ${width}; height: ${height};`}
 >
   <a href={link}>
     <a href={link}>

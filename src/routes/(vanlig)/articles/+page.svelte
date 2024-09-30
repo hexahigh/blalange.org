@@ -3,8 +3,23 @@
   import PocketBase from "pocketbase";
   import { MetaTags } from "svelte-meta-tags";
   import ArticleCard from "$lib/components/articleCard.svelte";
+  import { onMount } from "svelte";
 
   export let data;
+
+  onMount(async () => {
+    const Masonry = (await import("masonry-layout")).default;
+
+    var msnry = new Masonry(".grid-container", {
+      columnWidth: 300,
+      gutter: 32,
+      itemSelector: ".grid-item",
+      horizontalOrder: true,
+      fitWidth: true,
+    });
+
+    msnry.layout();
+  });
 
   let articles = data.articles;
 </script>
@@ -31,24 +46,23 @@
 />
 
 {#if !data.errorOccurred}
-  <!--<div
-    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 grid grid-container gap-2"
-  >-->
-  <div
-    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-4"
-  >
-    {#each articles as article}
-      <div style="display: inline-block; vertical-align: top; width: 100%;">
+  <div class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center">
+    <!-- <div
+    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-wrap gap-2"
+  > -->
+    <div class="grid grid-container gap-8 w-full">
+      {#each articles as article}
         <ArticleCard
           title={article.name}
           date={article.date}
           description={article.description}
           link={"/a/" + article.artId}
           image={article.image}
-          class="mt-8"
+          width="300px"
+          class="mt-8 grid-item"
         />
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
 {:else}
   <div class="mx-auto text-center flex flex-col justify-center items-center">
