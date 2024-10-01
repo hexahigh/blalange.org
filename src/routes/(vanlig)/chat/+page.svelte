@@ -295,18 +295,26 @@
       {/if}
     {/each}
   </div>
-  <div class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2">
-    <h4 class="text-md font-semibold">Send en melding</h4>
-    <p class="mt-1 text-xs">
-      <span class="text-red-500">*</span> Du kan bruke markdown
-    </p>
-    <p>Melding</p>
-    <textarea
-      class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
-      bind:value={commentText}
-    ></textarea>
-    <button class="blue-button" on:click={addMessage}>Send</button>
-    <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
+  <div class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2 relative">
+    {#if isLoggedIn()}
+      <h4 class="text-md font-semibold">Send en melding</h4>
+      <p class="mt-1 text-xs">
+        <span class="text-red-500">*</span> Du kan bruke markdown
+      </p>
+      <p>Melding</p>
+      <textarea
+        class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
+        bind:value={commentText}
+      ></textarea>
+      <button class="blue-button" on:click={addMessage}>Send</button>
+      <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
+    {:else}
+      <div class="blur-overlay">
+        <div class="blur-overlay-text">
+          Du må være innlogget for å sende meldinger
+        </div>
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -338,4 +346,25 @@
   .comment-text :global(a) {
     @apply text-blue-500 hover:underline;
   }
+
+  .blur-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /*background-color: rgba(17, 24, 39, 0.7);*/
+      @apply dark:bg-[rgba(17,24,39,0.7)];
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+  
+    .blur-overlay-text {
+      font-size: 18px;
+      font-weight: bold;
+      @apply text-black dark:text-gray-300;
+    }
 </style>
