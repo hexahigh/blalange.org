@@ -1,16 +1,14 @@
 import PocketBase from "pocketbase";
 import { config, defaultConfig } from "$lib/js/config";
+import { readItems, readItem } from '@directus/sdk';
+import { getDirectusInstanceRest, getImageUrl } from "$lib/js/directus";
 
-export async function load({ params, url }) {
+export async function load({ params, url, fetch }) {
   const urlParams = url.searchParams;
   const fakeError = urlParams.get("fe");
   const multiply = urlParams.get("m");
   const randomize = urlParams.get("r");
-  let pb = new PocketBase(defaultConfig.dbEndpoint);
-
-  config.subscribe((value) => {
-    pb = new PocketBase(value.dbEndpoint);
-  });
+  const client = getDirectusInstanceRest(fetch);
 
   let articles = [];
   let errorOccurred = false;
@@ -18,15 +16,28 @@ export async function load({ params, url }) {
 
   async function getArticles() {
     // Import all articles from the database
-    articles = await pb.collection("art_articles").getFullList({
-      fields:
-        "name, date, description, image, artId, id, collectionId, collectionName, hidden",
-    });
+    articles = await client.request(readItems('art_articles', {
+      fields: [
+        "artId",
+        "name",
+        "description",
+        "image",
+        "date",
+      ],
+    }))
 
     for (let i = 0; i < articles.length; i++) {
+      if (articles[i].image === null) {
+        articles[i].image = "";
+      }
+      if (articles[i].description === null) {
+        articles[i].description = "";
+      }
+
       // Fetch the image
-      let image = pb.files.getUrl(articles[i], articles[i].image, {
-        thumb: "512x0",
+      let image = getImageUrl(articles[i].image, {
+        width: 512,
+        format: "auto"
       });
       articles[i].image = image;
 
@@ -37,11 +48,6 @@ export async function load({ params, url }) {
         articles[i].description = articles[i].description.slice(0, 32) + "...";
       }
 
-      if (articles[i].hidden === true) {
-        // Remove the article if it is hidden
-        articles.splice(i, 1);
-        i--;
-      }
     }
 
     // Sort the articles by date

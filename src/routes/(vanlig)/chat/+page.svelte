@@ -1,18 +1,21 @@
 <script lang="ts">
   import { onMount, onDestroy, tick } from "svelte";
   import { config, defaultConfig } from "$lib/js/config";
-  import PocketBase, { type RecordModel } from "pocketbase";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
   import "iconify-icon";
 
-  import { toRedirect } from "$lib/js/redirect";
   import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
 
-  function formatDate(unixTimestamp) {
-    const date = new Date(unixTimestamp * 1000);
+  import { getDirectusInstance, isLoggedIn, storage, getImageUrl, currentUser } from "$lib/js/directus";
+  import { readItems, readItem, createItem, authentication, realtime, createDirectus } from "@directus/sdk";
+
+  import PocketBase from "pocketbase";
+
+  function formatDate(time) {
+    const date = new Date(time);
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "long",
@@ -38,11 +41,13 @@
     avatarPack: defaultConfig.dicebearCollection,
   };
 
-  let pb = new PocketBase(defaultConfig.dbEndpoint);
   let devMode: boolean;
 
+  const client = getDirectusInstance(null)
+  const wsClient = createDirectus(defaultConfig.directeusWebsocketEndpoint + "/websocket").with(realtime());
+  const pb = new PocketBase(defaultConfig.dbEndpoint);
+
   config.subscribe((value) => {
-    pb = new PocketBase(value.dbEndpoint);
     devMode = value.devMode;
   });
 
@@ -56,31 +61,25 @@
     scrollToBottom(false, true); // Force scroll to bottom
   });
 
-  function isLoggedIn() {
-    if (!pb) return; // Ensure PocketBase is initialized
-    return pb.authStore.isValid;
-  }
-
-  function getUserName() {
-    if (!pb) return; // Ensure PocketBase is initialized
-
-    if (!pb.authStore.isValid) {
-      return "Anon";
-    }
-    return pb.authStore.model.username;
-  }
-
   async function initialFetch() {
     if (typeof window === "undefined") return; // Exit if not in a browser environment
-    if (!pb) return; // Ensure PocketBase is initialized
 
     try {
-      let totalPages = 1;
+      let page = 1;
 
-      for (let i = 1; i <= totalPages; i++) {
-        let result = await pb.collection("bla_chat").getList(i, options.pageSize, { sort: "+created" });
-        totalPages = result.totalPages;
-        let processed = await processMessage(result.items);
+      for (let i = 1; i <= page; i++) {
+        let result = await client.request(
+          readItems("chat", {
+            limit: options.pageSize,
+            page: i,
+            fields: ["*", "user.*"],
+          }),
+        );
+        // If the result is an empty array then we have most likely reached the end of the list
+        if (result.length === 0) {
+          break;
+        }
+        let processed = await processMessage(result);
 
         comments = [...comments, ...processed];
       }
@@ -91,27 +90,27 @@
   }
 
   async function subscribe() {
-    pb.collection("bla_chat").subscribe(
-      "*",
-      async function (e) {
-        let processed = await processMessage([e.record]);
-        comments = [...comments, ...processed];
-        sortComments();
-        scrollToBottom();
+    const { subscription } = await wsClient.subscribe("chat", {
+      event: "create",
+      query: {
+        fields: ["*", "user.*"],
       },
-      {
-        /* other options like expand, custom headers, etc. */
-      },
-    );
+    });
+
+    for await (const item of subscription) {
+      let processed = await processMessage([item]);
+      comments = [...comments, ...processed];
+      sortComments();
+      scrollToBottom();
+    }
   }
 
   async function sortComments() {
-    return;
     // Sort comments by timestamp
-    comments = comments.sort((a, b) => b.unix - a.unix);
+    comments = comments.sort((a, b) => new Date(b.date_created).getTime() - new Date(a.date_created).getTime());
   }
 
-  async function processMessage(messages: RecordModel[]) {
+  async function processMessage(messages) {
     let startTime = performance.now();
 
     let stageTimes = {
@@ -129,19 +128,10 @@
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       try {
-        if (messages[i].uid) {
           let startTime = performance.now();
-          let record: any;
-          // Check if it is in the cache
-          if (userCache[messages[i].uid]) {
-            record = userCache[messages[i].uid];
-          } else {
-            let startTime = performance.now();
-            record = await pb.collection("users").getOne(messages[i].uid);
-            stageTimes.loggedInStuff.userFetch += performance.now() - startTime;
-          }
-          messages[i].isAdmin = record.isAdmin;
-          messages[i].name = record.username;
+          let record = messages[i].user;
+          messages[i].isAdmin = record.role == "1fa38b0f-2689-4aa3-9123-636762b129c4"
+          messages[i].name = record.first_name + " " + record.last_name;
           messages[i].verified = true;
           if (record.extra) {
             messages[i].extraBadges = record.extra.extraBadges;
@@ -150,9 +140,7 @@
           }
 
           // Get avatar
-          messages[i].avatar = pb.files.getUrl(record, record.avatar, {
-            thumb: "100x100",
-          });
+          messages[i].avatar = getImageUrl(record.avatar, {width: 256});
 
           // If the avatar is empty, fall back to the generated avatar
           if (!messages[i].avatar || messages[i].avatar === "") {
@@ -165,13 +153,8 @@
           userCache[messages[i].uid] = record;
 
           stageTimes.loggedInStuff.total += performance.now() - startTime;
-        } else {
-          let startTime = performance.now();
-          messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
-          stageTimes.genAvatar += performance.now() - startTime;
-        }
 
-        let startTime = performance.now();
+        startTime = performance.now();
         if (chatTextCache && chatTextCache[messages[i].id]) {
           messages[i].text = chatTextCache[messages[i].id];
         } else {
@@ -206,43 +189,22 @@
   }
 
   async function addMessage() {
-    if (!pb) return; // Ensure PocketBase is initialized
-
     try {
-      let verifyResult = await verifyMessage(commentText);
+      if (!isLoggedIn()) return;
 
-      if (!verifyResult.valid) {
-        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
+      if (!commentText) {
+        commentError = "Du må skrive en melding";
         return;
       }
 
-      if (!isLoggedIn()) {
-        verifyResult = await verifyName(commentName);
-      }
-
-      if (!verifyResult.valid) {
-        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
-        return;
-      }
-
-      let unix = Math.floor(Date.now() / 1000);
-
-      let name = commentName
-      let uid;
-
-      if (isLoggedIn()) {
-        name = getUserName();
-        uid = pb.authStore.model.id;
-      }
-
-      const record = await pb.collection("bla_chat").create({
-        name: name,
-        text: commentText,
-        unix: unix,
-        session_id: getSessionId(),
-        uid: uid,
-        user: uid,
-      });
+      client.request(
+        createItem("chat", {
+          text: commentText,
+          user: await currentUser().then((user) => {
+            return user.id;
+          })
+        }),
+      );
 
       commentError = null;
       commentText = "";
@@ -322,7 +284,7 @@
             {/if}
           </p>
           <p class="text-gray-500 dark:text-gray-300">
-            {formatDate(comment.unix)}
+            {formatDate(comment.date_created)}
           </p>
         </div>
         <div>
@@ -338,16 +300,7 @@
     <p class="mt-1 text-xs">
       <span class="text-red-500">*</span> Du kan bruke markdown
     </p>
-    <p class:hidden={!isLoggedIn()} class="text-green-500">
-      Du er logget inn som: {getUserName()}
-    </p>
-    <p>Navn</p>
-    <input
-      class="w-1/2 p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
-      bind:value={commentName}
-      disabled={isLoggedIn()}
-    />
-    <p>Tekst</p>
+    <p>Melding</p>
     <textarea
       class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
       bind:value={commentText}

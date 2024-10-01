@@ -6,17 +6,18 @@
   import { config, defaultConfig } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
   import "iconify-icon";
-  import PocketBase from "pocketbase";
 
   import personSvg from "$lib/svg/person.svg";
   import logo from "$lib/img/favicon.svg";
   import DarkmodeSwitcher from "./darkmode-switcher.svelte";
   import { Dropdown } from "flowbite-svelte";
   import Popper from "./popper.svelte";
+  import { getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
+  import { readMe } from "@directus/sdk";
 
   let logoAlwaysSpins = false;
 
-  const pb = new PocketBase(defaultConfig.dbEndpoint);
+  let client;
 
   // Subscribe to the config store
   const unsubscribe = config.subscribe((value) => {
@@ -36,17 +37,31 @@
   let userRecord;
 
   async function getStuff() {
-    if (!pb || !pb.authStore.isValid) return; // Ensure PocketBase is initialized
+    if (!client || !isLoggedIn()) return;
 
-    userRecord = await pb.collection("users").getOne(pb.authStore.model.id);
+    // We need to wait a little bit. Why? I don't fucking know.
+    await new Promise((resolve) => setTimeout(resolve, 200));
+
+    let userRecordFetchSuccess = false;
+    let tries = 0;
+    while (!userRecordFetchSuccess && tries <= 5) {
+      try {
+        userRecord = await client.request(readMe());
+        userRecordFetchSuccess = true;
+      } catch (e) {
+        await new Promise((resolve) => setTimeout(resolve, 200)); // Wait 200ms before trying again
+      }
+    }
 
     userStuff = {
-      profilePicture: pb.files.getUrl(userRecord, userRecord.avatar, {
-        thumb: "100x100",
-      }),
-      name: userRecord.username,
+      profilePicture: getImageUrl(userRecord.avatar, {width: 256}),
+      name: userRecord.first_name + " " + userRecord.last_name,
       email: userRecord.email,
     };
+  }
+
+  async function logout() {
+    await client.logout();
   }
 
   let path;
@@ -56,6 +71,7 @@
   let visible = false;
 
   onMount(async () => {
+    client = getDirectusInstance();
     await getStuff();
 
     const targetEl = document.getElementById("navbar-default");
@@ -196,7 +212,7 @@
             data-dropdown-placement="bottom"
           >
             <span class="sr-only">Open user menu</span>
-            {#if pb.authStore.isValid}
+            {#if isLoggedIn()}
               <img class="w-8 h-8 rounded-full" src={userStuff.profilePicture} alt="user photo" />
             {:else}
               <img class="w-8 h-8 rounded-full" src={personSvg} alt="user photo" />
@@ -215,7 +231,7 @@
               class="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
               id="user-dropdown"
             >
-              {#if pb.authStore.isValid}
+              {#if isLoggedIn()}
                 <div class="px-4 py-3">
                   <span class="block text-sm text-gray-900 dark:text-white">{userStuff.name}</span>
                   <span class="block text-sm text-gray-500 truncate dark:text-gray-400">{userStuff.email}</span>
@@ -230,7 +246,7 @@
                   </li>
                   <li>
                     <a
-                      on:click={() => pb.authStore.clear()}
+                      on:click={() => logout()}
                       href=""
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >Logg ut</a

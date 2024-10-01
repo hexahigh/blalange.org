@@ -4,6 +4,10 @@ import { thumbs } from "@dicebear/collection";
 export const defaultConfig = {
   devMode: false,
   dbEndpoint: "https://db.080609.xyz",
+  directusEndpoint: "https://db.blalange.org",
+  directeusWebsocketEndpoint: "wss://db.blalange.org",
+  keepMeLoggedIn: true,
+  keepMeLoggedInDelay: 1000 * 60 * 5, // 5 minutes
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",
@@ -19,8 +23,8 @@ export const defaultConfig = {
     lastUpdated: "22-08-2024",
   },
   emails: {
-    copyrightAgent: "hexahigh0@gmail.com",
-    privacyAgent: "hexahigh0@gmail.com",
+    copyrightAgent: "simon@blalange.org",
+    privacyAgent: "simon@blalange.org",
   }
 };
 

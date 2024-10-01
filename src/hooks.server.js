@@ -10,7 +10,11 @@ export async function handle({ event, resolve }) {
       return Response.redirect("https://blalange.org" + event.url.pathname, 301);
   }
 
-  const response = await resolve(event);
+  const response = await resolve(event, {
+    filterSerializedResponseHeaders: (key, value) => {
+			return key.toLowerCase() === 'content-type';
+		},
+  })
 
   // Allow CORS requests from everywhere
   response.headers.set('Access-Control-Allow-Origin', '*');
