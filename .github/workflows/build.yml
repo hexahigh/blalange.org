@@ -87,7 +87,15 @@ jobs:
       run: pnpm run build
 
     - name: Run Vitest with HTML report
-      run: pnpm run test:unit --reporter=default
+      run: pnpm run test:unit --reporter=default --outputFile=test-results/vitest/index.html
 
     - name: Run Playwright tests with HTML report
-      run: pnpm run test:e2e --reporter=github
+      run: pnpm run test:e2e --reporter=html --output=test-results/playwright/
+
+    - name: Upload test reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-reports
+        path: |
+          test-results/playwright/index.html
+          test-results/vitest/index.html
