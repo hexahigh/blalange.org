@@ -1,15 +1,16 @@
 name: Build and test
 
+env:
+    NODE_VERSION: '21'
+    PNPM_VERSION: '9'
+    PLAYWRIGHT_HTML_OPEN: 'never'
+    PLAYWRIGHT_HTML_OUTPUT_DIR: 'test-results/playwright'
+    GITHUB_ACTIONS: 'true'
+
 on:
  workflow_dispatch:
  push:
-    branches:
-      - main
-      - dev
  pull_request:
-    branches:
-      - main
-      - dev
 
 jobs:
  build-normal:
@@ -22,12 +23,12 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '21'
+        node-version: ${{ env.NODE_VERSION }}
 
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9
+        version: ${{ env.PNPM_VERSION }}
 
     - name: Install dependencies
       run: pnpm i
@@ -44,12 +45,12 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '21'
+        node-version: ${{ env.NODE_VERSION }}
 
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9
+        version: ${{ env.PNPM_VERSION }}
 
     - name: Install dependencies
       run: pnpm i
@@ -59,3 +60,34 @@ jobs:
 
     - name: Build SvelteKit app
       run: pnpm run build
+
+ test-normal:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ env.PNPM_VERSION }}
+
+    - name: Install dependencies
+      run: pnpm i
+
+    - name: Install Playwright dependencies
+      run: pnpm exec playwright install-deps
+
+    - name: Build SvelteKit app
+      run: pnpm run build
+
+    - name: Run Vitest with HTML report
+      run: pnpm run test:unit --reporter=default
+
+    - name: Run Playwright tests with HTML report
+      run: pnpm run test:e2e --reporter=github
