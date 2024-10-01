@@ -13,7 +13,7 @@
           href="https://github.com/hexahigh/blalange.org"
           class="hover:underline">Kildekode</a
         >
-        <a href="mailto:webmaster@blalange.org" class="hover:underline">Epost</a
+        <a href="mailto:contact@blalange.org" class="hover:underline">Epost</a
         >
         <a href="/privacy" class="hover:underline">Personvernerklæring</a>
         <a href="/tos" class="hover:underline">TOS</a>
