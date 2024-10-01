@@ -9,6 +9,7 @@
 
   onMount(async () => {
     const Masonry = (await import("masonry-layout")).default;
+    const ImagesLoaded = (await import("imagesloaded")).default;
 
     var msnry = new Masonry(".grid-container", {
       columnWidth: 300,
@@ -18,7 +19,11 @@
       fitWidth: true,
     });
 
-    msnry.layout();
+    const imagesLoaded = new ImagesLoaded(msnry.element);
+
+    imagesLoaded.on("progress", function(instance, image) {
+      msnry.layout();
+    });
   });
 
   let articles = data.articles;
