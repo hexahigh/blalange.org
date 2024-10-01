@@ -95,6 +95,8 @@ type getImageUrlOptions = {
 };
 
 /**
+ * Returns a URL for the given asset ID.
+ * Note that only public assets can be accessed.
  *
  * @param assetId
  * @param options See https://docs.directus.io/reference/files.html#custom-transformations for a list of options and their values

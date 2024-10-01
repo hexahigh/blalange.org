@@ -23,6 +23,7 @@ export async function load({ params, url, fetch }) {
         "description",
         "image",
         "date",
+        "status",
       ],
     }))
 
@@ -46,6 +47,12 @@ export async function load({ params, url, fetch }) {
       // If the description is longer than 32 characters, truncate it
       if (articles[i].description.length > 3200) {
         articles[i].description = articles[i].description.slice(0, 32) + "...";
+      }
+
+      // If the article's status is "draft" or "archived", remove it from the list
+      if (articles[i].status === "draft" || articles[i].status === "archived") {
+        articles.splice(i, 1);
+        i--;
       }
 
     }

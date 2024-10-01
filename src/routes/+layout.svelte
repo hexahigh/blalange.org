@@ -9,7 +9,7 @@
   import { loadConfig, config } from "$lib/js/config";
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider, loadIcons } from "iconify-icon";
-  import { initKeepMeLoggedIn, getDirectusInstance, currentUser } from "$lib/js/directus";
+  import { currentUser } from "$lib/js/directus";
 
   import "$lib/js/polyfills/main";
 
@@ -26,9 +26,8 @@
     loadConfig(); // Load the config from local storage
     initializeDev(); // Initialize the dev mode
     checkForDevMode(); // Checks if dev mode is enabled in the config
-    //initKeepMeLoggedIn();
-    const client = getDirectusInstance(null);
-    //client.refresh()
+    // We call currentUser() at startup, this way directus will automatically refresh the token if needed
+    currentUser();
 
     config.subscribe((value) => {
       document.documentElement.style.setProperty("--font-family-var", value.font.family);
