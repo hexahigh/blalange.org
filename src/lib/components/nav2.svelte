@@ -46,6 +46,7 @@
         userRecord = await client.request(readMe());
         userRecordFetchSuccess = true;
       } catch (e) {
+        tries++;
         await new Promise((resolve) => setTimeout(resolve, 200)); // Wait 200ms before trying again
       }
     }
