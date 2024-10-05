@@ -51,7 +51,6 @@
     devMode = value.devMode;
   });
 
-  let userCache = [];
   let avatarCache = [];
   let userExtraCache = [];
 
@@ -147,8 +146,8 @@
 
         let extraInfo;
 
-        if (userExtraCache[messages[i].uid]) {
-          extraInfo = userExtraCache[messages[i].uid];
+        if (userExtraCache[messages[i].user.id]) {
+          extraInfo = userExtraCache[messages[i].user.id];
         } else {
           // Get extra info
           extraInfo = await client
@@ -163,11 +162,12 @@
             .then((result) => {
               return result[0];
             });
+
+            userExtraCache[messages[i].user.id] = extraInfo || {};
         }
 
         if (extraInfo) {
           messages[i].extraBadges = JSON.parse(extraInfo.badges || "[]");
-          userExtraCache[messages[i].uid] = messages[i].extraBadges;
         }
 
         // Get avatar
@@ -179,9 +179,6 @@
           messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
           stageTimes.genAvatar += performance.now() - startTime;
         }
-
-        // Store in cache
-        userCache[messages[i].uid] = messages[i].user;
 
         stageTimes.loggedInStuff.total += performance.now() - startTime;
 
