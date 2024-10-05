@@ -14,7 +14,7 @@
   import Popper from "./popper.svelte";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
-
+  
   let logoAlwaysSpins = false;
 
   let client;
@@ -58,7 +58,10 @@
   }
 
   async function logout() {
+    if (typeof window === "undefined") return;
     await client.logout();
+    // Refresh the page
+    window.location.reload();
   }
 
   let path;

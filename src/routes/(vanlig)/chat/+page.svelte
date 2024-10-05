@@ -43,7 +43,7 @@
 
   let devMode: boolean;
 
-  const client = getDirectusInstance(null)
+  const client = getDirectusInstance(null);
   const wsClient = createDirectus(defaultConfig.directeusWebsocketEndpoint + "/websocket").with(realtime());
   const pb = new PocketBase(defaultConfig.dbEndpoint);
 
@@ -53,12 +53,13 @@
 
   let userCache = [];
   let avatarCache = [];
+  let userExtraCache = [];
 
   // Fetch comments when the component mounts and whenever the `id` prop changes
   onMount(async () => {
     await initialFetch();
     await subscribe();
-    scrollToBottom(false, true); // Force scroll to bottom
+    await scrollToBottom(false, true); // Force scroll to bottom
   });
 
   async function initialFetch() {
@@ -72,6 +73,7 @@
           readItems("chat", {
             limit: options.pageSize,
             page: i,
+            sort: "date_created",
             fields: ["*", "user.*"],
           }),
         );
@@ -84,6 +86,7 @@
         comments = [...comments, ...processed];
       }
       sortComments();
+      await scrollToBottom(false, true);
     } catch (error) {
       console.error("Failed to fetch comments:", error);
     }
@@ -93,12 +96,15 @@
     const { subscription } = await wsClient.subscribe("chat", {
       event: "create",
       query: {
+        sort: "date_created",
         fields: ["*", "user.*"],
       },
+      realtime: true,
     });
 
     for await (const item of subscription) {
-      let processed = await processMessage([item]);
+      if (item.event !== "create") continue;
+      let processed = await processMessage((item as any).data);
       comments = [...comments, ...processed];
       sortComments();
       scrollToBottom();
@@ -106,6 +112,7 @@
   }
 
   async function sortComments() {
+    return;
     // Sort comments by timestamp
     comments = comments.sort((a, b) => new Date(b.date_created).getTime() - new Date(a.date_created).getTime());
   }
@@ -125,34 +132,58 @@
     let chatTextCacheLS = localStorage.getItem("chatTextCache");
     let chatTextCache = JSON.parse(chatTextCacheLS || "{}");
 
+    // If messages is not an array, make it one
+    if (!Array.isArray(messages)) {
+      messages = [messages];
+    }
+
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       try {
+        let startTime = performance.now();
+        messages[i].isAdmin = messages[i].user.role == "1fa38b0f-2689-4aa3-9123-636762b129c4";
+        messages[i].name = messages[i].user.first_name + " " + messages[i].user.last_name;
+        messages[i].verified = true;
+
+        let extraInfo;
+
+        if (userExtraCache[messages[i].uid]) {
+          extraInfo = userExtraCache[messages[i].uid];
+        } else {
+          // Get extra info
+          extraInfo = await client
+            .request(
+              readItems("users_extra", {
+                filter: {
+                  user: messages[i].user.id,
+                },
+                limit: 1,
+              }),
+            )
+            .then((result) => {
+              return result[0];
+            });
+        }
+
+        if (extraInfo) {
+          messages[i].extraBadges = JSON.parse(extraInfo.badges || "[]");
+          userExtraCache[messages[i].uid] = messages[i].extraBadges;
+        }
+
+        // Get avatar
+        messages[i].avatar = getImageUrl(messages[i].user.avatar, { width: 256 });
+
+        // If the avatar is empty, fall back to the generated avatar
+        if (!messages[i].avatar || messages[i].avatar === "") {
           let startTime = performance.now();
-          let record = messages[i].user;
-          messages[i].isAdmin = record.role == "1fa38b0f-2689-4aa3-9123-636762b129c4"
-          messages[i].name = record.first_name + " " + record.last_name;
-          messages[i].verified = true;
-          if (record.extra) {
-            messages[i].extraBadges = record.extra.extraBadges;
-          } else {
-            messages[i].extraBadges = [];
-          }
+          messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
+          stageTimes.genAvatar += performance.now() - startTime;
+        }
 
-          // Get avatar
-          messages[i].avatar = getImageUrl(record.avatar, {width: 256});
+        // Store in cache
+        userCache[messages[i].uid] = messages[i].user;
 
-          // If the avatar is empty, fall back to the generated avatar
-          if (!messages[i].avatar || messages[i].avatar === "") {
-            let startTime = performance.now();
-            messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
-            stageTimes.genAvatar += performance.now() - startTime;
-          }
-
-          // Store in cache
-          userCache[messages[i].uid] = record;
-
-          stageTimes.loggedInStuff.total += performance.now() - startTime;
+        stageTimes.loggedInStuff.total += performance.now() - startTime;
 
         startTime = performance.now();
         if (chatTextCache && chatTextCache[messages[i].id]) {
@@ -202,7 +233,7 @@
           text: commentText,
           user: await currentUser().then((user) => {
             return user.id;
-          })
+          }),
         }),
       );
 
@@ -235,7 +266,7 @@
       return;
     } else {
       await tick();
-      await scrollToBottom(true);
+      await scrollToBottom(true, force);
     }
   }
 
@@ -310,9 +341,7 @@
       <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
     {:else}
       <div class="blur-overlay">
-        <div class="blur-overlay-text">
-          Du må være innlogget for å sende meldinger
-        </div>
+        <div class="blur-overlay-text">Du må være innlogget for å sende meldinger</div>
       </div>
     {/if}
   </div>
@@ -348,23 +377,23 @@
   }
 
   .blur-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      /*background-color: rgba(17, 24, 39, 0.7);*/
-      @apply dark:bg-[rgba(17,24,39,0.7)];
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
-  
-    .blur-overlay-text {
-      font-size: 18px;
-      font-weight: bold;
-      @apply text-black dark:text-gray-300;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background-color: rgba(17, 24, 39, 0.7);*/
+    @apply dark:bg-[rgba(17,24,39,0.7)];
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .blur-overlay-text {
+    font-size: 18px;
+    font-weight: bold;
+    @apply text-black dark:text-gray-300;
+  }
 </style>
