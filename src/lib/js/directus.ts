@@ -110,8 +110,10 @@ type getImageUrlOptions = {
  * @returns
  */
 function getImageUrl(assetId: string, options: getImageUrlOptions = {}): string {
-  let url = `${defaultConfig.directusEndpoint}/assets/${assetId}`;
+  if (!assetId) return
 
+  let url = `${defaultConfig.directusEndpoint}/assets/${assetId}`;
+  
   // Add the query parameters
   let params = [];
   if (options.width) params.push(`width=${options.width}`);

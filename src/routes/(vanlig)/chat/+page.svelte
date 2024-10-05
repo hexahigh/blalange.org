@@ -117,6 +117,8 @@
   }
 
   async function processMessage(messages) {
+    let processedMessages = [];
+
     let startTime = performance.now();
 
     let stageTimes = {
@@ -128,9 +130,6 @@
       },
     };
 
-    let chatTextCacheLS = localStorage.getItem("chatTextCache");
-    let chatTextCache = JSON.parse(chatTextCacheLS || "{}");
-
     // If messages is not an array, make it one
     if (!Array.isArray(messages)) {
       messages = [messages];
@@ -139,10 +138,12 @@
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       try {
+        processedMessages[i] = {};
         let startTime = performance.now();
-        messages[i].isAdmin = messages[i].user.role == "1fa38b0f-2689-4aa3-9123-636762b129c4";
-        messages[i].name = messages[i].user.first_name + " " + messages[i].user.last_name;
-        messages[i].verified = true;
+        processedMessages[i].isAdmin = messages[i].user.role == "1fa38b0f-2689-4aa3-9123-636762b129c4";
+        processedMessages[i].name = messages[i].user.first_name + " " + messages[i].user.last_name;
+        processedMessages[i].verified = true;
+        processedMessages[i].date = messages[i].date_created;
 
         let extraInfo;
 
@@ -163,46 +164,35 @@
               return result[0];
             });
 
-            userExtraCache[messages[i].user.id] = extraInfo || {};
+          userExtraCache[messages[i].user.id] = extraInfo || {};
         }
 
         if (extraInfo) {
-          messages[i].extraBadges = JSON.parse(extraInfo.badges || "[]");
+          processedMessages[i].extraBadges = JSON.parse(extraInfo.badges || "[]");
         }
 
         // Get avatar
-        messages[i].avatar = getImageUrl(messages[i].user.avatar, { width: 256 });
+        processedMessages[i].avatar = getImageUrl(messages[i].user.avatar, { width: 256 });
 
         // If the avatar is empty, fall back to the generated avatar
-        if (!messages[i].avatar || messages[i].avatar === "") {
+        if (!processedMessages[i].avatar || !messages[i].user.avatar) {
           let startTime = performance.now();
-          messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
+          processedMessages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
           stageTimes.genAvatar += performance.now() - startTime;
         }
 
         stageTimes.loggedInStuff.total += performance.now() - startTime;
 
         startTime = performance.now();
-        if (chatTextCache && chatTextCache[messages[i].id]) {
-          messages[i].text = chatTextCache[messages[i].id];
-        } else {
-          messages[i].text = await processMessageText(messages[i].text);
 
-          // Store in cache
-          if (!chatTextCache) {
-            chatTextCache = {};
-          }
-          chatTextCache[messages[i].id] = messages[i].text;
-          try {
-            localStorage.setItem("chatTextCache", JSON.stringify(chatTextCache));
-          } catch (error) {}
-        }
+        processedMessages[i].text = await processMessageText(messages[i].text);
+
         stageTimes.processMessageText += performance.now() - startTime;
       } catch (error) {
         if (devMode) {
           console.error("An error occurred while processing message with id " + messages[i].id + ":", error);
           // Remove the message from the list
-          messages.splice(i, 1);
+          processedMessages.splice(i, 1);
           i--;
         }
       }
@@ -213,7 +203,7 @@
       console.log(`[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`);
     }
 
-    return messages;
+    return processedMessages;
   }
 
   async function addMessage() {
@@ -312,7 +302,7 @@
             {/if}
           </p>
           <p class="text-gray-500 dark:text-gray-300">
-            {formatDate(comment.date_created)}
+            {formatDate(comment.date)}
           </p>
         </div>
         <div>
