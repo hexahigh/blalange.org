@@ -12,7 +12,7 @@
   import DarkmodeSwitcher from "./darkmode-switcher.svelte";
   import { Dropdown } from "flowbite-svelte";
   import Popper from "./popper.svelte";
-  import { getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
+  import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
 
   let logoAlwaysSpins = false;
@@ -37,10 +37,7 @@
   let userRecord;
 
   async function getStuff() {
-    if (!client || !isLoggedIn()) return;
-
-    // We need to wait a little bit. Why? I don't fucking know.
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    if (!client || !canRefresh()) return;
 
     let userRecordFetchSuccess = false;
     let tries = 0;

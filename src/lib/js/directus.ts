@@ -57,18 +57,25 @@ function getDirectusInstanceRest(fetch) {
 }
 
 function isLoggedIn() {
-  let result = false;
   const data = storage.get();
 
   if (!data || !data.access_token || !data.expires_at) {
-    return result;
+    return false;
   }
 
   if (data.access_token && data.expires_at > Date.now()) {
-    result = true;
+    return true;
   }
 
-  return result;
+}
+
+// Assumes that the refresh token is valid
+function canRefresh() {
+  const data = storage.get();
+  if (!data || !data.refresh_token) {
+    return false;
+  }
+  return true;
 }
 
 function currentUser() {
@@ -155,5 +162,6 @@ export {
   currentUser,
   refreshToken,
   initKeepMeLoggedIn,
+  canRefresh,
   storage,
 };
