@@ -3,8 +3,6 @@ import { config, defaultConfig } from "$lib/js/config";
 import { getDirectusInstanceRest } from '$lib/js/directus';
 import { readItems } from '@directus/sdk';
 
-export const prerender = true;
-
 const client = getDirectusInstanceRest(null);
 
 const site = "https://blalange.org";
