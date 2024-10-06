@@ -1,18 +1,21 @@
-import PocketBase from "pocketbase";
 import * as sitemap from 'super-sitemap';
 import { config, defaultConfig } from "$lib/js/config";
+import { getDirectusInstanceRest } from '$lib/js/directus';
+import { readItems } from '@directus/sdk';
 
 export const prerender = true;
 
-const pb = new PocketBase(defaultConfig.dbEndpoint);
+const client = getDirectusInstanceRest(null);
 
 const site = "https://blalange.org";
 
 const articles = async () => {
   try {
-    let articles = await pb.collection("art_articles").getFullList({
-      fields: "artId",
-    });
+    let articles = await client.request(readItems('art_articles', {
+      fields: [
+        "artId",
+      ],
+    }))
     // Return all ids
     return articles.map((article) => article.artId);
   } catch (error) {
@@ -24,7 +27,7 @@ const articles = async () => {
 
 export const GET = async ({ url }) => {
   return await sitemap.response({
-    origin: 'https://' + defaultConfig.primaryDomain,
+    origin: url.origin,
     excludeRoutePatterns: [
       '/redirect/*',
     ],
