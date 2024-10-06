@@ -49,6 +49,8 @@ async function collect2() {
       useragent: userAgent,
       language: language,
       unix: unix,
+      datetime: unix,
+      timestamp: unix,
       url: url,
       session: getSessionId(),
       ip: ip,
