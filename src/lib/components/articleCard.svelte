@@ -15,37 +15,32 @@
   export let link;
   export let date;
   export { clazz as class };
-  export let width = 'auto';
-  export let height = 'auto';
+  export let width = "auto";
+  export let height = "auto";
 
-  import { twMerge } from 'tailwind-merge'
+  import { twMerge } from "tailwind-merge";
 
   function formatDate(date) {
     const d = new Date(date);
-    return d.toLocaleString(
-      "no-nb",
-    );
+    return d.toLocaleString("no-nb");
   }
 </script>
 
 <div
-  class={twMerge('bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105', clazz)}
+  class={twMerge(
+    "bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105",
+    clazz,
+  )}
   style={`width: ${width}; height: ${height};`}
 >
   <a href={link}>
-    <a href={link}>
-      <img class="rounded-t-lg object-cover w-full h-1/2" src={image} alt="" />
-    </a>
+    <img class="rounded-t-lg object-cover w-full h-1/2" src={image} alt="" />
     <div class="p-5 h-1/2 flex flex-col">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {title}
       </h5>
       <p class="text-gray-500">{formatDate(date)}</p>
-      <p
-        class="text-overflow-ellipsis overflow-hidden mb-3 font-normal text-gray-700 dark:text-gray-400"
-      >
+      <p class="text-overflow-ellipsis overflow-hidden mb-3 font-normal text-gray-700 dark:text-gray-400">
         {description}
       </p>
       <a

@@ -14,6 +14,9 @@ importers:
       '@dicebear/core':
         specifier: ^8.0.1
         version: 8.0.1(sharp@0.32.6)
+      '@directus/sdk':
+        specifier: ^17.0.1
+        version: 17.0.1
       '@floating-ui/dom':
         specifier: ^1.6.8
         version: 1.6.8
@@ -92,6 +95,9 @@ importers:
       iconify-icon:
         specifier: ^2.1.0
         version: 2.1.0
+      imagesloaded:
+        specifier: ^5.0.0
+        version: 5.0.0
       kolorist:
         specifier: ^1.8.0
         version: 1.8.0
@@ -1056,6 +1062,10 @@ packages:
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@dicebear/core': ^8.0.0
+
+  '@directus/sdk@17.0.1':
+    resolution: {integrity: sha512-6TorT8am/8q2YmhLhGY1yZks2rFr31my5WqbXUPZs+4hPWYkTNThns2lfhZQ8w2KBh9DZ7v5SaghZNSIswUOwA==}
+    engines: {node: '>=18.0.0'}
 
   '@emnapi/runtime@1.2.0':
     resolution: {integrity: sha512-bV21/9LQmcQeCPEg3BDFtvwL6cwiTMksYNWQQ4KOxCZikEGalWtenoZ0wCiukJINlGCIi2KXx01g4FoH/LxpzQ==}
@@ -2501,6 +2511,9 @@ packages:
   ev-emitter@1.1.1:
     resolution: {integrity: sha512-ipiDYhdQSCZ4hSbX4rMW+XzNKMD1prg/sTvoVmSLkuQ1MVlwjJQQA+sW8tMYR3BLUr9KjodFV4pvzunvRhd33Q==}
 
+  ev-emitter@2.1.2:
+    resolution: {integrity: sha512-jQ5Ql18hdCQ4qS+RCrbLfz1n+Pags27q5TwMKvZyhp5hh2UULUYZUy1keqj6k6SYsdqIYjnmz7xyyEY0V67B8Q==}
+
   exit-hook@2.2.1:
     resolution: {integrity: sha512-eNTPlAD67BmP31LDINZ3U7HSF8l57TxOY2PmBJ1shpCvpnxBF93mWCE8YHBnXs8qiUZJc9WDcWIeC3a2HIAMfw==}
     engines: {node: '>=6'}
@@ -2757,6 +2770,9 @@ packages:
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+
+  imagesloaded@5.0.0:
+    resolution: {integrity: sha512-/0JGSubc1MTCoDKVmonLHgbifBWHdyLkun+R/151E1c5n79hiSxcd7cB7mPXFgojYu8xnRZv7GYxzKoxW8BetQ==}
 
   imagetools-core@7.0.0:
     resolution: {integrity: sha512-6fYbD7u4VIOt6fqKrOlbF77JXgUVyUmEJIPlfYVTuR/S2Ig9cX3gukGiLEU0aSetcfE7CYnhLTPtTEu4mLwhCw==}
@@ -5021,6 +5037,8 @@ snapshots:
     dependencies:
       '@dicebear/core': 8.0.1(sharp@0.32.6)
 
+  '@directus/sdk@17.0.1': {}
+
   '@emnapi/runtime@1.2.0':
     dependencies:
       tslib: 2.6.3
@@ -6506,6 +6524,8 @@ snapshots:
 
   ev-emitter@1.1.1: {}
 
+  ev-emitter@2.1.2: {}
+
   exit-hook@2.2.1: {}
 
   expand-template@2.0.3: {}
@@ -6759,6 +6779,10 @@ snapshots:
   idb@7.1.1: {}
 
   ieee754@1.2.1: {}
+
+  imagesloaded@5.0.0:
+    dependencies:
+      ev-emitter: 2.1.2
 
   imagetools-core@7.0.0:
     dependencies:
