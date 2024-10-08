@@ -11,7 +11,8 @@
     "generate-pwa-assets": "pwa-assets-generator",
     "test:e2e": "playwright test",
     "test:unit": "NODE_OPTIONS='--experimental-json-modules' vitest",
-    "test": "pnpm run test:e2e && pnpm run test:unit -- --run"
+    "test": "pnpm run test:e2e && pnpm run test:unit -- --run",
+    "version": "echo The version file utility is no longer used"
   },
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6",
