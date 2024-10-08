@@ -478,7 +478,29 @@
 
         await module.default(stdlib, options);
       },
-    }
+    },
+    {
+      name: "beast",
+      description: "",
+      long_description: "MR. BEAST!!!!",
+      usage: "beast",
+      hidden: false,
+      execute: async (args) => {
+        const module = await import("./commands/beast");
+
+        let options = {};
+
+        if (args.length !== 0) {
+          let flags = await parseFlags(args);
+
+          options = {
+            speed: flags.args[0] || 1,
+          };
+        }
+
+        await module.default(stdlib, options);
+      },
+    },
   ];
 
   if (data.commandToRun) {

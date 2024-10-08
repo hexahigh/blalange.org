@@ -24,6 +24,7 @@ export interface TextVideo {
   format_version: number;
   fps: number;
   width: number;
+  height: number;
   /**
    * 'gzip'
    */

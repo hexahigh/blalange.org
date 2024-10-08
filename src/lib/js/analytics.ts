@@ -1,14 +1,14 @@
-import PocketBase from "pocketbase";
 import { getSessionId } from "./session";
 import { config, defaultConfig } from "./config";
+import { getDirectusInstance } from "./directus";
+import { createItem } from "@directus/sdk";
 
-let pb = new PocketBase(defaultConfig.dbEndpoint);
+const client = getDirectusInstance(null);
 
 let enabled: boolean;
 let devMode: boolean;
 
 config.subscribe((value) => {
-  pb = new PocketBase(value.dbEndpoint);
   enabled = value.analyticsEnabled;
   devMode = value.devMode;
 });
@@ -45,28 +45,20 @@ async function collect2() {
   if (lastUrl !== url) {
     lastUrl = url;
 
-    let username;
-    let uid
-
-    if (pb.authStore.isValid) {
-      username = pb.authStore.model.username;
-      uid = pb.authStore.model.id;
-    }
-
-    return await pb.collection("kf_analytics").create({
+    return await client.request(createItem("analytics_client1", {
       useragent: userAgent,
       language: language,
       unix: unix,
+      datetime: unix,
+      timestamp: unix,
       url: url,
       session: getSessionId(),
       ip: ip,
       width: screenWidth,
       height: screenHeight,
       referrer: referrer,
-      username: username,
-      user: uid,
-      uid: uid,
-    });
+    }))
+
   } else if (devMode) {
     console.log("Collect2: Nothing has changed, not running.");
   }

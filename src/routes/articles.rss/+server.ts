@@ -1,16 +1,18 @@
-import PocketBase from "pocketbase";
-
 import { defaultConfig } from "$lib/js/config";
-
-let pb = new PocketBase(defaultConfig.dbEndpoint);
+import { getDirectusInstance } from "$lib/js/directus";
+import { readItems } from "@directus/sdk";
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {
-  let articles = await pb.collection("art_articles").getFullList(100, {
-    sort: "-created",
-    expand: "authors",
-  });
-  
+  const client = getDirectusInstance(null);
+
+  const articles = await client.request(
+    readItems("art_articles", {
+      fields: ["artId", "name", "description", "image", "date", "text", "author.name"],
+      limit: -1,
+    })
+  );
+
   const metadata = {
     title: "Blåblad",
     description: "Nyheter fra Blåblad",
@@ -45,7 +47,7 @@ export async function GET({ url }) {
 
   const content = articles
     .map((article) => {
-      const authors = article.expand.authors.map((author) => author.name).join(", ");
+      const author = article.author.name;
       return `
             <item>
                 <title>${article.name}</title>
@@ -53,7 +55,7 @@ export async function GET({ url }) {
                 <description>${article.description}</description>
                 <guid isPermaLink="false">${article.artId}</guid>
                 <pubDate>${formatDateForRSS(article.date)}</pubDate>
-                <author>${authors}</author>
+                <author>${author}</author>
             </item>
             `;
     })
@@ -82,16 +84,20 @@ function formatDateForRSS(date) {
 
   // Calculate timezone offset in the format +HHMM or -HHMM
   const utcOffset = -d.getTimezoneOffset();
-  const offsetSign = utcOffset > 0 ? '+' : '-';
-  const offsetHours = Math.abs(Math.floor(utcOffset / 60)).toString().padStart(2, '0');
-  const offsetMinutes = Math.abs(utcOffset % 60).toString().padStart(2, '0');
+  const offsetSign = utcOffset > 0 ? "+" : "-";
+  const offsetHours = Math.abs(Math.floor(utcOffset / 60))
+    .toString()
+    .padStart(2, "0");
+  const offsetMinutes = Math.abs(utcOffset % 60)
+    .toString()
+    .padStart(2, "0");
   const timezoneOffset = `${offsetSign}${offsetHours}${offsetMinutes}`;
 
   // Pad single digit numbers with leading zeros
-  const paddedDateOfMonth = String(dateOfMonth).padStart(2, '0');
-  const paddedHours = String(hours).padStart(2, '0');
-  const paddedMinutes = String(minutes).padStart(2, '0');
-  const paddedSeconds = String(seconds).padStart(2, '0');
+  const paddedDateOfMonth = String(dateOfMonth).padStart(2, "0");
+  const paddedHours = String(hours).padStart(2, "0");
+  const paddedMinutes = String(minutes).padStart(2, "0");
+  const paddedSeconds = String(seconds).padStart(2, "0");
 
   return `${day}, ${paddedDateOfMonth} ${month} ${year} ${paddedHours}:${paddedMinutes}:${paddedSeconds} ${timezoneOffset}`;
 }

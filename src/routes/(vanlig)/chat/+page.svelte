@@ -1,18 +1,21 @@
 <script lang="ts">
   import { onMount, onDestroy, tick } from "svelte";
   import { config, defaultConfig } from "$lib/js/config";
-  import PocketBase, { type RecordModel } from "pocketbase";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
   import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
   import "iconify-icon";
 
-  import { toRedirect } from "$lib/js/redirect";
   import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
 
-  function formatDate(unixTimestamp) {
-    const date = new Date(unixTimestamp * 1000);
+  import { getDirectusInstance, isLoggedIn, storage, getImageUrl, currentUser } from "$lib/js/directus";
+  import { readItems, readItem, createItem, authentication, realtime, createDirectus } from "@directus/sdk";
+
+  import PocketBase from "pocketbase";
+
+  function formatDate(time) {
+    const date = new Date(time);
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "long",
@@ -38,80 +41,84 @@
     avatarPack: defaultConfig.dicebearCollection,
   };
 
-  let pb = new PocketBase(defaultConfig.dbEndpoint);
   let devMode: boolean;
 
+  const client = getDirectusInstance(null);
+  const wsClient = createDirectus(defaultConfig.directeusWebsocketEndpoint + "/websocket").with(realtime());
+  const pb = new PocketBase(defaultConfig.dbEndpoint);
+
   config.subscribe((value) => {
-    pb = new PocketBase(value.dbEndpoint);
     devMode = value.devMode;
   });
 
-  let userCache = [];
   let avatarCache = [];
+  let userExtraCache = [];
 
   // Fetch comments when the component mounts and whenever the `id` prop changes
   onMount(async () => {
     await initialFetch();
     await subscribe();
-    scrollToBottom(false, true); // Force scroll to bottom
+    await scrollToBottom(false, true); // Force scroll to bottom
   });
-
-  function isLoggedIn() {
-    if (!pb) return; // Ensure PocketBase is initialized
-    return pb.authStore.isValid;
-  }
-
-  function getUserName() {
-    if (!pb) return; // Ensure PocketBase is initialized
-
-    if (!pb.authStore.isValid) {
-      return "Anon";
-    }
-    return pb.authStore.model.username;
-  }
 
   async function initialFetch() {
     if (typeof window === "undefined") return; // Exit if not in a browser environment
-    if (!pb) return; // Ensure PocketBase is initialized
 
     try {
-      let totalPages = 1;
+      let page = 1;
 
-      for (let i = 1; i <= totalPages; i++) {
-        let result = await pb.collection("bla_chat").getList(i, options.pageSize, { sort: "+created" });
-        totalPages = result.totalPages;
-        let processed = await processMessage(result.items);
+      for (let i = 1; i <= page; i++) {
+        let result = await client.request(
+          readItems("chat", {
+            limit: options.pageSize,
+            page: i,
+            sort: "date_created",
+            fields: ["*", "user.*"],
+          }),
+        );
+        // If the result is an empty array then we have most likely reached the end of the list
+        if (result.length === 0) {
+          break;
+        }
+        let processed = await processMessage(result);
 
         comments = [...comments, ...processed];
       }
       sortComments();
+      await scrollToBottom(false, true);
     } catch (error) {
       console.error("Failed to fetch comments:", error);
     }
   }
 
   async function subscribe() {
-    pb.collection("bla_chat").subscribe(
-      "*",
-      async function (e) {
-        let processed = await processMessage([e.record]);
-        comments = [...comments, ...processed];
-        sortComments();
-        scrollToBottom();
+    const { subscription } = await wsClient.subscribe("chat", {
+      event: "create",
+      query: {
+        sort: "date_created",
+        fields: ["*", "user.*"],
       },
-      {
-        /* other options like expand, custom headers, etc. */
-      },
-    );
+      realtime: true,
+    });
+
+    for await (const item of subscription) {
+      if (item.event !== "create") continue;
+      let processed = await processMessage((item as any).data);
+      comments = [...comments, ...processed];
+      sortComments();
+      scrollToBottom();
+    }
   }
 
   async function sortComments() {
     return;
     // Sort comments by timestamp
-    comments = comments.sort((a, b) => b.unix - a.unix);
+    comments = comments.sort((a, b) => new Date(b.date_created).getTime() - new Date(a.date_created).getTime());
   }
 
-  async function processMessage(messages: RecordModel[]) {
+  async function processMessage(messages) {
+    let processedMessages = [];
+
     let startTime = performance.now();
 
     let stageTimes = {
@@ -123,75 +130,69 @@
       },
     };
 
-    let chatTextCacheLS = localStorage.getItem("chatTextCache");
-    let chatTextCache = JSON.parse(chatTextCacheLS || "{}");
+    // If messages is not an array, make it one
+    if (!Array.isArray(messages)) {
+      messages = [messages];
+    }
 
     // Go through each comment and if they are logged in, check if they are verified
     for (let i = 0; i < messages.length; i++) {
       try {
-        if (messages[i].uid) {
-          let startTime = performance.now();
-          let record: any;
-          // Check if it is in the cache
-          if (userCache[messages[i].uid]) {
-            record = userCache[messages[i].uid];
-          } else {
-            let startTime = performance.now();
-            record = await pb.collection("users").getOne(messages[i].uid);
-            stageTimes.loggedInStuff.userFetch += performance.now() - startTime;
-          }
-          messages[i].isAdmin = record.isAdmin;
-          messages[i].name = record.username;
-          messages[i].verified = true;
-          if (record.extra) {
-            messages[i].extraBadges = record.extra.extraBadges;
-          } else {
-            messages[i].extraBadges = [];
-          }
+        processedMessages[i] = {};
+        let startTime = performance.now();
+        processedMessages[i].isAdmin = messages[i].user.role == "1fa38b0f-2689-4aa3-9123-636762b129c4";
+        processedMessages[i].name = messages[i].user.first_name + " " + messages[i].user.last_name;
+        processedMessages[i].verified = true;
+        processedMessages[i].date = messages[i].date_created;
 
-          // Get avatar
-          messages[i].avatar = pb.files.getUrl(record, record.avatar, {
-            thumb: "100x100",
-          });
+        let extraInfo;
 
-          // If the avatar is empty, fall back to the generated avatar
-          if (!messages[i].avatar || messages[i].avatar === "") {
-            let startTime = performance.now();
-            messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
-            stageTimes.genAvatar += performance.now() - startTime;
-          }
-
-          // Store in cache
-          userCache[messages[i].uid] = record;
-
-          stageTimes.loggedInStuff.total += performance.now() - startTime;
+        if (userExtraCache[messages[i].user.id]) {
+          extraInfo = userExtraCache[messages[i].user.id];
         } else {
+          // Get extra info
+          extraInfo = await client
+            .request(
+              readItems("users_extra", {
+                filter: {
+                  user: messages[i].user.id,
+                },
+                limit: 1,
+              }),
+            )
+            .then((result) => {
+              return result[0];
+            });
+
+          userExtraCache[messages[i].user.id] = extraInfo || {};
+        }
+
+        if (extraInfo) {
+          processedMessages[i].extraBadges = JSON.parse(extraInfo.badges || "[]");
+        }
+
+        // Get avatar
+        processedMessages[i].avatar = getImageUrl(messages[i].user.avatar, { width: 256 });
+
+        // If the avatar is empty, fall back to the generated avatar
+        if (!processedMessages[i].avatar || !messages[i].user.avatar) {
           let startTime = performance.now();
-          messages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
+          processedMessages[i].avatar = genAvatar(options.avatarPack, messages[i].name).toDataUriSync();
           stageTimes.genAvatar += performance.now() - startTime;
         }
 
-        let startTime = performance.now();
-        if (chatTextCache && chatTextCache[messages[i].id]) {
-          messages[i].text = chatTextCache[messages[i].id];
-        } else {
-          messages[i].text = await processMessageText(messages[i].text);
+        stageTimes.loggedInStuff.total += performance.now() - startTime;
 
-          // Store in cache
-          if (!chatTextCache) {
-            chatTextCache = {};
-          }
-          chatTextCache[messages[i].id] = messages[i].text;
-          try {
-            localStorage.setItem("chatTextCache", JSON.stringify(chatTextCache));
-          } catch (error) {}
-        }
+        startTime = performance.now();
+
+        processedMessages[i].text = await processMessageText(messages[i].text);
+
         stageTimes.processMessageText += performance.now() - startTime;
       } catch (error) {
         if (devMode) {
           console.error("An error occurred while processing message with id " + messages[i].id + ":", error);
           // Remove the message from the list
-          messages.splice(i, 1);
+          processedMessages.splice(i, 1);
           i--;
         }
       }
@@ -202,47 +203,26 @@
       console.log(`[Chat] Detailed performance report: ${JSON.stringify(stageTimes, null, 2)}`);
     }
 
-    return messages;
+    return processedMessages;
   }
 
   async function addMessage() {
-    if (!pb) return; // Ensure PocketBase is initialized
-
     try {
-      let verifyResult = await verifyMessage(commentText);
+      if (!isLoggedIn()) return;
 
-      if (!verifyResult.valid) {
-        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
+      if (!commentText) {
+        commentError = "Du må skrive en melding";
         return;
       }
 
-      if (!isLoggedIn()) {
-        verifyResult = await verifyName(commentName);
-      }
-
-      if (!verifyResult.valid) {
-        commentError = verifyResult.error + ` (${verifyResult.errorCode})`;
-        return;
-      }
-
-      let unix = Math.floor(Date.now() / 1000);
-
-      let name = commentName
-      let uid;
-
-      if (isLoggedIn()) {
-        name = getUserName();
-        uid = pb.authStore.model.id;
-      }
-
-      const record = await pb.collection("bla_chat").create({
-        name: name,
-        text: commentText,
-        unix: unix,
-        session_id: getSessionId(),
-        uid: uid,
-        user: uid,
-      });
+      client.request(
+        createItem("chat", {
+          text: commentText,
+          user: await currentUser().then((user) => {
+            return user.id;
+          }),
+        }),
+      );
 
       commentError = null;
       commentText = "";
@@ -273,7 +253,7 @@
       return;
     } else {
       await tick();
-      await scrollToBottom(true);
+      await scrollToBottom(true, force);
     }
   }
 
@@ -322,7 +302,7 @@
             {/if}
           </p>
           <p class="text-gray-500 dark:text-gray-300">
-            {formatDate(comment.unix)}
+            {formatDate(comment.date)}
           </p>
         </div>
         <div>
@@ -333,27 +313,24 @@
       {/if}
     {/each}
   </div>
-  <div class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2">
-    <h4 class="text-md font-semibold">Send en melding</h4>
-    <p class="mt-1 text-xs">
-      <span class="text-red-500">*</span> Du kan bruke markdown
-    </p>
-    <p class:hidden={!isLoggedIn()} class="text-green-500">
-      Du er logget inn som: {getUserName()}
-    </p>
-    <p>Navn</p>
-    <input
-      class="w-1/2 p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
-      bind:value={commentName}
-      disabled={isLoggedIn()}
-    />
-    <p>Tekst</p>
-    <textarea
-      class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
-      bind:value={commentText}
-    ></textarea>
-    <button class="blue-button" on:click={addMessage}>Send</button>
-    <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
+  <div class="mb-4 rounded-md border-t-blue-500 border-x-blue-500 p-4 border-b-0 border-2 relative">
+    {#if isLoggedIn()}
+      <h4 class="text-md font-semibold">Send en melding</h4>
+      <p class="mt-1 text-xs">
+        <span class="text-red-500">*</span> Du kan bruke markdown
+      </p>
+      <p>Melding</p>
+      <textarea
+        class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
+        bind:value={commentText}
+      ></textarea>
+      <button class="blue-button" on:click={addMessage}>Send</button>
+      <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
+    {:else}
+      <div class="blur-overlay">
+        <div class="blur-overlay-text">Du må være innlogget for å sende meldinger</div>
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -384,5 +361,26 @@
 
   .comment-text :global(a) {
     @apply text-blue-500 hover:underline;
+  }
+
+  .blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background-color: rgba(17, 24, 39, 0.7);*/
+    @apply dark:bg-[rgba(17,24,39,0.7)];
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .blur-overlay-text {
+    font-size: 18px;
+    font-weight: bold;
+    @apply text-black dark:text-gray-300;
   }
 </style>

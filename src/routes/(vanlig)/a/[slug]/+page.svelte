@@ -9,7 +9,7 @@
 
   let name = data.article.name;
   let date = data.article.date;
-  let authors = data.authors;
+  let author = data.author
   let description = data.article.description
   let text = data.article.text
   let image = data.imgUrl
@@ -51,13 +51,13 @@
     </h1>
     <p class="text-gray-500 dark:text-gray-300">
       <iconify-icon icon="mdi:account" width="20" height="20" />
-      {authors}
+      {author}
     </p>
     <p class="text-gray-500 dark:text-gray-300">
       <iconify-icon icon="mdi:calendar" width="20" height="20" />
       {formatDate(date)}
     </p>
-    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300">
+    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300 whitespace-break-spaces">
       {@html text}
     </div>
     <Comments id={artId} />

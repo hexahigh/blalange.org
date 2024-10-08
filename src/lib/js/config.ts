@@ -1,9 +1,17 @@
 import { writable } from "svelte/store";
 import { thumbs } from "@dicebear/collection";
 
+/**
+ * This is the global config which is used by the client and the server.
+ * Note that not everything can be changed, many methods/functions simply use the default config.
+ */
 export const defaultConfig = {
   devMode: false,
   dbEndpoint: "https://db.080609.xyz",
+  directusEndpoint: "https://db.blalange.org",
+  directeusWebsocketEndpoint: "wss://db.blalange.org",
+  keepMeLoggedIn: true,
+  keepMeLoggedInDelay: 1000 * 60 * 5, // 5 minutes
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",
@@ -19,11 +27,15 @@ export const defaultConfig = {
     lastUpdated: "22-08-2024",
   },
   emails: {
-    copyrightAgent: "hexahigh0@gmail.com",
-    privacyAgent: "hexahigh0@gmail.com",
+    copyrightAgent: "simon@blalange.org",
+    privacyAgent: "simon@blalange.org",
   }
 };
 
+/**
+ * This is the global config which is used by the client and the server.
+ * Note that not everything can be changed, many methods/functions simply use the default config.
+ */
 export const config = writable({
   ...defaultConfig,
 });
@@ -95,10 +107,15 @@ export function saveConfig() {
   })();
 }
 
-// Resets config to defaults and saves it
-export function resetToDefaults() {
+/**
+ * Resets the global configuration to its default values, and optionally saves it to storage.
+ *
+ * @param {boolean} noSave - Whether to save the default configuration to storage. Defaults to false.
+ * @return {void}
+ */
+export function resetToDefaults(noSave = false) {
   config.set(defaultConfig);
-  saveConfig();
+  if (!noSave) saveConfig();
 }
 
 export function editKey(key: string, value: any) {
