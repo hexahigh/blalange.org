@@ -168,7 +168,7 @@
         }
 
         if (extraInfo) {
-          processedMessages[i].extraBadges = JSON.parse(extraInfo.badges || "[]");
+          processedMessages[i].extraBadges = extraInfo.badges || [];
         }
 
         // Get avatar

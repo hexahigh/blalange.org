@@ -2,6 +2,7 @@
     "conventionalCommits.autoCommit": false,
     "conventionalCommits.gitmoji": false,
     "conventionalCommits.scopes": [
-        "changelog"
+        "changelog",
+        "chat"
     ]
 }
