@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1] - 2024-10-08
+
+### Bug Fixes
+
+- *(chat)* Browser crash
+
+### Miscellaneous Tasks
+
+- Added vscode extensions
+
 ## [v4.0.0] - 2024-10-08
 
 ### Features
