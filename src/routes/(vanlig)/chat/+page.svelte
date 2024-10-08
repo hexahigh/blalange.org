@@ -191,10 +191,11 @@
       } catch (error) {
         if (devMode) {
           console.error("An error occurred while processing message with id " + messages[i].id + ":", error);
-          // Remove the message from the list
-          messages.splice(i, 1);
-          i--;
         }
+        // Remove the message from the list
+        messages.splice(i, 1);
+        processedMessages.splice(i, 1);
+        i--;
       }
     }
 
