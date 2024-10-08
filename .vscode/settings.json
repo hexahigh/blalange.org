@@ -1,5 +1,7 @@
 {
     "conventionalCommits.autoCommit": false,
     "conventionalCommits.gitmoji": false,
-    "conventionalCommits.scopes": []
+    "conventionalCommits.scopes": [
+        "changelog"
+    ]
 }
