@@ -4,6 +4,7 @@
     "conventionalCommits.scopes": [
         "changelog",
         "chat",
-        "article list"
+        "article list",
+        "analytics"
     ]
 }

@@ -1,4 +1,4 @@
-import { getSessionId } from "./session";
+import { getSessionId, getPermanentId } from "./session";
 import { config, defaultConfig } from "./config";
 import { getDirectusInstance } from "./directus";
 import { createItem } from "@directus/sdk";
@@ -52,7 +52,8 @@ async function collect2() {
       datetime: unix,
       timestamp: unix,
       url: url,
-      session: getSessionId(),
+      sessionId: getSessionId(),
+      permanentId: getPermanentId(),
       ip: ip,
       width: screenWidth,
       height: screenHeight,
