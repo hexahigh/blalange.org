@@ -105,8 +105,8 @@ importers:
         specifier: ^2.0.8
         version: 2.0.8
       marked:
-        specifier: ^13.0.0
-        version: 13.0.1
+        specifier: ^14.1.2
+        version: 14.1.2
       masonry-layout:
         specifier: ^4.2.2
         version: 4.2.2
@@ -3174,8 +3174,8 @@ packages:
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
 
-  marked@13.0.1:
-    resolution: {integrity: sha512-7kBohS6GrZKvCsNXZyVVXSW7/hGBHe49ng99YPkDCckSUrrG7MSFLCexsRxptzOmyW2eT5dySh4Md1V6my52fA==}
+  marked@14.1.2:
+    resolution: {integrity: sha512-f3r0yqpz31VXiDB/wj9GaOB0a2PRLQl6vJmXiFrniNwjkKdvakqJRULhjFKJpxOchlCRiG5fcacoUZY5Xa6PEQ==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -7313,7 +7313,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  marked@13.0.1: {}
+  marked@14.1.2: {}
 
   masonry-layout@4.2.2:
     dependencies:
