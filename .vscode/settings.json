@@ -3,6 +3,8 @@
     "conventionalCommits.gitmoji": false,
     "conventionalCommits.scopes": [
         "changelog",
-        "chat"
+        "chat",
+        "article list",
+        "analytics"
     ]
 }

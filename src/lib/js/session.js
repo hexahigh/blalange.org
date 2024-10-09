@@ -1,17 +1,33 @@
 export function getSessionId() {  
     // Check if a session ID already exists in local storage
-    let sessionId = localStorage.getItem('sessionId');
+    let sessionId = sessionStorage.getItem('sessionId');
 
     // If no session ID exists, generate a new one and store it
     if (!sessionId) {
         console.log("No session ID found. Generating a new one.");
         sessionId = generateUniqueId();
-        localStorage.setItem('sessionId', sessionId);
+        sessionStorage.setItem('sessionId', sessionId);
     } else {
         console.log("Existing session ID found");
     }
 
     return sessionId;
+}
+
+export function getPermanentId() {  
+    // Check if a permanent ID already exists in local storage
+    let permanentId = localStorage.getItem('permanentId');
+    
+    // If no permanent ID exists, generate a new one and store it
+    if (!permanentId) {
+        console.log("No permanent ID found. Generating a new one.");
+        permanentId = generateUniqueId();
+        localStorage.setItem('permanentId', permanentId);
+    } else {
+        console.log("Existing permanent ID found");
+    }
+
+    return permanentId;
 }
 
 function generateUniqueId() {

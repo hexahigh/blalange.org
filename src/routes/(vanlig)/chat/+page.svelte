@@ -2,7 +2,6 @@
   import { onMount, onDestroy, tick } from "svelte";
   import { config, defaultConfig } from "$lib/js/config";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
-  import { getSessionId } from "$lib/js/session.js";
   import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
   import "iconify-icon";

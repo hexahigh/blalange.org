@@ -18,7 +18,7 @@
   const fuseOptions: IFuseOptions<any> = {
     keys: [{ name: "name" }, { name: "description" }],
     minMatchCharLength: 3,
-    useExtendedSearch: true,
+    useExtendedSearch: false,
     ignoreLocation: true,
     findAllMatches: true,
     includeMatches: true,
@@ -30,6 +30,8 @@
   async function search(term) {
     const fuse = new Fuse(allArticles, fuseOptions, fuseIndex);
     const result = fuse.search(term);
+
+    console.log(result);
     
     articles = result.map((result) => result.item);
     await tick(); // Wait for the DOM to update
