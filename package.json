@@ -70,7 +70,7 @@
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
     "dayjs": "^1.11.11",
-    "dompurify": "^3.1.5",
+    "dompurify": "^3.1.7",
     "fitty": "^2.4.2",
     "flowbite-svelte-icons": "^1.6.1",
     "fuse.js": "^7.0.0",
