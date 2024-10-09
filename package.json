@@ -86,7 +86,7 @@
     "super-sitemap": "^0.15.1",
     "tailwind-merge": "^2.5.2",
     "tone": "^15.1.2",
-    "tsparticles": "^3.4.0",
+    "tsparticles": "^3.5.0",
     "workbox-build": "^7.1.1",
     "workbox-expiration": "^7.1.0"
   }
