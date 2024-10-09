@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v4.0.3] - 2024-10-09
+
+### Bug Fixes
+
+- *(chat)* Infinite loop
+- *(chat)* Error handling
+- *(article list)* Search
+
+### Refactor
+
+- *(analytics)* Updated id system
+
 ## [v4.0.1] - 2024-10-08
 
 ### Bug Fixes
