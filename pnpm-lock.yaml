@@ -85,7 +85,7 @@ importers:
         version: 2.4.2
       flowbite-svelte-icons:
         specifier: ^1.6.1
-        version: 1.6.1(svelte@4.2.18)(tailwind-merge@2.5.2)(tailwindcss@3.4.4)
+        version: 1.6.1(svelte@4.2.18)(tailwind-merge@2.5.3)(tailwindcss@3.4.4)
       fuse.js:
         specifier: ^7.0.0
         version: 7.0.0
@@ -120,8 +120,8 @@ importers:
         specifier: ^0.15.1
         version: 0.15.1(svelte@4.2.18)
       tailwind-merge:
-        specifier: ^2.5.2
-        version: 2.5.2
+        specifier: ^2.5.3
+        version: 2.5.3
       tone:
         specifier: ^15.1.2
         version: 15.1.2
@@ -3823,9 +3823,6 @@ packages:
     resolution: {integrity: sha512-qd/R7n5rQTRFi+Zf2sk5XVVd9UQl6ZkduPFC3S7WEGJAmetDTjY3qPN50eSKzwuzEyQKy5TN2TiZdkIjos2L6A==}
     engines: {node: '>=8.0.0'}
 
-  tailwind-merge@2.5.2:
-    resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
-
   tailwind-merge@2.5.3:
     resolution: {integrity: sha512-d9ZolCAIzom1nf/5p4LdD5zvjmgSxY0BGgdSvmXIoMYAiPdAW/dSpP7joCDYFY7r/HkEa2qmPtkgsu0xjQeQtw==}
 
@@ -6915,10 +6912,10 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.5.2)(tailwindcss@3.4.4):
+  flowbite-svelte-icons@1.6.1(svelte@4.2.18)(tailwind-merge@2.5.3)(tailwindcss@3.4.4):
     dependencies:
       svelte: 4.2.18
-      tailwind-merge: 2.5.2
+      tailwind-merge: 2.5.3
       tailwindcss: 3.4.4
 
   flowbite-svelte@0.46.23(rollup@2.79.1)(svelte@4.2.18):
@@ -8057,8 +8054,6 @@ snapshots:
       deep-extend: 0.6.0
       typical: 5.2.0
       wordwrapjs: 4.0.1
-
-  tailwind-merge@2.5.2: {}
 
   tailwind-merge@2.5.3: {}
 
