@@ -15,8 +15,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(sharp@0.32.6)
       '@directus/sdk':
-        specifier: ^17.0.1
-        version: 17.0.1
+        specifier: ^17.0.2
+        version: 17.0.2
       '@floating-ui/dom':
         specifier: ^1.6.8
         version: 1.6.8
@@ -1063,8 +1063,8 @@ packages:
     peerDependencies:
       '@dicebear/core': ^8.0.0
 
-  '@directus/sdk@17.0.1':
-    resolution: {integrity: sha512-6TorT8am/8q2YmhLhGY1yZks2rFr31my5WqbXUPZs+4hPWYkTNThns2lfhZQ8w2KBh9DZ7v5SaghZNSIswUOwA==}
+  '@directus/sdk@17.0.2':
+    resolution: {integrity: sha512-gKfWH6oQKnHw6mUl5lM32PTjtWrmSF6f09/zfN/74FKGPD853srCwip6rGif2R0GfdcrPHXwGHc7vTMXNDlniw==}
     engines: {node: '>=18.0.0'}
 
   '@emnapi/runtime@1.2.0':
@@ -5221,7 +5221,7 @@ snapshots:
     dependencies:
       '@dicebear/core': 8.0.1(sharp@0.32.6)
 
-  '@directus/sdk@17.0.1': {}
+  '@directus/sdk@17.0.2': {}
 
   '@emnapi/runtime@1.2.0':
     dependencies:
