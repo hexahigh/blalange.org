@@ -84,7 +84,7 @@
     "pako": "^2.1.0",
     "pocketbase": "^0.21.2",
     "super-sitemap": "^0.15.1",
-    "tailwind-merge": "^2.5.2",
+    "tailwind-merge": "^2.5.3",
     "tone": "^15.1.2",
     "tsparticles": "^3.5.0",
     "workbox-build": "^7.1.1",
