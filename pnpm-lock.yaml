@@ -114,8 +114,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       pocketbase:
-        specifier: ^0.21.2
-        version: 0.21.3
+        specifier: ^0.21.5
+        version: 0.21.5
       super-sitemap:
         specifier: ^0.15.1
         version: 0.15.1(svelte@4.2.18)
@@ -3391,8 +3391,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  pocketbase@0.21.3:
-    resolution: {integrity: sha512-bsQRZ1mj4dhPJ4P5iSrDqWQtBX2NtuBkf6IOZwTv27zZOw6zrISgo963i5JD/99qKKD5aMSMDPGk1BE9ZyI7Cg==}
+  pocketbase@0.21.5:
+    resolution: {integrity: sha512-bnI/uinnQps+ElSlzxkc4yvwuSFfKcoszDtXH/4QT2FhGq2mJVUvDlxn+rjRXVntUjPfmMG5LEPZ1eGqV6ssog==}
 
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
@@ -7501,7 +7501,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.2
 
-  pocketbase@0.21.3: {}
+  pocketbase@0.21.5: {}
 
   possible-typed-array-names@1.0.0: {}
 

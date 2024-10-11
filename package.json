@@ -82,7 +82,7 @@
     "marked": "^14.1.2",
     "masonry-layout": "^4.2.2",
     "pako": "^2.1.0",
-    "pocketbase": "^0.21.2",
+    "pocketbase": "^0.21.5",
     "super-sitemap": "^0.15.1",
     "tailwind-merge": "^2.5.3",
     "tone": "^15.1.2",
