@@ -23,7 +23,7 @@ body = """
         {% if commit.breaking %}[**breaking**] {% endif %}\
         {{ commit.message | upper_first }} - \
         ([{{ commit.id | truncate(length=7, end="") }}]({{ self::remote_url() }}/commit/{{ commit.id }}))
-        >{{ commit.body }}
+        {% if commit.body %}```{{ commit.body }}{% if commit.body | split(pat='\n') | length > 1 %}\n{% endif %}```{% endif %}
 {% endmacro -%}
 
 {% if version %}\
@@ -87,7 +87,7 @@ commit_parsers = [
   { message = "^style", group = "<!-- 5 -->🎨 Styling" },
   { message = "^test", group = "<!-- 6 -->🧪 Testing" },
   { message = "^chore\\(release\\): prepare for", skip = true },
-  { message = "^chore\\(deps.*\\)", skip = true },
+  { message = "^chore\\(deps.*\\)", group = "<!-- 7 -->⚙️ Miscellaneous Tasks", skip = false },
   { message = "^chore\\(pr\\)", skip = true },
   { message = "^chore\\(pull\\)", skip = true },
   { message = "^chore\\(npm\\).*yarn\\.lock", skip = true },
