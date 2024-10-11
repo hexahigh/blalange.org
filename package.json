@@ -26,7 +26,7 @@
     "@types/node": "^22.7.5",
     "@types/pako": "^2.0.3",
     "@types/xml2js": "^0.4.14",
-    "@vite-pwa/assets-generator": "^0.2.4",
+    "@vite-pwa/assets-generator": "^0.2.6",
     "@vitest/ui": "^2.1.1",
     "autoprefixer": "^10.4.20",
     "flowbite": "^2.5.1",
