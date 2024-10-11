@@ -1,5 +1,6 @@
 export type DataType = {
     article: any,
     author: string,
-    imgUrl: string
+    imgUrl: string,
+    text: string,
 }

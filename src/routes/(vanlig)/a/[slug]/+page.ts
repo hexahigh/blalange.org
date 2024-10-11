@@ -31,15 +31,21 @@ export async function load({ params, url, fetch }) {
 
     article.date = new Date(article.date).getTime();
 
+    const markedOptions = {
+      breaks: true,
+      gfm: true,
+      sanitize: false,
+    };
+
     // Process the markdown
-    article.text = marked.parse(article.text);
+    let text = marked.parse(article.text, markedOptions);
 
     // Fetch the author names
     const authorObject = await client.request(readItem('art_authors', article.author));
 
     const author = authorObject.name;
 
-    return { article, author, imgUrl };
+    return { article, author, imgUrl, text };
   } catch (err) {
     console.error(err);
     error(500, err.message);

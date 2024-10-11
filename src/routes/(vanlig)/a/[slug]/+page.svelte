@@ -9,17 +9,15 @@
 
   let name = data.article.name;
   let date = data.article.date;
-  let author = data.author
-  let description = data.article.description
-  let text = data.article.text
-  let image = data.imgUrl
-  let artId = data.article.artId
+  let author = data.author;
+  let description = data.article.description;
+  let text = data.text || data.article.text_wysiwyg;
+  let image = data.imgUrl;
+  let artId = data.article.artId;
 
   function formatDate(date) {
     const d = new Date(date);
-    return d.toLocaleString(
-      "no-nb",
-    );
+    return d.toLocaleString("no-nb");
   }
 </script>
 
@@ -41,11 +39,9 @@
 >
   <div>
     <!-- svelte-ignore a11y-img-redundant-alt -->
-    <img
-      src={image}
-      class="w-screen aspect-[16/9] object-contain rounded-lg"
-      alt="Article Image"
-    />
+    {#if image}
+      <img src={image} class="w-screen aspect-[16/9] object-contain rounded-lg" alt="Article Image" />
+    {/if}
     <h1 class="text-2xl font-medium">
       {name}
     </h1>
@@ -57,7 +53,7 @@
       <iconify-icon icon="mdi:calendar" width="20" height="20" />
       {formatDate(date)}
     </p>
-    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300 whitespace-break-spaces">
+    <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300">
       {@html text}
     </div>
     <Comments id={artId} />
@@ -65,11 +61,28 @@
 </div>
 
 <style lang="postcss">
+  #articleText {
+    white-space: pre-line;
+    @apply leading-6;
+  }
+
   #articleText :global(h2) {
     @apply text-xl font-medium;
   }
 
   #articleText :global(h3) {
     @apply text-lg font-medium;
+  }
+
+  #articleText :global(ol) {
+    @apply list-decimal;
+  }
+
+  #articleText :global(ul) {
+    @apply list-disc;
+  }
+
+  #articleText :global(a) {
+    @apply text-blue-500 hover:underline;
   }
 </style>
