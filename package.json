@@ -72,7 +72,7 @@
     "dayjs": "^1.11.11",
     "dompurify": "^3.1.7",
     "fitty": "^2.4.2",
-    "flowbite-svelte-icons": "^1.6.1",
+    "flowbite-svelte-icons": "^1.6.2",
     "fuse.js": "^7.0.0",
     "howler": "^2.2.4",
     "iconify-icon": "^2.1.0",
