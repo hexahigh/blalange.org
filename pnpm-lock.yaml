@@ -27,8 +27,8 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2
       '@fontsource/dela-gothic-one':
-        specifier: ^5.0.20
-        version: 5.0.20
+        specifier: ^5.1.0
+        version: 5.1.0
       '@fontsource/krona-one':
         specifier: ^5.0.13
         version: 5.0.13
@@ -1369,8 +1369,8 @@ packages:
   '@fontsource-variable/material-symbols-outlined@5.1.2':
     resolution: {integrity: sha512-8IaFPUgjt2pOqdA7TJDz+eIJbEKoBozVR3gdCCDOqEXg5vZTZk+qu+HQUHmHEiTMBxrg32R/Bc0yxSnyS/iPpA==}
 
-  '@fontsource/dela-gothic-one@5.0.20':
-    resolution: {integrity: sha512-vydGuSHjwCP2cP7qvt93VdnPG//olC1i74SrykyJZysLJqssItGYKVlzNFUFepK8dbhxZztJJJoBPmFEBpWWeg==}
+  '@fontsource/dela-gothic-one@5.1.0':
+    resolution: {integrity: sha512-ZEgmKAHvB5N1oY36B2wMnQo4PonHlxkJ/bHu7qNrP9+h9VijiwbqVYww+rOglcsHxIjVhDOyp8Uj+vTFtyYUFQ==}
 
   '@fontsource/krona-one@5.0.13':
     resolution: {integrity: sha512-sCHCe9uPruGJMlR4yDrAKKV6GJisbHd9ZsmmTA5R8mZoxO8FNzsSSz8BeecKCZPa0DfxUCnR/zD4jbKLJLDH9A==}
@@ -5371,7 +5371,7 @@ snapshots:
 
   '@fontsource-variable/material-symbols-outlined@5.1.2': {}
 
-  '@fontsource/dela-gothic-one@5.0.20': {}
+  '@fontsource/dela-gothic-one@5.1.0': {}
 
   '@fontsource/krona-one@5.0.13': {}
 
