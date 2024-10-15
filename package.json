@@ -19,7 +19,7 @@
     "@iconify/svelte": "^4.0.2",
     "@playwright/test": "^1.48.0",
     "@sveltejs/adapter-auto": "^3.2.5",
-    "@sveltejs/enhanced-img": "^0.3.8",
+    "@sveltejs/enhanced-img": "^0.3.9",
     "@sveltejs/kit": "^2.6.3",
     "@sveltejs/vite-plugin-svelte": "^3.1.0",
     "@types/howler": "^2.2.11",
