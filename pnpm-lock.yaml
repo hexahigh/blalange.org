@@ -184,8 +184,8 @@ importers:
         specifier: ^0.46.23
         version: 0.46.23(rollup@2.79.1)(svelte@4.2.19)
       flowbite-typography:
-        specifier: ^1.0.3
-        version: 1.0.3(tailwindcss@3.4.4)
+        specifier: ^1.0.4
+        version: 1.0.4(tailwindcss@3.4.4)
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
@@ -2738,8 +2738,8 @@ packages:
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0 || ^5.0.0
 
-  flowbite-typography@1.0.3:
-    resolution: {integrity: sha512-UbdQFIIOb7xx2TS+QQrqr79B6ZSkSZurxYWzV0npth6Wns3/j7KfeDJoH9QFU+Zs7zjrvejNtyzgzWLWyCrdiA==}
+  flowbite-typography@1.0.4:
+    resolution: {integrity: sha512-OcohxQQVku3I9OHYu0h6dDJhdmkMMcMetPWpax97HAp7HPNUlWwn8R49I67t6xgoiMJvIvTnszyRddxPvqJU2g==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
 
@@ -6903,7 +6903,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  flowbite-typography@1.0.3(tailwindcss@3.4.4):
+  flowbite-typography@1.0.4(tailwindcss@3.4.4):
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
