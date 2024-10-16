@@ -24,8 +24,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
       '@fontsource-variable/material-symbols-outlined':
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.1.2
+        version: 5.1.2
       '@fontsource/dela-gothic-one':
         specifier: ^5.1.0
         version: 5.1.0
@@ -45,11 +45,11 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6
       '@sveltejs/adapter-cloudflare':
-        specifier: ^4.7.3
-        version: 4.7.3(@sveltejs/kit@2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(wrangler@3.60.2(@cloudflare/workers-types@4.20241004.0))
+        specifier: ^4.7.2
+        version: 4.7.2(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))
       '@sveltejs/adapter-node':
-        specifier: ^5.2.6
-        version: 5.2.6(@sveltejs/kit@2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))
+        specifier: ^5.0.1
+        version: 5.0.1(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))
       '@tsparticles/confetti':
         specifier: ^3.5.0
         version: 3.5.0
@@ -57,7 +57,7 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0
       '@tsparticles/svelte':
-        specifier: ^3.1.1
+        specifier: ^3.0.0
         version: 3.1.1(svelte@4.2.19)
       '@types/dompurify':
         specifier: ^3.0.5
@@ -84,8 +84,8 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
       flowbite-svelte-icons:
-        specifier: ^1.6.1
-        version: 1.6.1(svelte@4.2.19)(tailwind-merge@2.5.3)(tailwindcss@3.4.13)
+        specifier: ^1.6.2
+        version: 1.6.2(svelte@4.2.19)(tailwind-merge@2.5.3)(tailwindcss@3.4.4)
       fuse.js:
         specifier: ^7.0.0
         version: 7.0.0
@@ -173,16 +173,16 @@ importers:
         version: 1.48.0
       '@sveltejs/adapter-auto':
         specifier: ^3.2.5
-        version: 3.2.5(@sveltejs/kit@2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))
+        version: 3.2.5(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))
       '@sveltejs/enhanced-img':
-        specifier: ^0.3.9
-        version: 0.3.9(rollup@2.79.2)(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+        specifier: ^0.3.8
+        version: 0.3.8(rollup@2.79.1)(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
       '@sveltejs/kit':
-        specifier: ^2.7.0
-        version: 2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+        specifier: ^2.6.3
+        version: 2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^3.1.2
-        version: 3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+        specifier: ^3.1.0
+        version: 3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
       '@types/howler':
         specifier: ^2.2.12
         version: 2.2.12
@@ -206,10 +206,10 @@ importers:
         version: 10.4.20(postcss@8.4.47)
       flowbite:
         specifier: ^2.5.2
-        version: 2.5.2(rollup@2.79.2)
+        version: 2.5.2(rollup@2.79.1)
       flowbite-svelte:
         specifier: ^0.46.23
-        version: 0.46.23(rollup@2.79.2)(svelte@4.2.19)
+        version: 0.46.23(rollup@2.79.1)(svelte@4.2.19)
       flowbite-typography:
         specifier: ^1.0.4
         version: 1.0.4(tailwindcss@3.4.13)
@@ -220,8 +220,8 @@ importers:
         specifier: ^4.2.19
         version: 4.2.19
       svelte-meta-tags:
-        specifier: ^3.1.4
-        version: 3.1.4(svelte@4.2.19)(typescript@5.6.3)
+        specifier: ^3.1.2
+        version: 3.1.2(svelte@4.2.19)(typescript@5.6.3)
       tailwindcss:
         specifier: ^3.4.13
         version: 3.4.13
@@ -1308,8 +1308,8 @@ packages:
   '@fontsource-variable/inter@5.1.0':
     resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
 
-  '@fontsource-variable/material-symbols-outlined@5.1.1':
-    resolution: {integrity: sha512-z5xYqLvE8znwSHkLsEWoOOR776oedZn7HzvkJ3j4OvsJVEAJmLJ80Rlx9NcGnCP6Mm+fAa+7V6mYz81ecrSAMQ==}
+  '@fontsource-variable/material-symbols-outlined@5.1.2':
+    resolution: {integrity: sha512-8IaFPUgjt2pOqdA7TJDz+eIJbEKoBozVR3gdCCDOqEXg5vZTZk+qu+HQUHmHEiTMBxrg32R/Bc0yxSnyS/iPpA==}
 
   '@fontsource/dela-gothic-one@5.1.0':
     resolution: {integrity: sha512-ZEgmKAHvB5N1oY36B2wMnQo4PonHlxkJ/bHu7qNrP9+h9VijiwbqVYww+rOglcsHxIjVhDOyp8Uj+vTFtyYUFQ==}
@@ -2556,8 +2556,8 @@ packages:
   flowbite-datepicker@1.3.0:
     resolution: {integrity: sha512-CLVqzuoE2vkUvWYK/lJ6GzT0be5dlTbH3uuhVwyB67+PjqJWABm2wv68xhBf5BqjpBxvTSQ3mrmLHpPJ2tvrSQ==}
 
-  flowbite-svelte-icons@1.6.1:
-    resolution: {integrity: sha512-Kw/7BzA6fqlFq7tBNudwX0KVU4cbyyXcMcgHTraMwGBtvBQan0RKMbvWwqm4JZNvLGAvRv1BM2EF7rzo/oam1Q==}
+  flowbite-svelte-icons@1.6.2:
+    resolution: {integrity: sha512-zgG1rbFC+rxHcjBYlktTGdFlT2l1KX3I30YKiUSxjz/OXXbWP/qHAl6LTDtKhsT/2bRCb/g3CVBZFdmSkTeOdw==}
     peerDependencies:
       svelte: ^3.54.0 || ^4.0.0 || ^5.0.0
       tailwind-merge: ^2.0.0
@@ -5306,7 +5306,7 @@ snapshots:
 
   '@fontsource-variable/inter@5.1.0': {}
 
-  '@fontsource-variable/material-symbols-outlined@5.1.1': {}
+  '@fontsource-variable/material-symbols-outlined@5.1.2': {}
 
   '@fontsource/dela-gothic-one@5.1.0': {}
 
@@ -5606,40 +5606,40 @@ snapshots:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.11
 
-  '@sveltejs/adapter-auto@3.2.5(@sveltejs/kit@2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))':
+  '@sveltejs/adapter-auto@3.2.5(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))':
     dependencies:
-      '@sveltejs/kit': 2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+      '@sveltejs/kit': 2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
       import-meta-resolve: 4.1.0
 
-  '@sveltejs/adapter-cloudflare@4.7.3(@sveltejs/kit@2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(wrangler@3.60.2(@cloudflare/workers-types@4.20241004.0))':
+  '@sveltejs/adapter-cloudflare@4.7.2(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))':
     dependencies:
-      '@cloudflare/workers-types': 4.20241004.0
-      '@sveltejs/kit': 2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+      '@cloudflare/workers-types': 4.20240605.0
+      '@sveltejs/kit': 2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
       esbuild: 0.21.5
       worktop: 0.8.0-next.18
       wrangler: 3.60.2(@cloudflare/workers-types@4.20241004.0)
 
-  '@sveltejs/adapter-node@5.2.6(@sveltejs/kit@2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))':
+  '@sveltejs/adapter-node@5.0.1(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))':
     dependencies:
-      '@rollup/plugin-commonjs': 28.0.0(rollup@4.24.0)
-      '@rollup/plugin-json': 6.1.0(rollup@4.24.0)
-      '@rollup/plugin-node-resolve': 15.3.0(rollup@4.24.0)
-      '@sveltejs/kit': 2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
-      rollup: 4.24.0
+      '@rollup/plugin-commonjs': 25.0.8(rollup@4.18.0)
+      '@rollup/plugin-json': 6.1.0(rollup@4.18.0)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.18.0)
+      '@sveltejs/kit': 2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
+      rollup: 4.18.0
 
-  '@sveltejs/enhanced-img@0.3.9(rollup@2.79.2)(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))':
+  '@sveltejs/enhanced-img@0.3.8(rollup@2.79.1)(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))':
     dependencies:
-      magic-string: 0.30.12
+      magic-string: 0.30.11
       svelte: 4.2.19
       svelte-parse-markup: 0.1.5(svelte@4.2.19)
-      vite: 5.4.8(@types/node@22.7.5)(terser@5.34.1)
-      vite-imagetools: 7.0.4(rollup@2.79.2)
+      vite: 5.4.8(@types/node@22.7.5)(terser@5.31.1)
+      vite-imagetools: 7.0.2(rollup@2.79.1)
     transitivePeerDependencies:
       - rollup
 
-  '@sveltejs/kit@2.7.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))':
+  '@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+      '@sveltejs/vite-plugin-svelte': 3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
@@ -5655,26 +5655,26 @@ snapshots:
       tiny-glob: 0.2.9
       vite: 5.4.8(@types/node@22.7.5)(terser@5.34.1)
 
-  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))':
+  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
-      debug: 4.3.7
+      '@sveltejs/vite-plugin-svelte': 3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
+      debug: 4.3.5
       svelte: 4.2.19
-      vite: 5.4.8(@types/node@22.7.5)(terser@5.34.1)
+      vite: 5.4.8(@types/node@22.7.5)(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))':
+  '@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
-      debug: 4.3.7
+      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
+      debug: 4.3.5
       deepmerge: 4.3.1
       kleur: 4.1.5
-      magic-string: 0.30.12
+      magic-string: 0.30.10
       svelte: 4.2.19
       svelte-hmr: 0.16.0(svelte@4.2.19)
-      vite: 5.4.8(@types/node@22.7.5)(terser@5.34.1)
-      vitefu: 0.2.5(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+      vite: 5.4.8(@types/node@22.7.5)(terser@5.31.1)
+      vitefu: 0.2.5(vite@5.4.8(@types/node@22.7.5)(terser@5.31.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -5872,6 +5872,10 @@ snapshots:
     dependencies:
       '@tsparticles/engine': 3.5.0
       svelte: 4.2.19
+
+  '@tsparticles/updater-color@3.4.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
 
   '@tsparticles/updater-color@3.5.0':
     dependencies:
@@ -6313,7 +6317,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
       '@types/estree': 1.0.6
-      acorn: 8.12.1
+      acorn: 8.11.3
       estree-walker: 3.0.3
       periscopic: 3.1.0
 
@@ -6720,22 +6724,22 @@ snapshots:
 
   flowbite-datepicker@1.3.0(rollup@2.79.2):
     dependencies:
-      '@rollup/plugin-node-resolve': 15.3.0(rollup@2.79.2)
-      flowbite: 2.5.2(rollup@2.79.2)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@2.79.1)
+      flowbite: 2.5.2(rollup@2.79.1)
     transitivePeerDependencies:
       - rollup
 
-  flowbite-svelte-icons@1.6.1(svelte@4.2.19)(tailwind-merge@2.5.3)(tailwindcss@3.4.13):
+  flowbite-svelte-icons@1.6.2(svelte@4.2.19)(tailwind-merge@2.5.3)(tailwindcss@3.4.4):
     dependencies:
       svelte: 4.2.19
       tailwind-merge: 2.5.3
       tailwindcss: 3.4.13
 
-  flowbite-svelte@0.46.23(rollup@2.79.2)(svelte@4.2.19):
+  flowbite-svelte@0.46.23(rollup@2.79.1)(svelte@4.2.19):
     dependencies:
       '@floating-ui/dom': 1.6.11
       apexcharts: 3.54.0
-      flowbite: 2.5.2(rollup@2.79.2)
+      flowbite: 2.5.2(rollup@2.79.1)
       svelte: 4.2.19
       tailwind-merge: 2.5.3
     transitivePeerDependencies:
@@ -6748,15 +6752,15 @@ snapshots:
       lodash.merge: 4.6.2
       tailwindcss: 3.4.13
 
-  flowbite@2.5.2(rollup@2.79.2):
+  flowbite@2.5.2(rollup@2.79.1):
     dependencies:
       '@popperjs/core': 2.11.8
-      flowbite-datepicker: 1.3.0(rollup@2.79.2)
+      flowbite-datepicker: 1.3.0(rollup@2.79.1)
       mini-svg-data-uri: 1.4.4
     transitivePeerDependencies:
       - rollup
 
-  follow-redirects@1.15.9: {}
+  follow-redirects@1.15.6: {}
 
   for-each@0.3.3:
     dependencies:
@@ -7190,7 +7194,11 @@ snapshots:
     dependencies:
       sourcemap-codec: 1.4.8
 
-  magic-string@0.30.12:
+  magic-string@0.30.10:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
+
+  magic-string@0.30.11:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
@@ -8223,7 +8231,7 @@ snapshots:
   super-sitemap@0.15.1(svelte@4.2.19):
     dependencies:
       directory-tree: 3.5.2
-      fast-xml-parser: 4.5.0
+      fast-xml-parser: 4.4.1
       svelte: 4.2.19
 
   supports-color@5.5.0:
@@ -8240,7 +8248,7 @@ snapshots:
     dependencies:
       svelte: 4.2.19
 
-  svelte-meta-tags@3.1.4(svelte@4.2.19)(typescript@5.6.3):
+  svelte-meta-tags@3.1.2(svelte@4.2.19)(typescript@5.6.3):
     dependencies:
       schema-dts: 1.1.2(typescript@5.6.3)
       svelte: 4.2.19
@@ -8257,15 +8265,15 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
       '@jridgewell/trace-mapping': 0.3.25
       '@types/estree': 1.0.6
-      acorn: 8.12.1
-      aria-query: 5.3.2
-      axobject-query: 4.1.0
+      acorn: 8.11.3
+      aria-query: 5.3.0
+      axobject-query: 4.0.0
       code-red: 1.0.4
       css-tree: 2.3.1
       estree-walker: 3.0.3
       is-reference: 3.0.2
       locate-character: 3.0.0
-      magic-string: 0.30.12
+      magic-string: 0.30.11
       periscopic: 3.1.0
 
   svg.draggable.js@2.2.2:
