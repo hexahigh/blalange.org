@@ -6,6 +6,7 @@
   import Comments from "$lib/components/comments.svelte";
   import "iconify-icon";
   import { type DataType } from "./types";
+  import "katex/dist/katex.min.css";
 
   let name = data.article.name;
   let date = data.article.date;
@@ -62,12 +63,36 @@
 
 <style lang="postcss">
   #articleText {
-    white-space: pre-line;
     @apply leading-6;
   }
 
+  /* Adds a top margin to 'h2', 'h3', 'p', 'ul', 'ol' */
+  #articleText :global(h2),
+  #articleText :global(h3),
+  #articleText :global(ul),
+  #articleText :global(ol),
+  #articleText :global(p) {
+    @apply mt-6;
+  }
+
+  /* Does not add a top margin to 'p' if it is underneath 'h2' or 'h3' */
+  #articleText :global(h2) + :global(p),
+  #articleText :global(h3) + :global(p) {
+    @apply mt-0;
+  }
+
+  /* Does not add a top margin to 'ol' or 'ul' if they are underneath 'h2', 'h3' or 'p' */
+  #articleText :global(h2) + :global(ol),
+  #articleText :global(h2) + :global(ul),
+  #articleText :global(h3) + :global(ol),
+  #articleText :global(h3) + :global(ul),
+  #articleText :global(p) + :global(ol),
+  #articleText :global(p) + :global(ul) {
+    @apply mt-0;
+  }
+
   #articleText :global(h2) {
-    @apply text-xl font-medium;
+    @apply text-xl font-medium
   }
 
   #articleText :global(h3) {
@@ -84,5 +109,25 @@
 
   #articleText :global(a) {
     @apply text-blue-500 hover:underline;
+  }
+
+  #articleText :global(ul li) {
+    @apply ml-4;
+  }
+
+  #articleText :global(ol li) {
+    @apply ml-4;
+  }
+
+  #articleText :global(blockquote) {
+    @apply bg-gray-100 p-4 my-4;
+  }
+
+  #articleText :global(pre) {
+    @apply bg-gray-100 p-4 my-4;
+  }
+
+  #articleText :global(code) {
+    @apply text-sm bg-gray-300 px-2 py-1 rounded;
   }
 </style>
