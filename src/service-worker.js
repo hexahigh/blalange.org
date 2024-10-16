@@ -56,78 +56,18 @@ cleanupOutdatedCaches();
 registerRoute(
   ({ url }) =>
     url.href.match(
-      /^https:\/\/db\.080609\.xyz\/api\/collections\/users.*$/
+      /^https:\/\/db\.blalange\.org\/assets\/.*$/
     ),
   new StaleWhileRevalidate({
-    cacheName: "user-cache",
+    cacheName: "directus-assets",
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
         statuses: [200],
       }),
       new ExpirationPlugin({
-        maxAgeSeconds: 60 * 5, // 5 min
+        maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
         maxEntries: 500,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({ url }) =>
-    url.href.match(
-      /^https:\/\/db\.080609\.xyz\/api\/collections\/art_articles.*$/
-    ),
-  new StaleWhileRevalidate({
-    cacheName: "article-cache",
-    plugins: [
-      // Ensure that only requests that result in a 200 status are cached
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-      new ExpirationPlugin({
-        maxAgeSeconds: 60 * 5, // 5 min
-        maxEntries: 100,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({ url }) =>
-    url.href.match(
-      /^https:\/\/db\.080609\.xyz\/api\/collections\/art_authors.*$/
-    ),
-  new CacheFirst({
-    cacheName: "author-cache",
-    plugins: [
-      // Ensure that only requests that result in a 200 status are cached
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-      new ExpirationPlugin({
-        maxAgeSeconds: 60 * 60 * 24 * 1, // 1 day
-        maxEntries: 100,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({ url }) =>
-    url.href.match(
-      /^https:\/\/db\.080609\.xyz.*\/api\/files\/77mbtqbny7qdb3q.*$/
-    ),
-  new CacheFirst({
-    cacheName: "article-image-cache",
-    plugins: [
-      // Ensure that only requests that result in a 200 status are cached
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-      new ExpirationPlugin({
-        maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
-        maxEntries: 100,
       }),
     ],
   })

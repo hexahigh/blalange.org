@@ -7,6 +7,7 @@
         "article list",
         "analytics",
         "cliff",
-        "article"
+        "article",
+        "service worker"
     ]
 }
