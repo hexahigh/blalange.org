@@ -8,7 +8,7 @@ import remarkRehype from "remark-rehype";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeStringify from "rehype-stringify";
-import rehypeKatex from 'rehype-katex'
+import rehypeKatex from "rehype-katex";
 import { unified } from "unified";
 
 export async function load({ params, url, fetch }) {
@@ -53,11 +53,9 @@ export async function load({ params, url, fetch }) {
       .use(remarkMath)
       .use(rehypeStringify)
       .use(rehypeKatex)
-      .processSync(article.text || article.text_wysiwyg)
+      .processSync(article.text || article.text_wysiwyg);
 
-      let text = String(mdStuff)
-
-      console.log(text);
+    let text = String(mdStuff);
 
     // Fetch the author names
     const authorObject = await client.request(readItem("art_authors", article.author));
