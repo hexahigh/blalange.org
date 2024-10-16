@@ -1,8 +1,7 @@
 <script lang="ts">
   export let data: DataType;
 
-  import PocketBase from "pocketbase";
-  import { MetaTags } from "svelte-meta-tags";
+  import Metatags from "$lib/components/metatags.svelte";
   import Comments from "$lib/components/comments.svelte";
   import "iconify-icon";
   import { type DataType } from "./types";
@@ -22,17 +21,11 @@
   }
 </script>
 
-<MetaTags
+<Metatags
   title={name}
-  titleTemplate="%s | Blålange"
   {description}
-  canonical="https://blalange.org/a/{artId}"
-  openGraph={{
-    url: `https://blalange.org/a/${artId}`,
-    title: `${name} | Blålange`,
-    description: description,
-    siteName: "Blålange festivalen",
-  }}
+  url={`https://blalange.org/a/${artId}`}
+  images={[{ url: image, alt: "Article Image" }]}
 />
 
 <div
@@ -92,7 +85,7 @@
   }
 
   #articleText :global(h2) {
-    @apply text-xl font-medium
+    @apply text-xl font-medium;
   }
 
   #articleText :global(h3) {

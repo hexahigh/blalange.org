@@ -36,15 +36,26 @@
       alt: "Blålange logo",
     },
   ];
+
+  // Check if url start with http:// or https://
+  const urlStartsWithHttp = (url: string): boolean => url.startsWith("https://") || url.startsWith("http://");
+
+  if (!urlStartsWithHttp(url)) {
+    if (url.startsWith("/")) {
+      url = "https://blalange.org" + url;
+    } else {
+      url = "https://blalange.org" + "/" + url;
+    }
+  }
 </script>
 
 <MetaTags
   {title}
   titleTemplate="%s | Blålange"
   {description}
-  canonical={"https://blalange.org" + url}
+  canonical={url}
   openGraph={{
-    url: "https://blalange.org" + url,
+    url: url,
     title: title,
     description: description,
     images: images,
