@@ -5,7 +5,7 @@
   import { get } from "svelte/store";
   import { createAvatar } from "@dicebear/core";
   import { thumbs } from "@dicebear/collection";
-  import { getSessionId } from "../js/session.js";
+  import { getSessionId } from "../js/session";
   import { Tooltip } from "flowbite-svelte";
   import "iconify-icon";
 
