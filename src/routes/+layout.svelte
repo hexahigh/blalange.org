@@ -6,12 +6,15 @@
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics";
   import { initialize as initializeDev, checkForDevMode } from "$lib/js/dev";
-  import { loadConfig, config } from "$lib/js/config";
+  import { loadConfig, config, editKey } from "$lib/js/config";
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider, loadIcons } from "iconify-icon";
   import { currentUser } from "$lib/js/directus";
 
   import "$lib/js/polyfills/main";
+
+  import { locale, setLocale } from "$lib/js/translations/main";
+  import { get } from "svelte/store";
 
   addAPIProvider("", {
     resources: ["https://api.iconify.design", "https://api.simplesvg.com", "https://api.unisvg.com"],
@@ -22,7 +25,7 @@
     "line-md:moon-filled-loop", // Navbar
   ]);
 
-  onMount(() => {
+  onMount(async () => {
     loadConfig(); // Load the config from local storage
     initializeDev(); // Initialize the dev mode
     checkForDevMode(); // Checks if dev mode is enabled in the config
@@ -31,7 +34,16 @@
 
     config.subscribe((value) => {
       document.documentElement.style.setProperty("--font-family-var", value.font.family);
+
+      if (value.translations.currentLocale) setLocale(value.translations.currentLocale);
+
     });
+
+    locale.subscribe((value) => {
+      if (value !== get(config).translations.currentLocale) {
+        editKey("translations.currentLanguage", value);
+      }
+    })
 
     initEgg(); // Initialize easter egg 1
     if (dev) {
