@@ -31,6 +31,8 @@
   };
 
   onMount(() => {
+    updateTheme();
+
     isDarkmode.subscribe((value) => {
       if (value) {
         document.documentElement.classList.add("dark");
@@ -40,8 +42,6 @@
         localStorage.setItem("color-theme", "light");
       }
     });
-
-    updateTheme();
 
     // Make a mutation observer to watch for class changes on ownerDocument.documentElement
     // and update the theme accordingly
