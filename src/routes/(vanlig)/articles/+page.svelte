@@ -86,7 +86,7 @@
     <div
       class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center"
     >
-      <div class="grid grid-container gap-8 w-full">
+      <div class="grid-container gap-8 w-full">
         {#each articles as article}
           <ArticleCard
             title={article.name}
@@ -116,9 +116,23 @@
 {/if}
 
 <style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+  /* This helps significantly reduce layout shift on the few browsers that support this */
+  @supports (grid-template-rows: masonry) {
+    .grid-container {
+      align-items: center;
+      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      grid-template-rows: masonry;
+    }
+  }
+
+  @supports not (grid-template-rows: masonry) {
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
   }
 </style>
