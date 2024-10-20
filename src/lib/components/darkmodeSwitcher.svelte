@@ -2,11 +2,16 @@
   @component
   Originally a component from flowbite-svelte
 
+  @prop {string} ariaLabel - The aria-label for the button. Has no effect if noButton is true
+  @prop {boolean} noButton - If true, the button will be replaced with a slot. Useful if you want to add your own button
+  @prop {string} clazz - Additional classes to add to the button. Has no effect if noButton is true
+
   Note that slotnames are a bit misleading, lighticon is displayed when darkmode is enabled and darkicon is displayed when darkmode is disabled
 -->
 
 <script lang="ts">
   export let ariaLabel: string = "Dark mode";
+  export let noButton: boolean = false;
   let clazz: string = "";
   export { clazz as class };
 
@@ -27,14 +32,14 @@
 
   onMount(() => {
     isDarkmode.subscribe((value) => {
-        if (value) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem("color-theme", "dark");
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem("color-theme", "light");
-        }
-    })
+      if (value) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      }
+    });
 
     updateTheme();
 
@@ -69,15 +74,19 @@
   </script>
 </svelte:head>
 
-<button on:click={toggleTheme} aria-label={ariaLabel} type="button" {...$$restProps} class={clazz}>
-  <span class="hidden dark:block">
-    <slot name="lightIcon">
-      <p>Light</p>
-    </slot>
-  </span>
-  <span class="block dark:hidden">
-    <slot name="darkIcon">
-      <p>Dark</p>
-    </slot>
-  </span>
-</button>
+{#if !noButton}
+  <button on:click={toggleTheme} aria-label={ariaLabel} type="button" {...$$restProps} class={clazz}>
+    <span class="hidden dark:block">
+      <slot name="lightIcon">
+        <p>Light</p>
+      </slot>
+    </span>
+    <span class="block dark:hidden">
+      <slot name="darkIcon">
+        <p>Dark</p>
+      </slot>
+    </span>
+  </button>
+{:else}
+  <slot />
+{/if}
