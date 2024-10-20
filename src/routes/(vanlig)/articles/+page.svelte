@@ -10,7 +10,7 @@
 
   export let data;
 
-  let msnry: any
+  let msnry: any;
 
   const allArticles = data.articles;
   let articles = allArticles; // Initialize with all articles
@@ -23,7 +23,7 @@
     findAllMatches: true,
     includeMatches: true,
     includeScore: true,
-  }
+  };
   // Create Fuse index
   const fuseIndex = Fuse.createIndex(fuseOptions.keys, allArticles);
 
@@ -32,11 +32,11 @@
     const result = fuse.search(term);
 
     console.log(result);
-    
+
     articles = result.map((result) => result.item);
     await tick(); // Wait for the DOM to update
-    msnry.reloadItems()
-    msnry.layout()
+    msnry.reloadItems();
+    msnry.layout();
   }
 
   onMount(async () => {
@@ -82,24 +82,31 @@
 
 {#if !data.errorOccurred}
   <Search onSubmit={(event) => search(event.target[0].value)} />
-  <div class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center">
-    <!-- <div
-    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-wrap gap-2"
-  > -->
-    <div class="grid grid-container gap-8 w-full">
-      {#each articles as article}
-        <ArticleCard
-          title={article.name}
-          date={article.date}
-          description={article.description}
-          link={"/a/" + article.artId}
-          image={article.image}
-          width="300px"
-          class="mt-8 grid-item"
-        />
-      {/each}
+  {#if articles.length > 0}
+    <div
+      class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center"
+    >
+      <div class="grid grid-container gap-8 w-full">
+        {#each articles as article}
+          <ArticleCard
+            title={article.name}
+            date={article.date}
+            description={article.description}
+            link={"/a/" + article.artId}
+            image={article.image}
+            width="300px"
+            class="mt-8 grid-item"
+          />
+        {/each}
+      </div>
     </div>
-  </div>
+  {:else}
+    <div class="mx-auto text-center flex flex-col justify-center items-center">
+      <h2 class="text-2xl">Ingen artikler funnet</h2>
+      <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500" />
+      <p>Prøv et annet søk</p>
+    </div>
+  {/if}
 {:else}
   <div class="mx-auto text-center flex flex-col justify-center items-center">
     <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
