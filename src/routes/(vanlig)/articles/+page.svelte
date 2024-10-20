@@ -7,10 +7,11 @@
 
   import ArticleCard from "$lib/components/articleCard.svelte";
   import Search from "$lib/components/search.svelte";
+  import type Masonry from "masonry-layout";
 
   export let data;
 
-  let msnry: any;
+  let msnry: Masonry;
 
   const allArticles = data.articles;
   let articles = allArticles; // Initialize with all articles
@@ -34,9 +35,12 @@
     console.log(result);
 
     articles = result.map((result) => result.item);
-    await tick(); // Wait for the DOM to update
-    msnry.reloadItems();
-    msnry.layout();
+
+    if (result.length > 0) {
+      await tick(); // Wait for the DOM to update
+      msnry.reloadItems();
+      msnry.layout();
+    }
   }
 
   onMount(async () => {
@@ -51,11 +55,13 @@
       fitWidth: true,
     });
 
-    const imagesLoaded = new ImagesLoaded(msnry.element);
+    const imagesLoaded = ImagesLoaded(".grid-container");
 
     imagesLoaded.on("progress", function (instance, image) {
       msnry.layout();
     });
+
+    window["msnry"] = msnry;
   });
 </script>
 
@@ -82,9 +88,9 @@
 
 {#if !data.errorOccurred}
   <Search onSubmit={(event) => search(event.target[0].value)} />
-  {#if articles.length > 0}
     <div
       class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center"
+      class:hidden={articles.length <= 0}
     >
       <div class="grid-container gap-8 w-full">
         {#each articles as article}
@@ -100,13 +106,11 @@
         {/each}
       </div>
     </div>
-  {:else}
-    <div class="mx-auto text-center flex flex-col justify-center items-center">
+    <div class="mx-auto text-center flex flex-col justify-center items-center" class:hidden={articles.length > 0}>
       <h2 class="text-2xl">Ingen artikler funnet</h2>
       <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500" />
       <p>Prøv et annet søk</p>
     </div>
-  {/if}
 {:else}
   <div class="mx-auto text-center flex flex-col justify-center items-center">
     <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
