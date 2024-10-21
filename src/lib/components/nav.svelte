@@ -14,7 +14,8 @@
   import Popper from "./popper.svelte";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
-  import { t, locale as tLocale, setLocale } from "$lib/js/translations/main";
+  import { t, locale as tLocale, setLocale, locale } from "$lib/js/translations/main";
+  import { get } from "svelte/store";
 
   let logoAlwaysSpins = false;
 
@@ -151,27 +152,31 @@
     collapseProfile.toggle();
   }
 
-  let languageDropdownArray = [
-    {
-      name: "English",
-      icon: "circle-flags:gb",
-      code: "en",
-    },
-    {
-      name: "Norwegian",
-      icon: "circle-flags:no",
-      code: "nb",
-    },
-    {
-      name: "French",
-      icon: "circle-flags:fr",
-      code: "fr",
-    },
-  ];
-
   function getlanguageDropdownArrayItem(code) {
-    console.log(code)
-    return languageDropdownArray.find((l) => l.code === code);
+    return defaultConfig.translations.supportedLanguages.find((l) => l.code === code);
+  }
+
+  function redirectToLanguage(code) {
+    let newHostname = "";
+    const currentLocale = get(locale);
+
+    if (!getlanguageDropdownArrayItem(currentLocale).primary) {
+      if (getlanguageDropdownArrayItem(code).primary) {
+        newHostname += $page.url.hostname.split(".").slice(1).join(".");
+      } else {
+        newHostname += code + "." + $page.url.hostname.split(".").slice(1).join(".");
+      }
+    } else {
+      if (getlanguageDropdownArrayItem(code).primary) {
+        newHostname += $page.url.hostname;
+      } else {
+        newHostname += code + "." + $page.url.hostname;
+      }
+    }
+
+    console.log(newHostname);
+
+    window.location.hostname = newHostname;
   }
 
   $: path = $page.url.pathname;
@@ -303,7 +308,7 @@
             {#if getlanguageDropdownArrayItem($tLocale) !== undefined}
               <iconify-icon icon={getlanguageDropdownArrayItem($tLocale).icon} width="24" height="24" />
             {:else}
-              <iconify-icon icon={languageDropdownArray[0].icon} width="24" height="24" />
+              <iconify-icon icon={defaultConfig.translations.supportedLanguages[0].icon} width="24" height="24" />
             {/if}
           </button>
           <Popper activeContent trigger="click" placement="bottom" arrow="false" rounded="true" shadow="true" on:show>
@@ -312,11 +317,12 @@
               id="language-dropdown"
             >
               <ul class="py-2" aria-labelledby="language-button">
-                {#each languageDropdownArray as language}
+                {#each defaultConfig.translations.supportedLanguages as language}
                   <li>
                     <button
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      on:click={() => setLocale(language.code)}><iconify-icon icon={language.icon} width="24" height="24" /></button
+                      on:click={() => redirectToLanguage(language.code)}
+                      ><iconify-icon icon={language.icon} width="24" height="24" /></button
                     >
                   </li>
                 {/each}

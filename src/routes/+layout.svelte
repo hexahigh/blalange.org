@@ -35,7 +35,7 @@
     config.subscribe((value) => {
       document.documentElement.style.setProperty("--font-family-var", value.font.family);
 
-      if (value.translations.currentLocale) setLocale(value.translations.currentLocale);
+      // if (value.translations.currentLocale) setLocale(value.translations.currentLocale);
 
     });
 

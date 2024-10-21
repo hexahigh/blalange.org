@@ -33,6 +33,24 @@ export const defaultConfig = {
   translations: {
     defaultLocale: "nb",
     currentLocale: "nb",
+    supportedLanguages: [
+      {
+        name: "English",
+        icon: "circle-flags:gb",
+        code: "en",
+      },
+      {
+        name: "Norwegian",
+        icon: "circle-flags:no",
+        code: "nb",
+        primary: true,
+      },
+      {
+        name: "French",
+        icon: "circle-flags:fr",
+        code: "fr",
+      },
+    ]
   },
 };
 
