@@ -34,7 +34,8 @@
   <div>
     <!-- svelte-ignore a11y-img-redundant-alt -->
     {#if image}
-      <img src={image} class="w-screen aspect-[16/9] object-contain rounded-lg" alt="Article Image" />
+    <!-- style="background: radial-gradient(ellipse at center, {averageColor} 0%, transparent 175%);" -->
+      <img src={image} class="w-screen lg:aspect-[16/9] object-contain rounded-3xl" alt="Article Image" id="articleImg" />
     {/if}
     <h1 class="text-2xl font-medium">
       {name}
