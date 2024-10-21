@@ -7,10 +7,11 @@
 
   import ArticleCard from "$lib/components/articleCard.svelte";
   import Search from "$lib/components/search.svelte";
+  import type Masonry from "masonry-layout";
 
   export let data;
 
-  let msnry: any
+  let msnry: Masonry;
 
   const allArticles = data.articles;
   let articles = allArticles; // Initialize with all articles
@@ -23,7 +24,7 @@
     findAllMatches: true,
     includeMatches: true,
     includeScore: true,
-  }
+  };
   // Create Fuse index
   const fuseIndex = Fuse.createIndex(fuseOptions.keys, allArticles);
 
@@ -32,11 +33,14 @@
     const result = fuse.search(term);
 
     console.log(result);
-    
+
     articles = result.map((result) => result.item);
-    await tick(); // Wait for the DOM to update
-    msnry.reloadItems()
-    msnry.layout()
+
+    if (result.length > 0) {
+      await tick(); // Wait for the DOM to update
+      msnry.reloadItems();
+      msnry.layout();
+    }
   }
 
   onMount(async () => {
@@ -51,11 +55,13 @@
       fitWidth: true,
     });
 
-    const imagesLoaded = new ImagesLoaded(msnry.element);
+    const imagesLoaded = ImagesLoaded(".grid-container");
 
     imagesLoaded.on("progress", function (instance, image) {
       msnry.layout();
     });
+
+    window["msnry"] = msnry;
   });
 </script>
 
@@ -82,24 +88,29 @@
 
 {#if !data.errorOccurred}
   <Search onSubmit={(event) => search(event.target[0].value)} />
-  <div class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center">
-    <!-- <div
-    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-wrap gap-2"
-  > -->
-    <div class="grid grid-container gap-8 w-full">
-      {#each articles as article}
-        <ArticleCard
-          title={article.name}
-          date={article.date}
-          description={article.description}
-          link={"/a/" + article.artId}
-          image={article.image}
-          width="300px"
-          class="mt-8 grid-item"
-        />
-      {/each}
+    <div
+      class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center"
+      class:hidden={articles.length <= 0}
+    >
+      <div class="grid-container gap-8 w-full">
+        {#each articles as article}
+          <ArticleCard
+            title={article.name}
+            date={article.date}
+            description={article.description}
+            link={"/a/" + article.artId}
+            image={article.image}
+            width="300px"
+            class="mt-8 grid-item"
+          />
+        {/each}
+      </div>
     </div>
-  </div>
+    <div class="mx-auto text-center flex flex-col justify-center items-center" class:hidden={articles.length > 0}>
+      <h2 class="text-2xl">Ingen artikler funnet</h2>
+      <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500" />
+      <p>Prøv et annet søk</p>
+    </div>
 {:else}
   <div class="mx-auto text-center flex flex-col justify-center items-center">
     <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
@@ -109,9 +120,23 @@
 {/if}
 
 <style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+  /* This helps significantly reduce layout shift on the few browsers that support this */
+  @supports (grid-template-rows: masonry) {
+    .grid-container {
+      align-items: center;
+      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      grid-template-rows: masonry;
+    }
+  }
+
+  @supports not (grid-template-rows: masonry) {
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
   }
 </style>

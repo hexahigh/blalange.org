@@ -9,7 +9,7 @@
 
   import personSvg from "$lib/svg/person.svg";
   import logo from "$lib/img/favicon.svg";
-  import DarkmodeSwitcher from "./darkmode-switcher.svelte";
+  import DarkmodeSwitcher from "./darkmodeSwitcher.svelte";
   import { Dropdown } from "flowbite-svelte";
   import Popper from "./popper.svelte";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";

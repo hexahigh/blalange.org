@@ -1,6 +1,6 @@
 <script>
   import Footer from "$lib/components/footer.svelte";
-  import Nav from "$lib/components/nav2.svelte";
+  import Nav from "$lib/components/nav.svelte";
 </script>
 
 <div class="flex flex-col min-h-screen">
