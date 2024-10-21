@@ -29,7 +29,11 @@ export const defaultConfig = {
   emails: {
     copyrightAgent: "simon@blalange.org",
     privacyAgent: "simon@blalange.org",
-  }
+  },
+  translations: {
+    defaultLocale: "nb",
+    currentLocale: "nb",
+  },
 };
 
 /**
@@ -99,11 +103,12 @@ export function loadConfig() {
   }
 }
 
-// Function to save config to localStorage
+// Function to save config to localStorage and cookies
 export function saveConfig() {
   if (typeof window === "undefined") return;
   config.subscribe((currentConfig) => {
     localStorage.setItem("config", JSON.stringify(currentConfig));
+    document.cookie = `config=${JSON.stringify(currentConfig)}`;
   })();
 }
 

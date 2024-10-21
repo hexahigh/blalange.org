@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
-  import { config, defaultConfig } from "$lib/js/config.ts";
+  import { config, defaultConfig, editKey } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
   import "iconify-icon";
 
@@ -14,7 +14,8 @@
   import Popper from "./popper.svelte";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
-  
+  import { t, locale as tLocale, setLocale } from "$lib/js/translations/main";
+
   let logoAlwaysSpins = false;
 
   let client;
@@ -52,7 +53,7 @@
     }
 
     userStuff = {
-      profilePicture: getImageUrl(userRecord.avatar, {width: 256}),
+      profilePicture: getImageUrl(userRecord.avatar, { width: 256 }),
       name: userRecord.first_name + " " + userRecord.last_name,
       email: userRecord.email,
     };
@@ -150,6 +151,29 @@
     collapseProfile.toggle();
   }
 
+  let languageDropdownArray = [
+    {
+      name: "English",
+      icon: "circle-flags:gb",
+      code: "en",
+    },
+    {
+      name: "Norwegian",
+      icon: "circle-flags:no",
+      code: "nb",
+    },
+    {
+      name: "French",
+      icon: "circle-flags:fr",
+      code: "fr",
+    },
+  ];
+
+  function getlanguageDropdownArrayItem(code) {
+    console.log(code)
+    return languageDropdownArray.find((l) => l.code === code);
+  }
+
   $: path = $page.url.pathname;
 </script>
 
@@ -193,16 +217,16 @@
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <li class={path === "/" ? "current-page" : "not-current-page"}>
-          <a href="/">Hjem</a>
+          <a href="/">{$t("nav.home")}</a>
         </li>
         <li class={path.includes("/articles") ? "current-page" : "not-current-page"}>
-          <a href="/articles">Artikler</a>
+          <a href="/articles">{$t("nav.articles")}</a>
         </li>
         <li class="not-current-page">
-          <a href={toRedirect("https://shop.blalange.org")}>Merch</a>
+          <a href={toRedirect("https://shop.blalange.org")}>{$t("nav.merch")}</a>
         </li>
         <li class={path === "/chat" ? "current-page" : "not-current-page"}>
-          <a href="/chat">Chat</a>
+          <a href="/chat">{$t("nav.chat")}</a>
         </li>
         <li>
           <button
@@ -219,15 +243,7 @@
               <img class="w-8 h-8 rounded-full" src={personSvg} alt="user photo" />
             {/if}
           </button>
-          <Popper
-            activeContent
-            trigger="click"
-            placement="bottom"
-            arrow=false
-            rounded=true
-            shadow=true
-            on:show
-          >
+          <Popper activeContent trigger="click" placement="bottom" arrow="false" rounded="true" shadow="true" on:show>
             <div
               class="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
               id="user-dropdown"
@@ -274,6 +290,39 @@
               {/if}
             </div>
           </Popper>
+        </li>
+        <li>
+          <button
+            class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            id="language-button"
+            aria-expanded="false"
+            data-dropdown-toggle="language-dropdown"
+            data-dropdown-placement="bottom"
+          >
+            <span class="sr-only">Open language menu</span>
+            {#if getlanguageDropdownArrayItem($tLocale) !== undefined}
+              <iconify-icon icon={getlanguageDropdownArrayItem($tLocale).icon} width="24" height="24" />
+            {:else}
+              <iconify-icon icon={languageDropdownArray[0].icon} width="24" height="24" />
+            {/if}
+          </button>
+          <Popper activeContent trigger="click" placement="bottom" arrow="false" rounded="true" shadow="true" on:show>
+            <div
+              class="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+              id="language-dropdown"
+            >
+              <ul class="py-2" aria-labelledby="language-button">
+                {#each languageDropdownArray as language}
+                  <li>
+                    <button
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      on:click={() => setLocale(language.code)}><iconify-icon icon={language.icon} width="24" height="24" /></button
+                    >
+                  </li>
+                {/each}
+              </ul>
+            </div></Popper
+          >
         </li>
         <li class="mx-auto md:m-0">
           <DarkmodeSwitcher

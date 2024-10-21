@@ -4,6 +4,8 @@
   import Donate from "$lib/components/donate.svelte";
   import Leaderboard from "$lib/components/leaderboard.svelte";
   import Faq from "../../lib/components/faq.svelte";
+
+  import { t } from "$lib/js/translations/main";
 </script>
 
 <MetaTags
@@ -35,14 +37,9 @@
     class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
     style="background-image: url(/img/bg1.png);"
   >
-    <h1 class="text-3xl krona">Hva er blålange festivalen?</h1>
+    <h1 class="text-3xl krona">{$t("home.whatIsBlalange.header")}</h1>
     <p class="text-xl">
-      Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.
-      <br>
-      Vi arbeider med å lage et inkulderende felleskap som elsker partylys.
-      Vi tjener ingenting av Blålange festivalen, det er bare for gøy og pengene vi får inn blir brukt for fremtidige fester.
-
-      Så bli med, du og!
+      {$t("home.whatIsBlalange.text")}
     </p>
   </div>
 
