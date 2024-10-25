@@ -174,8 +174,6 @@
       }
     }
 
-    console.log(newHostname);
-
     window.location.hostname = newHostname;
   }
 
