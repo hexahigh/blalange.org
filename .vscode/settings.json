@@ -8,6 +8,7 @@
         "analytics",
         "cliff",
         "article",
-        "service worker"
+        "service worker",
+        "navbar"
     ]
 }

@@ -233,7 +233,7 @@
         <li class={path === "/chat" ? "current-page" : "not-current-page"}>
           <a href="/chat">{$t("nav.chat")}</a>
         </li>
-        <li>
+        <li class="mx-auto z-[21] md:m-0">
           <button
             class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             id="user-menu-button"
@@ -296,7 +296,7 @@
             </div>
           </Popper>
         </li>
-        <li>
+        <li class="mx-auto mt-2 z-[20] md:m-0">
           <button
             class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             id="language-button"
@@ -330,7 +330,7 @@
             </div></Popper
           >
         </li>
-        <li class="mx-auto md:m-0">
+        <li class="mx-auto mt-2 md:m-0">
           <DarkmodeSwitcher
             class="h-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm"
           >
