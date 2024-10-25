@@ -2,6 +2,8 @@ import PocketBase from "pocketbase";
 import { config, defaultConfig } from "$lib/js/config";
 import { readItems, readItem } from '@directus/sdk';
 import { getDirectusInstanceRest, getImageUrl } from "$lib/js/directus";
+import { locale } from "$lib/js/translations/main";
+import { get } from "svelte/store";
 
 export async function load({ params, url, fetch }) {
   const urlParams = url.searchParams;
@@ -24,6 +26,9 @@ export async function load({ params, url, fetch }) {
         "image",
         "date",
         "status",
+        {
+          "translations": ["*"]
+        }
       ],
     }))
 
@@ -54,7 +59,6 @@ export async function load({ params, url, fetch }) {
         articles.splice(i, 1);
         i--;
       }
-
     }
 
     // Sort the articles by date
