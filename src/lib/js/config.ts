@@ -10,8 +10,8 @@ export const defaultConfig = {
   dbEndpoint: "https://db.080609.xyz",
   directusEndpoint: "https://db.blalange.org",
   directeusWebsocketEndpoint: "wss://db.blalange.org",
-  keepMeLoggedIn: true,
-  keepMeLoggedInDelay: 1000 * 60 * 5, // 5 minutes
+  keepMeLoggedIn: true, //! Directus does this automatically, should be removed in a future version
+  keepMeLoggedInDelay: 1000 * 60 * 5, //! Directus does this automatically, should be removed in a future version
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",

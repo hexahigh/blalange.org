@@ -161,6 +161,7 @@
     const currentLocale = get(locale);
 
     if (!getlanguageDropdownArrayItem(currentLocale).primary) {
+        // We have to do this unholyness so that we can "easily" support multiple domains
       if (getlanguageDropdownArrayItem(code).primary) {
         newHostname += $page.url.hostname.split(".").slice(1).join(".");
       } else {
