@@ -1,17 +1,23 @@
 <script lang="ts">
   export let data: DataType;
 
+  import { Alert } from "flowbite-svelte";
+  import { t, locale } from "$lib/js/translations/main";
+  import { get } from "svelte/store";
   import Metatags from "$lib/components/metatags.svelte";
   import Comments from "$lib/components/comments.svelte";
   import "iconify-icon";
   import { type DataType } from "./types";
   import "katex/dist/katex.min.css";
 
-  let name = data.article.name;
+  const translations = data.article.translations;
+  const currentLocale = get(locale);
+
+  let name = data.translations?.[currentLocale]?.name || data.article.name;
   let date = data.article.date;
   let author = data.author;
-  let description = data.article.description;
-  let text = data.text || data.article.text_wysiwyg;
+  let description = data.translations?.[currentLocale]?.description || data.article.description;
+  let text = data.translations?.[currentLocale]?.text || data.text;
   let image = data.imgUrl;
   let artId = data.article.artId;
 
@@ -47,6 +53,13 @@
       <iconify-icon icon="mdi:calendar" width="20" height="20" />
       {formatDate(date)}
     </p>
+    {#if !data.translations?.[currentLocale]?.text}
+      <Alert border color="blue">
+        <iconify-icon icon="mdi:information" width="24" height="24" />
+        <span class="font-medium">{$t("article.warning.notTranslated.header")}</span>
+        <p>{$t("article.warning.notTranslated.body")}</p>
+      </Alert>
+    {/if}
     <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300">
       {@html text}
     </div>

@@ -26,6 +26,11 @@ const ii8nConfig: import("sveltekit-i18n").Config = {
       loader: async () => (await import("./languages/nb/home.json")).default,
     },
     {
+      locale: "nb",
+      key: "article",
+      loader: async () => (await import("./languages/nb/article.json")).default,
+    },
+    {
       locale: "en",
       key: "common",
       loader: async () => (await import("./languages/en/common.json")).default,
@@ -39,6 +44,11 @@ const ii8nConfig: import("sveltekit-i18n").Config = {
       locale: "en",
       key: "home",
       loader: async () => (await import("./languages/en/home.json")).default,
+    },
+    {
+      locale: "en",
+      key: "article",
+      loader: async () => (await import("./languages/en/article.json")).default,
     },
     {
       locale: "fr",

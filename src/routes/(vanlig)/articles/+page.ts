@@ -27,7 +27,7 @@ export async function load({ params, url, fetch }) {
         "date",
         "status",
         {
-          "translations": ["*"]
+          "translations": ["languages_code", "name", "description"]
         }
       ],
     }))
