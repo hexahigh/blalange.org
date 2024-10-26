@@ -1,14 +1,40 @@
 <script>
   import { page } from "$app/stores";
- 
-  let domain = $page.url.host
-  let protocol = $page.url.protocol
- 
-  let status = $page.status
- </script>
- 
- <div class="relative w-full h-screen flex justify-center flex-col bg-black">
-  <h1 class="text-5xl font-bold text-center z-10 text-white">{status} - {$page.error.message}</h1>
- 
-  <img class="object-contain h-full inset-0 z-0" src={`${protocol}//${domain}/img/cat/${status}.jpg`} alt={$page.error.message} />
- </div>
+  import { fly } from "svelte/transition";
+  import { t, locale as l } from "$lib/js/translations";
+
+  let domain = $page.url.host;
+  let protocol = $page.url.protocol;
+
+  let status = $page.status;
+
+  const statusArray = Array.from(String(status));
+  const spanIds = statusArray.map((_, i) => `span-${i}`);
+</script>
+
+<div class="relative w-full h-screen flex justify-center flex-col">
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+      <div class="mx-auto max-w-screen-sm text-center">
+        <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500">
+            {#each statusArray as s, i}
+              <span id={spanIds[i]} in:fly={{ duration: 300, delay: i * 50 }}>
+                {s}
+              </span>
+            {/each}
+        </h1>
+        <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
+          {$t(`error.header.${status}`)}
+        </p>
+        <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+          {$t(`error.text.${status}`) || $t(`notFound.text`)}
+        </p>
+        <a
+          href="/{$l}"
+          class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
+          >{$t(`error.returnHome`)}</a
+        >
+      </div>
+    </div>
+  </section>
+</div>

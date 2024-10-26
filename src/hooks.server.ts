@@ -1,7 +1,13 @@
 import { defaultLocale, loadTranslations, locales } from "$lib/js/translations";
 
-/** @type {import('@sveltejs/kit').Handle} */
-export const handle = async ({ event, resolve }) => {
+const localeExcludedRoutes: RegExp[] = [new RegExp("/api/.*"), new RegExp("/webring/.*|/webring")];
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
+}
+
+export const handle: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
   const { url, request } = event;
   const { pathname } = url;
 
@@ -15,15 +21,11 @@ export const handle = async ({ event, resolve }) => {
     return Response.redirect("https://blalange.org" + event.url.pathname, 301);
   }
 
-  const response = await resolve(event, {
-    filterSerializedResponseHeaders: (key, value) => {
-      return key.toLowerCase() === "content-type";
-    },
-  });
-
-  // Allow CORS requests from everywhere
-  response.headers.set("Access-Control-Allow-Origin", "*");
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+  // let response = resolve(event, {
+  //   filterSerializedResponseHeaders: (key, value) => {
+  //     return key.toLowerCase() === "content-type";
+  //   },
+  // });
 
   // Get defined locales
   const supportedLocales = locales.get().map((l) => l.toLowerCase());
@@ -32,7 +34,7 @@ export const handle = async ({ event, resolve }) => {
   let locale = supportedLocales.find((l) => l === `${pathname.match(/[^/]+?(?=\/|$)/)}`.toLowerCase());
 
   // If route locale is not supported
-  if (!locale) {
+  if (!locale && !localeExcludedRoutes.some((r) => r.test(pathname))) {
     // Get user preferred locale
     locale = `${`${request.headers.get("accept-language")}`.match(/[a-zA-Z]+?(?=-|_|,|;)/)}`.toLowerCase();
 
@@ -40,11 +42,10 @@ export const handle = async ({ event, resolve }) => {
     if (!supportedLocales.includes(locale)) locale = defaultLocale;
 
     // 301 redirect
-    return new Response(undefined, { headers: { location: `/${locale}${pathname}` }, status: 301 });
+    return new Response(undefined, { headers: { ...corsHeaders, location: `/${locale}${pathname}` }, status: 301 });
   }
 
-  // Add html `lang` attribute
-  return resolve(
+  const response = await resolve(
     { ...event, locals: { lang: locale } },
     {
       transformPageChunk: ({ html }) => html.replace(/<html.*>/, `<html lang="${locale}">`),
@@ -53,6 +54,12 @@ export const handle = async ({ event, resolve }) => {
       },
     }
   );
+
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+
+  // Add html `lang` attribute
+  return response
 };
 
 /** @type {import('@sveltejs/kit').HandleServerError} */
@@ -62,5 +69,5 @@ export const handleError = async ({ event }) => {
 
   await loadTranslations(lang, "error");
 
-  return locals;
+  return
 };

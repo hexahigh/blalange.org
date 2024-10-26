@@ -2,5 +2,9 @@
     "articles": "Artikler",
     "home": "Hjem",
     "chat": "Chat",
-    "merch": "Merch"
+    "merch": "Merch",
+    "settings": "Innstillinger",
+    "login": "Logg inn",
+    "signup": "Opprett konto",
+    "logout": "Logg ut"
 }

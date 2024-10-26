@@ -2,5 +2,9 @@
     "articles": "Articles",
     "home": "Home",
     "chat": "Chat",
-    "merch": "Merch"
+    "merch": "Merch",
+    "settings": "Settings",
+    "login": "Login",
+    "signup": "Sign up",
+    "logout": "Logout"
 }
