@@ -3,7 +3,7 @@
   import { MetaTags } from "svelte-meta-tags";
   import { onMount, tick } from "svelte";
   import { get } from "svelte/store";
-  import { locale } from "$lib/js/translations/main";
+  import { locale } from "$lib/js/translations"
   import Fuse from "fuse.js";
   import type { IFuseOptions } from "fuse.js";
 

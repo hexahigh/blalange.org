@@ -44,12 +44,7 @@ export const defaultConfig = {
         icon: "circle-flags:no",
         code: "nb",
         primary: true,
-      },
-      {
-        name: "French",
-        icon: "circle-flags:fr",
-        code: "fr",
-      },
+      }
     ]
   },
 };

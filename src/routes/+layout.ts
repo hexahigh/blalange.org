@@ -1,23 +1,14 @@
-import { loadTranslations } from '$lib/js/translations/main';
-import { defaultConfig, config } from '$lib/js/config';
-import { get } from 'svelte/store';
+import { addTranslations, setLocale, setRoute } from '$lib/js/translations';
 
-export const load = async ({ url }) => {
+/** @type {import('@sveltejs/kit').LayoutLoad} */
+export const load = async ({ data }) => {
+  const { i18n, translations } = data;
+  const { lang, route } = i18n;
 
-  function initLocale(): string {
-    const langFromParams = url.searchParams.get("lang");
-    if (langFromParams) return langFromParams;
-  
-    const supportedLanguages = defaultConfig.translations.supportedLanguages;
-    const localeFromHostname = url.hostname.split(".")[0];
-  
-    const matchingLanguage = supportedLanguages.find(lang => lang.code === localeFromHostname);
-    if (matchingLanguage) return matchingLanguage.code;
-  
-    return defaultConfig.translations.defaultLocale;
-  };
+  addTranslations(translations);
 
-  await loadTranslations(initLocale(), url.pathname);
+  await setRoute(route);
+  await setLocale(lang);
 
-  return {};
-}
+  return i18n;
+};

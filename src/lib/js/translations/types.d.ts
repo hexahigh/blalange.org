@@ -1,3 +1,5 @@
+import { Readable } from "svelte/store";
+
 type LanguageObject = {
     name: string;
     code: string;
@@ -7,3 +9,5 @@ type LanguageObject = {
 type TranslationObject = {
     [key: string]: string;
 };
+
+type ExtendedStore<T, Get = () => T, Store = Readable<T>> = Store & { get: Get };

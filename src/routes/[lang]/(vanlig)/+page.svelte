@@ -3,9 +3,8 @@
   import Form from "$lib/components/form.svelte";
   import Donate from "$lib/components/donate.svelte";
   import Leaderboard from "$lib/components/leaderboard.svelte";
-  import Faq from "../../lib/components/faq.svelte";
 
-  import { t } from "$lib/js/translations/main";
+  import { t } from "$lib/js/translations";
 </script>
 
 <MetaTags

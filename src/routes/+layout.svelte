@@ -13,7 +13,7 @@
 
   import "$lib/js/polyfills/main";
 
-  import { locale, setLocale } from "$lib/js/translations/main";
+  import { locale, setLocale } from "$lib/js/translations"
   import { get } from "svelte/store";
 
   addAPIProvider("", {

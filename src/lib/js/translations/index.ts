@@ -1,5 +1,9 @@
 import { defaultConfig } from "../config";
 import i18n from "sveltekit-i18n";
+import type { ExtendedStore } from "./types";
+import { get, derived } from "svelte/store";
+
+import lang from "./languages/lang.json";
 
 async function getTranslation(lc = defaultConfig.translations.defaultLocale) {
   // Import the specific language file
@@ -9,6 +13,10 @@ async function getTranslation(lc = defaultConfig.translations.defaultLocale) {
 
 const ii8nConfig: import("sveltekit-i18n").Config = {
   fallbackLocale: defaultConfig.translations.defaultLocale,
+  translations: {
+    nb: { lang },
+    en: { lang },
+  },
   loaders: [
     {
       locale: "nb",
@@ -49,18 +57,21 @@ const ii8nConfig: import("sveltekit-i18n").Config = {
       locale: "en",
       key: "article",
       loader: async () => (await import("./languages/en/article.json")).default,
-    },
-    {
-      locale: "fr",
-      key: "common",
-      loader: async () => (await import("./languages/fr/common.json")).default,
-    },
-    {
-      locale: "fr",
-      key: "nav",
-      loader: async () => (await import("./languages/fr/nav.json")).default,
     }
   ],
 };
 
-export const { t, locale, locales, loading, loadTranslations, setLocale } = new i18n(ii8nConfig);
+export const defaultLocale = defaultConfig.translations.defaultLocale;
+
+export const { t, locale, locales, loading, translations, loadTranslations, addTranslations, setRoute, setLocale } =
+  new i18n(ii8nConfig);
+
+
+// Returns the URL with the current locale prepended
+export const tu = {
+  ...derived(
+    [locale],
+    ([$locale]) => (url) => get(locale) + url
+  ),
+  get: (url) => get(locale) + url,
+};

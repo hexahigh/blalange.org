@@ -14,8 +14,9 @@
   import Popper from "./popper.svelte";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
-  import { t, locale as tLocale, setLocale, locale } from "$lib/js/translations/main";
+  import { t, tu, locale as l, setLocale, locale } from "$lib/js/translations"
   import { get } from "svelte/store";
+  import { goto } from "$app/navigation";
 
   let logoAlwaysSpins = false;
 
@@ -179,6 +180,8 @@
   }
 
   $: path = $page.url.pathname;
+
+  $: ({ route } = $page.data);
 </script>
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900" {...$$restProps} use:autoAnimate>
@@ -221,16 +224,16 @@
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <li class={path === "/" ? "current-page" : "not-current-page"}>
-          <a href="/">{$t("nav.home")}</a>
+          <a href="/{$l}">{$t("nav.home")}</a>
         </li>
         <li class={path.includes("/articles") ? "current-page" : "not-current-page"}>
-          <a href="/articles">{$t("nav.articles")}</a>
+          <a href="/{$l}/articles">{$t("nav.articles")}</a>
         </li>
         <li class="not-current-page">
           <a href={toRedirect("https://shop.blalange.org")}>{$t("nav.merch")}</a>
         </li>
         <li class={path === "/chat" ? "current-page" : "not-current-page"}>
-          <a href="/chat">{$t("nav.chat")}</a>
+          <a href="/{$l}/chat">{$t("nav.chat")}</a>
         </li>
         <li class="mx-auto z-[21] md:m-0">
           <button
@@ -260,7 +263,7 @@
                 <ul class="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <a
-                      href="/settings"
+                      href="/{$l}/settings"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >Innstillinger</a
                     >
@@ -278,14 +281,14 @@
                 <ul class="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <a
-                      href="/settings"
+                      href="/{$l}/settings"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >Innstillinger</a
                     >
                   </li>
                   <li>
                     <a
-                      href="/login"
+                      href="/{$l}/login"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >Logg inn</a
                     >
@@ -304,8 +307,8 @@
             data-dropdown-placement="bottom"
           >
             <span class="sr-only">Open language menu</span>
-            {#if getlanguageDropdownArrayItem($tLocale) !== undefined}
-              <iconify-icon icon={getlanguageDropdownArrayItem($tLocale).icon} width="24" height="24" />
+            {#if getlanguageDropdownArrayItem($locale) !== undefined}
+              <iconify-icon icon={getlanguageDropdownArrayItem($locale).icon} width="24" height="24" />
             {:else}
               <iconify-icon icon={defaultConfig.translations.supportedLanguages[0].icon} width="24" height="24" />
             {/if}
@@ -320,7 +323,7 @@
                   <li>
                     <button
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      on:click={() => redirectToLanguage(language.code)}
+                      on:click={() => goto(`/${language.code}${route}`)}
                       ><iconify-icon icon={language.icon} width="24" height="24" /></button
                     >
                   </li>

@@ -2,7 +2,7 @@
   export let data: DataType;
 
   import { Alert } from "flowbite-svelte";
-  import { t, locale } from "$lib/js/translations/main";
+  import { t, locale } from "$lib/js/translations"
   import { get } from "svelte/store";
   import Metatags from "$lib/components/metatags.svelte";
   import Comments from "$lib/components/comments.svelte";
