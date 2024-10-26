@@ -1,5 +1,4 @@
 <script lang="ts">
-  export let data: DataType;
 
   import { Alert } from "flowbite-svelte";
   import { t, locale } from "$lib/js/translations"
@@ -9,6 +8,11 @@
   import "iconify-icon";
   import { type DataType } from "./types";
   import "katex/dist/katex.min.css";
+  interface Props {
+    data: DataType;
+  }
+
+  let { data }: Props = $props();
 
   const translations = data.article.translations;
   const currentLocale = get(locale);
@@ -38,7 +42,7 @@
   class="p-6 max-w-6xl mx-auto mt-4 bg-white rounded-xl text-black shadow-md flex items-center space-x-4 dark:bg-gray-800 dark:text-white"
 >
   <div>
-    <!-- svelte-ignore a11y-img-redundant-alt -->
+    <!-- svelte-ignore a11y_img_redundant_alt -->
     {#if image}
       <img src={image} class="w-screen aspect-[16/9] object-contain rounded-lg" alt="Article Image" />
     {/if}
@@ -46,16 +50,16 @@
       {name}
     </h1>
     <p class="text-gray-500 dark:text-gray-300">
-      <iconify-icon icon="mdi:account" width="20" height="20" />
+      <iconify-icon icon="mdi:account" width="20" height="20"></iconify-icon>
       {author}
     </p>
     <p class="text-gray-500 dark:text-gray-300">
-      <iconify-icon icon="mdi:calendar" width="20" height="20" />
+      <iconify-icon icon="mdi:calendar" width="20" height="20"></iconify-icon>
       {formatDate(date)}
     </p>
     {#if !data.translations?.[currentLocale]?.text}
       <Alert border color="blue">
-        <iconify-icon icon="mdi:information" width="24" height="24" />
+        <iconify-icon icon="mdi:information" width="24" height="24"></iconify-icon>
         <span class="font-medium">{$t("article.warning.notTranslated.header")}</span>
         <p>{$t("article.warning.notTranslated.body")}</p>
       </Alert>

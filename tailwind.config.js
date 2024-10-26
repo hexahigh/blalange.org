@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class",
+  // darkMode: "selector",
+  darkMode: ['variant', ['&:where(.dark, .dark *)', '&:where(:global(.dark), :global(.dark) *)']], // Fix for dark mode after upgrade to svelte 5
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {

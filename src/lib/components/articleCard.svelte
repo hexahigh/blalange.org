@@ -33,7 +33,6 @@
   )}
   style={`width: ${width}; height: ${height};`}
 >
-  <a href={link}>
     <img class="rounded-t-lg object-cover w-full h-1/2" src={image} alt="" />
     <div class="p-5 h-1/2 flex flex-col">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -65,5 +64,4 @@
         </svg>
       </a>
     </div>
-  </a>
 </div>

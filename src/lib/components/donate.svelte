@@ -5,7 +5,7 @@
 
   let cost = 2000;
 
-  let donated = 0;
+  let donated = $state(0);
   for (let i = 0; i < donations.length; i++) {
     donated += donations[i].amount;
   }
@@ -43,15 +43,15 @@
   </div>
 
   <h4 class="text-2xl">Doner nå!</h4>
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
   <div class="flex flex-col sm:flex-row justify-center gap-16">
     <img
         class="w-full sm:w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
         draggable="false"
         src={opencollective}
         alt="OpenCollective"
-        on:click={() => donate("openCollective")}
+        onclick={() => donate("openCollective")}
     />
 </div>
 </div>

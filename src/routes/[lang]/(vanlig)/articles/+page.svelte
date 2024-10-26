@@ -3,7 +3,7 @@
   import { MetaTags } from "svelte-meta-tags";
   import { onMount, tick } from "svelte";
   import { get } from "svelte/store";
-  import { locale } from "$lib/js/translations"
+  import { locale, locale as l } from "$lib/js/translations";
   import Fuse from "fuse.js";
   import type { IFuseOptions } from "fuse.js";
 
@@ -11,12 +11,12 @@
   import Search from "$lib/components/search.svelte";
   import type Masonry from "masonry-layout";
 
-  export let data;
+  let { data } = $props();
 
   let msnry: Masonry;
 
-  const allArticles = data.articles;
-  let articles = allArticles; // Initialize with all articles
+  let allArticles = $state(data.articles);
+  let articles = $state(allArticles); // Initialize with all articles
 
   const fuseOptions: IFuseOptions<any> = {
     keys: [{ name: "name" }, { name: "description" }],
@@ -45,17 +45,19 @@
     }
   }
 
-  for (const article of allArticles) {
-    // Find translation matching current locale
-    const translations = article.translations;
-    const currentLocale = get(locale);
+  $effect(() => {
+    for (const article of allArticles) {
+      // Find translation matching current locale
+      const translations = article.translations;
+      const currentLocale = $locale
 
-    article.name =
-      translations.find((translation) => translation.languages_code === currentLocale)?.name || article.name;
-    article.description =
-      translations.find((translation) => translation.languages_code === currentLocale)?.description ||
-      article.description;
-  }
+      article.name =
+        translations.find((translation) => translation.languages_code === currentLocale)?.name || article.name;
+      article.description =
+        translations.find((translation) => translation.languages_code === currentLocale)?.description ||
+        article.description;
+    }
+  });
 
   onMount(async () => {
     const Masonry = (await import("masonry-layout")).default;
@@ -112,7 +114,7 @@
           title={article.name}
           date={article.date}
           description={article.description}
-          link={"/a/" + article.artId}
+          link={"/"+$l+"/a/" + article.artId}
           image={article.image}
           width="300px"
           class="mt-8 grid-item"
@@ -122,13 +124,13 @@
   </div>
   <div class="mx-auto text-center flex flex-col justify-center items-center" class:hidden={articles.length > 0}>
     <h2 class="text-2xl">Ingen artikler funnet</h2>
-    <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500" />
+    <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500"></iconify-icon>
     <p>Prøv et annet søk</p>
   </div>
 {:else}
   <div class="mx-auto text-center flex flex-col justify-center items-center">
     <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
-    <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500" />
+    <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500"></iconify-icon>
     <p>{data.errorMessage}</p>
   </div>
 {/if}

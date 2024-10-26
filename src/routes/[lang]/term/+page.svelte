@@ -5,7 +5,6 @@
 	export const prerender = true
 </script> -->
 <script lang="ts">
-  export let data
 
   import type { StdlibType, CommandType, CommandsType } from "./types.js";
 
@@ -21,17 +20,18 @@
   import { latestVersion } from "$lib/js/version";
   import { parseFlags } from "./args.js";
   import "./style.css";
+  let { data } = $props();
 
   const user = "root";
   const machine = $page.url.host || "localhost";
 
-  let lineData = [];
+  let lineData = $state([]);
   let histIndex = $history.length;
-  let showInput = true;
-  let hideStuff = false;
+  let showInput = $state(true);
+  let hideStuff = $state(false);
 
-  let termInput;
-  let terminalContainer;
+  let termInput = $state();
+  let terminalContainer = $state();
 
   let inputMode = "default";
 
@@ -529,12 +529,12 @@
   }}
 />
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
   id="terminalContainer"
   class="terminal crt ibm-bios flex flex-col items-start"
-  on:click={() => {
+  onclick={() => {
     if (window.getSelection().toString() === "" && termInput) {
       termInput.focus();
     }
@@ -564,7 +564,7 @@
         type="text"
         spellcheck="false"
         bind:this={termInput}
-        on:keydown={handleKeypress}
+        onkeydown={handleKeypress}
       />
     </div>
   {/if}

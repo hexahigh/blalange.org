@@ -1,9 +1,13 @@
 <script lang="ts">
-  export let placeholder: string = "Søk...";
-  export let onSubmit: ((event: SubmitEvent) => void)
+  interface Props {
+    placeholder?: string;
+    onSubmit: ((event: SubmitEvent) => void);
+  }
+
+  let { placeholder = "Søk...", onSubmit }: Props = $props();
 </script>
 
-<form class="flex items-center max-w-sm mx-auto" on:submit={onSubmit}>
+<form class="flex items-center max-w-sm mx-auto" onsubmit={onSubmit}>
   <label for="simple-search" class="sr-only">Søk</label>
   <div class="relative w-full">
     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

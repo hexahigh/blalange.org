@@ -7,9 +7,9 @@
   let message;
   let messageType = "info";
 
-  let fontChange = {
+  let fontChange = $state({
     selectElement: null,
-  };
+  });
 
   async function saveFont() {
     const font = fontChange.selectElement.options[fontChange.selectElement.selectedIndex].value;
@@ -59,7 +59,7 @@
           <option value="PxPlus IBM BIOS">PxPlus IBM BIOS</option>
           <option value="RimWordFont">RimWord</option>
         </select>
-        <button class="blue-button mt-4" on:click={saveFont}>Lagre font</button>
+        <button class="blue-button mt-4" onclick={saveFont}>Lagre font</button>
       </div>
     </div>
   </div>

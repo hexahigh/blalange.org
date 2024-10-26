@@ -15,6 +15,11 @@
 
   import { locale, setLocale } from "$lib/js/translations"
   import { get } from "svelte/store";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 
   addAPIProvider("", {
     resources: ["https://api.iconify.design", "https://api.simplesvg.com", "https://api.unisvg.com"],
@@ -72,5 +77,5 @@
 </svelte:head>
 
 <main>
-  <slot />
+  {@render children?.()}
 </main>

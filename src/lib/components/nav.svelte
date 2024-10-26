@@ -17,8 +17,10 @@
   import { t, tu, locale as l, setLocale, locale } from "$lib/js/translations"
   import { get } from "svelte/store";
   import { goto } from "$app/navigation";
+  /** @type {{ [key: string]: any }} */
+  let { ...rest } = $props();
 
-  let logoAlwaysSpins = false;
+  let logoAlwaysSpins = $state(false);
 
   let client;
 
@@ -32,11 +34,11 @@
     unsubscribe();
   });
 
-  let userStuff = {
+  let userStuff = $state({
     profilePicture: "",
     name: "",
     email: "",
-  };
+  });
   let userRecord;
 
   async function getStuff() {
@@ -68,11 +70,10 @@
     window.location.reload();
   }
 
-  let path;
   let collapse;
   let collapseProfile;
   let visibleProfile = false;
-  let visible = false;
+  let visible = $state(false);
 
   onMount(async () => {
     client = getDirectusInstance();
@@ -143,7 +144,7 @@
     };
   });
 
-  $: navbarClass = visible ? "navbar-open" : "";
+  let navbarClass = $derived(visible ? "navbar-open" : "");
 
   function toggleNav() {
     collapse.toggle();
@@ -179,27 +180,27 @@
     window.location.hostname = newHostname;
   }
 
-  $: path = $page.url.pathname;
+  let path = $derived($page.url.pathname);
 
-  $: ({ route } = $page.data);
+  let { route } = $derived($page.data);
 </script>
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900" {...$$restProps} use:autoAnimate>
+<nav class="bg-white border-gray-200 dark:bg-gray-900" {...rest} use:autoAnimate>
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+      <!-- svelte-ignore a11y_click_events_have_key_events -->
+      <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
       <img
         src={logo}
         class="h-12 hover:logo-spin"
         class:logo-spin={logoAlwaysSpins}
-        on:click={confetti.fireAll}
+        onclick={confetti.fireAll}
         alt="Blålange Logo"
       />
       <span class="self-center text-2xl font-semibold whitespace-nowrap krona dark:text-white">Blålange</span>
     </a>
     <button
-      on:click={toggleNav}
+      onclick={toggleNav}
       id="hamburger"
       data-collapse-toggle="navbar-default"
       type="button"
@@ -223,16 +224,16 @@
       <ul
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
-        <li class={path === "/" ? "current-page" : "not-current-page"}>
+        <li class={path === "/"+$l ? "current-page" : "not-current-page"}>
           <a href="/{$l}">{$t("nav.home")}</a>
         </li>
-        <li class={path.includes("/articles") ? "current-page" : "not-current-page"}>
+        <li class={path === "/"+$l+"/articles" ? "current-page" : "not-current-page"}>
           <a href="/{$l}/articles">{$t("nav.articles")}</a>
         </li>
         <li class="not-current-page">
-          <a href={toRedirect("https://shop.blalange.org")}>{$t("nav.merch")}</a>
+          <a href={"/" + $l + toRedirect("https://shop.blalange.org", { noHost: true })}>{$t("nav.merch")}</a>
         </li>
-        <li class={path === "/chat" ? "current-page" : "not-current-page"}>
+        <li class={path === "/"+$l+"/chat" ? "current-page" : "not-current-page"}>
           <a href="/{$l}/chat">{$t("nav.chat")}</a>
         </li>
         <li class="mx-auto z-[21] md:m-0">
@@ -270,7 +271,7 @@
                   </li>
                   <li>
                     <a
-                      on:click={() => logout()}
+                      onclick={() => logout()}
                       href=""
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >Logg ut</a
@@ -308,9 +309,9 @@
           >
             <span class="sr-only">Open language menu</span>
             {#if getlanguageDropdownArrayItem($locale) !== undefined}
-              <iconify-icon icon={getlanguageDropdownArrayItem($locale).icon} width="24" height="24" />
+              <iconify-icon icon={getlanguageDropdownArrayItem($locale).icon} width="24" height="24"></iconify-icon>
             {:else}
-              <iconify-icon icon={defaultConfig.translations.supportedLanguages[0].icon} width="24" height="24" />
+              <iconify-icon icon={defaultConfig.translations.supportedLanguages[0].icon} width="24" height="24"></iconify-icon>
             {/if}
           </button>
           <Popper activeContent trigger="click" placement="bottom" arrow="false" rounded="true" shadow="true" on:show>
@@ -323,8 +324,8 @@
                   <li>
                     <button
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      on:click={() => goto(`/${language.code}${route}`)}
-                      ><iconify-icon icon={language.icon} width="24" height="24" /></button
+                      onclick={() => goto(`/${language.code}${route}`)}
+                      ><iconify-icon icon={language.icon} width="24" height="24"></iconify-icon></button
                     >
                   </li>
                 {/each}
@@ -336,8 +337,12 @@
           <DarkmodeSwitcher
             class="h-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm"
           >
-            <iconify-icon slot="lightIcon" icon="line-md:moon-filled-loop" class="text-blue-500" width="24" />
-            <iconify-icon slot="darkIcon" icon="line-md:sunny-filled-loop" class="text-yellow-500" width="24" />
+            {#snippet lightIcon()}
+                        <iconify-icon  icon="line-md:moon-filled-loop" class="text-blue-500" width="24"></iconify-icon>
+                      {/snippet}
+            {#snippet darkIcon()}
+                        <iconify-icon  icon="line-md:sunny-filled-loop" class="text-yellow-500" width="24"></iconify-icon>
+                      {/snippet}
           </DarkmodeSwitcher>
         </li>
       </ul>
@@ -347,11 +352,11 @@
 
 <style lang="postcss">
   .current-page {
-    @apply block py-2 px-3 text-white bg-blue-500 rounded md:bg-transparent md:text-blue-500 md:p-0 dark:text-white md:dark:text-ctp-blue;
+    @apply block py-2 px-3 text-black bg-blue-500 rounded md:bg-transparent md:text-blue-500 md:p-0 dark:text-white md:dark:text-ctp-blue;
   }
 
   .not-current-page {
-    @apply block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-ctp-blue dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent;
+    @apply block py-2 px-3 text-gray-900 dark:text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 md:dark:hover:text-ctp-blue dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent;
   }
 
   #hamburger {
