@@ -4,7 +4,7 @@
   import Donate from "$lib/components/donate.svelte";
   import Leaderboard from "$lib/components/leaderboard.svelte";
 
-  import { t } from "$lib/js/translations";
+  import * as m from "$lib/paraglide/messages.js";
 </script>
 
 <MetaTags
@@ -36,9 +36,9 @@
     class="bg-fixed bg-no-repeat bg-cover text-white text-center p-20"
     style="background-image: url(/img/bg1.png);"
   >
-    <h1 class="text-3xl krona">{$t("home.whatIsBlalange.header")}</h1>
+    <h1 class="text-3xl krona">{m.home_whatIsBlalange_header()}</h1>
     <p class="text-xl">
-      {$t("home.whatIsBlalange.text")}
+      {m.home_whatIsBlalange_text()}
     </p>
   </div>
 

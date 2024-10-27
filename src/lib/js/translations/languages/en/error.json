@@ -1,9 +1,0 @@
-{
-    "header.404": "Something's missing.",
-    "text.404": "Sorry, we can't find that page. You'll find lots to explore on the home page.",
-    "returnHome": "Back to homepage",
-    "notFound": {
-        "header": "What the fuck?",
-        "text": "I have no idea what you did but this error is so wrong that even I don't know what caused it."
-    }
-}

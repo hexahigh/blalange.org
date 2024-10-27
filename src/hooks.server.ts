@@ -1,4 +1,5 @@
-import { defaultLocale, loadTranslations, locales } from "$lib/js/translations";
+import { i18n } from '$lib/i18n'
+import { sequence } from '@sveltejs/kit/hooks'
 
 const localeExcludedRoutes: RegExp[] = [new RegExp("/api/.*"), new RegExp("/webring/.*|/webring")];
 
@@ -7,7 +8,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
 }
 
-export const handle: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
+const handle1: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
   const { url, request } = event;
   const { pathname } = url;
 
@@ -21,34 +22,8 @@ export const handle: import('@sveltejs/kit').Handle = async ({ event, resolve })
     return Response.redirect("https://blalange.org" + event.url.pathname, 301);
   }
 
-  // let response = resolve(event, {
-  //   filterSerializedResponseHeaders: (key, value) => {
-  //     return key.toLowerCase() === "content-type";
-  //   },
-  // });
-
-  // Get defined locales
-  const supportedLocales = locales.get().map((l) => l.toLowerCase());
-
-  // Try to get locale from `pathname`.
-  let locale = supportedLocales.find((l) => l === `${pathname.match(/[^/]+?(?=\/|$)/)}`.toLowerCase());
-
-  // If route locale is not supported
-  if (!locale && !localeExcludedRoutes.some((r) => r.test(pathname))) {
-    // Get user preferred locale
-    locale = `${`${request.headers.get("accept-language")}`.match(/[a-zA-Z]+?(?=-|_|,|;)/)}`.toLowerCase();
-
-    // Set default locale if user preferred locale does not match
-    if (!supportedLocales.includes(locale)) locale = defaultLocale;
-
-    // 301 redirect
-    return new Response(undefined, { headers: { ...corsHeaders, location: `/${locale}${pathname}` }, status: 301 });
-  }
-
-  const response = await resolve(
-    { ...event, locals: { lang: locale } },
+  const response = await resolve(event,
     {
-      transformPageChunk: ({ html }) => html.replace(/<html.*>/, `<html lang="${locale}">`),
       filterSerializedResponseHeaders: (key, value) => {
         return key.toLowerCase() === "content-type";
       },
@@ -63,11 +38,9 @@ export const handle: import('@sveltejs/kit').Handle = async ({ event, resolve })
 };
 
 /** @type {import('@sveltejs/kit').HandleServerError} */
-export const handleError = async ({ event }) => {
-  const { locals } = event;
-  const { lang } = locals;
-
-  await loadTranslations(lang, "error");
-
+export const handleError: import('@sveltejs/kit').HandleServerError = async ({ event, error }) => {
+  console.error(error);
   return
 };
+
+export const handle = sequence(i18n.handle({ disableAsyncLocalStorage: true }), handle1)

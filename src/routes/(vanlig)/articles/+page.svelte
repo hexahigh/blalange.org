@@ -3,13 +3,13 @@
   import { MetaTags } from "svelte-meta-tags";
   import { onMount, tick } from "svelte";
   import { get } from "svelte/store";
-  import { locale, locale as l } from "$lib/js/translations";
   import Fuse from "fuse.js";
   import type { IFuseOptions } from "fuse.js";
 
   import ArticleCard from "$lib/components/articleCard.svelte";
   import Search from "$lib/components/search.svelte";
   import type Masonry from "masonry-layout";
+    import { languageTag } from "$lib/paraglide/runtime.js";
 
   let { data } = $props();
 
@@ -49,7 +49,7 @@
     for (const article of allArticles) {
       // Find translation matching current locale
       const translations = article.translations;
-      const currentLocale = $locale
+      const currentLocale = languageTag()
 
       article.name =
         translations.find((translation) => translation.languages_code === currentLocale)?.name || article.name;
@@ -114,7 +114,7 @@
           title={article.name}
           date={article.date}
           description={article.description}
-          link={"/"+$l+"/a/" + article.artId}
+          link={"/a/" + article.artId}
           image={article.image}
           width="300px"
           class="mt-8 grid-item"
