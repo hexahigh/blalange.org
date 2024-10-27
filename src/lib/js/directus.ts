@@ -130,31 +130,6 @@ function getImageUrl(assetId: string, options: getImageUrlOptions = {}): string 
   return url;
 }
 
-function initKeepMeLoggedIn() {
-    let devMode = false;
-    config.subscribe((value) => {
-        devMode = value.devMode;
-      });
-
-  async function keepMeLoggedIn() {
-    config.subscribe(async (value) => {
-      if (value.keepMeLoggedIn) {
-        if (devMode) {
-            console.log("Refreshing token because keepMeLoggedIn is enabled");
-        }
-        await refreshToken();
-      }
-    });
-  }
-
-  // Run once
-  keepMeLoggedIn();
-
-  setInterval(async () => {
-    await keepMeLoggedIn();
-  }, defaultConfig.keepMeLoggedInDelay);
-}
-
 export {
   getDirectusInstance,
   getDirectusInstanceRest,
@@ -163,7 +138,6 @@ export {
   isLoggedIn,
   currentUser,
   refreshToken,
-  initKeepMeLoggedIn,
   canRefresh,
   storage,
 };

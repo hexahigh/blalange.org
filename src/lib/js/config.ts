@@ -1,17 +1,49 @@
 import { writable } from "svelte/store";
 import { thumbs } from "@dicebear/collection";
 
+interface Config {
+  devMode: boolean;
+  dbEndpoint: string;
+  directusEndpoint: string;
+  directeusWebsocketEndpoint: string;
+  analyticsEnabled: boolean;
+  logoAlwaysSpins: boolean;
+  primaryDomain: string;
+  dicebearCollection: any;
+  font: {
+    family: string;
+    weight: number;
+  };
+  tos: {
+    lastUpdated: string;
+  };
+  privacy: {
+    lastUpdated: string;
+  };
+  emails: {
+    copyrightAgent: string;
+    privacyAgent: string;
+  };
+  i18n: {
+    defaultLocale: string;
+    supportedLanguages: Array<{
+      name: string;
+      icon: string;
+      code: string;
+      primary?: boolean;
+    }>;
+  };
+}
+
 /**
  * This is the global config which is used by the client and the server.
  * Note that not everything can be changed, many methods/functions simply use the default config.
  */
-export const defaultConfig = {
+export const defaultConfig: Config = {
   devMode: false,
   dbEndpoint: "https://db.080609.xyz",
   directusEndpoint: "https://db.blalange.org",
   directeusWebsocketEndpoint: "wss://db.blalange.org",
-  keepMeLoggedIn: true, //! Directus does this automatically, should be removed in a future version
-  keepMeLoggedInDelay: 1000 * 60 * 5, //! Directus does this automatically, should be removed in a future version
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",
@@ -30,9 +62,8 @@ export const defaultConfig = {
     copyrightAgent: "simon@blalange.org",
     privacyAgent: "simon@blalange.org",
   },
-  translations: {
+  i18n: {
     defaultLocale: "nb",
-    currentLocale: "nb",
     supportedLanguages: [
       {
         name: "English",
@@ -40,20 +71,25 @@ export const defaultConfig = {
         code: "en",
       },
       {
-        name: "Norwegian",
+        name: "Norwegian Bokmål",
         icon: "circle-flags:no",
         code: "nb",
         primary: true,
-      }
-    ]
-  },
+      },
+      {
+        name: "French",
+        icon: "circle-flags:fr",
+        code: "fr",
+      },
+    ],
+  }
 };
 
 /**
  * This is the global config which is used by the client and the server.
  * Note that not everything can be changed, many methods/functions simply use the default config.
  */
-export const config = writable({
+export const config = writable<Config>({
   ...defaultConfig,
 });
 

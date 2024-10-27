@@ -156,35 +156,11 @@
     collapseProfile.toggle();
   }
 
-  function getlanguageDropdownArrayItem(code) {
-    return defaultConfig.translations.supportedLanguages.find((l) => l.code === code);
-  }
-
-  function redirectToLanguage(code) {
-    let newHostname = "";
-    const currentLocale = get(locale);
-
-    if (!getlanguageDropdownArrayItem(currentLocale).primary) {
-        // We have to do this unholyness so that we can "easily" support multiple domains
-      if (getlanguageDropdownArrayItem(code).primary) {
-        newHostname += $page.url.hostname.split(".").slice(1).join(".");
-      } else {
-        newHostname += code + "." + $page.url.hostname.split(".").slice(1).join(".");
-      }
-    } else {
-      if (getlanguageDropdownArrayItem(code).primary) {
-        newHostname += $page.url.hostname;
-      } else {
-        newHostname += code + "." + $page.url.hostname;
-      }
-    }
-
-    window.location.hostname = newHostname;
+  function geti18nItem(code) {
+    return defaultConfig.i18n.supportedLanguages.find((l) => l.code === code);
   }
 
   let path = $derived($page.url.pathname);
-
-  let { route } = $derived($page.data);
 </script>
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900" {...rest} use:autoAnimate>
@@ -310,10 +286,10 @@
             data-dropdown-placement="bottom"
           >
             <span class="sr-only">Open language menu</span>
-            {#if getlanguageDropdownArrayItem(languageTag()) !== undefined}
-              <iconify-icon icon={getlanguageDropdownArrayItem(languageTag()).icon} width="24" height="24"></iconify-icon>
+            {#if geti18nItem(languageTag()) !== undefined}
+              <iconify-icon icon={geti18nItem(languageTag()).icon} width="24" height="24"></iconify-icon>
             {:else}
-              <iconify-icon icon={defaultConfig.translations.supportedLanguages[0].icon} width="24" height="24"></iconify-icon>
+              <iconify-icon icon={defaultConfig.i18n.supportedLanguages[0].icon} width="24" height="24"></iconify-icon>
             {/if}
           </button>
           <Popper activeContent trigger="click" placement="bottom" arrow="false" rounded="true" shadow="true" on:show>
@@ -322,7 +298,7 @@
               id="language-dropdown"
             >
               <ul class="py-2" aria-labelledby="language-button">
-                {#each defaultConfig.translations.supportedLanguages as language}
+                {#each defaultConfig.i18n.supportedLanguages as language}
                   <li>
                     <!-- svelte-ignore a11y_consider_explicit_label -->
                     <button

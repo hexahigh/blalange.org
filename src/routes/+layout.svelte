@@ -9,7 +9,7 @@
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics";
   import { initialize as initializeDev, checkForDevMode } from "$lib/js/dev";
-  import { loadConfig, config, editKey } from "$lib/js/config";
+  import { loadConfig, config } from "$lib/js/config";
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider, loadIcons } from "iconify-icon";
   import { currentUser } from "$lib/js/directus";
