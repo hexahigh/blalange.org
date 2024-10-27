@@ -5,5 +5,9 @@ export const reroute = i18n.reroute()
 
 export const handleError = async ({ event, error }) => {
     console.error(error);
-    return
+    const stacktrace = error.stack || 'Stack trace unavailable';
+    return {
+      message: error.message,
+      stacktrace: stacktrace
+    }
   };

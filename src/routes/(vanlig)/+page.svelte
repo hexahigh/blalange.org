@@ -2,7 +2,6 @@
   import { MetaTags } from "svelte-meta-tags";
   import Form from "$lib/components/form.svelte";
   import Donate from "$lib/components/donate.svelte";
-  import Leaderboard from "$lib/components/leaderboard.svelte";
 
   import * as m from "$lib/paraglide/messages.js";
 </script>
@@ -43,8 +42,6 @@
   </div>
 
   <Donate />
-
-  <Leaderboard />
   
   <div class="text-center">
     <h2 class="text-3xl font-bold krona">Bli med</h2>

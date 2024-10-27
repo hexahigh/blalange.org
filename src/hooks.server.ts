@@ -38,9 +38,13 @@ const handle1: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
 };
 
 /** @type {import('@sveltejs/kit').HandleServerError} */
-export const handleError: import('@sveltejs/kit').HandleServerError = async ({ event, error }) => {
+export const handleError = async ({ event, error }) => {
   console.error(error);
-  return
+  const stacktrace = error.stack || 'Stack trace unavailable';
+  return {
+    message: error.message,
+    stacktrace: stacktrace
+  }
 };
 
 export const handle = sequence(i18n.handle({ disableAsyncLocalStorage: true }), handle1)
