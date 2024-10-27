@@ -1,6 +1,7 @@
 <script lang="ts">
   import { latestVersion, commitHash, buildDate } from "$lib/js/version";
   import { Tooltip } from "flowbite-svelte";
+  import * as m from "$lib/paraglide/messages.js";
 </script>
 
 <footer
@@ -11,12 +12,12 @@
       <div class="flex justify-center mb-4 gap-3">
         <a
           href="https://github.com/hexahigh/blalange.org"
-          class="hover:underline">Kildekode</a
+          class="hover:underline">{m.footer_link_source()}</a
         >
-        <a href="mailto:contact@blalange.org" class="hover:underline">Epost</a
+        <a href="mailto:contact@blalange.org" class="hover:underline">{m.footer_link_email()}</a
         >
-        <a href="/privacy" class="hover:underline">Personvernerklæring</a>
-        <a href="/tos" class="hover:underline">TOS</a>
+        <a href="/privacy" class="hover:underline">{m.footer_link_privacy()}</a>
+        <a href="/tos" class="hover:underline">{m.footer_link_terms()}</a>
         <a href="https://dev.blalange-org.pages.dev" class="hover:underline"
           >Beta</a
         >

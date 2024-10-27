@@ -9,7 +9,8 @@
   import ArticleCard from "$lib/components/articleCard.svelte";
   import Search from "$lib/components/search.svelte";
   import type Masonry from "masonry-layout";
-    import { languageTag } from "$lib/paraglide/runtime.js";
+  import { languageTag } from "$lib/paraglide/runtime.js";
+  import * as m from "$lib/paraglide/messages.js";
 
   let { data } = $props();
 
@@ -103,7 +104,7 @@
 />
 
 {#if !data.errorOccurred}
-  <Search onSubmit={(event) => search(event.target[0].value)} />
+  <Search onSubmit={(event) => search(event.target[0].value)} placeholder={m.articleList_search_placeholder()} />
   <div
     class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center"
     class:hidden={articles.length <= 0}
@@ -118,18 +119,19 @@
           image={article.image}
           width="300px"
           class="mt-8 grid-item"
+          buttonText={m.articleList_card_readMore()}
         />
       {/each}
     </div>
   </div>
   <div class="mx-auto text-center flex flex-col justify-center items-center" class:hidden={articles.length > 0}>
-    <h2 class="text-2xl">Ingen artikler funnet</h2>
+    <h2 class="text-2xl">{m.articleList_search_noResults()}</h2>
     <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500"></iconify-icon>
-    <p>Prøv et annet søk</p>
+    <p>{m.articleList_search_tryAnother()}</p>
   </div>
 {:else}
   <div class="mx-auto text-center flex flex-col justify-center items-center">
-    <h2 class="text-2xl">Uh oh, vi støttet på en feil.</h2>
+    <h2 class="text-2xl">{m.articleList_error()}</h2>
     <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500"></iconify-icon>
     <p>{data.errorMessage}</p>
   </div>
