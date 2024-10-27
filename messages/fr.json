@@ -12,5 +12,7 @@
     "nav_articles": "Articles",
     "nav_chat": "Chat",
     "nav_home": "Page d'accueil",
-    "nav_merch": "Marchandise"
+    "nav_merch": "Marchandise",
+    "nav_settings": "Paramètres",
+    "nav_signup": "Créer un compte"
 }
