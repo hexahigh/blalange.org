@@ -2,7 +2,7 @@ import { paraglide } from '@inlang/paraglide-sveltekit/vite'
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
-import * as child from "child_process";
+import * as child from "node:child_process";
 
 let commitHash = "0000000";
 try {

@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
+
 export default {
   // darkMode: "selector",
   darkMode: ['variant', ['&:where(.dark, .dark *)', '&:where(:global(.dark), :global(.dark) *)']], // Fix for dark mode after upgrade to svelte 5
@@ -29,4 +30,4 @@ export default {
       defaultFlavour: "mocha",
     }),
   ],
-};
+} satisfies Config

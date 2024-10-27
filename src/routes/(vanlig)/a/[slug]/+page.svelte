@@ -42,7 +42,7 @@
   <div>
     <!-- svelte-ignore a11y_img_redundant_alt -->
     {#if image}
-      <img src={image} class="w-screen aspect-[16/9] object-contain rounded-lg" alt="Article Image" />
+      <img src={image} class="w-screen lg:aspect-[16/9] object-contain rounded-3xl" alt="Article Image" id="articleImg" />
     {/if}
     <h1 class="text-2xl font-medium">
       {name}
