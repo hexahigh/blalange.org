@@ -8,16 +8,13 @@
     "nav_login": "Logg inn",
     "nav_signup": "Opprett konto",
     "nav_logout": "Logg ut",
-
     "home_whatIsBlalange_header": "Hva er blålange festivalen?",
     "home_whatIsBlalange_text": "Blålange festivalen er en årlig stor-fest med konkurranser, talentshow og Celvin.\nVi arbeider med å lage et inkulderende felleskap som elsker partylys. Vi tjener ingenting av Blålange festivalen, det er bare for gøy og pengene vi får inn blir brukt for fremtidige fester. Så bli med, du og!",
-
     "error_header_404": "Noe mangler.",
     "error_text_404": "Beklager, vi kan ikke finne siden du leter etter. Du finner mye på hjemmesiden.",
     "error_returnHome": "Tilbake til hjemmesiden",
-    "error_notFoundheader": "Hva faan?",
-    "error_notFoundtext": "Jeg har null anelse hva du gjorde men denne feilen er så feil at selv jeg vet ikke hva som har skjedd.",
-
     "article_notTranslated_header": "Ikke oversatt",
-    "article_notTranslated_body": "Denne artikkelen har ikke blitt oversatt til språket ditt."
+    "article_notTranslated_body": "Denne artikkelen har ikke blitt oversatt til språket ditt.",
+    "error_notFoundheader": "Hva faan?",
+    "error_notFoundtext": "Jeg har null anelse hva du gjorde men denne feilen er så feil at selv jeg vet ikke hva som har skjedd."
 }
