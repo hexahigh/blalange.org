@@ -38,7 +38,8 @@ const handle1: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
 };
 
 /** @type {import('@sveltejs/kit').HandleServerError} */
-export const handleError = async ({ event }) => {
+export const handleError: import('@sveltejs/kit').HandleServerError = async ({ event, error }) => {
+  console.error(error);
   return
 };
 
