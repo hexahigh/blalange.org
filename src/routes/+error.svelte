@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { fly } from "svelte/transition";
-  import { t, locale as l } from "$lib/js/translations";
+  import * as m from '$lib/paraglide/messages.js'
 
   let domain = $page.url.host;
   let protocol = $page.url.protocol;
@@ -24,15 +24,15 @@
             {/each}
         </h1>
         <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
-          {$t(`error.header.${status}`)}
+          {m[`error_header_${status}`]()}
         </p>
         <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-          {$t(`error.text.${status}`) || $t(`notFound.text`)}
+          {m[`error_text_${status}`]() || m.error_notFound_text()}
         </p>
         <a
-          href="/{$l}"
+          href="/"
           class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
-          >{$t(`error.returnHome`)}</a
+          >{m.error_returnHome()}</a
         >
       </div>
     </div>

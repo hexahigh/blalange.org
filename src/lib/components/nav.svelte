@@ -14,9 +14,11 @@
   import Popper from "./popper.svelte";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
-  import { t, tu, locale as l, setLocale, locale } from "$lib/js/translations"
+  import * as m from '$lib/paraglide/messages.js'
+  import { i18n } from '$lib/i18n'
   import { get } from "svelte/store";
   import { goto } from "$app/navigation";
+  import { languageTag } from "$lib/paraglide/runtime";
   /** @type {{ [key: string]: any }} */
   let { ...rest } = $props();
 
@@ -224,17 +226,17 @@
       <ul
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
-        <li class={path === "/"+$l ? "current-page" : "not-current-page"}>
-          <a href="/{$l}">{$t("nav.home")}</a>
+        <li class={i18n.route(path) === "/" ? "current-page" : "not-current-page"}>
+          <a href="/">{m.nav_home()}</a>
         </li>
-        <li class={path === "/"+$l+"/articles" ? "current-page" : "not-current-page"}>
-          <a href="/{$l}/articles">{$t("nav.articles")}</a>
+        <li class={i18n.route(path) === "/articles" ? "current-page" : "not-current-page"}>
+          <a href="/articles">{m.nav_articles()}</a>
         </li>
         <li class="not-current-page">
-          <a href={"/" + $l + toRedirect("https://shop.blalange.org", { noHost: true })}>{$t("nav.merch")}</a>
+          <a href={toRedirect("https://shop.blalange.org", { noHost: true })}>{m.nav_merch()}</a>
         </li>
-        <li class={path === "/"+$l+"/chat" ? "current-page" : "not-current-page"}>
-          <a href="/{$l}/chat">{$t("nav.chat")}</a>
+        <li class={i18n.route(path) === "/chat" ? "current-page" : "not-current-page"}>
+          <a href="/chat">{m.nav_chat()}</a>
         </li>
         <li class="mx-auto z-[21] md:m-0">
           <button
@@ -264,9 +266,9 @@
                 <ul class="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <a
-                      href="/{$l}/settings"
+                      href="/settings"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >{$t("nav.settings")}</a
+                      >{m.nav_settings()}</a
                     >
                   </li>
                   <li>
@@ -274,7 +276,7 @@
                       onclick={() => logout()}
                       href=""
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >Logg ut</a
+                      >{m.nav_logout()}</a
                     >
                   </li>
                 </ul>
@@ -282,16 +284,16 @@
                 <ul class="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <a
-                      href="/{$l}/settings"
+                      href="/settings"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >{$t("nav.settings")}</a
+                      >{m.nav_settings()}</a
                     >
                   </li>
                   <li>
                     <a
-                      href="/{$l}/login"
+                      href="/login"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >Logg inn</a
+                      >{m.nav_login()}</a
                     >
                   </li>
                 </ul>
@@ -308,8 +310,8 @@
             data-dropdown-placement="bottom"
           >
             <span class="sr-only">Open language menu</span>
-            {#if getlanguageDropdownArrayItem($locale) !== undefined}
-              <iconify-icon icon={getlanguageDropdownArrayItem($locale).icon} width="24" height="24"></iconify-icon>
+            {#if getlanguageDropdownArrayItem(languageTag()) !== undefined}
+              <iconify-icon icon={getlanguageDropdownArrayItem(languageTag()).icon} width="24" height="24"></iconify-icon>
             {:else}
               <iconify-icon icon={defaultConfig.translations.supportedLanguages[0].icon} width="24" height="24"></iconify-icon>
             {/if}
@@ -322,9 +324,10 @@
               <ul class="py-2" aria-labelledby="language-button">
                 {#each defaultConfig.translations.supportedLanguages as language}
                   <li>
+                    <!-- svelte-ignore a11y_consider_explicit_label -->
                     <button
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      onclick={() => goto(`/${language.code}${route}`)}
+                      onclick={() => goto(i18n.resolveRoute(i18n.route($page.url.pathname), language.code))}
                       ><iconify-icon icon={language.icon} width="24" height="24"></iconify-icon></button
                     >
                   </li>

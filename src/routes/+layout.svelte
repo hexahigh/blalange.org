@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { ParaglideJS } from '@inlang/paraglide-sveltekit'
+	import { i18n } from '$lib/i18n'
+
   import { dev } from "$app/environment";
   import "../app.css";
   import "$lib/css/fonts.css";
@@ -13,7 +16,6 @@
 
   import "$lib/js/polyfills/main";
 
-  import { locale, setLocale } from "$lib/js/translations"
   import { get } from "svelte/store";
   interface Props {
     children?: import('svelte').Snippet;
@@ -44,12 +46,6 @@
 
     });
 
-    locale.subscribe((value) => {
-      if (value !== get(config).translations.currentLocale) {
-        editKey("translations.currentLanguage", value);
-      }
-    })
-
     initEgg(); // Initialize easter egg 1
     if (dev) {
       console.log("In development mode. No analytics monitoring.");
@@ -76,6 +72,8 @@
   {/if}
 </svelte:head>
 
+<ParaglideJS {i18n}>
 <main>
   {@render children?.()}
 </main>
+</ParaglideJS>

@@ -2,8 +2,6 @@ import PocketBase from "pocketbase";
 import { config, defaultConfig } from "$lib/js/config";
 import { readItems, readItem } from '@directus/sdk';
 import { getDirectusInstanceRest, getImageUrl } from "$lib/js/directus";
-import { locale } from "$lib/js/translations";
-import { get } from "svelte/store";
 
 export async function load({ params, url, fetch }) {
   const urlParams = url.searchParams;

@@ -1,21 +1,19 @@
 <script lang="ts">
-
   import { Alert } from "flowbite-svelte";
-  import { t, locale } from "$lib/js/translations"
-  import { get } from "svelte/store";
+  import * as m from "$lib/paraglide/messages.js";
   import Metatags from "$lib/components/metatags.svelte";
   import Comments from "$lib/components/comments.svelte";
   import "iconify-icon";
   import { type DataType } from "./types";
   import "katex/dist/katex.min.css";
+  import { languageTag } from "$lib/paraglide/runtime";
   interface Props {
     data: DataType;
   }
 
   let { data }: Props = $props();
 
-  const translations = data.article.translations;
-  const currentLocale = get(locale);
+  const currentLocale = languageTag();
 
   let name = data.translations?.[currentLocale]?.name || data.article.name;
   let date = data.article.date;
@@ -60,8 +58,8 @@
     {#if !data.translations?.[currentLocale]?.text}
       <Alert border color="blue">
         <iconify-icon icon="mdi:information" width="24" height="24"></iconify-icon>
-        <span class="font-medium">{$t("article.warning.notTranslated.header")}</span>
-        <p>{$t("article.warning.notTranslated.body")}</p>
+        <span class="font-medium">{m.article_notTranslated_header()}</span>
+        <p>{m.article_notTranslated_body()}</p>
       </Alert>
     {/if}
     <div id="articleText" class="m-9 text-gray-800 dark:text-gray-300">

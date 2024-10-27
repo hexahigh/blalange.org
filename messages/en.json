@@ -1,0 +1,24 @@
+{
+    "$schema": "https://inlang.com/schema/inlang-message-format",
+    
+    "nav_articles": "Articles",
+    "nav_home": "Home",
+    "nav_chat": "Chat",
+    "nav_merch": "Merch",
+    "nav_settings": "Settings",
+    "nav_login": "Login",
+    "nav_signup": "Sign up",
+    "nav_logout": "Logout",
+
+    "home_whatIsBlalange_header": "What is the Blålange festival?",
+    "home_whatIsBlalange_text": "The Blålange festival is an annual big party with competitions, talent shows and Celvin.\nWe work to create an inclusive community that loves party lights. We don't earn anything from the Blålange festival, it's just for fun and the money we get is used for future parties. So join in, you too!",
+
+    "error_header_404": "Something's missing.",
+    "error_text_404": "Sorry, we can't find that page. You'll find lots to explore on the home page.",
+    "error_returnHome": "Back to homepage",
+    "error_notFound_header": "What the fuck?",
+    "error_notFound_text": "I have no idea what you did but this error is so wrong that even I don't know what caused it.",
+
+    "article_notTranslated_header": "Not translated",
+    "article_notTranslated_body": "The article has not been translated to your language."
+}
