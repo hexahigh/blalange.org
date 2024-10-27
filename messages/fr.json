@@ -1,16 +1,16 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
-    "nav_articles": "Articles",
-    "nav_home": "Page d'accueil",
-    "nav_chat": "Chat",
-    "nav_merch": "Marchandise",
+    "article_notTranslated_body": "Cet article n'a pas été traduit dans votre langue.",
+    "article_notTranslated_header": "Pas traduit",
+    "error_header_404": "Il manque quelque chose.",
+    "error_notFound_header": "Que diable?",
+    "error_notFound_text": "Je n'ai aucune idée de ce que vous avez fait, mais cette erreur est tellement fausse que même moi, je ne sais pas ce qui s'est passé.",
+    "error_returnHome": "Retour à la page d'accueil",
+    "error_text_404": "Désolé, nous ne trouvons pas la page que vous recherchez. Vous en trouverez beaucoup sur le page d'accueil.",
     "home_whatIsBlalange_header": "Qu'est-ce que le Festival de Blålange?",
     "home_whatIsBlalange_text": "Le festival de Blålange est une grande fête annuelle avec des concours, des spectacles de talents et Celvin.\nNous travaillons pour créer une communauté inclusive qui aime les lumières de fête. Nous ne gagnons rien du festival de Blålange, c'est juste pour nous amuser et l'argent que nous recevons est utilisé pour de futures fêtes. Alors participez, vous aussi!",
-    "error_header_404": "Il manque quelque chose.",
-    "error_text_404": "Désolé, nous ne trouvons pas la page que vous recherchez. Vous en trouverez beaucoup sur le page d'accueil.",
-    "error_returnHome": "Retour à la page d'accueil",
-    "article_notTranslated_header": "Pas traduit",
-    "article_notTranslated_body": "Cet article n'a pas été traduit dans votre langue.",
-    "error_notFoundheader": "Que diable?",
-    "error_notFoundtext": "Je n'ai aucune idée de ce que vous avez fait, mais cette erreur est tellement fausse que même moi, je ne sais pas ce qui s'est passé."
+    "nav_articles": "Articles",
+    "nav_chat": "Chat",
+    "nav_home": "Page d'accueil",
+    "nav_merch": "Marchandise"
 }
