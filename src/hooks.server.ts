@@ -43,4 +43,4 @@ export const handleError: import('@sveltejs/kit').HandleServerError = async ({ e
   return
 };
 
-export const handle = sequence(i18n.handle(), handle1)
+export const handle = sequence(i18n.handle({ disableAsyncLocalStorage: true }), handle1)
