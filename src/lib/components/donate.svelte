@@ -42,9 +42,9 @@
   <h4 class="text-2xl">{m.donations_donateNow()}</h4>
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-  <div class="flex flex-col sm:flex-row justify-center gap-16">
+  <div class="flex flex-col sm:flex-row justify-center items-center gap-16">
     <img
-      class="w-full sm:w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
+      class="max-w-[90%] sm:w-64 h-64 hover:scale-110 transform transition duration-500 no-drag"
       draggable="false"
       src={opencollective}
       alt="OpenCollective"
