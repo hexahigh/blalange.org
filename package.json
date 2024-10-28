@@ -18,7 +18,7 @@
     "@catppuccin/tailwindcss": "^0.1.6",
     "@iconify/svelte": "^4.0.2",
     "@playwright/test": "^1.48.1",
-    "@sveltejs/adapter-auto": "^3.2.5",
+    "@sveltejs/adapter-auto": "^3.3.1",
     "@sveltejs/enhanced-img": "^0.3.9",
     "@sveltejs/kit": "^2.7.2",
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
