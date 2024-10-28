@@ -19,6 +19,8 @@
   let allArticles = $state(data.articles);
   let articles = $state(allArticles); // Initialize with all articles
 
+  let onlyLanguage = $state(false);
+
   const fuseOptions: IFuseOptions<any> = {
     keys: [{ name: "name" }, { name: "description" }],
     minMatchCharLength: 3,
@@ -33,11 +35,20 @@
 
   async function search(term) {
     const fuse = new Fuse(allArticles, fuseOptions, fuseIndex);
-    const result = fuse.search(term);
+    let result = [];
 
-    console.log(result);
+    if (term) {
+      result = fuse.search(term);
 
-    articles = result.map((result) => result.item);
+      articles = result.map((result) => result.item);
+    } else {
+      articles = allArticles;
+    }
+
+    // Filter out articles that don't match the selected language
+    if (onlyLanguage) {
+      articles = articles.filter((article) => article.translations.some((translation) => translation.languages_code === languageTag()));
+    }
 
     if (result.length > 0) {
       await tick(); // Wait for the DOM to update
@@ -50,7 +61,7 @@
     for (const article of allArticles) {
       // Find translation matching current locale
       const translations = article.translations;
-      const currentLocale = languageTag()
+      const currentLocale = languageTag();
 
       article.name =
         translations.find((translation) => translation.languages_code === currentLocale)?.name || article.name;
@@ -104,7 +115,23 @@
 />
 
 {#if !data.errorOccurred}
-  <Search onSubmit={(event) => search(event.target[0].value)} placeholder={m.articleList_search_placeholder()} />
+  <div class="mx-auto text-center flex flex-col justify-center items-center gap-4">
+    <Search onSubmit={(event) => search(event.target[0].value)} placeholder={m.articleList_search_placeholder()} />
+    <div class="flex items-start">
+      <div class="flex items-center h-5">
+        <input
+          id="onlyLanguage"
+          type="checkbox"
+          bind:checked={onlyLanguage}
+          class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+          required
+        />
+      </div>
+      <label for="onlyLanguage" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >{m.articleList_search_onlyLanguage()}</label
+      >
+    </div>
+  </div>
   <div
     class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center"
     class:hidden={articles.length <= 0}
