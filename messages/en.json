@@ -46,5 +46,6 @@
     "footer_link_email": "Email",
     "footer_link_privacy": "Privacy policy",
     "footer_link_source": "Source code",
-    "footer_link_terms": "Terms and Conditions"
+    "footer_link_terms": "Terms and Conditions",
+    "articleList_search_onlyLanguage": "Only show articles in my language"
 }

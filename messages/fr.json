@@ -14,5 +14,10 @@
     "nav_home": "Page d'accueil",
     "nav_merch": "Marchandise",
     "nav_settings": "Paramètres",
-    "nav_signup": "Créer un compte"
+    "nav_signup": "Créer un compte",
+    "articleList_error": "Merde, nous avons rencontré une erreur. Putain!",
+    "footer_link_email": "Courriel",
+    "footer_link_privacy": "Règles de confidentialité",
+    "footer_link_source": "Code source",
+    "footer_link_terms": "Conditions d'utilisation"
 }
