@@ -9,7 +9,7 @@
 >
   <div class="md:flex md:justify-center md:items-center">
     <div>
-      <div class="flex justify-center mb-4 gap-3">
+      <div class="flex justify-center flex-wrap mb-4 gap-3">
         <a
           href="https://github.com/hexahigh/blalange.org"
           class="hover:underline">{m.footer_link_source()}</a
