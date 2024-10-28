@@ -48,8 +48,8 @@ importers:
         specifier: ^4.7.3
         version: 4.7.3(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))(wrangler@3.60.2(@cloudflare/workers-types@4.20241004.0))
       '@sveltejs/adapter-node':
-        specifier: ^5.2.8
-        version: 5.2.8(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))
+        specifier: ^5.2.9
+        version: 5.2.9(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))
       '@tsparticles/confetti':
         specifier: ^3.5.0
         version: 3.5.0
@@ -1682,8 +1682,8 @@ packages:
       '@sveltejs/kit': ^2.0.0
       wrangler: ^3.28.4
 
-  '@sveltejs/adapter-node@5.2.8':
-    resolution: {integrity: sha512-wll164mO8pX/0Ak6/64h0OzO4Id24PBmTla3zRlGEdbdQGkGb2WZPZOuvcWi6IEpwekA4RVFe58fjbkIV0Bslw==}
+  '@sveltejs/adapter-node@5.2.9':
+    resolution: {integrity: sha512-51euNrx0AcaTu8//wDfVh7xmqQSVgU52rfinE/MwvGkJa4nHPJMHmzv6+OIpmxg7gZaF6+5NVlxnieCzxLD59g==}
     peerDependencies:
       '@sveltejs/kit': ^2.4.0
 
@@ -5682,7 +5682,7 @@ snapshots:
       worktop: 0.8.0-next.18
       wrangler: 3.60.2(@cloudflare/workers-types@4.20241004.0)
 
-  '@sveltejs/adapter-node@5.2.8(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))':
+  '@sveltejs/adapter-node@5.2.9(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))(svelte@4.2.19)(vite@5.4.9(@types/node@22.7.6)(terser@5.34.1)))':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.24.0)
       '@rollup/plugin-json': 6.1.0(rollup@4.24.0)
