@@ -47,14 +47,14 @@
 
     // Filter out articles that don't match the selected language
     if (onlyLanguage) {
-      articles = articles.filter((article) => article.translations.some((translation) => translation.languages_code === languageTag()));
+      articles = articles.filter((article) =>
+        article.translations.some((translation) => translation.languages_code === languageTag()),
+      );
     }
 
-    if (articles !== allArticles) {
-      await tick(); // Wait for the DOM to update
-      msnry.reloadItems();
-      msnry.layout();
-    }
+    await tick(); // Wait for the DOM to update
+    msnry.reloadItems();
+    msnry.layout();
   }
 
   $effect(() => {
