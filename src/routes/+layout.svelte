@@ -8,6 +8,7 @@
   import { onMount, onDestroy } from "svelte";
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics";
+  import { init as initAnalytics2 } from "$lib/js/analytics2";
   import { initialize as initializeDev, checkForDevMode } from "$lib/js/dev";
   import { loadConfig, config } from "$lib/js/config";
   import { initEgg } from "$lib/js/egg.js";
@@ -51,6 +52,7 @@
       console.log("In development mode. No analytics monitoring.");
     } else {
       startAnalyticsMonitoring();
+      initAnalytics2();
     }
   });
 </script>
