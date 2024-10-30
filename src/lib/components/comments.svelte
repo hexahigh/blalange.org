@@ -1,4 +1,6 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { onMount, onDestroy } from "svelte";
   import { config, defaultConfig } from "$lib/js/config";
   import PocketBase from "pocketbase";
@@ -23,16 +25,16 @@
     return date.toLocaleDateString(date.getTimezoneOffset() / 60, options);
   }
 
-  export let id;
+  let { id } = $props();
 
-  let commentError = null;
+  let commentError = $state(null);
 
-  let commentName = "";
-  let commentText = "";
+  let commentName = $state("");
+  let commentText = $state("");
 
-  let comments = [];
-  let currentPage = 1;
-  let totalCommentsFetched = 0;
+  let comments = $state([]);
+  let currentPage = $state(1);
+  let totalCommentsFetched = $state(0);
 
   // Options
   let options = {
@@ -50,10 +52,6 @@
     await fetchComments(currentPage);
   });
 
-  // Reactive statement to fetch comments whenever the `id` prop changes
-  $: if (id) {
-    fetchComments(currentPage);
-  }
 
   function isLoggedIn() {
     if (!pb) return; // Ensure PocketBase is initialized
@@ -179,6 +177,12 @@
     comments = [];
     fetchComments(1, true);
   }
+  // Reactive statement to fetch comments whenever the `id` prop changes
+  run(() => {
+    if (id) {
+      fetchComments(currentPage);
+    }
+  });
 </script>
 
 <div>
@@ -199,7 +203,7 @@
       class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
       bind:value={commentText}
     ></textarea>
-    <button class="blue-button" on:click={addComment}>Send</button>
+    <button class="blue-button" onclick={addComment}>Send</button>
     <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
   </div>
   {#each comments as comment}
@@ -213,18 +217,18 @@
         {comment.name}
         {#if comment.verified}
           <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
-          <iconify-icon class="text-green-500" icon="lucide:check" />
+          <iconify-icon class="text-green-500" icon="lucide:check"></iconify-icon>
           <Tooltip class="text-black dark:text-white bg-gray-300">The user was logged in</Tooltip>
         {/if}
         {#if comment.isAdmin}
           <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
-          <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
+          <iconify-icon class="text-blue-500" icon="lucide:shield-check"></iconify-icon>
           <Tooltip class="text-black dark:text-white bg-gray-300">The user is an admin</Tooltip>
         {/if}
         {#if comment.extraBadges}
           {#each comment.extraBadges as badge}
             {#if badge.v2}
-              <iconify-icon style={"color: " + badge.color} icon={badge.badge} />
+              <iconify-icon style={"color: " + badge.color} icon={badge.badge}></iconify-icon>
               <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
             {:else}
               <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
@@ -240,8 +244,8 @@
     </div>
   {/each}
   {#if totalCommentsFetched > 0}
-    <button on:click={loadMoreComments} class="blue-button">Vis flere</button>
-    <button on:click={loadAllComments} class="blue-button">Vis alle</button>
+    <button onclick={loadMoreComments} class="blue-button">Vis flere</button>
+    <button onclick={loadAllComments} class="blue-button">Vis alle</button>
   {/if}
 </div>
 

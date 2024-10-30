@@ -8,6 +8,10 @@
         "analytics",
         "cliff",
         "article",
-        "service worker"
+        "service worker",
+        "navbar",
+        "error page",
+        "footer",
+        "translations"
     ]
 }

@@ -9,9 +9,9 @@ config.subscribe((value) => {
   pb = new PocketBase(value.dbEndpoint);
 });
 
-  let data = [];
-  let user = "";
-  let pass = "";
+  let data = $state([]);
+  let user = $state("");
+  let pass = $state("");
 
   onMount(async () => {});
 
@@ -33,8 +33,8 @@ config.subscribe((value) => {
 <div class="border border-black w-max">
   <input bind:value={user} placeholder="user" class="w-10" />
   <input bind:value={pass} placeholder="pass" class="w-10" type="password" />
-  <button on:click={auth}>Auth</button>
-  <button on:click={getData} class="ml-6">Get data</button>
+  <button onclick={auth}>Auth</button>
+  <button onclick={getData} class="ml-6">Get data</button>
 </div>
 {#each data as item (item.id)}
   <div class="data-item">

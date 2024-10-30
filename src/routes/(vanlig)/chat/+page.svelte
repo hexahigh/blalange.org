@@ -25,12 +25,12 @@
     return date.toLocaleDateString(undefined, options);
   }
 
-  let commentError = null;
+  let commentError = $state(null);
 
   let commentName = "";
-  let commentText = "";
+  let commentText = $state("");
 
-  let comments = [];
+  let comments = $state([]);
   let currentPage = 1;
   let totalCommentsFetched = 0;
 
@@ -281,18 +281,18 @@
             {comment.name}
             {#if comment.verified}
               <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
-              <iconify-icon class="text-green-500" icon="lucide:check" />
+              <iconify-icon class="text-green-500" icon="lucide:check"></iconify-icon>
               <Tooltip class="text-black dark:text-white bg-gray-300">The user was logged in</Tooltip>
             {/if}
             {#if comment.isAdmin}
               <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
-              <iconify-icon class="text-blue-500" icon="lucide:shield-check" />
+              <iconify-icon class="text-blue-500" icon="lucide:shield-check"></iconify-icon>
               <Tooltip class="text-black dark:text-white bg-gray-300">The user is an admin</Tooltip>
             {/if}
             {#if comment.extraBadges}
               {#each comment.extraBadges as badge}
                 {#if badge.v2}
-                  <iconify-icon style={"color: " + badge.color} icon={badge.badge} />
+                  <iconify-icon style={"color: " + badge.color} icon={badge.badge}></iconify-icon>
                   <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
                 {:else}
                   <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
@@ -324,7 +324,7 @@
         class="w-full p-2 border-black border-2 rounded dark:bg-gray-900 dark:border-gray-700"
         bind:value={commentText}
       ></textarea>
-      <button class="blue-button" on:click={addMessage}>Send</button>
+      <button class="blue-button" onclick={addMessage}>Send</button>
       <p class:hidden={!commentError} class="text-red-500">{commentError}</p>
     {:else}
       <div class="blur-overlay">

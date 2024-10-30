@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { ParaglideJS } from '@inlang/paraglide-sveltekit'
+	import { i18n } from '$lib/i18n'
+
   import { dev } from "$app/environment";
   import "../app.css";
   import "$lib/css/fonts.css";
@@ -13,6 +16,13 @@
 
   import "$lib/js/polyfills/main";
 
+  import { get } from "svelte/store";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
+
   addAPIProvider("", {
     resources: ["https://api.iconify.design", "https://api.simplesvg.com", "https://api.unisvg.com"],
   });
@@ -22,7 +32,7 @@
     "line-md:moon-filled-loop", // Navbar
   ]);
 
-  onMount(() => {
+  onMount(async () => {
     loadConfig(); // Load the config from local storage
     initializeDev(); // Initialize the dev mode
     checkForDevMode(); // Checks if dev mode is enabled in the config
@@ -31,6 +41,9 @@
 
     config.subscribe((value) => {
       document.documentElement.style.setProperty("--font-family-var", value.font.family);
+
+      // if (value.translations.currentLocale) setLocale(value.translations.currentLocale);
+
     });
 
     initEgg(); // Initialize easter egg 1
@@ -59,6 +72,8 @@
   {/if}
 </svelte:head>
 
+<ParaglideJS {i18n}>
 <main>
-  <slot />
+  {@render children?.()}
 </main>
+</ParaglideJS>

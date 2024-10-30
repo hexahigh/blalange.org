@@ -24,6 +24,9 @@ export async function load({ params, url, fetch }) {
         "image",
         "date",
         "status",
+        {
+          "translations": ["languages_code", "name", "description"]
+        }
       ],
     }))
 
@@ -54,7 +57,6 @@ export async function load({ params, url, fetch }) {
         articles.splice(i, 1);
         i--;
       }
-
     }
 
     // Sort the articles by date

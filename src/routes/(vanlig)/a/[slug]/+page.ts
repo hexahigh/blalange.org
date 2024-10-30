@@ -24,6 +24,8 @@ export async function load({ params, url, fetch }) {
             _eq: articleId,
           },
         },
+        limit: 1,
+        fields: ["*", "translations.*"],
       })
     );
 
@@ -52,17 +54,25 @@ export async function load({ params, url, fetch }) {
       .use(remarkGfm)
       .use(remarkMath)
       .use(rehypeStringify)
-      .use(rehypeKatex)
-      .processSync(article.text || article.text_wysiwyg);
+      .use(rehypeKatex);
 
-    let text = String(mdStuff);
+    let text = String(mdStuff.processSync(article.text || article.text_wysiwyg));
+
+    let translations = article.translations.reduce((acc, translation) => {
+      acc[translation.languages_code] = {
+        name: translation.name,
+        description: translation.description,
+        text: String(mdStuff.processSync(translation.text)),
+      };
+      return acc;
+    }, {});
 
     // Fetch the author names
     const authorObject = await client.request(readItem("art_authors", article.author));
 
     const author = authorObject.name;
 
-    return { article, author, imgUrl, text };
+    return { article, author, imgUrl, text, translations };
   } catch (err) {
     console.error(err);
     error(500, err.message);
