@@ -50,7 +50,7 @@
       articles = articles.filter((article) => article.translations.some((translation) => translation.languages_code === languageTag()));
     }
 
-    if (result.length > 0) {
+    if (articles !== allArticles) {
       await tick(); // Wait for the DOM to update
       msnry.reloadItems();
       msnry.layout();
