@@ -4,9 +4,12 @@ import { getDirectusInstance } from "./directus";
 import { createItem } from "@directus/sdk";
 import { afterNavigate, beforeNavigate } from "$app/navigation";
 import { page as pageStore } from "$app/stores";
+import { latestVersion } from "./version";
 import type { Page } from "@sveltejs/kit";
 
 const client = getDirectusInstance(null);
+
+const analyticsVersion = "1.0"
 
 let enabled: boolean;
 let devMode: boolean;
@@ -88,6 +91,8 @@ async function handleRequest(type: string, additionalData = {}) {
       data: {
         ...additionalData,
         url_details: urlDetails,
+        site_version: latestVersion.id,
+        analytics_version: analyticsVersion,
       },
     })
   );
