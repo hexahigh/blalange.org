@@ -44,7 +44,7 @@
     "workbox-precaching": "^7.1.0",
     "workbox-routing": "^7.1.0",
     "workbox-strategies": "^7.1.0",
-    "workbox-window": "^7.1.0"
+    "workbox-window": "^7.3.0"
   },
   "dependencies": {
     "@dicebear/collection": "^8.0.2",
