@@ -9,7 +9,7 @@ import type { Page } from "@sveltejs/kit";
 
 const client = getDirectusInstance(null);
 
-const analyticsVersion = "1.0"
+const analyticsVersion = "1.0";
 
 let enabled: boolean;
 let devMode: boolean;
@@ -19,7 +19,7 @@ config.subscribe((value) => {
   devMode = value.devMode;
 });
 
-let page: Page<Record<string, string>, string | null>
+let page: Page<Record<string, string>, string | null>;
 
 let ip = "";
 
@@ -90,6 +90,13 @@ async function handleRequest(type: string, additionalData = {}) {
       ip: ip,
       data: {
         ...additionalData,
+        info: {
+          width: info.screenWidth,
+          height: info.screenHeight,
+          referrer: info.referrer,
+          ip: ip,
+          useragent: info.userAgent,
+        },
         url_details: urlDetails,
         site_version: latestVersion.id,
         analytics_version: analyticsVersion,
@@ -110,17 +117,17 @@ async function addOnClickListener() {
       textContent: button.textContent,
       ariaLabel: button.getAttribute("aria-label"),
       svelte_meta: (button as any).__svelte_meta,
-    }
+    };
     button.addEventListener("click", (event) => handleEvent(event, "buttonClick", { button: buttonInfo }));
   }
 }
 
-function init() {
+async function init() {
   if (typeof window === "undefined") return; // Exit if not in a browser environment
 
   pageStore.subscribe((value) => {
-    page = value
-  })
+    page = value;
+  });
 
   addOnClickListener();
 
@@ -139,7 +146,9 @@ function init() {
       ...navigation,
     });
     addOnClickListener();
-  })
+  });
+
+  handleRequest("init");
 }
 
 export { init };
