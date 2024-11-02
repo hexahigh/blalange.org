@@ -25,7 +25,7 @@ export async function load({ params, url, fetch }) {
           },
         },
         limit: 1,
-        fields: ["*", "translations.*"],
+        fields: ["*", "translations.*", "author.*"],
       })
     );
 
@@ -67,10 +67,7 @@ export async function load({ params, url, fetch }) {
       return acc;
     }, {});
 
-    // Fetch the author names
-    const authorObject = await client.request(readItem("art_authors", article.author));
-
-    const author = authorObject.name;
+    const author = article.author.name;
 
     return { article, author, imgUrl, text, translations };
   } catch (err) {
