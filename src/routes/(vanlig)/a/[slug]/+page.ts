@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeStringify from "rehype-stringify";
 import rehypeKatex from "rehype-katex";
+import rehypeHighlight from "rehype-highlight";
 import { unified } from "unified";
 
 export async function load({ params, url, fetch }) {
@@ -54,7 +55,8 @@ export async function load({ params, url, fetch }) {
       .use(remarkGfm)
       .use(remarkMath)
       .use(rehypeStringify)
-      .use(rehypeKatex);
+      .use(rehypeKatex)
+      .use(rehypeHighlight);
 
     let text = String(mdStuff.processSync(article.text || article.text_wysiwyg));
 
