@@ -22,7 +22,7 @@
     "@inlang/cli": "^2.18.1",
     "@playwright/test": "^1.48.2",
     "@sveltejs/adapter-auto": "^3.3.1",
-    "@sveltejs/enhanced-img": "^0.3.10",
+    "@sveltejs/enhanced-img": "^0.4.0",
     "@sveltejs/kit": "^2.7.3",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
     "@types/howler": "^2.2.12",
