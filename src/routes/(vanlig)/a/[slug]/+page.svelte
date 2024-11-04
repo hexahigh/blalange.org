@@ -6,7 +6,6 @@
   import "iconify-icon";
   import { type DataType } from "./types";
   import "katex/dist/katex.min.css";
-  import "highlight.js/styles/obsidian.css";
   import "$lib/css/md-article.pcss";
   import { languageTag } from "$lib/paraglide/runtime";
   interface Props {
