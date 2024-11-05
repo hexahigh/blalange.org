@@ -41,8 +41,6 @@ export async function load({ params, url, fetch }) {
       format: "auto",
     });
 
-    article.date = new Date(article.date).getTime();
-
     const markedOptions = {
       breaks: true,
       gfm: true,
@@ -69,7 +67,7 @@ export async function load({ params, url, fetch }) {
       return acc;
     }, {});
 
-    const author = article.author.name;
+    const author = article.author?.name;
 
     return { article, author, imgUrl, text, translations };
   } catch (err) {

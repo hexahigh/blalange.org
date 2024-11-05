@@ -45,7 +45,7 @@
     {#if image}
       <img
         src={image}
-        class="w-screen lg:aspect-[16/9] object-contain rounded-3xl"
+        class="w-screen max-h-[45rem] object-cover rounded-3xl"
         alt="Article Image"
         id="articleImg"
       />
