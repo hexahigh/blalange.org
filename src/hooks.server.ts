@@ -1,12 +1,8 @@
 import { i18n } from '$lib/i18n'
+import { addCORS } from '$lib/js/handles';
 import { sequence } from '@sveltejs/kit/hooks'
 
 const localeExcludedRoutes: RegExp[] = [new RegExp("/api/.*"), new RegExp("/webring/.*|/webring")];
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
-}
 
 const handle1: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
   const { url, request } = event;
@@ -30,9 +26,6 @@ const handle1: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
     }
   );
 
-  response.headers.set("Access-Control-Allow-Origin", "*");
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
-
   // Add html `lang` attribute
   return response
 };
@@ -47,4 +40,4 @@ export const handleError = async ({ event, error }) => {
   }
 };
 
-export const handle = sequence(i18n.handle({ disableAsyncLocalStorage: true }), handle1)
+export const handle = sequence(i18n.handle({ disableAsyncLocalStorage: true }), handle1, addCORS)

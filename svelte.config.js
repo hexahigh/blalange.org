@@ -14,6 +14,15 @@ const config = {
     serviceWorker: {
       register: false,
     },
+    csp: {
+      mode: "auto",
+      reportOnly: {
+        "report-to": [
+          "/api/csp-report",
+          "https://blalange.org/api/csp-report",
+        ]
+      }
+    },
   },
   preprocess: vitePreprocess(),
 };
