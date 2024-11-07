@@ -23,6 +23,10 @@ const config = {
         ]
       }
     },
+    alias: {
+      $root: "",
+      $components: "src/lib/components",
+    },
   },
   preprocess: vitePreprocess(),
 };
