@@ -6,10 +6,12 @@ import { afterNavigate, beforeNavigate } from "$app/navigation";
 import { page as pageStore } from "$app/stores";
 import { latestVersion } from "./version";
 import type { Page } from "@sveltejs/kit";
+import { fingerprint, botd } from "$lib/stores/info";
+import { get } from "svelte/store";
 
 const client = getDirectusInstance(null);
 
-const analyticsVersion = "1.0";
+const analyticsVersion = "1.1";
 
 let enabled: boolean;
 let devMode: boolean;
@@ -107,6 +109,7 @@ async function handleRequest(type: string, additionalData = {}) {
       session_id: getSessionId(),
       persistent_id: getPersistentId(),
       ip: ip,
+      version: analyticsVersion,
       data: {
         ...additionalData,
         info: {
@@ -119,6 +122,11 @@ async function handleRequest(type: string, additionalData = {}) {
         url_details: urlDetails,
         site_version: latestVersion.id,
         analytics_version: analyticsVersion,
+        botd: {
+          bot: get(botd).detect().bot,
+          ...get(botd),
+        },
+        fingerprint: await get(fingerprint).get(),
       },
     })
   );

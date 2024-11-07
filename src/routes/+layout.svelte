@@ -14,6 +14,9 @@
   import { initEgg } from "$lib/js/egg.js";
   import { addAPIProvider, loadIcons } from "iconify-icon";
   import { currentUser } from "$lib/js/directus";
+  import FingerprintJS from "@fingerprintjs/fingerprintjs";
+  import { load as loadBotD } from '@fingerprintjs/botd'
+  import { fingerprint as fingerprintStore, botd as botdStore } from '$lib/stores/info';
 
   import "$lib/js/polyfills/main";
 
@@ -46,6 +49,17 @@
       // if (value.translations.currentLocale) setLocale(value.translations.currentLocale);
 
     });
+
+    // FingerprintJS and BotD
+    FingerprintJS.load().then((fp) => {
+      fingerprintStore.set(fp);
+      console.log(fp.get())
+    })
+    loadBotD().then((botd) => {
+      botdStore.set(botd);
+    })
+    // fingerprint.set((await FingerprintJS.load()));
+    // botd.set(await loadBotD());
 
     initEgg(); // Initialize easter egg 1
     if (dev && !import.meta.env.VITE_FORCE_ANALYTICS) {
