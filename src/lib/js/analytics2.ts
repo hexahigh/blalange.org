@@ -59,14 +59,33 @@ async function fetchIp(): Promise<string> {
   }
 }
 
+  /**
+   * Handle an event. The event data is added to the payload, and additional data can be passed in the third argument.
+   * @param event The event that was triggered.
+   * @param type The type of event (e.g. "visibilitychange").
+   * @param additionalData Additional data to be added to the payload.
+   */
 async function handleEvent(event: Event, type: string, additionalData = {}) {
+  let extraData: any = {};
+  switch (type) {
+    case "visibilitychange":
+      extraData.visible = document.visibilityState === "visible";
+      extraData.visibilityState = document.visibilityState;
+      break;
+  }
   await handleRequest("event", {
     event_type: type,
     event_data: event,
+    event_data_extra: extraData, // Contains event specific data
     ...additionalData,
   });
 }
 
+  /**
+   * Handles a request to send analytics data to the server.
+   * @param type The type of request (e.g. "pageview").
+   * @param additionalData Additional data to be added to the payload.
+   */
 async function handleRequest(type: string, additionalData = {}) {
   const info = await collectInfo();
   const urlDetails = {
@@ -134,6 +153,7 @@ async function init() {
   window.addEventListener("error", (event) => handleEvent(event, "error"));
   window.addEventListener("load", (event) => handleEvent(event, "load"));
   window.addEventListener("beforeunload", (event) => handleEvent(event, "beforeunload"));
+  window.addEventListener("visibilitychange", (event) => handleEvent(event, "visibilitychange"));
 
   beforeNavigate((navigation) => {
     handleRequest("beforenavigate", {
