@@ -1,12 +1,12 @@
 import version from "$lib/json/version.json";
 
-type latestVersion = {
+export type Version = {
   id: string;
   name: string;
 }
 
 
-export const latestVersion: latestVersion = version.versions[version.versions.length - 1];
+export const latestVersion: Version = version.versions[version.versions.length - 1];
 
 //@ts-ignore
 export const buildDate = __BUILD_DATE__
