@@ -108,6 +108,7 @@ async function handleRequest(type: string, additionalData = {}) {
       local_time: info.localTime,
       session_id: getSessionId(),
       persistent_id: getPersistentId(),
+      visitor_id:  await get(fingerprint).get().visitorId,
       ip: ip,
       version: analyticsVersion,
       data: {
