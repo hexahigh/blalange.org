@@ -103,7 +103,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "remark-toc": "^9.0.0",
-    "super-sitemap": "^0.15.1",
+    "super-sitemap": "^1.0.3",
     "sveltekit-i18n": "^2.4.2",
     "tailwind-merge": "^2.5.4",
     "tone": "^15.1.3",
