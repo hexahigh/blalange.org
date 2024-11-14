@@ -189,8 +189,8 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1
       workbox-expiration:
-        specifier: ^7.1.0
-        version: 7.1.0
+        specifier: ^7.3.0
+        version: 7.3.0
     devDependencies:
       '@catppuccin/tailwindcss':
         specifier: ^0.1.6
@@ -4632,6 +4632,9 @@ packages:
 
   workbox-expiration@7.1.0:
     resolution: {integrity: sha512-m5DcMY+A63rJlPTbbBNtpJ20i3enkyOtSgYfv/l8h+D6YbbNiA0zKEkCUaMsdDlxggla1oOfRkyqTvl5Ni5KQQ==}
+
+  workbox-expiration@7.3.0:
+    resolution: {integrity: sha512-lpnSSLp2BM+K6bgFCWc5bS1LR5pAwDWbcKt1iL87/eTSJRdLdAwGQznZE+1czLgn/X05YChsrEegTNxjM067vQ==}
 
   workbox-google-analytics@7.1.0:
     resolution: {integrity: sha512-FvE53kBQHfVTcZyczeBVRexhh7JTkyQ8HAvbVY6mXd2n2A7Oyz/9fIwnY406ZcDhvE4NFfKGjW56N4gBiqkrew==}
@@ -9780,6 +9783,11 @@ snapshots:
     dependencies:
       idb: 7.1.1
       workbox-core: 7.1.0
+
+  workbox-expiration@7.3.0:
+    dependencies:
+      idb: 7.1.1
+      workbox-core: 7.3.0
 
   workbox-google-analytics@7.1.0:
     dependencies:

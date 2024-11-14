@@ -110,6 +110,6 @@
     "tsparticles": "^3.5.0",
     "unified": "^11.0.5",
     "workbox-build": "^7.1.1",
-    "workbox-expiration": "^7.1.0"
+    "workbox-expiration": "^7.3.0"
   }
 }
