@@ -274,8 +274,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       workbox-core:
-        specifier: ^7.1.0
-        version: 7.1.0
+        specifier: ^7.3.0
+        version: 7.3.0
       workbox-precaching:
         specifier: ^7.3.0
         version: 7.3.0
