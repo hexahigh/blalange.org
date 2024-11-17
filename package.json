@@ -9,8 +9,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "generate-pwa-assets": "pwa-assets-generator",
+    "vitest": "NODE_OPTIONS='--experimental-json-modules' vitest",
     "test:e2e": "playwright test",
-    "test:unit": "NODE_OPTIONS='--experimental-json-modules' vitest",
+    "test:unit": "pnpm run vitest run",
+    "test:bench": "pnpm run vitest bench",
     "test": "pnpm run test:e2e && pnpm run test:unit -- --run",
     "version": "echo The version file utility is no longer used",
     "inlang": "inlang"
