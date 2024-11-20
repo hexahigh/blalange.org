@@ -72,7 +72,7 @@
     "@tsparticles/confetti": "^3.5.0",
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/svelte": "^3.1.1",
-    "@types/dompurify": "^3.0.5",
+    "@types/dompurify": "^3.2.0",
     "@types/imagesloaded": "^4.1.6",
     "@types/masonry-layout": "^4.2.8",
     "@xterm/xterm": "^5.5.0",
