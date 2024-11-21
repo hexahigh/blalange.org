@@ -91,7 +91,7 @@
     "katex": "^0.16.11",
     "kolorist": "^1.8.0",
     "lorem-ipsum": "^2.0.8",
-    "marked": "^15.0.0",
+    "marked": "^15.0.2",
     "masonry-layout": "^4.2.2",
     "pako": "^2.1.0",
     "pocketbase": "^0.21.5",
