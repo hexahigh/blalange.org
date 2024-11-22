@@ -36,7 +36,7 @@
     "autoprefixer": "^10.4.20",
     "flowbite": "^2.5.2",
     "flowbite-svelte": "^0.47.1",
-    "flowbite-typography": "^1.0.4",
+    "flowbite-typography": "^1.0.5",
     "postcss": "^8.4.49",
     "svelte": "^5.2.0",
     "svelte-meta-tags": "^4.0.4",
