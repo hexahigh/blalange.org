@@ -19,11 +19,13 @@
     <AccordionItem
       class="hover:bg-gray-200 dark:hover:bg-gray-800 text-black dark:text-white"
     >
-      <span slot="header"
-        >Hvor mye koster det å bli med på Blålange festivalen?</span
-      >
+      {#snippet header()}
+            <span 
+          >Hvor mye koster det å bli med på Blålange festivalen?</span
+        >
+          {/snippet}
       <button
-        on:click={play}
+        onclick={play}
         class="mb-2 text-black dark:text-white bg-gray-200 dark:bg-gray-800 rounded p-2"
         >Trykk her</button
       >
@@ -35,7 +37,9 @@
     <AccordionItem
       class="hover:bg-gray-200 dark:hover:bg-gray-800 text-black dark:text-white"
     >
-      <span slot="header">Må jeg opptre?</span>
+      {#snippet header()}
+            <span >Må jeg opptre?</span>
+          {/snippet}
       <p class="text-black dark:text-white">
         Nei, men vi ville blitt veldig glad om du gjorde det. Det blir litt
         kjedelig hvis ingen gjør noe.

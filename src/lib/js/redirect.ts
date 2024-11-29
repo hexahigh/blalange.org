@@ -1,15 +1,19 @@
-export function toRedirect(url: string): string {
-    // Url encode the url
-    const encodedUrl = encodeURIComponent(url);
+export function toRedirect(url: string, options = { noHost: false }): string {
+  // Url encode the url
+  const encodedUrl = encodeURIComponent(url);
 
-    // Get current host
-    let host: string;
+  // Get current host
+  let host: string;
 
+  if (options.noHost) {
+    host = "";
+  } else {
     if (typeof window !== "undefined") {
-        host = window.location.origin;
+      host = window.location.origin;
     } else {
-        host = "https://blalange.org";
+      host = "https://blalange.org";
     }
+  }
 
-    return host + "/redirect/" + encodedUrl
+  return host + "/redirect/" + encodedUrl;
 }

@@ -30,7 +30,7 @@ let options = {
     useDOMPurify: true,
     fallback: true, // Fallback to custom method if DOMPurify is not supported
     DOMPurifySettings: {
-      FORBID_TAGS: ["img", "svg"],
+      FORBID_TAGS: ["img", "svg", "video", "iframe", "script", "embed"],
       FORBID_ATTR: ["autoplay"],
     } as DOMPurify.Config
   },

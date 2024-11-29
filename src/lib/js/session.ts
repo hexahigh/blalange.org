@@ -10,11 +10,8 @@ export function getSessionId(): string {
 
     // If no session ID exists, generate a new one and store it
     if (!sessionId) {
-        console.log("No session ID found. Generating a new one.");
-        sessionId = generateUniqueId();
+        sessionId = generateUniqueId("session");
         sessionStorage.setItem('sessionId', sessionId);
-    } else {
-        console.log("Existing session ID found");
     }
 
     return sessionId;
@@ -31,11 +28,8 @@ export function getPersistentId(): string {
     
     // If no persistent ID exists, generate a new one and store it
     if (!persistentId) {
-        console.log("No persistent ID found. Generating a new one.");
-        persistentId = generateUniqueId();
+        persistentId = generateUniqueId("persistent");
         localStorage.setItem('persistentId', persistentId);
-    } else {
-        console.log("Existing persistent ID found");
     }
 
     return persistentId;
@@ -48,7 +42,7 @@ export function getPermanentId() {
     return getPersistentId();
 }
 
-function generateUniqueId() {
+function generateUniqueId(prefix: string = 'session') {
     // Generate a unique ID using a combination of Date.now() and Math.random()
-    return 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    return prefix + '-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 }

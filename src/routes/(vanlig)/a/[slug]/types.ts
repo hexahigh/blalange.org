@@ -3,4 +3,5 @@ export type DataType = {
     author: string,
     imgUrl: string,
     text: string,
+    translations: any
 }

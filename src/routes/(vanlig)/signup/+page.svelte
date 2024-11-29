@@ -1,4 +1,7 @@
 <script>
+  import { createBubbler, preventDefault } from 'svelte/legacy';
+
+  const bubble = createBubbler();
   import logoSvg from "$lib/img/favicon.svg";
   import PocketBase from "pocketbase";
   import { defaultConfig, config } from "$lib/js/config";
@@ -8,14 +11,14 @@
 
   const client = getDirectusInstance();
 
-  let first_name;
-  let last_name;
-  let email;
-  let pass;
-  let pass2;
+  let first_name = $state();
+  let last_name = $state();
+  let email = $state();
+  let pass = $state();
+  let pass2 = $state();
 
-  let message;
-  let messageType = "info";
+  let message = $state();
+  let messageType = $state("info");
   let success;
 
   async function signup() {
@@ -80,7 +83,7 @@
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           Opprett konto
         </h1>
-        <form class="space-y-4 md:space-y-6" on:submit|preventDefault>
+        <form class="space-y-4 md:space-y-6" onsubmit={preventDefault(bubble('submit'))}>
           <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Epost</label>
             <input
@@ -170,7 +173,7 @@
           {/if}
           <button
             type="none"
-            on:click={signup}
+            onclick={signup}
             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >Opprett konto</button
           >

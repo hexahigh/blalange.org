@@ -1,7 +1,21 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
-    "compilerOptions": {
-       "target": "es6",
-       "lib": ["es5", "dom", "es2015", "es2020", "es2021",],
-    }
-   }
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": [
+      "WebWorker",
+      "DOM",
+      "ES5",
+      "ES2015",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "ES2021",
+      "ES2022",
+      "ES2023"
+    ],
+    "allowJs": true
+  }
+}

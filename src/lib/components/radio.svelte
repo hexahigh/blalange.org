@@ -1,4 +1,6 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { Range, Label } from "flowbite-svelte";
   import { PauseOutline, PlayOutline } from "flowbite-svelte-icons";
   import { onMount } from "svelte";
@@ -10,7 +12,7 @@
   const stream = "https://radio.blalange.org/stream";
   const status_url = "https://radio.blalange.org/status-json.xsl";
 
-  let coverSrc = vinylSvg;
+  let coverSrc = $state(vinylSvg);
 
   function devPrint(...msg) {
     if (dev) {
@@ -18,9 +20,9 @@
     }
   }
 
-  let volume = 100;
-  let title = "";
-  let playing = false;
+  let volume = $state(100);
+  let title = $state("");
+  let playing = $state(false);
 
   let sound = new Howl({
     src: [stream],
@@ -59,9 +61,9 @@
 
   setInterval(resync2, 5 * 60 * 1000);
 
-  $: {
+  run(() => {
     Howler.volume(volume / 100);
-  }
+  });
 
   function togglePlayPause() {
     if (playing) {
@@ -161,7 +163,7 @@
   <div class="p-6 rounded shadow-md shadow-black w-80 text-center">
     <h2 class="text-3xl">Blålange radio</h2>
     <p>Den beste radio kanalen for Blålanger</p>
-    <!-- svelte-ignore a11y-missing-attribute -->
+    <!-- svelte-ignore a11y_missing_attribute -->
     {#if enableImage}<img src={coverSrc} alt="Album cover" class="rounded-lg" />
     {/if}
     <p>Volume: {volume}</p>
@@ -173,12 +175,12 @@
       class="w-1/2"
     />
     <p>{title}</p>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div class="flex justify-center">
       <div
         class="rounded-full bg-blue-600 w-12 h-12 flex items-center justify-center"
-        on:click={togglePlayPause}
+        onclick={togglePlayPause}
       >
         {#if playing}
           <PauseOutline class="h-6 w-6 text-white" />

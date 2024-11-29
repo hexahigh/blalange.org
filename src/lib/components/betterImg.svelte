@@ -1,10 +1,7 @@
 <script>
   import { generateImageUrl } from "@imgproxy/imgproxy-node";
 
-  let clazz;
-  export let src;
-  export let alt;
-  export { clazz as class };
+  
 
   // If the src is a relative URL turn it into an absolute URL
   if (!src.startsWith("http")) {
@@ -15,7 +12,21 @@
 
   console.log(src);
 
-  export let imgServer = "http://89.168.127.4:2266";
+  /**
+   * @typedef {Object} Props
+   * @property {any} class
+   * @property {any} src
+   * @property {any} alt
+   * @property {string} [imgServer]
+   */
+
+  /** @type {Props} */
+  let {
+    class: clazz,
+    src = $bindable(),
+    alt,
+    imgServer = "http://89.168.127.4:2266"
+  } = $props();
 
   let signature = "empty";
 

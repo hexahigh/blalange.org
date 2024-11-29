@@ -1,9 +1,14 @@
 <script lang="ts">
-  export let placeholder: string = "Søk...";
-  export let onSubmit: ((event: SubmitEvent) => void)
+  interface Props {
+    placeholder?: string;
+    onSubmit: ((event: SubmitEvent) => void);
+    required?: boolean;
+  }
+
+  let { placeholder = "Søk...", onSubmit, required = false }: Props = $props();
 </script>
 
-<form class="flex items-center max-w-sm mx-auto" on:submit={onSubmit}>
+<form class="flex items-center max-w-sm mx-auto" onsubmit={onSubmit}>
   <label for="simple-search" class="sr-only">Søk</label>
   <div class="relative w-full">
     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -22,7 +27,7 @@
       id="simple-search"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       {placeholder}
-      required
+      required={required}
     />
   </div>
   <button

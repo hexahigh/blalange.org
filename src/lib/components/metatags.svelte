@@ -21,10 +21,18 @@
     alt?: string;
   }
 
-  export let title: string = "";
-  export let description: string = "";
-  export let url: string = "";
-  export let images: OpenGraphImage[] = [
+  interface Props {
+    title?: string;
+    description?: string;
+    url?: string;
+    images?: OpenGraphImage[];
+  }
+
+  let {
+    title = "",
+    description = "",
+    url = $bindable(""),
+    images = [
     {
       url: logo,
       type: "image/svg+xml",
@@ -35,16 +43,28 @@
       type: "image/png",
       alt: "Blålange logo",
     },
-  ];
+  ]
+  }: Props = $props();
+
+  // Check if url start with http:// or https://
+  const urlStartsWithHttp = (url: string): boolean => url.startsWith("https://") || url.startsWith("http://");
+
+  if (!urlStartsWithHttp(url)) {
+    if (url.startsWith("/")) {
+      url = "https://blalange.org" + url;
+    } else {
+      url = "https://blalange.org" + "/" + url;
+    }
+  }
 </script>
 
 <MetaTags
   {title}
   titleTemplate="%s | Blålange"
   {description}
-  canonical={"https://blalange.org" + url}
+  canonical={url}
   openGraph={{
-    url: "https://blalange.org" + url,
+    url: url,
     title: title,
     description: description,
     images: images,

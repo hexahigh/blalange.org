@@ -1,7 +1,8 @@
+import { paraglide } from '@inlang/paraglide-sveltekit/vite'
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
-import * as child from "child_process";
+import * as child from "node:child_process";
 
 let commitHash = "0000000";
 try {
@@ -11,7 +12,7 @@ try {
 }
 
 export default defineConfig({
-  plugins: [sveltekit()],
+  plugins: [paraglide({ project: './project.inlang', outdir: './src/lib/paraglide' }),sveltekit()],
   define: {
     "process.env.NODE_ENV": process.env.NODE_ENV === "production" ? '"production"' : '"development"',
 

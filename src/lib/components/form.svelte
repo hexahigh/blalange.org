@@ -1,4 +1,6 @@
 <script>
+  import { preventDefault } from 'svelte/legacy';
+
   import autoAnimate from "@formkit/auto-animate";
   import PocketBase from "pocketbase";
   import {
@@ -14,15 +16,15 @@
     pb = new PocketBase(value.dbEndpoint);
   });
 
-  let email = "";
-  let name = "";
-  let filmed = "";
+  let email = $state("");
+  let name = $state("");
+  let filmed = $state("");
   let manOrWoman = "";
   let image = null;
   let geoLocation = "";
-  let extra = "";
+  let extra = $state("");
   let age = 0;
-  let status = "";
+  let status = $state("");
 
   async function handleSubmit() {
     const formData = new FormData();
@@ -99,7 +101,7 @@
 
 <form
   class="flex flex-col m-8"
-  on:submit|preventDefault={handleSubmit}
+  onsubmit={preventDefault(handleSubmit)}
   use:autoAnimate
 >
   <label class="flex flex-col mb-4">
@@ -164,12 +166,12 @@
         type="text"
         placeholder="Jeg skal spille gitar og..."
         required
-      />
+></textarea>
     </div>
   </label>
   
   <button
-    on:click={handleSubmit}
+    onclick={handleSubmit}
     class="blue-btn"
     id="submitButton"
     type="submit">Send inn</button

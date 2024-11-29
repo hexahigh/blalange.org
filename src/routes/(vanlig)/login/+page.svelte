@@ -1,19 +1,21 @@
 <script>
+  import { createBubbler, preventDefault } from 'svelte/legacy';
+
+  const bubble = createBubbler();
   import logoSvg from "$lib/img/favicon.svg";
-  import { defaultConfig, config, editKey } from "$lib/js/config";
   import Metatags from "$lib/components/metatags.svelte";
   import { getDirectusInstance, isLoggedIn } from "$lib/js/directus";
   import { passwordRequest, readMe } from "@directus/sdk";
 
   const client = getDirectusInstance();
 
-  let email;
-  let pass;
+  let email = $state();
+  let pass = $state();
 
-  let message;
-  let messageType = "info";
+  let message = $state();
+  let messageType = $state("info");
   let success;
-  let rememberMe;
+  let rememberMe = $state();
 
   async function getUserName() {
     const user = await client.request(readMe());
@@ -33,9 +35,6 @@
     success = true;
     messageType = "success";
     message = "Hei " + (await getUserName()) + ", du er nå innlogget";
-    // Save rememberMe to config
-    editKey("keepMeLoggedIn", rememberMe);
-    
   }
 
   async function requestReset() {
@@ -71,7 +70,7 @@
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           Logg inn
         </h1>
-        <form class="space-y-4 md:space-y-6" on:submit|preventDefault>
+        <form class="space-y-4 md:space-y-6" onsubmit={preventDefault(bubble('submit'))}>
           <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Epost</label>
             <input
@@ -97,23 +96,8 @@
             />
           </div>
           <div class="flex items-center justify-between">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input
-                  id="remember"
-                  aria-describedby="remember"
-                  type="checkbox"
-                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                  required=""
-                  bind:checked={rememberMe}
-                />
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="remember" class="text-gray-500 dark:text-gray-300">Hold meg logget inn</label>
-              </div>
-            </div>
             <a
-              on:click={requestReset}
+              onclick={requestReset}
               href=""
               class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Glemt passordet?</a
             >
@@ -144,7 +128,7 @@
           {/if}
           <button
             type="none"
-            on:click={login}
+            onclick={login}
             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >Logg inn</button
           >
