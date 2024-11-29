@@ -2,7 +2,145 @@
 
 All notable changes to this project will be documented in this file.
 
-## [5.0.0](https://github.com/hexahigh/blalange.org/compare/v4.0.4..5.0.0) - 2024-11-29
+## [5.0.1](https://github.com/hexahigh/blalange.org/compare/v5.0.0..5.0.1) - 2024-11-29
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump axios from 1.7.7 to 1.7.8 - ([e0dfbe9](https://github.com/hexahigh/blalange.org/commit/e0dfbe98e0a7337e168d3ccf7b57b80d92875409))
+```commit-body
+Bumps [axios](https://github.com/axios/axios) from 1.7.7 to 1.7.8.
+- [Release notes](https://github.com/axios/axios/releases)
+- [Changelog](https://github.com/axios/axios/blob/v1.x/CHANGELOG.md)
+- [Commits](https://github.com/axios/axios/compare/v1.7.7...v1.7.8)
+
+---
+updated-dependencies:
+- dependency-name: axios
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Bump @tsparticles/engine from 3.5.0 to 3.7.1 - ([4d91634](https://github.com/hexahigh/blalange.org/commit/4d9163438bfe88c1d02271b3c11c92bfacc0d261))
+```commit-body
+Bumps [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/HEAD/engine) from 3.5.0 to 3.7.1.
+- [Release notes](https://github.com/tsparticles/tsparticles/releases)
+- [Changelog](https://github.com/tsparticles/tsparticles/blob/v3.7.1/engine/CHANGELOG.md)
+- [Commits](https://github.com/tsparticles/tsparticles/commits/v3.7.1/engine)
+
+---
+updated-dependencies:
+- dependency-name: "@tsparticles/engine"
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @types/dompurify from 3.0.5 to 3.2.0 - ([167b159](https://github.com/hexahigh/blalange.org/commit/167b159713b95c5894c1eb89f5ff4bc9c7de974d))
+```commit-body
+Bumps [@types/dompurify](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/dompurify) from 3.0.5 to 3.2.0.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/dompurify)
+
+---
+updated-dependencies:
+- dependency-name: "@types/dompurify"
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump marked from 15.0.0 to 15.0.2 - ([5a12cdc](https://github.com/hexahigh/blalange.org/commit/5a12cdcfca0227eaa1b6028d6704a2fe1d8415fb))
+```commit-body
+Bumps [marked](https://github.com/markedjs/marked) from 15.0.0 to 15.0.2.
+- [Release notes](https://github.com/markedjs/marked/releases)
+- [Changelog](https://github.com/markedjs/marked/blob/master/.releaserc.json)
+- [Commits](https://github.com/markedjs/marked/compare/v15.0.0...v15.0.2)
+
+---
+updated-dependencies:
+- dependency-name: marked
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Bump tailwind-merge from 2.5.4 to 2.5.5 - ([244191b](https://github.com/hexahigh/blalange.org/commit/244191bfc50f059a6ef910b0e12b5ad68cfffb3d))
+```commit-body
+Bumps [tailwind-merge](https://github.com/dcastil/tailwind-merge) from 2.5.4 to 2.5.5.
+- [Release notes](https://github.com/dcastil/tailwind-merge/releases)
+- [Commits](https://github.com/dcastil/tailwind-merge/compare/v2.5.4...v2.5.5)
+
+---
+updated-dependencies:
+- dependency-name: tailwind-merge
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Update dependencies - ([21a232a](https://github.com/hexahigh/blalange.org/commit/21a232af9859ff07c66566fac0b651b3c1cbed9c))
+
+
+- *(deps-dev)* Bump @types/node from 22.9.0 to 22.10.1 - ([d12d689](https://github.com/hexahigh/blalange.org/commit/d12d6898109a4471fff1c46ce82adb89f08cc556))
+```commit-body
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 22.9.0 to 22.10.1.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+---
+updated-dependencies:
+- dependency-name: "@types/node"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump typescript from 5.6.3 to 5.7.2 - ([c25c89c](https://github.com/hexahigh/blalange.org/commit/c25c89cae7a7cd3edb887c24c163a88444d55404))
+```commit-body
+Bumps [typescript](https://github.com/microsoft/TypeScript) from 5.6.3 to 5.7.2.
+- [Release notes](https://github.com/microsoft/TypeScript/releases)
+- [Changelog](https://github.com/microsoft/TypeScript/blob/main/azure-pipelines.release.yml)
+- [Commits](https://github.com/microsoft/TypeScript/compare/v5.6.3...v5.7.2)
+
+---
+updated-dependencies:
+- dependency-name: typescript
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @sveltejs/kit from 2.8.1 to 2.9.0 - ([dbe7bfa](https://github.com/hexahigh/blalange.org/commit/dbe7bfa93193a04c746886a62f320825b1bf6ac1))
+```commit-body
+Bumps [@sveltejs/kit](https://github.com/sveltejs/kit/tree/HEAD/packages/kit) from 2.8.1 to 2.9.0.
+- [Release notes](https://github.com/sveltejs/kit/releases)
+- [Changelog](https://github.com/sveltejs/kit/blob/main/packages/kit/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/kit/commits/@sveltejs/kit@2.9.0/packages/kit)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/kit"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @playwright/test from 1.48.2 to 1.49.0 - ([603287f](https://github.com/hexahigh/blalange.org/commit/603287fda6e56829fdb0bfbca1422055682b8740))
+```commit-body
+Bumps [@playwright/test](https://github.com/microsoft/playwright) from 1.48.2 to 1.49.0.
+- [Release notes](https://github.com/microsoft/playwright/releases)
+- [Commits](https://github.com/microsoft/playwright/compare/v1.48.2...v1.49.0)
+
+---
+updated-dependencies:
+- dependency-name: "@playwright/test"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+## [5.0.0](https://github.com/hexahigh/blalange.org/compare/v4.0.4..v5.0.0) - 2024-11-29
 
 ### ⛰️  Features
 
@@ -705,6 +843,9 @@ updated-dependencies:
 
 
 - Update translations with Fink 🐦 - ([b7ca790](https://github.com/hexahigh/blalange.org/commit/b7ca790ed88434809a3c1b0c84473326e6d24201))
+
+
+- Prepare for release - ([1c18676](https://github.com/hexahigh/blalange.org/commit/1c18676c6971e446332308046100bda266e24985))
 
 
 ## [4.0.4](https://github.com/hexahigh/blalange.org/compare/v4.0.3..v4.0.4) - 2024-10-16
