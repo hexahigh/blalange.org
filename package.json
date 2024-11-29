@@ -70,7 +70,7 @@
     "@sveltejs/adapter-cloudflare": "^4.7.4",
     "@sveltejs/adapter-node": "^5.2.9",
     "@tsparticles/confetti": "^3.5.0",
-    "@tsparticles/engine": "^3.5.0",
+    "@tsparticles/engine": "^3.7.1",
     "@tsparticles/svelte": "^3.1.1",
     "@types/dompurify": "^3.0.5",
     "@types/imagesloaded": "^4.1.6",
