@@ -92,6 +92,9 @@ importers:
       dompurify:
         specifier: ^3.2.2
         version: 3.2.2
+      eruda:
+        specifier: ^3.4.1
+        version: 3.4.1
       fitty:
         specifier: ^2.4.2
         version: 2.4.2
@@ -2767,6 +2770,9 @@ packages:
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
+
+  eruda@3.4.1:
+    resolution: {integrity: sha512-RmaO5yD97URY/9Q0lye3cmmNPoXNKreeePIw7c/zllbscR92CjGFZFuQ70+0fLIvLcKW3Xha8DS8NFhmeNbEBQ==}
 
   es-abstract@1.23.5:
     resolution: {integrity: sha512-vlmniQ0WNPwXqA0BnmwV3Ng7HxiGlh6r5U6JcTMNx8OilcAGqVJBHJcPjqOMaczU9fRuRK5Px2BdVyPRnKMMVQ==}
@@ -7442,6 +7448,8 @@ snapshots:
       once: 1.4.0
 
   entities@4.5.0: {}
+
+  eruda@3.4.1: {}
 
   es-abstract@1.23.5:
     dependencies:

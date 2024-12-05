@@ -3,6 +3,7 @@
   import { defaultConfig, config, saveConfig, editKey } from "$lib/js/config";
   import Metatags from "$lib/components/metatags.svelte";
   import { onMount } from "svelte";
+  import { Toggle } from "flowbite-svelte";
 
   let message;
   let messageType = "info";
@@ -60,6 +61,10 @@
           <option value="RimWordFont">RimWord</option>
         </select>
         <button class="blue-button mt-4" onclick={saveFont}>Lagre font</button>
+      </div> 
+      <h2 class="text-2xl font-bold mb-4">Misc</h2>
+      <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">
+        <Toggle id="eruda-toggle" color="blue" size="large" bind:checked={$config.erudaEnabled} on:change={saveConfig}>Eruda</Toggle>
       </div>
     </div>
   </div>

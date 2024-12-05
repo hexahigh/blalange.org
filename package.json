@@ -80,6 +80,7 @@
     "chart.js": "^4.4.6",
     "dayjs": "^1.11.13",
     "dompurify": "^3.2.2",
+    "eruda": "^3.4.1",
     "fitty": "^2.4.2",
     "flowbite-svelte-icons": "^2.0.2",
     "fuse.js": "^7.0.0",

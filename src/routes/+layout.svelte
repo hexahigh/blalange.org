@@ -12,6 +12,7 @@
   import { initialize as initializeDev, checkForDevMode } from "$lib/js/dev";
   import { loadConfig, config } from "$lib/js/config";
   import { initEgg } from "$lib/js/egg.js";
+  import { init as initEruda } from "$lib/js/eruda";
   import { addAPIProvider, loadIcons } from "iconify-icon";
   import { currentUser } from "$lib/js/directus";
   import FingerprintJS from "@fingerprintjs/fingerprintjs";
@@ -40,6 +41,7 @@
     loadConfig(); // Load the config from local storage
     initializeDev(); // Initialize the dev mode
     checkForDevMode(); // Checks if dev mode is enabled in the config
+    initEruda();
     // We call currentUser() at startup, this way directus will automatically refresh the token if needed
     currentUser();
 
