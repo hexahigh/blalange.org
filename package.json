@@ -68,7 +68,7 @@
     "@imgproxy/imgproxy-node": "^1.0.6",
     "@inlang/paraglide-sveltekit": "0.12.1",
     "@sveltejs/adapter-cloudflare": "^4.8.0",
-    "@sveltejs/adapter-node": "^5.2.9",
+    "@sveltejs/adapter-node": "^5.2.10",
     "@tsparticles/confetti": "^3.7.1",
     "@tsparticles/engine": "^3.7.1",
     "@types/dompurify": "^3.2.0",
