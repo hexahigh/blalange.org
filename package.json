@@ -94,7 +94,7 @@
     "marked": "^15.0.3",
     "masonry-layout": "^4.2.2",
     "pako": "^2.1.0",
-    "pocketbase": "^0.22.1",
+    "pocketbase": "^0.23.0",
     "rehype-highlight": "^7.0.1",
     "rehype-katex": "^7.0.1",
     "rehype-stringify": "^10.0.1",
