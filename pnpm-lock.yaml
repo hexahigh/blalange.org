@@ -196,8 +196,8 @@ importers:
         specifier: ^0.1.6
         version: 0.1.6(tailwindcss@3.4.15)
       '@iconify/svelte':
-        specifier: ^4.0.2
-        version: 4.0.2(svelte@5.10.1)
+        specifier: ^4.1.0
+        version: 4.1.0(svelte@5.10.1)
       '@inlang/cli':
         specifier: ^2.18.1
         version: 2.18.1
@@ -1377,8 +1377,8 @@ packages:
   '@formkit/auto-animate@0.8.2':
     resolution: {integrity: sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==}
 
-  '@iconify/svelte@4.0.2':
-    resolution: {integrity: sha512-6BSrU85FzGfhQD3bTXpnkCCvBAglEt8T9QednVnXAYm4C+d3464y+pYMzhQNJm5mPId2cuiw+2wXlDflXllHDw==}
+  '@iconify/svelte@4.1.0':
+    resolution: {integrity: sha512-6oLonIDZHXPcQa9ZKbJocaOUMOV+ALeGPVDfex/lwdlHRNUxtJzI6pu121SaoVoXpRGSAYXB/VCv/MuYzCjn5w==}
     peerDependencies:
       svelte: '>4.0.0'
 
@@ -5865,7 +5865,7 @@ snapshots:
 
   '@formkit/auto-animate@0.8.2': {}
 
-  '@iconify/svelte@4.0.2(svelte@5.10.1)':
+  '@iconify/svelte@4.1.0(svelte@5.10.1)':
     dependencies:
       '@iconify/types': 2.0.0
       svelte: 5.10.1
