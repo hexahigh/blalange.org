@@ -1,45 +1,11 @@
-<!--Use the below code snippet to provide real time updates to the live chat plugin without the need of copying and paste each time to your website when changes are made via PBX-->
-<call-us-selector phonesystem-url="https://1468.3cx.cloud" party="blalange"></call-us-selector>
+<script lang="ts">
+  import { languageTag } from "$lib/paraglide/runtime";
+</script>
 
-<!--Incase you don't want real time updates to the live chat plugin when options are changed, use the below code snippet. Please note that each time you change the settings you will need to copy and paste the snippet code to your website-->
-<!--<call-us 
-phonesystem-url="https://1468.3cx.cloud" 
-style="position:fixed;font-size:16px;line-height:17px;z-index: 99999;--call-us-main-accent-color:#00a3ff;--call-us-main-background-color:#FFFFFF;--call-us-plate-background-color:#131826;--call-us-plate-font-color:#E6E6E6;--call-us-main-font-color:#000000;--call-us-agent-bubble-color:#00000010;right: 20px; bottom: 20px;" 
-id="wp-live-chat-by-3CX" 
-minimized="true" 
-animation-style="slideup" 
-party="blalange" 
-minimized-style="bubbleright" 
-allow-call="true" 
-allow-video="false" 
-allow-soundnotifications="true" 
-enable-mute="true" 
-enable-onmobile="true" 
-offline-enabled="true" 
-enable="true" 
-ignore-queueownership="true" 
-authentication="both" 
-operator-name="Blålange" 
-show-operator-actual-name="true" 
-aknowledge-received="true" 
-operator-icon="data:image/png;base64,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" 
-gdpr-enabled="true" 
-gdpr-message="I agree for my personal data to be processed and to the use of cookies to engage in a chat processed by Blålange, for the purpose of Chat/Support for the time period of 30 days as per GDPR" 
-message-userinfo-format="both" 
-message-dateformat="both" 
-start-chat-button-text="Start samtale!" 
-lang="browser" 
-button-icon-type="default" 
-invite-message="Hei! Hvordan kan vi hjelpe deg?" 
-authentication-message="Vi trenger bare litt mer info." 
-first-response-message="Hei! Hvordan kan vi hjelpe deg?" 
-greeting-visibility="both" 
-greeting-offline-visibility="none" 
-greeting-message="Trenger du noe hjelp er det bare å spørre!" 
-chat-delay="2000" 
-enable-direct-call="true" 
-enable-ga="false" 
-></call-us>-->
+<!-- <call-us-selector phonesystem-url="https://1468.3cx.cloud" party="blalange"></call-us-selector> -->
+
+<call-us phonesystem-url="https://1468.3cx.cloud" party="blalange" lang={languageTag}></call-us>
+
 <svelte:head>
   <script
     defer
