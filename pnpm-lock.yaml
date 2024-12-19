@@ -74,18 +74,9 @@ importers:
       '@types/masonry-layout':
         specifier: ^4.2.8
         version: 4.2.8
-      '@xterm/xterm':
-        specifier: ^5.5.0
-        version: 5.5.0
-      audiomotion-analyzer:
-        specifier: ^4.5.0
-        version: 4.5.0
       axios:
         specifier: ^1.7.8
         version: 1.7.8
-      chart.js:
-        specifier: ^4.4.6
-        version: 4.4.6
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
@@ -1591,9 +1582,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@kurkle/color@0.3.4':
-    resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
-
   '@lix-js/client@2.2.1':
     resolution: {integrity: sha512-6DTJdRN2L2a1A8OxW1Wqh3ZOORqq8+YlCALMF5UMoxhfHE4Fcq9FZztMkAV+KwhrDSsp0USWvD9myG0XX+v6QQ==}
 
@@ -2235,9 +2223,6 @@ packages:
     resolution: {integrity: sha512-BgYZfL2ADCXKOw2wJtkM3slhHotawWkgIRRxq4wEybnZQPjvAp71SPX35xepMykTw8gXlzWcWPTY31hlbnRsDA==}
     engines: {node: 18 >=18.20 || 20 || >=22}
 
-  '@xterm/xterm@5.5.0':
-    resolution: {integrity: sha512-hqJHYaQb5OptNunnyAnkHyM8aCjZ1MEIDTQu1iIbbTD/xops91NB5yq1ZK/dC2JDbVWtF23zUtl9JE2NqwT87A==}
-
   '@yr/monotone-cubic-spline@1.0.3':
     resolution: {integrity: sha512-FQXkOta0XBSUPHndIKON2Y9JeQz5ZeMqLYZVVK93FliNBFm7LNMIZmY6FrMEB9XPcDbE2bekMbZD6kzDkxwYjA==}
 
@@ -2334,9 +2319,6 @@ packages:
   at-least-node@1.0.0:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
-
-  audiomotion-analyzer@4.5.0:
-    resolution: {integrity: sha512-qnmB8TSbrxYkTbFgsQeeym0Z/suQx4c0jFg9Yh5+gaPw6J4AFLdfFpagdnDbtNEsj6K7BntgsC3bkdut5rxozg==}
 
   automation-events@7.1.4:
     resolution: {integrity: sha512-KCkUSGBKlZz2DTnjzHLnPzlTayExlkeIrzIgq5OqZgwvZsmgSsyQOXv/L+r8P14yR69xfSnwL2FmmzSCzI9o/g==}
@@ -2486,10 +2468,6 @@ packages:
 
   character-entities@2.0.2:
     resolution: {integrity: sha512-shx7oQ0Awen/BRIdkjkvz54PnEEI/EjwXDSIZp86/KKdbafHh1Df/RYGBhn4hbe2+uKC9FnT5UCEdyPz3ai9hQ==}
-
-  chart.js@4.4.6:
-    resolution: {integrity: sha512-8Y406zevUPbbIBA/HRk33khEmQPk5+cxeflWE/2rx1NJsjVWMPw/9mSP9rxHP5eqi6LNoPBVMfZHxbwLSgldYA==}
-    engines: {pnpm: '>=8'}
 
   check-error@2.1.1:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
@@ -6118,8 +6096,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kurkle/color@0.3.4': {}
-
   '@lix-js/client@2.2.1':
     dependencies:
       '@lix-js/fs': 2.2.0
@@ -6935,8 +6911,6 @@ snapshots:
 
   '@wolfy1339/lru-cache@11.0.2-patch.1': {}
 
-  '@xterm/xterm@5.5.0': {}
-
   '@yr/monotone-cubic-spline@1.0.3': {}
 
   acorn-typescript@1.4.13(acorn@8.14.0):
@@ -7029,8 +7003,6 @@ snapshots:
   asynckit@0.4.0: {}
 
   at-least-node@1.0.0: {}
-
-  audiomotion-analyzer@4.5.0: {}
 
   automation-events@7.1.4:
     dependencies:
@@ -7208,10 +7180,6 @@ snapshots:
   character-entities-legacy@3.0.0: {}
 
   character-entities@2.0.2: {}
-
-  chart.js@4.4.6:
-    dependencies:
-      '@kurkle/color': 0.3.4
 
   check-error@2.1.1: {}
 
