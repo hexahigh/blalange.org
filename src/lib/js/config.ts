@@ -3,6 +3,7 @@ import { thumbs } from "@dicebear/collection";
 
 interface Config {
   devMode: boolean;
+  erudaEnabled: boolean;
   dbEndpoint: string;
   directusEndpoint: string;
   directeusWebsocketEndpoint: string;
@@ -41,6 +42,7 @@ interface Config {
  */
 export const defaultConfig: Config = {
   devMode: false,
+  erudaEnabled: false,
   dbEndpoint: "https://db.080609.xyz",
   directusEndpoint: "https://db.blalange.org",
   directeusWebsocketEndpoint: "wss://db.blalange.org",

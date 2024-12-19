@@ -164,11 +164,11 @@ async function init() {
   window.addEventListener("beforeunload", (event) => handleEvent(event, "beforeunload"));
   window.addEventListener("visibilitychange", (event) => handleEvent(event, "visibilitychange"));
 
-  beforeNavigate((navigation) => {
+/*   beforeNavigate((navigation) => {
     handleRequest("beforenavigate", {
       ...navigation,
     });
-  });
+  }); */
 
   afterNavigate((navigation) => {
     handleRequest("afternavigate", {
