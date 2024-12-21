@@ -2,13 +2,14 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkGfm from "remark-gfm";
 import rehypeStringify from "rehype-stringify";
+import rehypeSlug from "rehype-slug";
 import { unified } from "unified";
 
 import tosEN from "$lib/md/tos_en.md?raw";
 import tosNO from "$lib/md/tos_no.md?raw";
 
 export async function load() {
-  let mdStuff = unified().use(remarkParse).use(remarkRehype).use(remarkGfm).use(rehypeStringify);
+  let mdStuff = unified().use(remarkParse).use(remarkRehype).use(remarkGfm).use(rehypeStringify).use(rehypeSlug);
 
   let translations: any = {};
 
