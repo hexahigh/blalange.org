@@ -126,8 +126,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       pocketbase:
-        specifier: ^0.22.1
-        version: 0.22.1
+        specifier: ^0.24.0
+        version: 0.24.0
       rehype-highlight:
         specifier: ^7.0.1
         version: 7.0.1
@@ -3822,8 +3822,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  pocketbase@0.22.1:
-    resolution: {integrity: sha512-hnzpDcIx5kbkUJXz6IkiTox6R4nb706u4rPSMy2FYCaI2OqBnFxbY0qwWBSqx1ERz/Xi61Uguf17Gb9bWZ8+kw==}
+  pocketbase@0.24.0:
+    resolution: {integrity: sha512-zcmEUsXGRT+AqRHzEMlheglOiQnhYKRxT0ew164kx38/IGsE7MLmlmEaMSkm3tUwiZe5qC3RcA5+SX0lkDUSHA==}
 
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
@@ -8738,7 +8738,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.2
 
-  pocketbase@0.22.1: {}
+  pocketbase@0.24.0: {}
 
   possible-typed-array-names@1.0.0: {}
 
