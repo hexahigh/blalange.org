@@ -15,6 +15,6 @@
 
 <Metatags title="Changelog" description="Changelog for blalange.org" url="/tos" />
 
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md-text format dark:format-invert">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md-text prose dark:prose-invert">
   {@html html}
 </div>

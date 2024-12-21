@@ -10,6 +10,7 @@ import remarkMath from "remark-math";
 import rehypeStringify from "rehype-stringify";
 import rehypeKatex from "rehype-katex";
 import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
 import { unified } from "unified";
 
 export async function load({ params, url, fetch }) {
@@ -54,15 +55,16 @@ export async function load({ params, url, fetch }) {
       .use(remarkMath)
       .use(rehypeStringify)
       .use(rehypeKatex)
-      .use(rehypeHighlight);
+      .use(rehypeHighlight)
+      .use(rehypeSlug);
 
-    let text = String(mdStuff.processSync(article.text || article.text_wysiwyg));
+    let text = mdStuff.processSync(article.text || article.text_wysiwyg);
 
     let translations = article.translations.reduce((acc, translation) => {
       acc[translation.languages_code] = {
         name: translation.name,
         description: translation.description,
-        text: String(mdStuff.processSync(translation.text)),
+        text: mdStuff.processSync(translation.text),
       };
       return acc;
     }, {});

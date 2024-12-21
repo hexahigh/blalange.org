@@ -24,6 +24,7 @@ export default {
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     require("flowbite-typography"),
     require("@catppuccin/tailwindcss")({
       prefix: "ctp",
