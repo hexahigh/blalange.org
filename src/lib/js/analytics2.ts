@@ -8,10 +8,11 @@ import { latestVersion } from "./version";
 import type { Page } from "@sveltejs/kit";
 import { fingerprint, botd } from "$lib/stores/info";
 import { get } from "svelte/store";
+import type { GetResult } from "@fingerprintjs/fingerprintjs";
 
 const client = getDirectusInstance(null);
 
-const analyticsVersion = "1.1";
+const analyticsVersion = "2.0";
 
 let enabled: boolean;
 let devMode: boolean;
@@ -24,6 +25,7 @@ config.subscribe((value) => {
 let page: Page<Record<string, string>, string | null>;
 
 let ip = "";
+let ipFailures = 0;
 
 async function collectInfo() {
   const userAgent = navigator.userAgent;
@@ -35,7 +37,7 @@ async function collectInfo() {
   const time = new Date().getTime();
   const localTime = time + new Date().getTimezoneOffset() * 60 * 1000;
 
-  if (ip === "") {
+  if (ip === "" && ipFailures < 5) {
     ip = await fetchIp();
   }
 
@@ -57,6 +59,10 @@ async function fetchIp(): Promise<string> {
     return await response.text();
   } catch (error) {
     console.error("Failed to fetch IP:", error);
+    ipFailures++;
+    if (ipFailures >= 5) {
+      console.error("Too many IP fetch failures, giving up.");
+    }
     return "";
   }
 }
@@ -88,7 +94,7 @@ async function handleEvent(event: Event, type: string, additionalData = {}) {
    * @param type The type of request (e.g. "pageview").
    * @param additionalData Additional data to be added to the payload.
    */
-async function handleRequest(type: string, additionalData = {}) {
+async function handleRequest(type: string, additionalData = {}, options = { muchData: false }) {
   const info = await collectInfo();
   const urlDetails = {
     href: page.url.href,
@@ -108,7 +114,7 @@ async function handleRequest(type: string, additionalData = {}) {
       local_time: info.localTime,
       session_id: getSessionId(),
       persistent_id: getPersistentId(),
-      visitor_id:  (await get(fingerprint).get()).visitorId,
+      visitor_id: (await getFingerprint(false))?.visitorId,
       ip: ip,
       version: analyticsVersion,
       data: {
@@ -123,11 +129,8 @@ async function handleRequest(type: string, additionalData = {}) {
         url_details: urlDetails,
         site_version: latestVersion.id,
         analytics_version: analyticsVersion,
-        botd: {
-          bot: get(botd).detect().bot,
-          ...get(botd),
-        },
-        fingerprint: await get(fingerprint).get(),
+        botd: await getBotd(options.muchData),
+        fingerprint: await getFingerprint(options.muchData),
       },
     })
   );
@@ -148,6 +151,27 @@ async function addOnClickListener() {
     };
     button.addEventListener("click", (event) => handleEvent(event, "buttonClick", { button: buttonInfo }));
   }
+}
+
+async function getBotd(components: boolean) {
+  let obj = {
+    bot: get(botd).detect().bot,
+    ...get(botd),
+  }
+  if (!components) {
+    delete obj.components
+  }
+  return obj
+}
+
+async function getFingerprint(components: boolean): Promise<GetResult> {
+  let obj = {
+    ...await get(fingerprint).get(),
+  }
+  if (!components) {
+    delete obj.components
+  }
+  return obj
 }
 
 async function init() {
@@ -177,7 +201,7 @@ async function init() {
     addOnClickListener();
   });
 
-  handleRequest("init");
+  handleRequest("init", {}, { muchData: true });
 }
 
 export { init };
