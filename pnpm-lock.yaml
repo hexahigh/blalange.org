@@ -196,8 +196,8 @@ importers:
         specifier: ^2.18.1
         version: 2.18.1
       '@inlang/paraglide-js':
-        specifier: 1.11.3
-        version: 1.11.3
+        specifier: 1.11.5
+        version: 1.11.5
       '@playwright/test':
         specifier: ^1.49.0
         version: 1.49.0
@@ -1528,6 +1528,10 @@ packages:
     resolution: {integrity: sha512-WVNraTylfZty0kt5EQNh8yx0WUJbtYEmc8YoNRRSUWB0rqeCh8a9xIQnmzZxBMf7IL7es+Ppiqx15py7mukJRw==}
     hasBin: true
 
+  '@inlang/paraglide-js@1.11.5':
+    resolution: {integrity: sha512-3f5DAtnC7l81ym1jwIFSeov6/ipxoHHpv7roMkp5AcJtU47exBoyaD1Jq1T3PIkmgkdmwsTnmZgutOaE1PHCrQ==}
+    hasBin: true
+
   '@inlang/paraglide-sveltekit@0.15.0':
     resolution: {integrity: sha512-V8tSihi4Ang8wWv2N9RZMKpiQ6qLXeeRZyRdMt7pzAUkLSBarB3oD+Qn+lhPXmUFKZn5lOxg4y633JyauPus6g==}
     hasBin: true
@@ -1540,6 +1544,9 @@ packages:
   '@inlang/paraglide-vite@1.3.0':
     resolution: {integrity: sha512-SXKUWEWaBai66XEnmeA0vBGSoGz6Yz5+3BkzuHgfXnkt8IFba2OlVqrzFliFON4bAcxN/7hk0BPDHG+U55Og3g==}
 
+  '@inlang/plugin-message-format@2.2.0':
+    resolution: {integrity: sha512-6MJLExr3OLqbR8gCP4UEgNMgdaJFFCug2GLmFwid7Ana4kObnbCA33YN3m3eN8p+lmnv7zpfW7oeyTZXZLoptg==}
+
   '@inlang/plugin@2.4.14':
     resolution: {integrity: sha512-HFI1t1tKs6jXqwKVl59vvt7kvMgg2Po7xA3IFijfJTZCt0tTI8txqeXCUV9jhUop29Hqj6a5zQd32BYv33Dulw==}
     peerDependencies:
@@ -1550,11 +1557,21 @@ packages:
     peerDependencies:
       '@sinclair/typebox': ^0.31.17
 
+  '@inlang/recommend-ninja@0.1.1':
+    resolution: {integrity: sha512-dthW8SA6LHUhPFXwKxYy92PG4dg4KeIS0jbgpplXxgoQAeouP6DHEa87kva2DXbk3kUbNz+/MFPjyaygBfamog==}
+
+  '@inlang/recommend-sherlock@0.1.0':
+    resolution: {integrity: sha512-fvAQnl+GNpTN3vR4eaGrItJYlD3jSPuCet3UtSmrkPDUtzhkvmdXjbKNN1AatmgYVXyH19KC0aqtSlaqM1MPGQ==}
+
   '@inlang/result@1.1.0':
     resolution: {integrity: sha512-zLGroi9EUiHuOjUOaglUVTFO7EWdo2OARMJLBO1Q5Ga/xJmSQb6XS1lhqEXBFAjgFarfEMX5YEJWWALogYV3wA==}
 
   '@inlang/sdk@0.36.3':
     resolution: {integrity: sha512-wjsavc44H24v74tdEQ13FqZZcr43T106oEfHJnBLzEP55Zz2JJWABLund+DEdosZx+9E8mJBEW5JlVnlBwP3Zw==}
+    engines: {node: '>=18.0.0'}
+
+  '@inlang/sdk@0.36.4':
+    resolution: {integrity: sha512-fTr0mkDx2ViZt/8lxaF9Mxj3m8LaqIhcjMJy+CdHREMc9UvpUhGLB7elMp061YysxnN1CFccAgLRug5VWK3yWw==}
     engines: {node: '>=18.0.0'}
 
   '@inlang/translatable@1.3.1':
@@ -2290,6 +2307,9 @@ packages:
 
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
+
+  argparse@2.0.1:
+    resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
   aria-query@5.3.2:
     resolution: {integrity: sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==}
@@ -3349,6 +3369,10 @@ packages:
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+
+  js-yaml@4.1.0:
+    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
+    hasBin: true
 
   jsesc@3.0.2:
     resolution: {integrity: sha512-xKqzzWXDttJuOcawBt4KnKHHIf5oQ/Cxax+0PWFG+DFDgHNAdi+TXECADI+RYiFUMmx8792xsMbbgXj4CwnP4g==}
@@ -6003,6 +6027,26 @@ snapshots:
       - babel-plugin-macros
       - debug
 
+  '@inlang/paraglide-js@1.11.5':
+    dependencies:
+      '@inlang/detect-json-formatting': 1.0.0
+      '@inlang/language-tag': 1.5.1
+      '@inlang/plugin-message-format': 2.2.0
+      '@inlang/recommend-ninja': 0.1.1
+      '@inlang/recommend-sherlock': 0.1.0
+      '@inlang/sdk': 0.36.4
+      '@lix-js/client': 2.2.1
+      '@lix-js/fs': 2.2.0
+      commander: 11.1.0
+      consola: 3.2.3
+      dedent: 1.5.1
+      json5: 2.2.3
+      posthog-node: 4.3.1
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - debug
+      - supports-color
+
   '@inlang/paraglide-sveltekit@0.15.0(@sveltejs/kit@2.12.1(@sveltejs/vite-plugin-svelte@5.0.1(svelte@5.10.1)(vite@6.0.1(@types/node@22.10.1)(jiti@2.4.1)(terser@5.36.0)(yaml@2.6.1)))(svelte@5.10.1)(vite@6.0.1(@types/node@22.10.1)(jiti@2.4.1)(terser@5.36.0)(yaml@2.6.1)))':
     dependencies:
       '@inlang/paraglide-js': 1.11.3
@@ -6038,6 +6082,8 @@ snapshots:
       - debug
       - supports-color
 
+  '@inlang/plugin-message-format@2.2.0': {}
+
   '@inlang/plugin@2.4.14(@sinclair/typebox@0.31.28)':
     dependencies:
       '@inlang/json-types': 1.1.0(@sinclair/typebox@0.31.28)
@@ -6054,9 +6100,46 @@ snapshots:
       '@inlang/language-tag': 1.5.1
       '@sinclair/typebox': 0.31.28
 
+  '@inlang/recommend-ninja@0.1.1':
+    dependencies:
+      '@inlang/sdk': 0.36.3
+      '@lix-js/client': 2.2.1
+      '@lix-js/fs': 2.2.0
+      '@sinclair/typebox': 0.31.28
+      js-yaml: 4.1.0
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  '@inlang/recommend-sherlock@0.1.0': {}
+
   '@inlang/result@1.1.0': {}
 
   '@inlang/sdk@0.36.3':
+    dependencies:
+      '@inlang/json-types': 1.1.0(@sinclair/typebox@0.31.28)
+      '@inlang/language-tag': 1.5.1
+      '@inlang/message': 2.1.0(@sinclair/typebox@0.31.28)
+      '@inlang/message-lint-rule': 1.4.7(@sinclair/typebox@0.31.28)
+      '@inlang/module': 1.2.14(@sinclair/typebox@0.31.28)
+      '@inlang/plugin': 2.4.14(@sinclair/typebox@0.31.28)
+      '@inlang/project-settings': 2.4.2(@sinclair/typebox@0.31.28)
+      '@inlang/result': 1.1.0
+      '@inlang/translatable': 1.3.1
+      '@lix-js/client': 2.2.1
+      '@lix-js/fs': 2.2.0
+      '@sinclair/typebox': 0.31.28
+      debug: 4.3.7
+      dedent: 1.5.1
+      deepmerge-ts: 5.1.0
+      murmurhash3js: 3.0.1
+      solid-js: 1.6.12
+      throttle-debounce: 5.0.2
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  '@inlang/sdk@0.36.4':
     dependencies:
       '@inlang/json-types': 1.1.0(@sinclair/typebox@0.31.28)
       '@inlang/language-tag': 1.5.1
@@ -6999,6 +7082,8 @@ snapshots:
       svg.select.js: 3.0.1
 
   arg@5.0.2: {}
+
+  argparse@2.0.1: {}
 
   aria-query@5.3.2: {}
 
@@ -8117,6 +8202,10 @@ snapshots:
     optional: true
 
   js-tokens@4.0.0: {}
+
+  js-yaml@4.1.0:
+    dependencies:
+      argparse: 2.0.1
 
   jsesc@3.0.2: {}
 
