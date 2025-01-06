@@ -29,7 +29,7 @@
     "@sveltejs/vite-plugin-svelte": "^5.0.1",
     "@tailwindcss/typography": "^0.5.15",
     "@types/howler": "^2.2.12",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.5",
     "@types/pako": "^2.0.3",
     "@types/xml2js": "^0.4.14",
     "@vite-pwa/assets-generator": "^0.2.6",
