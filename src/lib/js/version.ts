@@ -9,6 +9,8 @@ export type Version = {
 export const latestVersion: Version = version.versions[version.versions.length - 1];
 
 //@ts-ignore
-export const buildDate = __BUILD_DATE__
+export const buildDate: string = __BUILD_DATE__;
 //@ts-ignore
-export const commitHash = __COMMIT_HASH__;
+export const commitHash: string = __COMMIT_HASH__;
+//@ts-ignore
+export const commitDate: string = __COMMIT_DATE__;

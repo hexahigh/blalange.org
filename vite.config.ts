@@ -5,10 +5,12 @@ import { defineConfig } from "vite";
 import * as child from "node:child_process";
 
 let commitHash = "0000000";
+let commitDate = ""
 try {
   commitHash = child.execSync("git rev-parse --short HEAD").toString();
+  commitDate = child.execSync("git show --no-patch --format=%ci").toString();
 } catch (e) {
-  console.log("Can't run git");
+  console.log("Failed to get info from git:", e);
 }
 
 export default defineConfig({
@@ -16,6 +18,7 @@ export default defineConfig({
   define: {
     "process.env.NODE_ENV": process.env.NODE_ENV === "production" ? '"production"' : '"development"',
 
+    __COMMIT_DATE__: JSON.stringify(new Date(commitDate).getTime()),
     __COMMIT_HASH__: JSON.stringify(commitHash),
     __BUILD_DATE__: JSON.stringify(new Date().getTime()),
   },
