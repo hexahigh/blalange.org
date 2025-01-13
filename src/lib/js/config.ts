@@ -159,7 +159,6 @@ export function saveConfig() {
   if (typeof window === "undefined") return;
   config.subscribe((currentConfig) => {
     localStorage.setItem("config", JSON.stringify(currentConfig));
-    document.cookie = `config=${JSON.stringify(currentConfig)}`;
   })();
 }
 
