@@ -27,7 +27,7 @@
     "@sveltejs/enhanced-img": "^0.4.1",
     "@sveltejs/kit": "^2.12.1",
     "@sveltejs/vite-plugin-svelte": "^5.0.1",
-    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/howler": "^2.2.12",
     "@types/node": "^22.10.1",
     "@types/pako": "^2.0.3",
