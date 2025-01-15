@@ -253,8 +253,8 @@ importers:
         specifier: ^5.18.0
         version: 5.18.0
       svelte-meta-tags:
-        specifier: ^4.0.4
-        version: 4.0.4(svelte@5.18.0)(typescript@5.7.2)
+        specifier: ^4.1.0
+        version: 4.1.0(svelte@5.18.0)(typescript@5.7.2)
       tailwindcss:
         specifier: ^3.4.15
         version: 3.4.15
@@ -4276,8 +4276,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svelte-meta-tags@4.0.4:
-    resolution: {integrity: sha512-i0vgxGreM3lXTTxLSuPQLE1n56KAFACHWIXRj7fJCTpd/5D16O97Ha/OXDZS4Lsk+D347VEK4LeMoacsftbeKw==}
+  svelte-meta-tags@4.1.0:
+    resolution: {integrity: sha512-XBG4L6wOEabMMNzKgYW5u5vsdkOKNbHqUY/UeAhSrsxNubCP5suh8yGCjtw7qx76kToQ4qDR6Z9VSN4Yuj2bMQ==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -9366,7 +9366,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-meta-tags@4.0.4(svelte@5.18.0)(typescript@5.7.2):
+  svelte-meta-tags@4.1.0(svelte@5.18.0)(typescript@5.7.2):
     dependencies:
       schema-dts: 1.1.2(typescript@5.7.2)
       svelte: 5.18.0
