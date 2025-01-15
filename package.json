@@ -68,7 +68,7 @@
     "@formkit/auto-animate": "^0.8.2",
     "@imgproxy/imgproxy-node": "^1.0.6",
     "@inlang/paraglide-sveltekit": "0.15.5",
-    "@sveltejs/adapter-cloudflare": "^4.9.0",
+    "@sveltejs/adapter-cloudflare": "^5.0.1",
     "@sveltejs/adapter-node": "^5.2.9",
     "@tsparticles/confetti": "^3.7.1",
     "@tsparticles/engine": "^3.7.1",
