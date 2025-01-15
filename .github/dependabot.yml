@@ -8,6 +8,6 @@ updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     target-branch: "dev"
-    open-pull-requests-limit: 99
+    open-pull-requests-limit: 5
     schedule:
       interval: "daily"

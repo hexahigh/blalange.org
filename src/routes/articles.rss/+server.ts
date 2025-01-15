@@ -47,7 +47,7 @@ export async function GET({ url }) {
 
   const content = articles
     .map((article) => {
-      const author = article.author.name;
+      const author = article?.author?.name;
       return `
             <item>
                 <title>${article.name}</title>

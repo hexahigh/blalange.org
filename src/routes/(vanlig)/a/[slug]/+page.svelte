@@ -6,7 +6,7 @@
   import "iconify-icon";
   import { type DataType } from "./types";
   import "katex/dist/katex.min.css";
-  import "$lib/css/md-article.pcss";
+  import "highlight.js/styles/obsidian.css";
   import { languageTag } from "$lib/paraglide/runtime";
   interface Props {
     data: DataType;
@@ -68,7 +68,7 @@
         <p>{m.article_notTranslated_body()}</p>
       </Alert>
     {/if}
-    <div id="articleText" class="md-text m-9 text-gray-800 dark:text-gray-300">
+    <div id="articleText" class="prose dark:prose-invert max-w-full md-text m-9 ">
       {@html text}
     </div>
     <Comments id={artId} />

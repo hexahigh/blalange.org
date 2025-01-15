@@ -71,6 +71,12 @@
     }
   });
 
+  let searchValue = $state("")
+  $effect(() => {
+    search(searchValue)
+  }
+)
+
   onMount(async () => {
     const Masonry = (await import("masonry-layout")).default;
     const ImagesLoaded = (await import("imagesloaded")).default;
@@ -116,7 +122,7 @@
 
 {#if !data.errorOccurred}
   <div class="mx-auto text-center flex flex-col justify-center items-center gap-4">
-    <Search onSubmit={(event) => search(event.target[0].value)} placeholder={m.articleList_search_placeholder()} />
+    <Search bind:value={searchValue} onSubmit={(event) => search(event.target[0].value)} placeholder={m.articleList_search_placeholder()} />
     <div class="flex items-start">
       <div class="flex items-center h-5">
         <input

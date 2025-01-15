@@ -16,6 +16,7 @@ config.subscribe((value) => {
 let lastUrl = typeof window !== "undefined" ? "" : "";
 
 let ip = "";
+let ipFailures = 0;
 let dnt;
 
 export { startAnalyticsMonitoring };
@@ -37,8 +38,15 @@ async function collect2() {
   const screenHeight = window.screen.height;
   const referrer = document.referrer;
 
-  if (ip == "") {
-    ip = await fetch("https://blalange.org/api/ip").then((res) => res.text());
+  if (ip == "" && ipFailures < 5) {
+    ip = await fetch("https://blalange.org/api/ip").then((res) => res.text()).catch((error) => {
+      console.error("Failed to fetch IP:", error);
+      ipFailures++;
+      if (ipFailures >= 5) {
+        console.error("Too many IP fetch failures, giving up.");
+      }
+      return "";
+    })
   }
 
   // Only run if the url has changed
