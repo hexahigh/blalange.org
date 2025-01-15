@@ -2,7 +2,332 @@
 
 All notable changes to this project will be documented in this file.
 
-## [5.0.1](https://github.com/hexahigh/blalange.org/compare/v5.0.0..5.0.1) - 2024-11-29
+## [5.1.0](https://github.com/hexahigh/blalange.org/compare/v5.0.1..v5.1.0) - 2025-01-15
+
+### ⛰️  Features
+
+- *(3cx widget)* Added multiple languages - ([8af1f0f](https://github.com/hexahigh/blalange.org/commit/8af1f0fecfc9b5be256bc041576c4d35d3f57977))
+
+
+- *(article list)* Added live search preview - ([4653e7c](https://github.com/hexahigh/blalange.org/commit/4653e7ca717aba855b75cf9362549b86b7c66a09))
+
+
+- Added Eruda - ([590ec6e](https://github.com/hexahigh/blalange.org/commit/590ec6e2810d9f5f2cb3afb51576279afa5c07be))
+
+
+- Add 3cx widget - ([ddeef8d](https://github.com/hexahigh/blalange.org/commit/ddeef8d65673976d04b2fb04382159d9acf480d2))
+```commit-body
+jeg lærte meg :)
+
+simon
+```
+
+- Added changelog page - ([6f9feaf](https://github.com/hexahigh/blalange.org/commit/6f9feafac203c79a394c3ce4b09f521e3288afb6))
+
+
+- Switched to tailwind typography - ([7148a72](https://github.com/hexahigh/blalange.org/commit/7148a728c185f1b8ed5f2bd80d0e5644461c9163))
+
+
+- Moved PP and TOS to tailwind typography - ([b067267](https://github.com/hexahigh/blalange.org/commit/b067267c4ae8bbe27f01e7abfaaf449b9eea08d0))
+
+
+- Add builddate - ([344baf3](https://github.com/hexahigh/blalange.org/commit/344baf31c398794676a09cc1874b329a91b5dd1e))
+
+
+
+### 🐛 Bug Fixes
+
+- *(article list rss)* Fixed the rss feed - ([9361670](https://github.com/hexahigh/blalange.org/commit/9361670490f3bf5c177497bc65e49a5879200bb0))
+
+
+- *(npm)* Fix lockfile - ([4114ab9](https://github.com/hexahigh/blalange.org/commit/4114ab922ba4f5a7e25aee23637b403e8991ab4f))
+
+
+- Broken CORS headers - ([5caf5c6](https://github.com/hexahigh/blalange.org/commit/5caf5c62c5da0e6d8f4cb0f36889fbeea5e30a10))
+
+
+- Running on codespaces - ([5fc3353](https://github.com/hexahigh/blalange.org/commit/5fc3353f4f35c0cbde8724986e848138ef26d0c2))
+```commit-body
+Fixed codespaces returning a 502 when running the dev server
+```
+
+
+### ⚡ Performance
+
+- *(analytics)* Disabled "beforeNavigate" hook - ([96af07b](https://github.com/hexahigh/blalange.org/commit/96af07be135156dac19dd113c339f9dc55d32c07))
+
+
+- *(analytics)* Reduced the amount of data sent - ([69d777a](https://github.com/hexahigh/blalange.org/commit/69d777a36c23a2abacf13010f9019763d3999a07))
+
+
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump iconify-icon from 2.1.0 to 2.2.0 - ([b3cff14](https://github.com/hexahigh/blalange.org/commit/b3cff146695ebdfa0fafba27b2271e55019d3eea))
+```commit-body
+Bumps [iconify-icon](https://github.com/iconify/iconify/tree/HEAD/iconify-icon/icon) from 2.1.0 to 2.2.0.
+- [Commits](https://github.com/iconify/iconify/commits/HEAD/iconify-icon/icon)
+
+---
+updated-dependencies:
+- dependency-name: iconify-icon
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @inlang/paraglide-sveltekit from 0.12.1 to 0.15.0 - ([19b2005](https://github.com/hexahigh/blalange.org/commit/19b20058d6acdddbcefc9c6aa829cf4d1ca3e060))
+```commit-body
+Bumps [@inlang/paraglide-sveltekit](https://github.com/opral/inlang-paraglide-js) from 0.12.1 to 0.15.0.
+- [Commits](https://github.com/opral/inlang-paraglide-js/commits)
+
+---
+updated-dependencies:
+- dependency-name: "@inlang/paraglide-sveltekit"
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump dompurify from 3.2.2 to 3.2.3 - ([cb9cfd3](https://github.com/hexahigh/blalange.org/commit/cb9cfd3113b923cc2b61c60cd8b4ec1c52baa33f))
+```commit-body
+Bumps [dompurify](https://github.com/cure53/DOMPurify) from 3.2.2 to 3.2.3.
+- [Release notes](https://github.com/cure53/DOMPurify/releases)
+- [Commits](https://github.com/cure53/DOMPurify/compare/3.2.2...3.2.3)
+
+---
+updated-dependencies:
+- dependency-name: dompurify
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Bump katex from 0.16.11 to 0.16.18 - ([7f10419](https://github.com/hexahigh/blalange.org/commit/7f104195fc9be95d69bcf43274101a99a190aae0))
+```commit-body
+Bumps [katex](https://github.com/KaTeX/KaTeX) from 0.16.11 to 0.16.18.
+- [Release notes](https://github.com/KaTeX/KaTeX/releases)
+- [Changelog](https://github.com/KaTeX/KaTeX/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/KaTeX/KaTeX/compare/v0.16.11...v0.16.18)
+
+---
+updated-dependencies:
+- dependency-name: katex
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Remove unused dependencies - ([6d05822](https://github.com/hexahigh/blalange.org/commit/6d058220da0dc6951bf405c0a482b3e892e63c66))
+
+
+- *(deps)* Bump @sveltejs/adapter-cloudflare from 4.8.0 to 4.9.0 - ([8244679](https://github.com/hexahigh/blalange.org/commit/82446798f4873306ce5b6f9fdfd6f33e1b65e82c))
+```commit-body
+Bumps [@sveltejs/adapter-cloudflare](https://github.com/sveltejs/kit/tree/HEAD/packages/adapter-cloudflare) from 4.8.0 to 4.9.0.
+- [Release notes](https://github.com/sveltejs/kit/releases)
+- [Changelog](https://github.com/sveltejs/kit/blob/main/packages/adapter-cloudflare/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/kit/commits/@sveltejs/adapter-cloudflare@4.9.0/packages/adapter-cloudflare)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/adapter-cloudflare"
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump iconify-icon from 2.2.0 to 2.3.0 - ([285357b](https://github.com/hexahigh/blalange.org/commit/285357b28dab82be5cfb71eecb74afeae31e0d1b))
+```commit-body
+Bumps [iconify-icon](https://github.com/iconify/iconify/tree/HEAD/iconify-icon/icon) from 2.2.0 to 2.3.0.
+- [Commits](https://github.com/iconify/iconify/commits/HEAD/iconify-icon/icon)
+
+---
+updated-dependencies:
+- dependency-name: iconify-icon
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump katex from 0.16.18 to 0.16.20 - ([35b8814](https://github.com/hexahigh/blalange.org/commit/35b88140353f60cc0d0c1b8ac25b29538cc765e0))
+```commit-body
+Bumps [katex](https://github.com/KaTeX/KaTeX) from 0.16.18 to 0.16.20.
+- [Release notes](https://github.com/KaTeX/KaTeX/releases)
+- [Changelog](https://github.com/KaTeX/KaTeX/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/KaTeX/KaTeX/compare/v0.16.18...v0.16.20)
+
+---
+updated-dependencies:
+- dependency-name: katex
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Bump @directus/sdk from 18.0.0 to 18.0.3 (#498) - ([66599da](https://github.com/hexahigh/blalange.org/commit/66599da9c7d141a359dcfa040bb5bdc26705c690))
+
+
+- *(deps)* Bump @fontsource/dela-gothic-one from 5.1.0 to 5.1.1 (#522) - ([291162f](https://github.com/hexahigh/blalange.org/commit/291162f95ce98a1dd81155fbf55a1adf940a6c79))
+
+
+- *(deps)* Bump highlight.js from 11.10.0 to 11.11.1 (#516) - ([7691eee](https://github.com/hexahigh/blalange.org/commit/7691eee5013471c1916de7724b6eea604120b304))
+
+
+- *(deps)* Bump marked from 15.0.3 to 15.0.6 (#540) - ([840b853](https://github.com/hexahigh/blalange.org/commit/840b8537a12105eabc884dfcdf0166e440401a68))
+
+
+- *(deps)* Bump @inlang/paraglide-sveltekit from 0.15.0 to 0.15.5 (#553) - ([51b1bba](https://github.com/hexahigh/blalange.org/commit/51b1bbae982ce5c8dcc2351a30db2c7fdeebbba9))
+
+
+- *(deps)* Bump @sveltejs/adapter-cloudflare from 4.9.0 to 5.0.1 (#562) - ([49ecf23](https://github.com/hexahigh/blalange.org/commit/49ecf232e61b806455567e3a7c5a7a3ead994f17))
+
+
+- *(deps)* Bump pocketbase from 0.22.1 to 0.25.0 (#527) - ([709ee27](https://github.com/hexahigh/blalange.org/commit/709ee278007dbcca42b43605dd4746006aafb1c6))
+```commit-body
+Bumps [pocketbase](https://github.com/pocketbase/js-sdk) from 0.22.1 to 0.25.0.
+- [Release notes](https://github.com/pocketbase/js-sdk/releases)
+- [Changelog](https://github.com/pocketbase/js-sdk/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/pocketbase/js-sdk/compare/v0.22.1...v0.25.0)
+
+---
+updated-dependencies:
+- dependency-name: pocketbase
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump axios from 1.7.8 to 1.7.9 (#465) - ([1715a00](https://github.com/hexahigh/blalange.org/commit/1715a00144a2c69f9f6be27dbdf66a73345831cb))
+```commit-body
+Bumps [axios](https://github.com/axios/axios) from 1.7.8 to 1.7.9.
+- [Release notes](https://github.com/axios/axios/releases)
+- [Changelog](https://github.com/axios/axios/blob/v1.x/CHANGELOG.md)
+- [Commits](https://github.com/axios/axios/compare/v1.7.8...v1.7.9)
+
+---
+updated-dependencies:
+- dependency-name: axios
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps-dev)* Bump @sveltejs/kit - ([2d0b504](https://github.com/hexahigh/blalange.org/commit/2d0b50427c5646b918d9c117bff0ff69f0f16e81))
+```commit-body
+Bumps the npm_and_yarn group with 1 update in the / directory: [@sveltejs/kit](https://github.com/sveltejs/kit/tree/HEAD/packages/kit).
+
+
+Updates `@sveltejs/kit` from 2.7.0 to 2.8.3
+- [Release notes](https://github.com/sveltejs/kit/releases)
+- [Changelog](https://github.com/sveltejs/kit/blob/main/packages/kit/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/kit/commits/@sveltejs/kit@2.8.3/packages/kit)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/kit"
+  dependency-type: direct:development
+  dependency-group: npm_and_yarn
+...
+```
+
+- *(deps-dev)* Bump svelte from 5.2.11 to 5.10.1 - ([87b9f83](https://github.com/hexahigh/blalange.org/commit/87b9f83daa8b92b767a2f10f6c8e49f40ef3794f))
+```commit-body
+Bumps [svelte](https://github.com/sveltejs/svelte/tree/HEAD/packages/svelte) from 5.2.11 to 5.10.1.
+- [Release notes](https://github.com/sveltejs/svelte/releases)
+- [Changelog](https://github.com/sveltejs/svelte/blob/main/packages/svelte/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/svelte/commits/svelte@5.10.1/packages/svelte)
+
+---
+updated-dependencies:
+- dependency-name: svelte
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @sveltejs/kit from 2.9.0 to 2.12.1 - ([8183516](https://github.com/hexahigh/blalange.org/commit/818351692e4fe40228e1aba35ce6338e9e8320f0))
+```commit-body
+Bumps [@sveltejs/kit](https://github.com/sveltejs/kit/tree/HEAD/packages/kit) from 2.9.0 to 2.12.1.
+- [Release notes](https://github.com/sveltejs/kit/releases)
+- [Changelog](https://github.com/sveltejs/kit/blob/main/packages/kit/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/kit/commits/@sveltejs/kit@2.12.1/packages/kit)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/kit"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @iconify/svelte from 4.0.2 to 4.1.0 - ([794ba6d](https://github.com/hexahigh/blalange.org/commit/794ba6dbb25b5bd31415095a465a6e7e2b08f97d))
+```commit-body
+Bumps [@iconify/svelte](https://github.com/iconify/iconify/tree/HEAD/components/svelte) from 4.0.2 to 4.1.0.
+- [Commits](https://github.com/iconify/iconify/commits/HEAD/components/svelte)
+
+---
+updated-dependencies:
+- dependency-name: "@iconify/svelte"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump svelte from 5.10.1 to 5.18.0 - ([57b19f4](https://github.com/hexahigh/blalange.org/commit/57b19f451ad7933d2d34635b9a2e32b6b04d1167))
+```commit-body
+Bumps [svelte](https://github.com/sveltejs/svelte/tree/HEAD/packages/svelte) from 5.10.1 to 5.18.0.
+- [Release notes](https://github.com/sveltejs/svelte/releases)
+- [Changelog](https://github.com/sveltejs/svelte/blob/main/packages/svelte/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/svelte/commits/svelte@5.18.0/packages/svelte)
+
+---
+updated-dependencies:
+- dependency-name: svelte
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @inlang/paraglide-js from 1.11.3 to 1.11.8 (#554) - ([019411c](https://github.com/hexahigh/blalange.org/commit/019411c853c94b3e3d623d8843856894308e0cf2))
+
+
+- *(deps-dev)* Bump @tailwindcss/typography from 0.5.15 to 0.5.16 (#542) - ([b63098e](https://github.com/hexahigh/blalange.org/commit/b63098e425e8122993a2f63077016d82388b621f))
+
+
+- *(deps-dev)* Bump svelte-meta-tags from 4.0.4 to 4.1.0 (#550) - ([ba0e4cc](https://github.com/hexahigh/blalange.org/commit/ba0e4cc4415ce798438927ad74d15c541ce3b1ec))
+
+
+- *(deps-dev)* Bump @sveltejs/kit from 2.12.1 to 2.15.3 (#563) - ([7e8b388](https://github.com/hexahigh/blalange.org/commit/7e8b388bb99c843cc75745ea7ac63d55935d08d7))
+```commit-body
+Bumps [@sveltejs/kit](https://github.com/sveltejs/kit/tree/HEAD/packages/kit) from 2.12.1 to 2.15.3.
+- [Release notes](https://github.com/sveltejs/kit/releases)
+- [Changelog](https://github.com/sveltejs/kit/blob/main/packages/kit/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/kit/commits/@sveltejs/kit@2.15.3/packages/kit)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/kit"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @types/node from 22.10.1 to 22.10.6 (#558) - ([49869af](https://github.com/hexahigh/blalange.org/commit/49869af89e8311897c9cbda4c5b4726fbda5b276))
+
+
+- *(deps-dev)* Bump postcss from 8.4.49 to 8.5.1 (#561) - ([46211f4](https://github.com/hexahigh/blalange.org/commit/46211f4df9dfa011f81b4c8b1f94a31364f0cb9e))
+
+
+- Update translations with Fink 🐦 - ([0ae0aab](https://github.com/hexahigh/blalange.org/commit/0ae0aab948a4ccffa53f6af24c41ca4c78d2f266))
+
+
+- Update codeql.yml - ([f5b71eb](https://github.com/hexahigh/blalange.org/commit/f5b71ebc335b4946305e2af8d93a9cf43007010b))
+
+
+- Create eslint.yml - ([9729642](https://github.com/hexahigh/blalange.org/commit/97296429558df80d3ef009d5935456b282ea0ec2))
+
+
+## [5.0.1](https://github.com/hexahigh/blalange.org/compare/v5.0.0..v5.0.1) - 2024-11-29
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -139,6 +464,9 @@ updated-dependencies:
   update-type: version-update:semver-minor
 ...
 ```
+
+- Prepare for release - ([66f6dd4](https://github.com/hexahigh/blalange.org/commit/66f6dd4da34544e4b22fa9e4dca034558caec673))
+
 
 ## [5.0.0](https://github.com/hexahigh/blalange.org/compare/v4.0.4..v5.0.0) - 2024-11-29
 
