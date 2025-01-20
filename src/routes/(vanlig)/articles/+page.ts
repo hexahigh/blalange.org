@@ -1,14 +1,14 @@
 import PocketBase from "pocketbase";
 import { config, defaultConfig } from "$lib/js/config";
 import { readItems, readItem } from '@directus/sdk';
-import { getDirectusInstanceRest, getImageUrl } from "$lib/js/directus";
+import { getDirectusInstance, getImageUrl } from "$lib/js/directus";
 
 export async function load({ params, url, fetch }) {
   const urlParams = url.searchParams;
   const fakeError = urlParams.get("fe");
   const multiply = urlParams.get("m");
   const randomize = urlParams.get("r");
-  const client = getDirectusInstanceRest(fetch);
+  const client = getDirectusInstance(fetch);
 
   let articles = [];
   let errorOccurred = false;

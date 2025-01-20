@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 import { defaultConfig } from "$lib/js/config";
 import { readItems, readItem } from "@directus/sdk";
-import { getDirectusInstanceRest, getImageUrl } from "$lib/js/directus";
+import { getDirectusInstance, getImageUrl } from "$lib/js/directus";
 
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
@@ -15,7 +15,7 @@ import { unified } from "unified";
 
 export async function load({ params, url, fetch }) {
   try {
-    const client = getDirectusInstanceRest(fetch);
+    const client = getDirectusInstance(fetch);
 
     let articleId = params.slug;
 
