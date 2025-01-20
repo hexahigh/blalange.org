@@ -21,7 +21,7 @@ const storage = new LocalStorage();
  * @param {Function} fetch - The fetch function to use for network requests.
  * @return {Object} The Directus instance.
  */
-function getDirectusInstance(fetch) {
+function getDirectusInstance(fetch?) {
   const options = fetch ? { globals: { fetch } } : {};
   const directus = createDirectus(defaultConfig.directusEndpoint, options)
     .with(authentication("json", { storage }))
@@ -36,7 +36,7 @@ function getDirectusInstance(fetch) {
  * @param {Function} fetch - The fetch function to use for network requests.
  * @return {Object} The Directus instance.
  */
-function getDirectusInstanceAuth(fetch) {
+function getDirectusInstanceAuth(fetch?) {
   const options = fetch ? { globals: { fetch } } : {};
   const directus = createDirectus(defaultConfig.directusEndpoint, options).with(authentication("json", { storage }));
   return directus;
@@ -50,7 +50,7 @@ function getDirectusInstanceAuth(fetch) {
  * @param {Function} fetch - The fetch function to use for network requests.
  * @return {Object} The Directus instance.
  */
-function getDirectusInstanceRest(fetch) {
+function getDirectusInstanceRest(fetch?) {
   const options = fetch ? { globals: { fetch } } : {};
   const directus = createDirectus(defaultConfig.directusEndpoint, options).with(rest());
   return directus;
