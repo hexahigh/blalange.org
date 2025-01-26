@@ -5,7 +5,7 @@
   import { dev } from "$app/environment";
   import "../app.css";
   import "$lib/css/fonts.css";
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics";
   import { init as initAnalytics2 } from "$lib/js/analytics2";
@@ -14,14 +14,13 @@
   import { initEgg } from "$lib/js/egg.js";
   import { init as initEruda } from "$lib/js/eruda";
   import { addAPIProvider, loadIcons } from "iconify-icon";
-  import { currentUser } from "$lib/js/directus";
+  import { refreshToken } from "$lib/js/directus";
   import FingerprintJS from "@fingerprintjs/fingerprintjs";
   import { load as loadBotD } from "@fingerprintjs/botd";
   import { fingerprint as fingerprintStore, botd as botdStore } from "$lib/stores/info";
   import Pre from "$lib/components/util/pre.svelte";
   import "$lib/js/polyfills/main";
 
-  import { get } from "svelte/store";
   interface Props {
     children?: import("svelte").Snippet;
   }
@@ -42,8 +41,8 @@
     initializeDev(); // Initialize the dev mode
     checkForDevMode(); // Checks if dev mode is enabled in the config
     initEruda();
-    // We call currentUser() at startup, this way directus will automatically refresh the token if needed
-    currentUser();
+    // We call refreshToken() at startup, this way directus will automatically refresh the token if needed
+    refreshToken();
 
     config.subscribe((value) => {
       document.documentElement.style.setProperty("--font-family-var", value.font.family);
