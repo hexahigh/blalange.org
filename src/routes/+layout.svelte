@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { ParaglideJS } from '@inlang/paraglide-sveltekit'
-	import { i18n } from '$lib/i18n'
+  import { ParaglideJS } from "@inlang/paraglide-sveltekit";
+  import { i18n } from "$lib/i18n";
 
   import { dev } from "$app/environment";
   import "../app.css";
   import "$lib/css/fonts.css";
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
 
   import { startAnalyticsMonitoring } from "$lib/js/analytics";
   import { init as initAnalytics2 } from "$lib/js/analytics2";
@@ -14,16 +14,15 @@
   import { initEgg } from "$lib/js/egg.js";
   import { init as initEruda } from "$lib/js/eruda";
   import { addAPIProvider, loadIcons } from "iconify-icon";
-  import { currentUser } from "$lib/js/directus";
+  import { refreshToken } from "$lib/js/directus";
   import FingerprintJS from "@fingerprintjs/fingerprintjs";
-  import { load as loadBotD } from '@fingerprintjs/botd'
-  import { fingerprint as fingerprintStore, botd as botdStore } from '$lib/stores/info';
-
+  import { load as loadBotD } from "@fingerprintjs/botd";
+  import { fingerprint as fingerprintStore, botd as botdStore } from "$lib/stores/info";
+  import Pre from "$lib/components/util/pre.svelte";
   import "$lib/js/polyfills/main";
 
-  import { get } from "svelte/store";
   interface Props {
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   }
 
   let { children }: Props = $props();
@@ -42,24 +41,23 @@
     initializeDev(); // Initialize the dev mode
     checkForDevMode(); // Checks if dev mode is enabled in the config
     initEruda();
-    // We call currentUser() at startup, this way directus will automatically refresh the token if needed
-    currentUser();
+    // We call refreshToken() at startup, this way directus will automatically refresh the token if needed
+    refreshToken();
 
     config.subscribe((value) => {
       document.documentElement.style.setProperty("--font-family-var", value.font.family);
 
       // if (value.translations.currentLocale) setLocale(value.translations.currentLocale);
-
     });
 
     // FingerprintJS and BotD
     FingerprintJS.load().then((fp) => {
       fingerprintStore.set(fp);
-      console.log(fp.get())
-    })
+      console.log(fp.get());
+    });
     loadBotD().then((botd) => {
       botdStore.set(botd);
-    })
+    });
     // fingerprint.set((await FingerprintJS.load()));
     // botd.set(await loadBotD());
 
@@ -90,8 +88,19 @@
   {/if}
 </svelte:head>
 
+<Pre
+  links={[
+    { url: "https://db.blalange.org", type: "preconnect" },
+    { url: "https://downloads-global.3cx.com", type: "preconnect" },
+    { url: "https://1468.3cx.cloud", type: "preconnect" },
+    { url: "https://api.iconify.design", type: "preconnect" },
+    { url: "https://api.simplesvg.com", type: "dns-prefetch" },
+    { url: "https://api.unisvg.com", type: "dns-prefetch" },
+  ]}
+/>
+
 <ParaglideJS {i18n}>
-<main>
-  {@render children?.()}
-</main>
+  <main>
+    {@render children?.()}
+  </main>
 </ParaglideJS>

@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.1.1](https://github.com/hexahigh/blalange.org/compare/v5.1.0..v5.1.1) - 2025-01-26
+
+### ⛰️  Features
+
+- Added prefetching - ([d6ef25c](https://github.com/hexahigh/blalange.org/commit/d6ef25c406b928119ea42fefb79fb60a8208645f))
+
+
+
+### 🐛 Bug Fixes
+
+- *(article list)* Articles not being fetched using the user account - ([bb903f5](https://github.com/hexahigh/blalange.org/commit/bb903f5a7b80f8fe79f895c576f9dd9f7d23ee7e))
+
+
+- *(login and signup)* Errors not being displayed correctly - ([17b2e51](https://github.com/hexahigh/blalange.org/commit/17b2e516714cc25e47401e766d4f6b3aa405f5f5))
+
+
+- Made the "fetch" parameter optional in getDirectusInstance - ([78ed0ba](https://github.com/hexahigh/blalange.org/commit/78ed0ba05cc07199ee08280b287c99bb65ab7d4b))
+
+
+- Directus token not getting refreshed - ([292be7b](https://github.com/hexahigh/blalange.org/commit/292be7b7844f1ee3274133dff09fc1e8ed4e6799))
+
+
 ## [5.1.0](https://github.com/hexahigh/blalange.org/compare/v5.0.1..v5.1.0) - 2025-01-15
 
 ### ⛰️  Features
@@ -325,6 +347,9 @@ updated-dependencies:
 
 
 - Create eslint.yml - ([9729642](https://github.com/hexahigh/blalange.org/commit/97296429558df80d3ef009d5935456b282ea0ec2))
+
+
+- Prepare for release - ([df5ca98](https://github.com/hexahigh/blalange.org/commit/df5ca9850733419169e150d37686e275e0ea3ad0))
 
 
 ## [5.0.1](https://github.com/hexahigh/blalange.org/compare/v5.0.0..v5.0.1) - 2024-11-29
