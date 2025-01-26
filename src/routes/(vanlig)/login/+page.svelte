@@ -1,5 +1,5 @@
-<script>
-  import { createBubbler, preventDefault } from 'svelte/legacy';
+<script lang="ts">
+  import { createBubbler, preventDefault } from "svelte/legacy";
 
   const bubble = createBubbler();
   import logoSvg from "$lib/img/favicon.svg";
@@ -9,8 +9,8 @@
 
   const client = getDirectusInstance();
 
-  let email = $state();
-  let pass = $state();
+  let email = $state("");
+  let pass = $state("");
 
   let message = $state();
   let messageType = $state("info");
@@ -29,7 +29,8 @@
     try {
       await client.login(email, pass);
     } catch (error) {
-      message = "An error occurred: " + error;
+      messageType = "error";
+      message = "An error occurred: " + error.errors[0].message;
       return;
     }
     success = true;
@@ -43,15 +44,10 @@
       message = "Vennligst skriv inn en epostadresse for å tilbakestille passordet";
       return;
     }
-    let result = await client.request(passwordRequest(email));
+    await client.request(passwordRequest(email));
 
-    if (result) {
-      messageType = "success";
-      message = "Eposten er blitt sendt til deg";
-    } else {
-      messageType = "error";
-      message = "Noe gikk galt, er du sikker at eposten er riktig?";
-    }
+    messageType = "success";
+    message = "Eposten er blitt sendt til deg";
   }
 </script>
 
@@ -70,7 +66,7 @@
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           Logg inn
         </h1>
-        <form class="space-y-4 md:space-y-6" onsubmit={preventDefault(bubble('submit'))}>
+        <form class="space-y-4 md:space-y-6" onsubmit={preventDefault(bubble("submit"))}>
           <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Epost</label>
             <input
@@ -80,7 +76,7 @@
               id="email"
               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="name@company.com"
-              required=""
+              required={true}
             />
           </div>
           <div>
@@ -92,7 +88,7 @@
               id="password"
               placeholder="••••••••"
               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
+              required={true}
             />
           </div>
           <div class="flex items-center justify-between">
@@ -127,7 +123,7 @@
             {/if}
           {/if}
           <button
-            type="none"
+            type="button"
             onclick={login}
             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >Logg inn</button

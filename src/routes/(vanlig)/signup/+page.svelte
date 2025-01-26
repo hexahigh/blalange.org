@@ -63,7 +63,7 @@
       message = "Kontoen er opprettet, en verifikasjons epost har blitt sendt";
     } catch (error) {
       messageType = "error";
-      message = "Noe gikk galt: " + error;
+      message = "Noe gikk galt: " + error.errors[0].message;
     }
   }
 </script>
