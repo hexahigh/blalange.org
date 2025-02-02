@@ -22,7 +22,7 @@ export async function load({ params, url, fetch }) {
     let articles = await client.request(
       readItems("art_articles", {
         filter: {
-          artId: {
+          art_id: {
             _eq: articleId,
           },
         },

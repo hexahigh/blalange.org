@@ -11,11 +11,11 @@ const articles = async () => {
   try {
     let articles = await client.request(readItems('art_articles', {
       fields: [
-        "artId",
+        "art_id",
       ],
     }))
     // Return all ids
-    return articles.map((article) => article.artId);
+    return articles.map((article) => article.art_id);
   } catch (error) {
     console.log(error);
     return [];
@@ -36,8 +36,8 @@ export const GET = async ({ url }) => {
     },
     additionalPaths: [
     ],
-    changefreq: 'daily', // excluded by default b/c ignored by modern search engines
-    priority: 0.7, // excluded by default b/c ignored by modern search engines
+    // changefreq: 'daily', // excluded by default b/c ignored by modern search engines
+    // priority: 0.7, // excluded by default b/c ignored by modern search engines
     sort: 'alpha', // default is false; 'alpha' sorts all paths alphabetically.
     processPaths: (paths) => {
       // A callback to allow arbitrary processing of your path objects. See the

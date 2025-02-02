@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🐛 Bug Fixes
+
+- Rename artId to art_id - ([ee63156](https://github.com/hexahigh/blalange.org/commit/ee63156cc2726a169aab06359817080cc2cc8987))
+
+
 ## [5.1.1](https://github.com/hexahigh/blalange.org/compare/v5.1.0..v5.1.1) - 2025-01-26
 
 ### ⛰️  Features
@@ -22,6 +29,12 @@ All notable changes to this project will be documented in this file.
 
 
 - Directus token not getting refreshed - ([292be7b](https://github.com/hexahigh/blalange.org/commit/292be7b7844f1ee3274133dff09fc1e8ed4e6799))
+
+
+
+### ⚙️ Miscellaneous Tasks
+
+- Prepare for release - ([3dd5d00](https://github.com/hexahigh/blalange.org/commit/3dd5d006540fc9c199a160bcac51dfb8b86ebd5b))
 
 
 ## [5.1.0](https://github.com/hexahigh/blalange.org/compare/v5.0.1..v5.1.0) - 2025-01-15

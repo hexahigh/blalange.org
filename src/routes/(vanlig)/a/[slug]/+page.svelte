@@ -22,7 +22,7 @@
   let description = data.translations?.[currentLocale]?.description || data.article.description;
   let text = data.translations?.[currentLocale]?.text || data.text;
   let image = data.imgUrl;
-  let artId = data.article.artId;
+  let artId = data.article.art_id;
 
   function formatDate(date) {
     const d = new Date(date);
