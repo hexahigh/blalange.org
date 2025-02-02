@@ -8,7 +8,7 @@ export async function GET({ url }) {
 
   const articles = await client.request(
     readItems("art_articles", {
-      fields: ["artId", "name", "description", "image", "date", "text", "author.name"],
+      fields: ["art_id", "name", "description", "image", "date", "text", "author.name"],
       limit: -1,
     })
   );
@@ -51,9 +51,9 @@ export async function GET({ url }) {
       return `
             <item>
                 <title>${article.name}</title>
-                <link>${url.origin}/a/${article.artId}</link>
+                <link>${url.origin}/a/${article.art_id}</link>
                 <description>${article.description}</description>
-                <guid isPermaLink="false">${article.artId}</guid>
+                <guid isPermaLink="false">${article.art_id}</guid>
                 <pubDate>${formatDateForRSS(article.date)}</pubDate>
                 <author>${author}</author>
             </item>

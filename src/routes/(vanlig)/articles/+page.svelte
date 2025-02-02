@@ -148,7 +148,7 @@
           title={article.name}
           date={article.date}
           description={article.description}
-          link={"/a/" + article.artId}
+          link={"/a/" + article.art_id}
           image={article.image}
           width="300px"
           class="mt-8 grid-item"

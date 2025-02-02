@@ -18,7 +18,7 @@ export async function load({ params, url, fetch }) {
     // Import all articles from the database
     articles = await client.request(readItems('art_articles', {
       fields: [
-        "artId",
+        "art_id",
         "name",
         "description",
         "image",
