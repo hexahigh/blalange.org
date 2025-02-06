@@ -65,7 +65,7 @@
     if (dev && !import.meta.env.VITE_FORCE_ANALYTICS) {
       console.log("In development mode. No analytics monitoring.");
     } else {
-      startAnalyticsMonitoring();
+      // startAnalyticsMonitoring();
       initAnalytics2();
     }
   });

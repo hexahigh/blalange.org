@@ -86,7 +86,7 @@ function currentUser() {
 
 function refreshToken() {
   const client = getDirectusInstance(null);
-  if (storage.get().refresh_token) {
+  if (storage.get()?.refresh_token) {
     return client.refresh();
   }
   return null;

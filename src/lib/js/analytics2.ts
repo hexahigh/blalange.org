@@ -9,6 +9,7 @@ import type { Page } from "@sveltejs/kit";
 import { fingerprint, botd } from "$lib/stores/info";
 import { get } from "svelte/store";
 import type { GetResult } from "@fingerprintjs/fingerprintjs";
+import { getPostgresTimestamp, getPostgresTimestamptz } from "./util/time";
 
 const client = getDirectusInstance(null);
 
@@ -34,8 +35,9 @@ async function collectInfo() {
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
   const referrer = document.referrer;
-  const time = new Date().getTime();
-  const localTime = time + new Date().getTimezoneOffset() * 60 * 1000;
+
+  const time = getPostgresTimestamptz();
+  const localTime = getPostgresTimestamp();
 
   if (ip === "" && ipFailures < 5) {
     ip = await fetchIp();
@@ -67,12 +69,12 @@ async function fetchIp(): Promise<string> {
   }
 }
 
-  /**
-   * Handle an event. The event data is added to the payload, and additional data can be passed in the third argument.
-   * @param event The event that was triggered.
-   * @param type The type of event (e.g. "visibilitychange").
-   * @param additionalData Additional data to be added to the payload.
-   */
+/**
+ * Handle an event. The event data is added to the payload, and additional data can be passed in the third argument.
+ * @param event The event that was triggered.
+ * @param type The type of event (e.g. "visibilitychange").
+ * @param additionalData Additional data to be added to the payload.
+ */
 async function handleEvent(event: Event, type: string, additionalData = {}) {
   let extraData: any = {};
   switch (type) {
@@ -89,11 +91,11 @@ async function handleEvent(event: Event, type: string, additionalData = {}) {
   });
 }
 
-  /**
-   * Handles a request to send analytics data to the server.
-   * @param type The type of request (e.g. "pageview").
-   * @param additionalData Additional data to be added to the payload.
-   */
+/**
+ * Handles a request to send analytics data to the server.
+ * @param type The type of request (e.g. "pageview").
+ * @param additionalData Additional data to be added to the payload.
+ */
 async function handleRequest(type: string, additionalData = {}, options = { muchData: false }) {
   const info = await collectInfo();
   const urlDetails = {
@@ -157,21 +159,21 @@ async function getBotd(components: boolean) {
   let obj = {
     bot: get(botd).detect().bot,
     ...get(botd),
-  }
+  };
   if (!components) {
-    delete obj.components
+    delete obj.components;
   }
-  return obj
+  return obj;
 }
 
 async function getFingerprint(components: boolean): Promise<GetResult> {
   let obj = {
-    ...await get(fingerprint).get(),
-  }
+    ...(await get(fingerprint).get()),
+  };
   if (!components) {
-    delete obj.components
+    delete obj.components;
   }
-  return obj
+  return obj;
 }
 
 async function init() {
@@ -188,7 +190,7 @@ async function init() {
   window.addEventListener("beforeunload", (event) => handleEvent(event, "beforeunload"));
   window.addEventListener("visibilitychange", (event) => handleEvent(event, "visibilitychange"));
 
-/*   beforeNavigate((navigation) => {
+  /*   beforeNavigate((navigation) => {
     handleRequest("beforenavigate", {
       ...navigation,
     });

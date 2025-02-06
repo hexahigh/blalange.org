@@ -2,11 +2,61 @@
 
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [5.1.3](https://github.com/hexahigh/blalange.org/compare/v5.1.1..v5.1.3) - 2025-02-06
 
 ### 🐛 Bug Fixes
 
+- *(analytics)* Wrong time values - ([2798ef2](https://github.com/hexahigh/blalange.org/commit/2798ef2fed06107af3fe228e992d730cd2e96ba6))
+
+
 - Rename artId to art_id - ([ee63156](https://github.com/hexahigh/blalange.org/commit/ee63156cc2726a169aab06359817080cc2cc8987))
+
+
+
+### 🚜 Refactor
+
+- *(analytics)* Disabled analytics v1 - ([4f32e69](https://github.com/hexahigh/blalange.org/commit/4f32e69be7040b2e9df4ae92340c84d497ff2862))
+
+
+- *(article list)* Removed auto-search - ([4f8dc56](https://github.com/hexahigh/blalange.org/commit/4f8dc5633100763c1e20e03b278334a9ae287ab2))
+```commit-body
+Removed auto-search due to it causing an infinite loop. Will (probably) fix later.
+```
+
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump @sveltejs/adapter-node from 5.2.9 to 5.2.12 - ([da5903b](https://github.com/hexahigh/blalange.org/commit/da5903bc3bc35405add04c42894d5b2e374c4b4f))
+```commit-body
+Bumps [@sveltejs/adapter-node](https://github.com/sveltejs/kit/tree/HEAD/packages/adapter-node) from 5.2.9 to 5.2.12.
+- [Release notes](https://github.com/sveltejs/kit/releases)
+- [Changelog](https://github.com/sveltejs/kit/blob/main/packages/adapter-node/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/kit/commits/@sveltejs/adapter-node@5.2.12/packages/adapter-node)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/adapter-node"
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps-dev)* Bump vite from 6.0.1 to 6.1.0 (#573) - ([5796995](https://github.com/hexahigh/blalange.org/commit/5796995811eb2c868c52503438a140be4c672e5c))
+
+
+- *(deps-dev)* Bump @playwright/test from 1.49.0 to 1.50.1 (#572) - ([6f79b2c](https://github.com/hexahigh/blalange.org/commit/6f79b2ce4907ecd7502fa491a9d44a7d5cf69bfa))
+
+
+- *(deps-dev)* Bump flowbite-svelte from 0.47.3 to 0.47.4 (#460) - ([706cd05](https://github.com/hexahigh/blalange.org/commit/706cd05189618994d5ed26ff639cd01ee80cde70))
+
+
+- *(deps-dev)* Bump tailwindcss from 3.4.15 to 3.4.17 (#500) - ([566b2cc](https://github.com/hexahigh/blalange.org/commit/566b2cc3b57027ce991966e3c8322e2c9321871a))
+
+
+- *(deps-dev)* Bump typescript from 5.7.2 to 5.7.3 (#551) - ([c04b8e0](https://github.com/hexahigh/blalange.org/commit/c04b8e08c71ae8def4c7523e28a9ee021b1063ed))
+
+
+- Prepare for release - ([5caed28](https://github.com/hexahigh/blalange.org/commit/5caed2870058dcb0a63bc643ff026b5e17bd5e2f))
 
 
 ## [5.1.1](https://github.com/hexahigh/blalange.org/compare/v5.1.0..v5.1.1) - 2025-01-26
