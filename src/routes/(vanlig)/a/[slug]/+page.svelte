@@ -2,12 +2,12 @@
   import { Alert } from "flowbite-svelte";
   import * as m from "$lib/paraglide/messages.js";
   import Metatags from "$lib/components/metatags.svelte";
-  import Comments from "$lib/components/comments.svelte";
   import "iconify-icon";
   import { type DataType } from "./types";
   import "katex/dist/katex.min.css";
   import "highlight.js/styles/obsidian.css";
   import { languageTag } from "$lib/paraglide/runtime";
+  import ArticleBlockRenderer from "$root/src/lib/components/block/articleBlockRenderer.svelte";
   interface Props {
     data: DataType;
   }
@@ -38,17 +38,12 @@
 />
 
 <div
-  class="p-6 max-w-6xl mx-auto mt-4 bg-white rounded-xl text-black shadow#articleText items-center space-x-4 dark:bg-gray-800 dark:text-white"
+  class="p-6 max-w-6xl mx-auto mt-4 bg-white rounded-xl text-black shadow#articleText items-center space-x-4 dark:bg-slate-800 dark:text-white"
 >
   <div>
     <!-- svelte-ignore a11y_img_redundant_alt -->
     {#if image}
-      <img
-        src={image}
-        class="w-screen max-h-[45rem] object-cover rounded-3xl"
-        alt="Article Image"
-        id="articleImg"
-      />
+      <img src={image} class="w-screen max-h-[45rem] object-cover rounded-xl" alt="Article Image" id="articleImg" />
     {/if}
     <h1 class="text-2xl font-medium">
       {name}
@@ -68,9 +63,12 @@
         <p>{m.article_notTranslated_body()}</p>
       </Alert>
     {/if}
-    <div id="articleText" class="prose dark:prose-invert max-w-full md-text m-9 ">
-      {@html text}
+    <div id="articleText" class="prose dark:prose-invert max-w-full md-text m-9">
+      {#if data.article.type == "block"}
+        <ArticleBlockRenderer content={data.article.block} />
+      {:else}
+        {@html text}
+      {/if}
     </div>
-    <Comments id={artId} />
   </div>
 </div>

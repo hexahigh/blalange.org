@@ -42,32 +42,60 @@ export async function load({ params, url, fetch }) {
       format: "auto",
     });
 
-    const markedOptions = {
-      breaks: true,
-      gfm: true,
-      sanitize: false,
-    };
-    // Process the markdown
-    let mdStuff = unified()
-      .use(remarkParse)
-      .use(remarkRehype)
-      .use(remarkGfm)
-      .use(remarkMath)
-      .use(rehypeStringify)
-      .use(rehypeKatex)
-      .use(rehypeHighlight)
-      .use(rehypeSlug);
+    let text = "";
+    let translations = {};
 
-    let text = mdStuff.processSync(article.text || article.text_wysiwyg);
+    switch (article.type) {
+      case "markdown": {
+        const markedOptions = {
+          breaks: true,
+          gfm: true,
+          sanitize: false,
+        };
+        // Process the markdown
+        let mdStuff = unified()
+          .use(remarkParse)
+          .use(remarkRehype)
+          .use(remarkGfm)
+          .use(remarkMath)
+          .use(rehypeStringify)
+          .use(rehypeKatex)
+          .use(rehypeHighlight)
+          .use(rehypeSlug);
 
-    let translations = article.translations.reduce((acc, translation) => {
-      acc[translation.languages_code] = {
-        name: translation.name,
-        description: translation.description,
-        text: mdStuff.processSync(translation.text),
-      };
-      return acc;
-    }, {});
+        text = mdStuff.processSync(article.text || article.text_wysiwyg).toString();
+
+        translations = article.translations.reduce((acc, translation) => {
+          acc[translation.languages_code] = {
+            name: translation.name,
+            description: translation.description,
+            text: mdStuff.processSync(translation.text),
+          };
+          return acc;
+        }, {});
+        break;
+      }
+      case "block": {
+        // Process the blocks
+        translations = article.translations.reduce((acc, translation) => {
+          if (translation.block) {
+            acc[translation.languages_code] = {
+              name: translation.name,
+              description: translation.description,
+              text: translation.block,
+            };
+          } else {
+            acc[translation.languages_code] = {
+              name: translation.name,
+              description: translation.description,
+              text: "",
+            };
+          }
+          return acc;
+        }, {});
+        break;
+      }
+    }
 
     const author = article.author?.name;
 
