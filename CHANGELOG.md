@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.1.4](https://github.com/hexahigh/blalange.org/compare/v5.1.3..v5.1.4) - 2025-03-09
+
+### 🐛 Bug Fixes
+
+- *(form)* Form being submitted twice - ([14bff65](https://github.com/hexahigh/blalange.org/commit/14bff65ff1e39617277cc39f442c853226c62a41))
+
+
+
+### 🚜 Refactor
+
+- *(form)* Migrated form to Directus - ([c78576b](https://github.com/hexahigh/blalange.org/commit/c78576ba3491fba181e1a9b077e526b4afe085a3))
+
+
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump the npm_and_yarn group across 1 directory with 2 updates (#567) - ([dc6cd4a](https://github.com/hexahigh/blalange.org/commit/dc6cd4a076b149b975ea0002823580c5efbe29c3))
+
+
+- *(deps-dev)* Bump @iconify/svelte from 4.1.0 to 4.2.0 - ([03494b2](https://github.com/hexahigh/blalange.org/commit/03494b21c2dd84584f727aafa9bb4a163ae0b4fc))
+```commit-body
+Bumps [@iconify/svelte](https://github.com/iconify/iconify/tree/HEAD/components/svelte) from 4.1.0 to 4.2.0.
+- [Commits](https://github.com/iconify/iconify/commits/HEAD/components/svelte)
+
+---
+updated-dependencies:
+- dependency-name: "@iconify/svelte"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
 ## [5.1.3](https://github.com/hexahigh/blalange.org/compare/v5.1.1..v5.1.3) - 2025-02-06
 
 ### 🐛 Bug Fixes
@@ -57,6 +89,9 @@ updated-dependencies:
 
 
 - Prepare for release - ([5caed28](https://github.com/hexahigh/blalange.org/commit/5caed2870058dcb0a63bc643ff026b5e17bd5e2f))
+
+
+- Prepare for release - ([e5c2e7f](https://github.com/hexahigh/blalange.org/commit/e5c2e7fe2a8ade5efb19e78ed4d0d89dbf1c4a1b))
 
 
 ## [5.1.1](https://github.com/hexahigh/blalange.org/compare/v5.1.0..v5.1.1) - 2025-01-26

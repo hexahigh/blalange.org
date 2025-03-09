@@ -1,46 +1,35 @@
-<script>
+<script lang="ts">
   import { preventDefault } from 'svelte/legacy';
 
   import autoAnimate from "@formkit/auto-animate";
-  import PocketBase from "pocketbase";
+  import { getDirectusInstance } from '../js/directus';
+  import { createItem } from '@directus/sdk';
   import {
     EnvelopeSolid,
     UserCircleSolid,
     QuestionCircleSolid,
   } from "flowbite-svelte-icons";
-  import { config, defaultConfig } from "$lib/js/config";
 
-  let pb = new PocketBase(defaultConfig.dbEndpoint);
-
-  config.subscribe((value) => {
-    pb = new PocketBase(value.dbEndpoint);
-  });
+  const client = getDirectusInstance();
 
   let email = $state("");
   let name = $state("");
   let filmed = $state("");
   let manOrWoman = "";
-  let image = null;
-  let geoLocation = "";
   let extra = $state("");
   let age = 0;
   let status = $state("");
 
   async function handleSubmit() {
-    const formData = new FormData();
-    formData.append("time", Date.now());
-    formData.append("timeutc", new Date().toUTCString());
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("latlon", geoLocation);
-    formData.append("MW", manOrWoman);
-    formData.append("extra", extra);
-    formData.append("filmed", filmed);
-    formData.append("age", age);
-    formData.append("ua", getUserAgent());
-    if (image) {
-      formData.append("image", image);
-    }
+    const formData: any = {}
+    formData.time = Date.now().toString()
+    formData.timeutc = new Date().toUTCString()
+    formData.name = name
+    formData.email = email
+    formData.MW = manOrWoman
+    formData.extra = extra
+    formData.filmed = filmed
+    formData.age = age
 
     if (!name || !filmed || !extra) {
       status = "Fyll ut alle feltene markert med *";
@@ -48,7 +37,10 @@
     }
 
     try {
-      await pb.collection("form").create(formData);
+      await client.request(createItem("form_responses", {
+        form_id: "homepage1",
+        data: formData
+      }));
     } catch (error) {
       console.error(error);
       status = "Noe gikk galt: " + error;
@@ -56,52 +48,16 @@
       status = "Takk for din melding!";
       email = "";
       name = "";
-      geoLocation = "";
       extra = "";
       age = 0;
       filmed = "";
       manOrWoman = "";
-      clearImage();
-    }
-  }
-
-  function clearImage() {
-    image = null;
-  }
-
-  function getUserAgent() {
-    return window.navigator.userAgent;
-  }
-
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          geoLocation = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
-          console.log(geoLocation);
-          document.getElementById("geoSuccessText").innerText =
-            "Fikk tak i lokasjonen";
-          document.getElementById("geoSuccess").checked = true;
-          document
-            .getElementById("geoSuccessText")
-            .classList.remove("text-red-600");
-          document
-            .getElementById("geoSuccessText")
-            .classList.add("text-lime-600");
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
     }
   }
 </script>
 
 <form
   class="flex flex-col m-8"
-  onsubmit={preventDefault(handleSubmit)}
   use:autoAnimate
 >
   <label class="flex flex-col mb-4">
@@ -163,7 +119,6 @@
       <textarea
         bind:value={extra}
         class="border-2 border-blue-500 p-2 w-full rounded-md dark:text-black"
-        type="text"
         placeholder="Jeg skal spille gitar og..."
         required
 ></textarea>
@@ -174,7 +129,7 @@
     onclick={handleSubmit}
     class="blue-btn"
     id="submitButton"
-    type="submit">Send inn</button
+    type="button">Send inn</button
   >
   <p>{status}</p>
 </form>
