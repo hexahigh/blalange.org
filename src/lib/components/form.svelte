@@ -58,7 +58,6 @@
 
 <form
   class="flex flex-col m-8"
-  onsubmit={preventDefault(handleSubmit)}
   use:autoAnimate
 >
   <label class="flex flex-col mb-4">
@@ -130,7 +129,7 @@
     onclick={handleSubmit}
     class="blue-btn"
     id="submitButton"
-    type="submit">Send inn</button
+    type="button">Send inn</button
   >
   <p>{status}</p>
 </form>
