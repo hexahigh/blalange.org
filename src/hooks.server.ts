@@ -1,4 +1,5 @@
-import { i18n } from '$lib/i18n'
+import type { Handle } from '@sveltejs/kit';
+import { paraglideMiddleware } from '$lib/paraglide/server';
 import { addCORS } from '$lib/js/handles';
 import { sequence } from '@sveltejs/kit/hooks'
 
@@ -40,4 +41,15 @@ export const handleError = async ({ event, error }) => {
   }
 };
 
-export const handle = sequence(i18n.handle({ disableAsyncLocalStorage: true }), handle1, addCORS)
+const paraglideHandle: Handle = ({ event, resolve }) =>
+	paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
+		event.request = localizedRequest;
+		return resolve(event, {
+			transformPageChunk: ({ html }) => {
+				return html.replace('%lang%', locale);
+			}
+		});
+	});
+
+
+export const handle = sequence(paraglideHandle, handle1, addCORS)

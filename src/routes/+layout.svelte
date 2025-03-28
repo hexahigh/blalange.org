@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { ParaglideJS } from "@inlang/paraglide-sveltekit";
-  import { i18n } from "$lib/i18n";
+  import { apply } from "@directus/visual-editing"
 
   import { dev } from "$app/environment";
   import "../app.css";
@@ -99,8 +98,6 @@
   ]}
 />
 
-<ParaglideJS {i18n}>
   <main>
     {@render children?.()}
   </main>
-</ParaglideJS>

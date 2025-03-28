@@ -9,7 +9,7 @@
   import ArticleCard from "$lib/components/articleCard.svelte";
   import Search from "$lib/components/search.svelte";
   import type Masonry from "masonry-layout";
-  import { languageTag } from "$lib/paraglide/runtime.js";
+  import { getLocale } from "$lib/paraglide/runtime.js";
   import * as m from "$lib/paraglide/messages.js";
 
   let { data } = $props();
@@ -48,7 +48,7 @@
     // Filter out articles that don't match the selected language
     if (onlyLanguage) {
       articles = articles.filter((article) =>
-        article.translations.some((translation) => translation.languages_code === languageTag()),
+        article.translations.some((translation) => translation.languages_code === getLocale()),
       );
     }
 
@@ -61,7 +61,7 @@
     for (const article of allArticles) {
       // Find translation matching current locale
       const translations = article.translations;
-      const currentLocale = languageTag();
+      const currentLocale = getLocale();
 
       article.name =
         translations.find((translation) => translation.languages_code === currentLocale)?.name || article.name;

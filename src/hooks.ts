@@ -1,7 +1,9 @@
-// file initialized by the Paraglide-SvelteKit CLI - Feel free to edit it
-import { i18n } from "$lib/i18n"
+import type { Reroute } from '@sveltejs/kit';
+import { deLocalizeUrl } from '$lib/paraglide/runtime';
 
-export const reroute = i18n.reroute()
+export const reroute: Reroute = (request) => {
+	return deLocalizeUrl(request.url).pathname;
+};
 
 export const handleError = async ({ event, error }) => {
     console.error(error);

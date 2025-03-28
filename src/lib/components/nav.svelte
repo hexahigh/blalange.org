@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import { page } from "$app/stores";
   import autoAnimate from "@formkit/auto-animate";
   import * as confetti from "$lib/js/confetti.js";
-  import { config, defaultConfig, editKey } from "$lib/js/config.ts";
+  import { config, defaultConfig, editKey } from "$lib/js/config";
   import { toRedirect } from "$lib/js/redirect";
   import "iconify-icon";
 
@@ -15,10 +15,10 @@
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
   import * as m from '$lib/paraglide/messages.js'
-  import { i18n } from '$lib/i18n'
   import { get } from "svelte/store";
   import { goto } from "$app/navigation";
-  import { languageTag } from "$lib/paraglide/runtime";
+  import { getLocale, localizeHref, setLocale } from "$lib/paraglide/runtime";
+  import type { Locale } from "$lib/paraglide/runtime";
   /** @type {{ [key: string]: any }} */
   let { ...rest } = $props();
 
@@ -202,16 +202,16 @@
       <ul
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
-        <li class={i18n.route(path) === "/" ? "current-page" : "not-current-page"}>
+        <li class={path === "/" ? "current-page" : "not-current-page"}>
           <a href="/">{m.nav_home()}</a>
         </li>
-        <li class={i18n.route(path) === "/articles" ? "current-page" : "not-current-page"}>
+        <li class={path === "/articles" ? "current-page" : "not-current-page"}>
           <a href="/articles">{m.nav_articles()}</a>
         </li>
         <li class="not-current-page">
           <a href={toRedirect("https://shop.blalange.org", { noHost: true })}>{m.nav_merch()}</a>
         </li>
-        <li class={i18n.route(path) === "/chat" ? "current-page" : "not-current-page"}>
+        <li class={path === "/chat" ? "current-page" : "not-current-page"}>
           <a href="/chat">{m.nav_chat()}</a>
         </li>
         <li class="mx-auto z-[21] md:m-0">
@@ -229,7 +229,7 @@
               <img class="w-8 h-8 rounded-full" src={personSvg} alt="user photo" />
             {/if}
           </button>
-          <Popper activeContent trigger="click" placement="bottom" arrow="false" rounded="true" shadow="true" on:show>
+          <Popper activeContent trigger="click" placement="bottom" arrow={false} rounded={true} shadow={true} on:show>
             <div
               class="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
               id="user-dropdown"
@@ -286,13 +286,13 @@
             data-dropdown-placement="bottom"
           >
             <span class="sr-only">Open language menu</span>
-            {#if geti18nItem(languageTag()) !== undefined}
-              <iconify-icon icon={geti18nItem(languageTag()).icon} width="24" height="24"></iconify-icon>
+            {#if geti18nItem(getLocale()) !== undefined}
+              <iconify-icon icon={geti18nItem(getLocale()).icon} width="24" height="24"></iconify-icon>
             {:else}
               <iconify-icon icon={defaultConfig.i18n.supportedLanguages[0].icon} width="24" height="24"></iconify-icon>
             {/if}
           </button>
-          <Popper activeContent trigger="click" placement="bottom" arrow="false" rounded="true" shadow="true" on:show>
+          <Popper activeContent trigger="click" placement="bottom" arrow={false} rounded={true} shadow={true} on:show>
             <div
               class="z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
               id="language-dropdown"
@@ -303,7 +303,7 @@
                     <!-- svelte-ignore a11y_consider_explicit_label -->
                     <button
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      onclick={() => goto(i18n.resolveRoute(i18n.route($page.url.pathname), language.code))}
+                      onclick={() => setLocale(language.code as Locale)}
                       ><iconify-icon icon={language.icon} width="24" height="24"></iconify-icon></button
                     >
                   </li>
