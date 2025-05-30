@@ -17,6 +17,6 @@
   <main class="flex-grow dark:bg-gray-900 text-black dark:text-white">
     {@render children?.()}
   </main>
-  <Support />
+  <!-- <Support /> -->
   <Footer />
 </div>

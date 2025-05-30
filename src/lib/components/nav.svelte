@@ -1,24 +1,12 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { page } from "$app/stores";
-  import autoAnimate from "@formkit/auto-animate";
-  import * as confetti from "$lib/js/confetti.js";
   import { config, defaultConfig, editKey } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
   import "iconify-icon";
-
-  import personSvg from "$lib/svg/person.svg";
   import logo from "$lib/img/logo_no-bg.svg";
-  import DarkmodeSwitcher from "./darkmodeSwitcher.svelte";
-  import { Dropdown } from "flowbite-svelte";
-  import Popper from "./popper.svelte";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
-  import * as m from '$lib/paraglide/messages.js'
-  import { i18n } from '$lib/i18n'
-  import { get } from "svelte/store";
-  import { goto } from "$app/navigation";
-  import { languageTag } from "$lib/paraglide/runtime";
   /** @type {{ [key: string]: any }} */
   let { ...rest } = $props();
 

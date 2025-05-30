@@ -9,7 +9,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body * {
   @apply transition-colors duration-200;
 }
@@ -29,26 +28,28 @@ body {
   --color-b-cyan: #00a3ff;
   --color-b-blue: #000dff;
   --color-b-maastricht: #0c1a43;
+  --color-b-jordy: #989dff;
 
-  --color-m-red: var(--color-b-red);
-  --color-m-yellow: var(--color-b-yellow);
-  /* Placeholders for future theming support */
-  --color-m-primary: #000;
-  --color-m-text: #000;
-  --color-m-subtext1: #000;
-  --color-m-subtext0: #000;
-  --color-m-overlay2: #000;
-  --color-m-overlay1: #000;
-  --color-m-overlay0: #000;
-  --color-m-surface2: #000;
-  --color-m-surface1: #000;
-  --color-m-surface0: #000;
-  --color-m-base: #000;
-  --color-m-mantle: #000;
-  --color-m-crust: #000;
-}
-
-:is(.dark .dark\:mocha) {
+  --color-m-base-100: #fff;
+  --color-m-base-200: #fff;
+  --color-m-base-300: #fff;
+  --color-m-base-content: oklch(19.162% 0 0);
+  --color-m-primary: var(--color-b-maastricht);
+  --color-m-primary-content: #fff;
+  --color-m-secondary: #000; /* Placeholder for secondary color */
+  --color-m-secondary-content: #fff; /* Placeholder for secondary content color */
+  --color-m-accent: var(--color-b-cyan);
+  --color-m-accent-content: #fff; /* Placeholder for accent content color */
+  --color-m-neutral: var(--color-b-jordy);
+  --color-m-neutral-content: #000; /* Placeholder for neutral content color */
+  --color-m-info: oklch(69.224% 0.097 207.284);
+  --color-m-info-content: oklch(13.844% 0.019 207.284);
+  --color-m-success: oklch(60.995% 0.08 174.616);
+  --color-m-success-content: oklch(12.199% 0.016 174.616);
+  --color-m-warning: oklch(70.081% 0.164 56.844);
+  --color-m-warning-content: oklch(14.016% 0.032 56.844);
+  --color-m-error: oklch(53.07% 0.241 24.16);
+  --color-m-error-content: oklch(90.614% 0.048 24.16);
 }
 
 .fixed-background-img {
@@ -58,11 +59,11 @@ body {
 }
 
 .blue-button {
-  @apply bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 rounded-lg text-white
+  @apply bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 rounded-lg text-white;
 }
 
 .blue-btn {
-  @apply blue-button
+  @apply blue-button;
 }
 
 .text-overflow-clip {
