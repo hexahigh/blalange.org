@@ -3,6 +3,7 @@
 @import "@fontsource/lexend-exa";
 @import "@fontsource/dela-gothic-one";
 @import "@fontsource/roboto-condensed";
+@import "@fontsource-variable/ibm-plex-sans";
 
 @tailwind base;
 @tailwind components;
@@ -19,6 +20,32 @@ html {
 
 body {
   font-family: var(--font-family-var); /* This variable is declared onMount in the root +layout.svelte */
+}
+
+:root {
+  --color-b-red: #ff1e00;
+  --color-b-lime: #13e600;
+  --color-b-yellow: #ffcc00;
+  --color-b-cyan: #00a3ff;
+  --color-b-blue: #000dff;
+  --color-b-maastricht: #0c1a43;
+
+  --color-m-red: var(--color-b-red);
+  --color-m-yellow: var(--color-b-yellow);
+  /* Placeholders for future theming support */
+  --color-m-primary: #000;
+  --color-m-text: #000;
+  --color-m-subtext1: #000;
+  --color-m-subtext0: #000;
+  --color-m-overlay2: #000;
+  --color-m-overlay1: #000;
+  --color-m-overlay0: #000;
+  --color-m-surface2: #000;
+  --color-m-surface1: #000;
+  --color-m-surface0: #000;
+  --color-m-base: #000;
+  --color-m-mantle: #000;
+  --color-m-crust: #000;
 }
 
 :is(.dark .dark\:mocha) {
@@ -58,6 +85,12 @@ body {
 
 .roboto-condensed {
   font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.ibm-plex-sans {
+  font-family: "IBM Plex Sans Variable", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }

@@ -1,12 +1,20 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 export default {
   // darkMode: "selector",
-  darkMode: ['variant', ['&:where(.dark, .dark *)', '&:where(:global(.dark), :global(.dark) *)']], // Fix for dark mode after upgrade to svelte 5
-  content: ["./src/**/*.{html,js,svelte,ts}", './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
+  darkMode: ["variant", ["&:where(.dark, .dark *)", "&:where(:global(.dark), :global(.dark) *)"]], // Fix for dark mode after upgrade to svelte 5
+  content: ["./src/**/*.{html,js,svelte,ts}", "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
       colors: {
+        b: {
+          red: "var(--color-b-red)",
+          lime: "var(--color-b-lime)",
+          yellow: "var(--color-b-yellow)",
+          cyan: "var(--color-b-cyan)",
+          blue: "var(--color-b-blue)",
+          maastricht: "var(--color-b-maastricht)",
+        },
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",
@@ -24,11 +32,11 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    require("@tailwindcss/typography"),
     require("flowbite-typography"),
     require("@catppuccin/tailwindcss")({
       prefix: "ctp",
       defaultFlavour: "mocha",
     }),
   ],
-} satisfies Config
+} satisfies Config;
