@@ -1,5 +1,6 @@
 <script>
   import { onMount, onDestroy } from "svelte";
+  import { Dropdown, DropdownItem, DropdownHeader, Avatar } from "flowbite-svelte";
   import { page } from "$app/stores";
   import { config, defaultConfig, editKey } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
@@ -68,81 +69,7 @@
   onMount(async () => {
     client = getDirectusInstance();
     await getStuff();
-
-    const targetEl = document.getElementById("navbar-default");
-    const triggerEl = document.getElementById("hamburger");
-
-    collapse = {
-      init: () => {
-        if (triggerEl.hasAttribute("aria-expanded")) {
-          visible = triggerEl.getAttribute("aria-expanded") === "true";
-        }
-      },
-      expand: () => {
-        targetEl.classList.remove("hidden");
-        if (triggerEl) {
-          triggerEl.setAttribute("aria-expanded", "true");
-        }
-        visible = true;
-      },
-      collapse: () => {
-        targetEl.classList.add("hidden");
-        if (triggerEl) {
-          triggerEl.setAttribute("aria-expanded", "false");
-        }
-        visible = false;
-      },
-      toggle: () => {
-        if (visible) {
-          collapse.collapse();
-        } else {
-          collapse.expand();
-        }
-      },
-    };
-
-    const targetElProfile = document.getElementById("user-dropdown");
-    const triggerElProfile = document.getElementById("user-menu-button");
-
-    collapseProfile = {
-      init: () => {
-        if (triggerElProfile.hasAttribute("aria-expanded")) {
-          visibleProfile = triggerElProfile.getAttribute("aria-expanded") === "true";
-        }
-      },
-      expand: () => {
-        targetElProfile.classList.remove("hidden");
-        if (triggerElProfile) {
-          triggerElProfile.setAttribute("aria-expanded", "true");
-        }
-        visibleProfile = true;
-      },
-      collapse: () => {
-        targetElProfile.classList.add("hidden");
-        if (triggerElProfile) {
-          triggerElProfile.setAttribute("aria-expanded", "false");
-        }
-        visibleProfile = false;
-      },
-      toggle: () => {
-        if (visibleProfile) {
-          collapseProfile.collapse();
-        } else {
-          collapseProfile.expand();
-        }
-      },
-    };
   });
-
-  let navbarClass = $derived(visible ? "navbar-open" : "");
-
-  function toggleNav() {
-    collapse.toggle();
-  }
-
-  function toggleNavProfile() {
-    collapseProfile.toggle();
-  }
 
   function geti18nItem(code) {
     return defaultConfig.i18n.supportedLanguages.find((l) => l.code === code);
@@ -150,14 +77,14 @@
 
   let path = $derived($page.url.pathname);
 
-    const links = [
-    { href: '/', label: 'Home' },
-    { href: '/articles', label: 'Articles' },
-    { href: toRedirect("https://shop.blalange.org", { noHost: true }), label: 'Merch' },
+  const links = [
+    { href: "/", label: "Hjem" },
+    { href: "/articles", label: "Artikler" },
+    { href: toRedirect("https://shop.blalange.org", { noHost: true }), label: "Merch" },
   ];
 </script>
 
-<nav class="bg-b-maastricht w-full">
+<nav class="bg-m-primary w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo Left -->
@@ -168,13 +95,31 @@
       <div class="flex-1 flex justify-center">
         <div class="flex space-x-4 ibm-plex-sans">
           {#each links as link}
-            <a href={link.href} class={"text-white hover:text-gray-300 px-3 py-2 rounded-md text-md font-medium " + (path === link.href ? "current-page" : "not-current-page")}>{link.label}</a>
+            <a
+              href={link.href}
+              class={"text-m-primary-content hover:brightness-75 px-3 py-2 rounded-md text-md font-medium " +
+                (path === link.href ? "current-page" : "not-current-page")}>{link.label}</a
+            >
           {/each}
         </div>
       </div>
       <!-- User Account Right -->
       <div class="flex items-center">
-        <div class="w-8 h-8 rounded-full bg-red-600"></div>
+        <Avatar id="acs" />
+        <Dropdown triggeredBy="#acs">
+          {#if isLoggedIn()}
+            <DropdownHeader>
+              <span class="block text-sm text-gray-900 dark:text-white">{userStuff.name}</span>
+              <span class="block truncate text-sm font-medium">{userStuff.email}</span>
+            </DropdownHeader>
+            <DropdownItem href="/settings">Innstillinger</DropdownItem>
+            <DropdownItem on:click={logout}>Logg ut</DropdownItem>
+          {:else}
+            <DropdownItem href="/settings">Innstillinger</DropdownItem>
+            <DropdownItem href="/login">Logg in</DropdownItem>
+            <DropdownItem href="/register">Opprett konto</DropdownItem>
+          {/if}
+        </Dropdown>
       </div>
     </div>
   </div>

@@ -1,4 +1,6 @@
 <script>
+  import { initializeTheme } from "$root/src/lib/stores/theme";
+  import { onMount } from 'svelte';
   import Footer from "$lib/components/footer.svelte";
   import Nav from "$lib/components/nav.svelte";
   import Support from "$lib/components/3cxWidget.svelte";
@@ -9,6 +11,10 @@
 
   /** @type {Props} */
   let { children } = $props();
+
+  onMount(() => {
+    initializeTheme();
+  });
 </script>
 
 <div class="flex flex-col min-h-screen">

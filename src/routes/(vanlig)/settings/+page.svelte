@@ -4,6 +4,7 @@
   import Metatags from "$lib/components/metatags.svelte";
   import { onMount } from "svelte";
   import { Toggle } from "flowbite-svelte";
+  import ThemePreview from "./themePreview.svelte";
 
   let message;
   let messageType = "info";
@@ -61,6 +62,14 @@
           <option value="RimWordFont">RimWord</option>
         </select>
         <button class="blue-button mt-4" onclick={saveFont}>Lagre font</button>
+      </div> 
+      <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">
+        <h3 class="text-xl font-bold mb-4">Tema:</h3>
+        <div class="rounded-box grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          <ThemePreview theme="light" />
+          <ThemePreview theme="dark" />
+          <ThemePreview theme="miku" />
+        </div>
       </div> 
       <h2 class="text-2xl font-bold mb-4">Misc</h2>
       <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">

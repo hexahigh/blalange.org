@@ -7,7 +7,7 @@
 
 <footer class="w-full">
   <div
-    class="flex flex-col md:flex-row justify-center p-4 bg-b-maastricht text-white space-y-4 md:space-y-0 md:space-x-8 text-center md:text-left"
+    class="flex flex-col md:flex-row justify-center p-4 bg-m-primary text-white space-y-4 md:space-y-0 md:space-x-8 text-center md:text-left"
   >
     <div class="flex flex-col md:flex-row items-center md:space-x-4 space-y-2 md:space-y-0">
       <img src={logo} alt="Blålange Logo" class="w-24 h-24" />

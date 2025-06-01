@@ -6,6 +6,7 @@
   import designThumb from "$lib/img/misc/DSC05676.JPG?url";
   import musicThumb from "$lib/img/misc/DSC04972.JPG?url";
 
+	import { MetaTags } from 'svelte-meta-tags';
   import { onMount, onDestroy } from "svelte";
   import { fly } from "svelte/transition";
 
@@ -14,14 +15,39 @@
 
   onMount(() => {
     const interval = setInterval(() => {
-      textIndex = (textIndex + 1) % texts.length;
+      let prevIndex = textIndex;
+      // Pick a semi-random index from the texts array.
+      while (textIndex === prevIndex) {
+        textIndex = Math.floor(Math.random() * texts.length);
+      }
     }, 1500);
 
     return () => clearInterval(interval); // Cleanup on destroy
   });
 </script>
 
-<main class="space-y-24 mb-8" data-theme="cyberpunk">
+<MetaTags
+  title="Blålange"
+  titleTemplate="%s | Blålange"
+  description="Blålange er en norsk forening som jobber for å gi ungdommer tilgang til kreativt utstyr og kunnskap."
+  canonical="https://blalange.org/"
+  openGraph={{
+    url: "https://blalange.org",
+    title: "Blålange | Blålange",
+    description: "Blålange er en norsk forening som jobber for å gi ungdommer tilgang til kreativt utstyr og kunnskap.",
+    images: [
+      {
+        url: "https://blalange.org/img/favicon.png",
+        width: 300,
+        height: 300,
+        alt: "Blålange logo",
+      },
+    ],
+    siteName: "Blålange",
+  }}
+/>
+
+<main class="space-y-24 pb-8 bg-m-base-200">
   <!-- Hero -->
   <section class="relative h-[50vw] max-h-[600px] overflow-hidden">
     <img src={frontImage} alt="Ungdom i verksted" class="absolute inset-0 w-full h-full object-cover contrast-[0.8]" />
@@ -64,7 +90,7 @@
       </p>
       <a
         href="/støtt"
-        class="inline-block transition rounded-full px-8 py-4 text-lg font-medium bg-m-accent hover:bg-m-accent/50 text-m-accent-content"
+        class="inline-block transition rounded-full px-8 py-4 text-lg font-medium hover:scale-110 bg-m-accent hover:bg-m-accent/50 text-m-accent-content"
       >
         Støtt kreativiten
       </a>
