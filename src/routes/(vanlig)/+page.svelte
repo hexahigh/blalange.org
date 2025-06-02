@@ -47,7 +47,7 @@
   }}
 />
 
-<main class="space-y-24 pb-8 bg-m-base-200">
+<main class="space-y-24 pb-8 bg-m-base">
   <!-- Hero -->
   <section class="relative h-[50vw] max-h-[600px] overflow-hidden">
     <img src={frontImage} alt="Ungdom i verksted" class="absolute inset-0 w-full h-full object-cover contrast-[0.8]" />
@@ -64,7 +64,7 @@
 
   <!-- Two-column intro -->
   <section
-    class="container mx-auto px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-m-base-200 text-m-base-content"
+    class="container mx-auto px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-m-base-text"
   >
     <div class="space-y-6">
       <h2 class="text-3xl font-bold">Kreativitet kan koste</h2>
@@ -82,7 +82,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="bg-m-primary text-m-primary-content">
+  <section class="bg-m-primary text-m-primary-text">
     <div class="container mx-auto px-6 md:px-0 py-16 text-center space-y-6">
       <p class="text-2xl md:text-3xl font-semibold">
         Men for å nå målet vårt trenger vi støtte,<br />
@@ -90,7 +90,7 @@
       </p>
       <a
         href="/støtt"
-        class="inline-block transition rounded-full px-8 py-4 text-lg font-medium hover:scale-110 bg-m-accent hover:bg-m-accent/50 text-m-accent-content"
+        class="inline-block transition rounded-full px-8 py-4 text-lg font-medium hover:scale-110 bg-m-accent hover:bg-m-accent/50 text-m-accent-text"
       >
         Støtt kreativiten
       </a>
@@ -98,11 +98,11 @@
   </section>
 
   <!-- Offerings -->
-  <section class="container mx-auto px-6 md:px-0 space-y-12 bg-m-base-200">
-    <h2 class="text-4xl font-bold text-center text-m-base-content">Vi tilbyr</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <section class="container mx-auto px-6 md:px-0 space-y-12">
+    <h2 class="text-4xl font-bold text-center text-m-base-text">Vi tilbyr</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-m-accent-text">
       <div
-        class="bg-m-neutral rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
+        class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
         <img src={videoThumb} alt="Videoproduksjon" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">
@@ -111,7 +111,7 @@
       </div>
 
       <div
-        class="bg-m-neutral rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
+        class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
         <img src={codeThumb} alt="Programmering" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">
@@ -120,7 +120,7 @@
       </div>
 
       <div
-        class="bg-m-neutral rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
+        class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
         <img src={designThumb} alt="Vektordesign" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">
@@ -128,7 +128,7 @@
         </div>
       </div>
       <div
-        class="bg-m-neutral rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
+        class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
         <img src={musicThumb} alt="Musikkproduksjon" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">

@@ -68,7 +68,8 @@
         <div class="rounded-box grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           <ThemePreview theme="light" />
           <ThemePreview theme="dark" />
-          <ThemePreview theme="miku" />
+          <ThemePreview theme="mocha" />
+          <ThemePreview theme="latte" />
         </div>
       </div> 
       <h2 class="text-2xl font-bold mb-4">Misc</h2>

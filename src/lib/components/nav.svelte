@@ -97,7 +97,7 @@
           {#each links as link}
             <a
               href={link.href}
-              class={"text-m-primary-content hover:brightness-75 px-3 py-2 rounded-md text-md font-medium " +
+              class={"text-m-primary-text hover:brightness-75 px-3 py-2 rounded-md text-md font-medium " +
                 (path === link.href ? "current-page" : "not-current-page")}>{link.label}</a
             >
           {/each}
