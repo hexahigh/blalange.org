@@ -92,12 +92,18 @@ function refreshToken() {
   return null;
 }
 
+type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N
+  ? Acc[number]
+  : Enumerate<N, [...Acc, Acc['length']]>
+
+type IntRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>
+
 type getImageUrlOptions = {
   width?: number;
   height?: number;
-  format?: string;
-  quality?: number;
-  fit?: string;
+  format?: "auto" | "jpg" | "png" | "webp" | "tiff" | "avif";
+  quality?: IntRange<1, 100>;
+  fit?: "cover" | "contain" | "inside" | "outside";
   withoutEnlargement?: boolean;
 };
 

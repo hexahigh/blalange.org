@@ -20,7 +20,7 @@
 <div class="flex flex-col min-h-screen">
   <Nav id="nav" />
 
-  <main class="flex-grow dark:bg-gray-900 text-black dark:text-white">
+  <main class="flex-grow bg-m-base text-m-base-text">
     {@render children?.()}
   </main>
   <!-- <Support /> -->

@@ -10,15 +10,15 @@
   --color-b-jordy: #989dff;
   --color-b-night: #131826;
 
-  --color-m-base: #fff;
+  --color-m-base: #ffffff;
   --color-m-base-text: #000;
   --color-m-base-subtext0: #000;
   --color-m-base-subtext1: #000;
-  --color-m-mantle: #fff;
+  --color-m-mantle: #f1faff;
   --color-m-mantle-text: #000;
   --color-m-mantle-subtext0: #000;
   --color-m-mantle-subtext1: #000;
-  --color-m-crust: #fff;
+  --color-m-crust: #ccedff;
   --color-m-crust-text: #000;
   --color-m-crust-subtext0: #000;
   --color-m-crust-subtext1: #000;
@@ -92,15 +92,16 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --color-m-base: #fff;
+  
+  --color-m-base: #ffffff;
   --color-m-base-text: #000;
   --color-m-base-subtext0: #000;
   --color-m-base-subtext1: #000;
-  --color-m-mantle: #fff;
+  --color-m-mantle: #f1faff;
   --color-m-mantle-text: #000;
   --color-m-mantle-subtext0: #000;
   --color-m-mantle-subtext1: #000;
-  --color-m-crust: #fff;
+  --color-m-crust: #ccedff;
   --color-m-crust-text: #000;
   --color-m-crust-subtext0: #000;
   --color-m-crust-subtext1: #000;

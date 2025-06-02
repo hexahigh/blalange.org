@@ -77,7 +77,7 @@
       </p>
     </div>
     <div>
-      <img src={creativityImage} alt="Creativity-bilde" class="w-full h-auto rounded-lg shadow-lg object-cover" />
+      <img src={designThumb} alt="Creativity-bilde" class="w-full h-auto rounded-lg shadow-lg object-cover" />
     </div>
   </section>
 
