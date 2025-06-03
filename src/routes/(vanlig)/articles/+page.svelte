@@ -118,51 +118,54 @@
   }}
 />
 
-{#if !data.errorOccurred}
-  <Search
-    placeholder={m.articleList_search_placeholder()}
-    onSubmit={(e) => {
-      e.preventDefault();
-      search(e.target[0].value);
-    }}
-  />
-  {#if articles.length > 0}
-    <div class="w-full flex justify-center">
-      <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
-        {#key articles}
-          {#each articles as article, i}
-            <div class="{i === 0 && displayOptions.showFeatured ? 'md:col-span-2' : ''} flex">
-              <ArticleCard
-                title={article.name}
-                date={article.date}
-                link={"/a/" + article.art_id}
-                image={{
-                  src: getImageUrl(article.image.id, {
-                    width: 1000,
-                    format: "auto",
-                  }),
-                  width: article.image.width,
-                  height: article.image.height,
-                }}
-                featured={i === 0 && displayOptions.showFeatured}
-                class="w-full"
-              />
-            </div>
-          {/each}
-        {/key}
+<div class="my-8">
+  {#if !data.errorOccurred}
+    <Search
+      class="mb-4"
+      placeholder={m.articleList_search_placeholder()}
+      onSubmit={(e) => {
+        e.preventDefault();
+        search(e.target[0].value);
+      }}
+    />
+    {#if articles.length > 0}
+      <div class="w-full flex justify-center">
+        <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {#key articles}
+            {#each articles as article, i}
+              <div class="{i === 0 && displayOptions.showFeatured ? 'md:col-span-2' : ''} flex">
+                <ArticleCard
+                  title={article.name}
+                  date={article.date}
+                  link={"/a/" + article.art_id}
+                  image={{
+                    src: getImageUrl(article.image.id, {
+                      width: 1000,
+                      format: "auto",
+                    }),
+                    width: article.image.width,
+                    height: article.image.height,
+                  }}
+                  featured={i === 0 && displayOptions.showFeatured}
+                  class="w-full"
+                />
+              </div>
+            {/each}
+          {/key}
+        </div>
       </div>
-    </div>
+    {:else}
+      <div class="mx-auto text-center flex flex-col justify-center items-center">
+        <h2 class="text-2xl">{m.articleList_search_noResults()}</h2>
+        <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500"></iconify-icon>
+        <p>{m.articleList_search_tryAnother()}</p>
+      </div>
+    {/if}
   {:else}
     <div class="mx-auto text-center flex flex-col justify-center items-center">
-      <h2 class="text-2xl">{m.articleList_search_noResults()}</h2>
-      <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500"></iconify-icon>
-      <p>{m.articleList_search_tryAnother()}</p>
+      <h2 class="text-2xl">{m.articleList_error()}</h2>
+      <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500"></iconify-icon>
+      <p>{data.errorMessage}</p>
     </div>
   {/if}
-{:else}
-  <div class="mx-auto text-center flex flex-col justify-center items-center">
-    <h2 class="text-2xl">{m.articleList_error()}</h2>
-    <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500"></iconify-icon>
-    <p>{data.errorMessage}</p>
-  </div>
-{/if}
+</div>
