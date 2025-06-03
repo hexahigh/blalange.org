@@ -51,7 +51,7 @@ export const defaultConfig: Config = {
   primaryDomain: "blalange.org",
   dicebearCollection: thumbs, //* Does not work, should be removed in a future version
   font: {
-    family: "Inter Variable",
+    family: "IBM Plex Sans Variable",
     weight: 400,
   },
   tos: {
