@@ -3,26 +3,28 @@
 @import "@fontsource/lexend-exa";
 @import "@fontsource/dela-gothic-one";
 @import "@fontsource/roboto-condensed";
+@import "@fontsource-variable/ibm-plex-sans";
+
+@import "$lib/css/themes.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 body * {
   @apply transition-colors duration-200;
 }
 
-html {
-  font-family: "Inter Variable"; /* Default font */
-}
-
 body {
-  font-family: var(--font-family-var); /* This variable is declared onMount in the root +layout.svelte */
+  font-family: "IBM Plex Sans Variable", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
-:is(.dark .dark\:mocha) {
+@plugin "daisyui" {
+  themes: all;
 }
+
 
 .fixed-background-img {
   background-attachment: fixed;
@@ -31,11 +33,11 @@ body {
 }
 
 .blue-button {
-  @apply bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 rounded-lg text-white
+  @apply bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 rounded-lg text-white;
 }
 
 .blue-btn {
-  @apply blue-button
+  @apply blue-button;
 }
 
 .text-overflow-clip {
@@ -58,6 +60,12 @@ body {
 
 .roboto-condensed {
   font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.ibm-plex-sans {
+  font-family: "IBM Plex Sans Variable", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }

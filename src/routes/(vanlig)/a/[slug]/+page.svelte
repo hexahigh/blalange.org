@@ -1,27 +1,42 @@
 <script lang="ts">
-  import { Alert } from "flowbite-svelte";
+  import { A, Alert } from "flowbite-svelte";
   import * as m from "$lib/paraglide/messages.js";
   import Metatags from "$lib/components/metatags.svelte";
   import Comments from "$lib/components/comments.svelte";
+  import ArticleRenderer from "./renderer.svelte";
   import "iconify-icon";
-  import { type DataType } from "./types";
   import "katex/dist/katex.min.css";
   import "highlight.js/styles/obsidian.css";
-  import { languageTag } from "$lib/paraglide/runtime";
+  import { getImageUrl } from "$root/src/lib/js/directus";
+
+  import type { DataType, ArticleLoaded } from "./types";
+
   interface Props {
     data: DataType;
   }
 
   let { data }: Props = $props();
 
-  const currentLocale = languageTag();
+  function getAuthors(article: ArticleLoaded): string {
+    if (!article.authors || article.authors.length === 0) {
+      return "Unknown Author";
+    }
 
-  let name = data.translations?.[currentLocale]?.name || data.article.name;
+    // Join all author names into a single string. If there are multiple authors, they will be separated by commas, last one by "&".
+    return article.authors
+      .map((author) => author.art_authors_id.name)
+      .filter((name) => name) // Filter out any undefined or empty names
+      .join(", ")
+      .replace(/, ([^,]*)$/, " & $1");
+  }
+
+  let name = data.article.name;
   let date = data.article.date;
-  let author = data.author;
-  let description = data.translations?.[currentLocale]?.description || data.article.description;
-  let text = data.translations?.[currentLocale]?.text || data.text;
-  let image = data.imgUrl;
+  let author = getAuthors(data.article);
+  let description = data.article.description;
+  let image = getImageUrl(data.article.image.id || "", {
+    format: "auto",
+  });
   let artId = data.article.art_id;
 
   function formatDate(date) {
@@ -38,38 +53,26 @@
 />
 
 <div
-  class="p-6 max-w-6xl mx-auto mt-4 bg-white rounded-xl text-black shadow#articleText items-center space-x-4 dark:bg-gray-800 dark:text-white"
+  class="p-6 lg:max-w-6xl mx-auto mt-4 bg-m-mantle text-m-mantle-text rounded-xl shadow#articleText items-center space-x-4"
 >
   <div>
     <!-- svelte-ignore a11y_img_redundant_alt -->
     {#if image}
-      <img
-        src={image}
-        class="w-screen max-h-[45rem] object-cover rounded-3xl"
-        alt="Article Image"
-        id="articleImg"
-      />
+      <img src={image} width={data.article.image.width} height={data.article.image.height} class="w-screen max-h-[45rem] object-cover rounded-3xl" alt="Article Image" id="articleImg" />
     {/if}
     <h1 class="text-2xl font-medium">
       {name}
     </h1>
-    <p class="text-gray-500 dark:text-gray-300">
+    <p class="text-m-mantle-subtext0">
       <iconify-icon icon="mdi:account" width="20" height="20"></iconify-icon>
       {author}
     </p>
-    <p class="text-gray-500 dark:text-gray-300">
+    <p class="text-m-mantle-subtext0">
       <iconify-icon icon="mdi:calendar" width="20" height="20"></iconify-icon>
       {formatDate(date)}
     </p>
-    {#if !data.translations?.[currentLocale]?.text}
-      <Alert border color="blue">
-        <iconify-icon icon="mdi:information" width="24" height="24"></iconify-icon>
-        <span class="font-medium">{m.article_notTranslated_header()}</span>
-        <p>{m.article_notTranslated_body()}</p>
-      </Alert>
-    {/if}
-    <div id="articleText" class="prose dark:prose-invert max-w-full md-text m-9 ">
-      {@html text}
+    <div id="articleText" class="prose sm:prose-sm lg:prose-lg xl:prose-xl dark:prose-invert text-m-mantle-text max-w-full md-text m-9">
+      <ArticleRenderer article={data.article} />
     </div>
     <Comments id={artId} />
   </div>
