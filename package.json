@@ -114,5 +114,14 @@
     "unified": "^11.0.5",
     "workbox-build": "^7.3.0",
     "workbox-expiration": "^7.3.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@sveltejs/kit",
+      "@tsparticles/engine",
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }

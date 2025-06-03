@@ -129,25 +129,4 @@
   .current-page {
     @apply font-bold;
   }
-
-  #hamburger {
-    @apply transition-transform duration-500 ease-in-out;
-  }
-
-  .navbar-open {
-    @apply rotate-90;
-  }
-
-  @keyframes logoSpin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  .logo-spin {
-    animation: logoSpin 1s linear infinite reverse;
-  }
-
-  .hover\:logo-spin:hover {
-    animation: logoSpin 1s linear infinite reverse;
-  }
 </style>

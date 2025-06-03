@@ -1,10 +1,10 @@
 <script>
-  import frontImage from "$lib/img/misc/DSC05731.JPG?url";
-  import creativityImage from "$lib/img/misc/20140424_173912.jpg?url";
-  import videoThumb from "$lib/img/misc/playback.jpg?url";
-  import codeThumb from "$lib/img/misc/programmering.png?url";
-  import designThumb from "$lib/img/misc/DSC05676.JPG?url";
-  import musicThumb from "$lib/img/misc/DSC04972.JPG?url";
+  import frontImage from "$lib/img/misc/DSC05731.jpg?enhanced";
+  import creativityImage from "$lib/img/misc/DSC05676.jpg?enhanced";
+  import videoThumb from "$lib/img/misc/playback.jpg?enhanced";
+  import codeThumb from "$lib/img/misc/programmering.png?enhanced";
+  import designThumb from "$lib/img/misc/DSC05676.jpg?enhanced";
+  import musicThumb from "$lib/img/misc/DSC04972.jpg?enhanced";
 
 	import { MetaTags } from 'svelte-meta-tags';
   import { onMount, onDestroy } from "svelte";
@@ -50,7 +50,7 @@
 <main class="space-y-24 pb-8 bg-m-base">
   <!-- Hero -->
   <section class="relative h-[50vw] max-h-[600px] overflow-hidden">
-    <img src={frontImage} alt="Ungdom i verksted" class="absolute inset-0 w-full h-full object-cover contrast-[0.8]" />
+    <enhanced:img src={frontImage} alt="Ungdom i verksted" class="absolute inset-0 w-full h-full object-cover contrast-[0.8]" />
     <div class="absolute inset-0 bg-black/40"></div>
     {#key textIndex}
       <h1
@@ -77,7 +77,7 @@
       </p>
     </div>
     <div>
-      <img src={designThumb} alt="Creativity-bilde" class="w-full h-auto rounded-lg shadow-lg object-cover" />
+      <enhanced:img src={creativityImage} alt="Creativity-bilde" class="w-full h-auto rounded-lg shadow-lg object-cover" />
     </div>
   </section>
 
@@ -104,7 +104,7 @@
       <div
         class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
-        <img src={videoThumb} alt="Videoproduksjon" class="h-48 w-full object-cover" />
+        <enhanced:img src={videoThumb} alt="Videoproduksjon" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">
           <h3 class="text-xl font-semibold">Videoproduksjon</h3>
         </div>
@@ -113,7 +113,7 @@
       <div
         class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
-        <img src={codeThumb} alt="Programmering" class="h-48 w-full object-cover" />
+        <enhanced:img src={codeThumb} alt="Programmering" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">
           <h3 class="text-xl font-semibold">Programmering</h3>
         </div>
@@ -122,7 +122,7 @@
       <div
         class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
-        <img src={designThumb} alt="Vektordesign" class="h-48 w-full object-cover" />
+        <enhanced:img src={designThumb} alt="Vektordesign" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">
           <h3 class="text-xl font-semibold">Vektordesign</h3>
         </div>
@@ -130,7 +130,7 @@
       <div
         class="bg-m-accent rounded-2xl shadow-md overflow-hidden flex flex-col hover:scale-110 transition-transform"
       >
-        <img src={musicThumb} alt="Musikkproduksjon" class="h-48 w-full object-cover" />
+        <enhanced:img src={musicThumb} alt="Musikkproduksjon" class="h-48 w-full object-cover" />
         <div class="p-6 flex-1 flex items-end">
           <h3 class="text-xl font-semibold">Musikkproduksjon</h3>
         </div>
