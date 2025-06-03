@@ -1,5 +1,6 @@
 <script>
-  import { initializeTheme } from "$root/src/lib/stores/theme";
+  import { initializeTheme } from "$lib/stores/theme";
+  import ThemeSetter from "$lib/components/util/themeSetter.svelte";
   import { onMount } from 'svelte';
   import Footer from "$lib/components/footer.svelte";
   import Nav from "$lib/components/nav.svelte";
@@ -13,9 +14,14 @@
   let { children } = $props();
 
   onMount(() => {
-    initializeTheme();
+    initializeTheme("light", "dark");
   });
 </script>
+
+<ThemeSetter
+  defaultTheme="light"
+  defaultDarkTheme="dark"
+/>
 
 <div class="flex flex-col min-h-screen">
   <Nav id="nav" />
