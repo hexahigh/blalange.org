@@ -100,7 +100,5 @@
 />
 
 <ParaglideJS {i18n}>
-  <main>
-    {@render children?.()}
-  </main>
+  {@render children?.()}
 </ParaglideJS>
