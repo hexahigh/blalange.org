@@ -33,14 +33,11 @@ export function initializeTheme(defaultTheme?: string, defaultDarkTheme?: string
   const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
   if (!savedTheme && defaultTheme && defaultDarkTheme) {
     const initialTheme = prefersLight ? defaultTheme : defaultDarkTheme;
-    shouldUpdate = true;
     currentTheme.set(initialTheme);
-    return;
   } else if (!savedTheme && defaultTheme) {
-    shouldUpdate = true;
     currentTheme.set(defaultTheme);
-    return;
   }
+  shouldUpdate = true;
 }
 
 export let currentTheme = writable("");
