@@ -29,16 +29,16 @@ export function setTheme(theme: string): void {
  */
 export function initializeTheme(defaultTheme?: string, defaultDarkTheme?: string): void {
   if (typeof localStorage === "undefined") return;
-  const savedTheme = localStorage.getItem("theme")
+  const savedTheme = localStorage.getItem("theme");
   const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
   if (!savedTheme && defaultTheme && defaultDarkTheme) {
-    const initialTheme = prefersLight ? (defaultTheme) : (defaultDarkTheme);
-    currentTheme.set(initialTheme);
+    const initialTheme = prefersLight ? defaultTheme : defaultDarkTheme;
     shouldUpdate = true;
+    currentTheme.set(initialTheme);
     return;
   } else if (!savedTheme && defaultTheme) {
-    currentTheme.set(defaultTheme);
     shouldUpdate = true;
+    currentTheme.set(defaultTheme);
     return;
   }
 }
