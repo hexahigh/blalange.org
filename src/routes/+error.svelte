@@ -24,25 +24,25 @@
 </script>
 
 <div class="relative w-full min-h-screen flex justify-center flex-col">
-  <section class="bg-white dark:bg-gray-900">
+  <section class="bg-m-base">
     <div class="py-8 px-4 mx-auto max-w-(--breakpoint-xl) lg:py-16 lg:px-6">
       <div class="mx-auto max-w-(--breakpoint-sm) text-center">
-        <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500">
+        <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-m-secondary">
           {#each statusArray as s, i}
             <span id={spanIds[i]} in:fly={{ duration: 300, delay: i * 50 }}>
               {s}
             </span>
           {/each}
         </h1>
-        <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
+        <p class="mb-4 text-3xl tracking-tight font-bold text text-m-base-text md:text-4xl">
           {errorHeader}
         </p>
-        <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+        <p class="mb-4 text-lg font-light text-m-base-subtext0">
           {errorText}
         </p>
         <a
           href="/"
-          class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
+          class="inline-flex text-m-secondary-text bg-m-secondary hover:bg-m-secondary/80 focus:ring-4 focus:outline-none focus:ring-m-secondary/45 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-4"
           >{m.error_returnHome()}</a
         >
       </div>
