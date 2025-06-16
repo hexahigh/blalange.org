@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@import "highlight.js/styles/obsidian.css";
+
 /* Adds a top margin to 'h1', 'h2', 'h3', 'h4', 'p', 'ul', 'ol' */
 .md-text h1,
 .md-text h2,
@@ -65,4 +68,8 @@
 
 .md-text ol li {
   @apply ml-4;
+}
+
+.md-text code {
+  @apply rounded-3xl overflow-scroll
 }

@@ -58,7 +58,7 @@
   <div>
     <!-- svelte-ignore a11y_img_redundant_alt -->
     {#if image}
-      <img src={image} width={data.article.image.width} height={data.article.image.height} class="w-screen max-h-[45rem] object-cover rounded-3xl" alt="Article Image" id="articleImg" />
+      <img src={image} width={data.article.image.width} height={data.article.image.height} class="w-screen max-h-180 object-cover rounded-3xl" alt="Article Image" id="articleImg" />
     {/if}
     <h1 class="text-2xl font-medium">
       {name}

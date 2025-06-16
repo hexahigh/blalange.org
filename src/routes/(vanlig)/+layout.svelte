@@ -26,7 +26,7 @@
 <div class="flex flex-col min-h-screen">
   <Nav id="nav" />
 
-  <main class="flex-grow bg-m-base text-m-base-text">
+  <main class="grow bg-m-base text-m-base-text">
     {@render children?.()}
   </main>
   <!-- <Support /> -->

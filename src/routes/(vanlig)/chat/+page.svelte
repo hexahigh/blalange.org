@@ -335,7 +335,7 @@
 </div>
 
 <style lang="postcss">
-  .chat-messages-container {
+@reference "tailwindcss"  .chat-messages-container {
     max-height: 60vh; /* Adjust this value as needed */
     height: 60vh;
     overflow-y: auto;

@@ -1,7 +1,7 @@
 <script lang="ts">
   import Metatags from "$lib/components/metatags.svelte";
   import { languageTag } from "$lib/paraglide/runtime";
-  import "$lib/css/md.pcss";
+  import "$lib/css/md.css";
   export let data;
 
   const getTranslation = () => {

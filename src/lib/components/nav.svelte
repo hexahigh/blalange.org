@@ -88,7 +88,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo Left -->
-      <div class="flex-shrink-0 flex items-center">
+      <div class="shrink-0 flex items-center">
         <img src={logo} alt="Logo" class="h-14 w-14" />
       </div>
       <!-- Links Center -->
@@ -125,7 +125,8 @@
   </div>
 </nav>
 
-<style lang="postcss">
+<style>
+  @reference "../../app.css";
   .current-page {
     @apply font-bold;
   }

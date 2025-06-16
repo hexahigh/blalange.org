@@ -28,14 +28,14 @@
       <img src={image.src} alt={title} class="object-cover w-full h-full" />
     </div>
 
-    <div class="mt-4 flex flex-col flex-grow">
+    <div class="mt-4 flex flex-col grow">
       {#if category}
         <span class="text-sm text-m-mantle-subtext0">{category}</span>
       {/if}
 
       <time class="text-xs text-m-mantle-subtext1 mt-1">{formattedDate}</time>
 
-      <h2 class={(featured ? "text-3xl font-bold mt-2 flex-grow" : "text-xl font-bold mt-2 flex-grow") + " text-m-mantle-text"}>
+      <h2 class={(featured ? "text-3xl font-bold mt-2 grow" : "text-xl font-bold mt-2 grow") + " text-m-mantle-text"}>
         {title}
       </h2>
     </div>
