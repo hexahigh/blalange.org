@@ -13,6 +13,9 @@
       "ES2022",
       "ES2023"
     ],
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "allowSyntheticDefaultImports": true,
     "allowJs": true
   }
 }
