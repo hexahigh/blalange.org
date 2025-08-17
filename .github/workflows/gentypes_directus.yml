@@ -1,0 +1,88 @@
+name: Update Directus types
+
+on:
+  schedule:
+    # runs daily at 00:00 UTC (change cron if you prefer another time)
+    - cron: '0 0 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-types:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Directus generators
+        env:
+          ADMIN_KEY: ${{ secrets.DIRECTUS_ADMIN_KEY }}
+          USER_KEY: ${{ secrets.DIRECTUS_USER_KEY }}
+        run: |
+          # make commands fail the job if they fail
+          pnpm run genDirectus --download --type all --key "$ADMIN_KEY"
+          pnpm run genDirectus --download --type user --ignore-refs --key "$USER_KEY"
+          pnpm run genDirectus --download --type public --ignore-refs
+
+      - name: Create/checkout automation branch and check for changes
+        id: commit
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="auto/directus-types"
+          git checkout -B "$BRANCH"
+
+          # Stage only the specific files you care about.
+          git add src/lib/js/types/directus-all.ts src/lib/js/types/directus-user.ts src/lib/js/types/directus-public.ts || true
+
+          # If there are staged changes, commit and push them.
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes to the target files."
+          else
+            git commit -m "chore: update Directus types (automated)"
+            git push --set-upstream origin "$BRANCH"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Changes pushed to branch $BRANCH."
+          fi
+
+      - name: Create or update pull request
+        if: steps.commit.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # branch that contains the changes (the action will create a PR from this branch)
+          branch: auto/directus-types
+          # base branch (defaults to repository's default branch)
+          base: dev
+          title: "Automated: Update Directus types"
+          body: |
+            This PR was generated automatically by GitHub Actions.
+            It updates Directus-generated TypeScript types:
+            - src/lib/js/types/directus-all.ts
+            - src/lib/js/types/directus-user.ts
+            - src/lib/js/types/directus-public.ts
+          labels: automated, dependencies
+          # if there's already an open PR from the same branch, it will be updated (new commit added)
+          maintainer-can-modify: true
