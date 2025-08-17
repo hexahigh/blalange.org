@@ -45,9 +45,6 @@
     refreshToken();
 
     config.subscribe((value) => {
-      document.documentElement.style.setProperty("--font-family-var", value.font.family);
-
-      // if (value.translations.currentLocale) setLocale(value.translations.currentLocale);
     });
 
     // FingerprintJS and BotD
@@ -100,7 +97,5 @@
 />
 
 <ParaglideJS {i18n}>
-  <main>
-    {@render children?.()}
-  </main>
+  {@render children?.()}
 </ParaglideJS>

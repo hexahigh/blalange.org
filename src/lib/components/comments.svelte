@@ -250,7 +250,7 @@
 </div>
 
 <style lang="postcss">
-  iconify-icon {
+@reference "tailwindcss"  iconify-icon {
     display: inline-block;
     width: 1em;
     height: 1em;

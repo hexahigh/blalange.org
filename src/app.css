@@ -3,25 +3,140 @@
 @import "@fontsource/lexend-exa";
 @import "@fontsource/dela-gothic-one";
 @import "@fontsource/roboto-condensed";
+@import "@fontsource-variable/ibm-plex-sans";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+@custom-variant dark (&:where(
+  .dark, .dark *,
+  [data-theme=dark], [data-theme=dark] *,
+  [data-theme=mocha], [data-theme=mocha] *,
+  [data-theme=synthwave], [data-theme=synthwave] *,
+  [data-theme=halloween], [data-theme=halloween] *,
+  [data-theme=forest], [data-theme=forest] *,
+  [data-theme=aqua], [data-theme=aqua] *,
+  [data-theme=black], [data-theme=black] *,
+  [data-theme=luxury], [data-theme=luxury] *,
+  [data-theme=dracula], [data-theme=dracula] *,
+  [data-theme=business], [data-theme=business] *,
+  [data-theme=night], [data-theme=night] *,
+  [data-theme=coffee], [data-theme=coffee] *,
+  [data-theme=dim], [data-theme=dim] *,
+  [data-theme=sunset], [data-theme=sunset] *,
+  [data-theme=abyss], [data-theme=abyss] *,
+  :global(.dark), :global(.dark) *
+));
+
+@import "./lib/css/themes.css";
+
+/* Flowbite related */
+@plugin 'flowbite/plugin';
+@source "../node_modules/flowbite-svelte/dist";
+@source "../node_modules/flowbite-svelte-icons/dist";
+@layer base {
+  /* disable chrome cancel button */
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+@plugin "@tailwindcss/typography";
+@plugin "flowbite-typography";
+
+@plugin "@iconify/tailwind4";
+
+@plugin "daisyui" {
+  themes: nord, lofi, cupcake, valentine;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  color-scheme: "light";
+
+  --color-base-100: #ffffff;
+  --color-base-200: #e8f7ff;
+  --color-base-300: #ccedff;
+  --color-base-content: #000000;
+
+  --color-primary: #00a3ff;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #0c1a43;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #9500ff;
+  --color-accent-content: #fff;
+
+  --color-neutral: #131826;
+  --color-neutral-content: #fff;
+
+  --color-info: #989dff;
+  --color-info-content: #000;
+  --color-success: #13e600;
+  --color-success-content: #ffffff;
+  --color-warning: FFCC00;
+  --color-warning-content: #000;
+  --color-error: FF1e00;
+  --color-error-content: #000;
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  color-scheme: "dark";
+
+  --color-base-100: #131826;
+  --color-base-200: #292d3a;
+  --color-base-300: #404350;
+  --color-base-content: #ffffff;
+
+    --color-primary: #00a3ff;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #0c1a43;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #9500ff;
+  --color-accent-content: #fff;
+
+  --color-neutral: #131826;
+  --color-neutral-content: #fff;
+
+  --color-info: #989dff;
+  --color-info-content: #000;
+  --color-success: #13e600;
+  --color-success-content: #ffffff;
+  --color-warning: FFCC00;
+  --color-warning-content: #000;
+  --color-error: FF1e00;
+  --color-error-content: #000;
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
 
 body * {
   @apply transition-colors duration-200;
 }
 
-html {
-  font-family: "Inter Variable"; /* Default font */
-}
-
 body {
-  font-family: var(--font-family-var); /* This variable is declared onMount in the root +layout.svelte */
-}
-
-:is(.dark .dark\:mocha) {
+  font-family: "IBM Plex Sans Variable", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .fixed-background-img {
@@ -31,11 +146,11 @@ body {
 }
 
 .blue-button {
-  @apply bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 rounded-lg text-white
+  @apply bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 rounded-lg text-white;
 }
 
 .blue-btn {
-  @apply blue-button
+  @apply bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 rounded-lg text-white;
 }
 
 .text-overflow-clip {
@@ -58,6 +173,12 @@ body {
 
 .roboto-condensed {
   font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.ibm-plex-sans {
+  font-family: "IBM Plex Sans Variable", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }

@@ -3,15 +3,7 @@ import { defaultConfig } from "$lib/js/config";
 import { readItems, readItem } from "@directus/sdk";
 import { getDirectusInstance, getImageUrl } from "$lib/js/directus";
 
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import rehypeStringify from "rehype-stringify";
-import rehypeKatex from "rehype-katex";
-import rehypeHighlight from "rehype-highlight";
-import rehypeSlug from "rehype-slug";
-import { unified } from "unified";
+import type { ArticleLoaded, DataType } from "./types";
 
 export async function load({ params, url, fetch }) {
   try {
@@ -27,51 +19,33 @@ export async function load({ params, url, fetch }) {
           },
         },
         limit: 1,
-        fields: ["*", "translations.*", "author.*"],
+        fields: [
+          "*",
+          "translations.*",
+          "author.*",
+          "image.*",
+          {
+            blocks: [
+              {
+                item: ["*.*"],
+              },
+              "*",
+            ],
+          },
+          {
+            authors: ["*", "art_authors_id.*"],
+          },
+        ],
       })
     );
 
-    let article = articles[0];
+    let article = (articles[0] as ArticleLoaded)
 
     if (!article) {
       error(404, "Article not found");
     }
 
-    // Fetch the image
-    const imgUrl = getImageUrl(article.image, {
-      format: "auto",
-    });
-
-    const markedOptions = {
-      breaks: true,
-      gfm: true,
-      sanitize: false,
-    };
-    // Process the markdown
-    let mdStuff = unified()
-      .use(remarkParse)
-      .use(remarkRehype)
-      .use(remarkGfm)
-      .use(remarkMath)
-      .use(rehypeStringify)
-      .use(rehypeKatex)
-      .use(rehypeHighlight)
-      .use(rehypeSlug);
-
-    let text = mdStuff.processSync(article.text || article.text_wysiwyg);
-
-    let translations = article.translations.reduce((acc, translation) => {
-      acc[translation.languages_code] = {
-        name: translation.name,
-        description: translation.description,
-        text: mdStuff.processSync(translation.text),
-      };
-      return acc;
-    }, {});
-
-    const author = article.author?.name;
-
-    return { article, author, imgUrl, text, translations };
+    return { article } as DataType;
   } catch (err) {
     console.error(err);
     error(500, err.message);

@@ -1,9 +1,19 @@
 <script lang="ts">
-  import PocketBase from "pocketbase";
   import { defaultConfig, config, saveConfig, editKey } from "$lib/js/config";
   import Metatags from "$lib/components/metatags.svelte";
-  import { onMount } from "svelte";
-  import { Toggle } from "flowbite-svelte";
+  import { Toggle, Sidebar, SidebarGroup, SidebarItem, SidebarButton, uiHelpers } from "flowbite-svelte";
+  import ThemePreview from "./themePreview.svelte";
+  import { page } from "$app/state";
+  import { latestVersion, buildDate, commitDate, commitHash } from "$lib/js/version";
+
+  import hljs from "highlight.js/lib/core";
+  import hljsJson from "highlight.js/lib/languages/json";
+  import "highlight.js/styles/obsidian.css";
+  import type { version } from "os";
+
+  hljs.registerLanguage("json", hljsJson);
+
+  const sidebarUi = uiHelpers();
 
   let message;
   let messageType = "info";
@@ -16,56 +26,98 @@
     const font = fontChange.selectElement.options[fontChange.selectElement.selectedIndex].value;
     editKey("font.family", font);
   }
+
+  let isOpen = $state(false);
+  let activeUrl = $state(page.url.pathname);
+  let activeTab = $state(page.url.searchParams.get("tab") || "look");
+
+  $effect(() => {
+    isOpen = sidebarUi.isOpen;
+    activeUrl = page.url.pathname;
+    activeTab = page.url.searchParams.get("tab") || "look";
+  });
+
+  let highlightedConfig = $state("");
+
+  config.subscribe((value) => {
+    highlightedConfig = hljs.highlight(JSON.stringify(value, null, 2), { language: "json" }).value;
+  });
+
+  const themes = [
+    "light",
+    "dark",
+    "nord",
+    "lofi",
+    "cupcake",
+    "valentine",
+  ];
 </script>
 
 <Metatags title="Innstillinger" description="Innstillinger for blalange.org" />
 
-<section class="dark:bg-gray-900">
-  <div class="flex flex-col px-6 py-8 md:min-h-screen lg:py-0">
-    <h1 class="text-3xl font-bold mb-4">Innstillinger</h1>
-    {#if message}
-      {#if messageType == "error"}
-        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-          {message}
-        </div>
-      {:else if messageType == "info"}
-        <div
-          class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-          role="alert"
-        >
-          {message}
-        </div>
-      {:else if messageType == "success"}
-        <div
-          class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-          role="alert"
-        >
-          {message}
-        </div>
-      {/if}
-    {/if}
-    <div class="space-y-4 mt-8">
-      <h2 class="text-2xl font-bold mb-4">Utseende</h2>
-      <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">
-        <h3 class="text-xl font-bold mb-4">Font:</h3>
-        <label for="font-select">Velg en font</label>
-        <select
-          bind:this={fontChange.selectElement}
-          value={$config.font.family}
-          id="font-select"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          <option value="Inter Variable">Inter</option>
-          <option value="Krona One">Krona One</option>
-          <option value="PxPlus IBM BIOS">PxPlus IBM BIOS</option>
-          <option value="RimWordFont">RimWord</option>
-        </select>
-        <button class="blue-button mt-4" onclick={saveFont}>Lagre font</button>
-      </div> 
-      <h2 class="text-2xl font-bold mb-4">Misc</h2>
-      <div class="border-dotted border-2 border-primary-500 rounded-lg p-2">
-        <Toggle id="eruda-toggle" color="blue" size="large" bind:checked={$config.erudaEnabled} on:change={saveConfig}>Eruda</Toggle>
+<div class="flex flex-col flex-1 min-h-screen mt-4">
+  <SidebarButton onclick={sidebarUi.toggle} class="mb-2" />
+  <div class="relative grow mb-8">
+    <Sidebar
+      {activeUrl}
+      backdrop={false}
+      {isOpen}
+      closeSidebar={sidebarUi.close}
+      params={{ x: -50, duration: 50 }}
+      classes={{
+        div: "bg-base-200 dark:bg-base-200",
+        nonactive: "flex items-center p-2 font-normal text-base bg-base-200 hover:bg-base-300 dark:text-base dark:bg-base-200 dark:hover:bg-base-300",
+        active: "flex items-center p-2 font-bold text-primary-content bg-primary/70 hover:bg-primary dark:text-primary-content dark:bg-primary/70 dark:hover:bg-primary ",
+      }}
+      class="z-50 h-full rounded-xl overflow-auto bg-base-200 dark:bg-base-200"
+      position="absolute"
+    >
+      <SidebarGroup>
+        <SidebarItem label="Utseende" href="?tab=look" active={activeTab === "look"}>
+          {#snippet icon()}
+            <span class="icon-[nrk--404] h-6 w-6"></span>
+          {/snippet}
+        </SidebarItem>
+        <SidebarItem label="Utvikler" href="?tab=dev" active={activeTab === "dev"}>
+          {#snippet icon()}
+            <span class="icon-[mdi--terminal-line] h-6 w-6"></span>
+          {/snippet}
+        </SidebarItem>
+      </SidebarGroup>
+    </Sidebar>
+    <div class="flex justify-center items-center w-full">
+      <div class="overflow-auto px-4 md:ml-64 text-center">
+        <h1 class="text-3xl font-bold mb-4 text-center">Innstillinger</h1>
+        {#if activeTab === "look"}
+          <h2 class="text-2xl font-semibold mb-4">Utseende</h2>
+          <div class="mb-4">
+            <h3 class="text-xl font-semibold mb-2">Temaer</h3>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+              {#each themes as theme}
+                <ThemePreview {theme} class="theme-preview" />
+              {/each}
+            </div>
+          </div>
+        {:else if activeTab === "dev"}
+          <h2 class="text-2xl font-semibold mb-4">Utvikler</h2>
+          <div class="flex flex-col md:flex-row space-x-4">
+            <fieldset class="fieldset bg-base-100 border-base-300 rounded-box border p-4">
+              <legend class="fieldset-legend">Config</legend>
+              <code class="text-left whitespace-break-spaces">{@html highlightedConfig}</code>
+            </fieldset>
+            <fieldset class="fieldset bg-base-100 border-base-300 rounded-box border p-4">
+              <legend class="fieldset-legend">Versjon info</legend>
+              <code class="text-left whitespace-break-spaces"
+                >{@html hljs.highlight(JSON.stringify({ latestVersion, buildDate, commitDate, commitHash }, null, 2), {
+                  language: "json",
+                }).value}</code
+              >
+            </fieldset>
+          </div>
+        {:else}
+          <p>Velg en kategori fra menyen til venstre.</p>
+        {/if}
       </div>
     </div>
   </div>
-</section>
+</div>

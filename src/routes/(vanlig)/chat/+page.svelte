@@ -2,6 +2,7 @@
   import { onMount, onDestroy, tick } from "svelte";
   import { config, defaultConfig } from "$lib/js/config";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
+  import { thumbs } from "@dicebear/collection";
   import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
   import "iconify-icon";
@@ -37,7 +38,7 @@
   // Options
   let options = {
     pageSize: 25,
-    avatarPack: defaultConfig.dicebearCollection,
+    avatarPack: thumbs,
   };
 
   let devMode: boolean;
@@ -335,7 +336,7 @@
 </div>
 
 <style lang="postcss">
-  .chat-messages-container {
+@reference "tailwindcss"  .chat-messages-container {
     max-height: 60vh; /* Adjust this value as needed */
     height: 60vh;
     overflow-y: auto;

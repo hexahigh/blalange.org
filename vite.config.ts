@@ -1,5 +1,7 @@
 import { paraglide } from "@inlang/paraglide-sveltekit/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+import tailwindcss from "@tailwindcss/vite"
+import { enhancedImages } from '@sveltejs/enhanced-img';
 import { defineConfig } from "vite";
 
 import * as child from "node:child_process";
@@ -14,7 +16,7 @@ try {
 }
 
 export default defineConfig({
-  plugins: [paraglide({ project: "./project.inlang", outdir: "./src/lib/paraglide" }), sveltekit()],
+  plugins: [enhancedImages(), paraglide({ project: "./project.inlang", outdir: "./src/lib/paraglide" }), tailwindcss(), sveltekit()],
   define: {
     "process.env.NODE_ENV": process.env.NODE_ENV === "production" ? '"production"' : '"development"',
 

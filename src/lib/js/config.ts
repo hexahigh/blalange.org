@@ -10,7 +10,6 @@ interface Config {
   analyticsEnabled: boolean;
   logoAlwaysSpins: boolean;
   primaryDomain: string;
-  dicebearCollection: any;
   font: {
     family: string;
     weight: number;
@@ -49,9 +48,8 @@ export const defaultConfig: Config = {
   analyticsEnabled: true,
   logoAlwaysSpins: false,
   primaryDomain: "blalange.org",
-  dicebearCollection: thumbs, //* Does not work, should be removed in a future version
   font: {
-    family: "Inter Variable",
+    family: "IBM Plex Sans Variable",
     weight: 400,
   },
   tos: {

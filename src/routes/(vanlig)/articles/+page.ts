@@ -21,43 +21,14 @@ export async function load({ params, url, fetch }) {
         "art_id",
         "name",
         "description",
-        "image",
+        "image.*",
         "date",
-        "status",
-        {
-          "translations": ["languages_code", "name", "description"]
-        }
+        "date_updated",
+        "authors.*",
+        "author.*",
+        "status"
       ],
     }))
-
-    for (let i = 0; i < articles.length; i++) {
-      if (articles[i].image === null) {
-        articles[i].image = "";
-      }
-      if (articles[i].description === null) {
-        articles[i].description = "";
-      }
-
-      // Fetch the image
-      let image = getImageUrl(articles[i].image, {
-        width: 512,
-        format: "auto"
-      });
-      articles[i].image = image;
-
-      articles[i].date = new Date(articles[i].date).getTime();
-
-      // If the description is longer than 32 characters, truncate it
-      if (articles[i].description.length > 3200) {
-        articles[i].description = articles[i].description.slice(0, 32) + "...";
-      }
-
-      // If the article's status is "draft" or "archived", remove it from the list
-      if (articles[i].status === "draft" || articles[i].status === "archived") {
-        articles.splice(i, 1);
-        i--;
-      }
-    }
 
     // Sort the articles by date
     articles.sort((a, b) => {

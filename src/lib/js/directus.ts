@@ -1,13 +1,14 @@
 import { createDirectus, rest, authentication, realtime, readMe } from "@directus/sdk";
 import { defaultConfig, config } from "./config";
+import type { SchemaFiles } from "./types/directus-all";
 
 class LocalStorage {
   get() {
-    if (typeof window === "undefined") return
+    if (typeof window === "undefined") return;
     return JSON.parse(localStorage.getItem("directus-data"));
   }
   set(data) {
-    if (typeof window === "undefined") return
+    if (typeof window === "undefined") return;
     localStorage.setItem("directus-data", JSON.stringify(data));
   }
 }
@@ -66,7 +67,6 @@ function isLoggedIn() {
   if (data.access_token && data.expires_at > Date.now()) {
     return true;
   }
-
 }
 
 // Assumes that the refresh token is valid
@@ -92,12 +92,18 @@ function refreshToken() {
   return null;
 }
 
+type Enumerate<N extends number, Acc extends number[] = []> = Acc["length"] extends N
+  ? Acc[number]
+  : Enumerate<N, [...Acc, Acc["length"]]>;
+
+type IntRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>;
+
 type getImageUrlOptions = {
   width?: number;
   height?: number;
-  format?: string;
-  quality?: number;
-  fit?: string;
+  format?: "auto" | "jpg" | "png" | "webp" | "tiff" | "avif";
+  quality?: IntRange<1, 100>;
+  fit?: "cover" | "contain" | "inside" | "outside";
   withoutEnlargement?: boolean;
 };
 
@@ -110,10 +116,10 @@ type getImageUrlOptions = {
  * @returns
  */
 function getImageUrl(assetId: string, options: getImageUrlOptions = {}): string {
-  if (!assetId) return
+  if (!assetId) return;
 
   let url = `${defaultConfig.directusEndpoint}/assets/${assetId}`;
-  
+
   // Add the query parameters
   let params = [];
   if (options.width) params.push(`width=${options.width}`);
@@ -130,11 +136,42 @@ function getImageUrl(assetId: string, options: getImageUrlOptions = {}): string 
   return url;
 }
 
+/**
+ * Generates a `srcset` attribute value for an image, using the specified widths and image formats.
+ *
+ * The function creates a comma-separated string of image URLs with their corresponding widths,
+ * suitable for use in the `srcset` attribute of an `<img>` tag. It includes URLs for each width
+ * provided in the `widths` array, as well as one for the original image width.
+ *
+ * @param image - The image object containing at least an `id` and `width` property.
+ * @param widths - An array of widths (in pixels) for which to generate image URLs.
+ * @param format - The desired image format. Can be "auto", "jpg", "png", "webp", "tiff", or "avif".
+ * @returns A string suitable for use as the value of an `img` element's `srcset` attribute.
+ */
+function generateSrcset(
+  image: SchemaFiles,
+  widths: number[],
+  format: "auto" | "jpg" | "png" | "webp" | "tiff" | "avif"
+): string {
+  if (!image || !image.id || !image.width) {
+    throw new Error("Invalid image object provided. It must contain 'id' and 'width' properties.");
+  }
+  // Generate a srcset string for the image with the specified widths and format + one at the original size
+  return widths
+    .concat([image.width])
+    .map((width) => {
+      const url = getImageUrl(image.id, { format, width });
+      return `${url} ${width}w`;
+    })
+    .join(", ");
+}
+
 export {
   getDirectusInstance,
   getDirectusInstanceRest,
   getDirectusInstanceAuth,
   getImageUrl,
+  generateSrcset,
   isLoggedIn,
   currentUser,
   refreshToken,
