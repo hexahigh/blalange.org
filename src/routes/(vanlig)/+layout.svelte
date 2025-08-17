@@ -1,4 +1,7 @@
 <script>
+  import { initializeTheme } from "$lib/stores/theme";
+  import ThemeSetter from "$lib/components/util/themeSetter.svelte";
+  import { onMount } from 'svelte';
   import Footer from "$lib/components/footer.svelte";
   import Nav from "$lib/components/nav.svelte";
   import Support from "$lib/components/3cxWidget.svelte";
@@ -9,14 +12,23 @@
 
   /** @type {Props} */
   let { children } = $props();
+
+  onMount(() => {
+    initializeTheme("light", "dark");
+  });
 </script>
+
+<ThemeSetter
+  defaultTheme="light"
+  defaultDarkTheme="dark"
+/>
 
 <div class="flex flex-col min-h-screen">
   <Nav id="nav" />
 
-  <main class="flex-grow dark:bg-gray-900 text-black dark:text-white">
+  <main class="grow bg-base-100 text-base-content">
     {@render children?.()}
   </main>
-  <Support />
+  <!-- <Support /> -->
   <Footer />
 </div>

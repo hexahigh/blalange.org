@@ -2,28 +2,50 @@
   import "iconify-icon";
   import { MetaTags } from "svelte-meta-tags";
   import { onMount, tick } from "svelte";
-  import { get } from "svelte/store";
   import Fuse from "fuse.js";
   import type { IFuseOptions } from "fuse.js";
+  import { writable, get } from "svelte/store";
 
-  import ArticleCard from "$lib/components/articleCard.svelte";
   import Search from "$lib/components/search.svelte";
   import type Masonry from "masonry-layout";
   import { languageTag } from "$lib/paraglide/runtime.js";
   import * as m from "$lib/paraglide/messages.js";
+  import { getImageUrl } from "$root/src/lib/js/directus";
+  import ArticleCard from "./card.svelte";
 
-  let { data } = $props();
+  interface Props {
+    // In SvelteKit, page data is passed in via `export let data;`
+    data: { articles: any[]; errorOccurred: boolean; errorMessage: string };
+  }
 
-  let msnry: Masonry;
+  let { data }: Props = $props();
 
-  let allArticles = $state(data.articles);
-  let articles = $state(allArticles); // Initialize with all articles
+  let articlesStore = writable(data.articles);
 
-  let onlyLanguage = $state(false);
+  let searchOptions = $state({
+    showHidden: false,
+    showDrafts: false,
+    showArchived: false,
+  });
+
+  let displayOptions = $state({
+    showFeatured: true,
+  });
+
+  let articles = $state(
+    data.articles
+      .filter((article) => {
+        return article.name && article.date && article.art_id && article.image;
+      })
+      .sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }),
+  );
 
   const fuseOptions: IFuseOptions<any> = {
     keys: [{ name: "name" }, { name: "description" }],
     minMatchCharLength: 3,
+    threshold: 0.3,
     useExtendedSearch: false,
     ignoreLocation: true,
     findAllMatches: true,
@@ -31,65 +53,47 @@
     includeScore: true,
   };
   // Create Fuse index
-  const fuseIndex = Fuse.createIndex(fuseOptions.keys, allArticles);
+  const fuseIndex = Fuse.createIndex(fuseOptions.keys, data.articles);
 
   async function search(term) {
-    const fuse = new Fuse(allArticles, fuseOptions, fuseIndex);
+    const fuse = new Fuse(data.articles, fuseOptions, fuseIndex);
     let result = [];
+
+    let a = articles;
 
     if (term) {
       result = fuse.search(term);
 
-      articles = result.map((result) => result.item);
+      a = result.map((result) => result.item);
+      displayOptions.showFeatured = false;
     } else {
-      articles = allArticles;
+      a = data.articles;
+      displayOptions.showFeatured = true;
     }
 
-    // Filter out articles that don't match the selected language
-    if (onlyLanguage) {
-      articles = articles.filter((article) =>
-        article.translations.some((translation) => translation.languages_code === languageTag()),
-      );
-    }
+    articlesStore.set(a);
 
-    await tick(); // Wait for the DOM to update
-    msnry.reloadItems();
-    msnry.layout();
+    // await tick(); // Wait for the DOM to update
   }
 
-  $effect(() => {
-    for (const article of allArticles) {
-      // Find translation matching current locale
-      const translations = article.translations;
-      const currentLocale = languageTag();
-
-      article.name =
-        translations.find((translation) => translation.languages_code === currentLocale)?.name || article.name;
-      article.description =
-        translations.find((translation) => translation.languages_code === currentLocale)?.description ||
-        article.description;
+  articlesStore.subscribe((value) => {
+    // Filter articles based on search options
+    if (!searchOptions.showHidden) {
+      value = value.filter((article) => article.status != "hidden");
     }
-  });
-
-  onMount(async () => {
-    const Masonry = (await import("masonry-layout")).default;
-    const ImagesLoaded = (await import("imagesloaded")).default;
-
-    msnry = new Masonry(".grid-container", {
-      columnWidth: 300,
-      gutter: 32,
-      itemSelector: ".grid-item",
-      horizontalOrder: true,
-      fitWidth: true,
-    });
-
-    const imagesLoaded = ImagesLoaded(".grid-container");
-
-    imagesLoaded.on("progress", function (instance, image) {
-      msnry.layout();
-    });
-
-    window["msnry"] = msnry;
+    if (!searchOptions.showDrafts) {
+      value = value.filter((article) => article.status != "draft");
+    }
+    if (!searchOptions.showArchived) {
+      value = value.filter((article) => article.status != "archived");
+    }
+    articles = value
+      .filter((article) => {
+        return article.name && article.date && article.art_id && article.image;
+      })
+      .sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
   });
 </script>
 
@@ -114,74 +118,54 @@
   }}
 />
 
-{#if !data.errorOccurred}
-  <div class="mx-auto text-center flex flex-col justify-center items-center gap-4">
-    <Search onSubmit={(event) => search(event.target[0].value)} placeholder={m.articleList_search_placeholder()} />
-    <div class="flex items-start">
-      <div class="flex items-center h-5">
-        <input
-          id="onlyLanguage"
-          type="checkbox"
-          bind:checked={onlyLanguage}
-          class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-          required
-        />
+<div class="my-8">
+  {#if !data.errorOccurred}
+    <Search
+      class="mb-4"
+      placeholder={m.articleList_search_placeholder()}
+      onSubmit={(e) => {
+        e.preventDefault();
+        search(e.target[0].value);
+      }}
+    />
+    {#if articles.length > 0}
+      <div class="w-full flex justify-center">
+        <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {#key articles}
+            {#each articles as article, i}
+              <div class="{i === 0 && displayOptions.showFeatured ? 'md:col-span-2' : ''} flex">
+                <ArticleCard
+                  title={article.name}
+                  date={article.date}
+                  link={"/a/" + article.art_id}
+                  image={{
+                    src: getImageUrl(article.image.id, {
+                      width: 1000,
+                      format: "auto",
+                    }),
+                    width: article.image.width,
+                    height: article.image.height,
+                  }}
+                  featured={i === 0 && displayOptions.showFeatured}
+                  class="w-full"
+                />
+              </div>
+            {/each}
+          {/key}
+        </div>
       </div>
-      <label for="onlyLanguage" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        >{m.articleList_search_onlyLanguage()}</label
-      >
+    {:else}
+      <div class="mx-auto text-center flex flex-col justify-center items-center">
+        <h2 class="text-2xl">{m.articleList_search_noResults()}</h2>
+        <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500"></iconify-icon>
+        <p>{m.articleList_search_tryAnother()}</p>
+      </div>
+    {/if}
+  {:else}
+    <div class="mx-auto text-center flex flex-col justify-center items-center">
+      <h2 class="text-2xl">{m.articleList_error()}</h2>
+      <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500"></iconify-icon>
+      <p>{data.errorMessage}</p>
     </div>
-  </div>
-  <div
-    class="w-full mx-auto bg-gradient-to-r bg-white dark:bg-gray-900 p-6 flex flex-col justify-center items-center"
-    class:hidden={articles.length <= 0}
-  >
-    <div class="grid-container gap-8 w-full">
-      {#each articles as article}
-        <ArticleCard
-          title={article.name}
-          date={article.date}
-          description={article.description}
-          link={"/a/" + article.art_id}
-          image={article.image}
-          width="300px"
-          class="mt-8 grid-item"
-          buttonText={m.articleList_card_readMore()}
-        />
-      {/each}
-    </div>
-  </div>
-  <div class="mx-auto text-center flex flex-col justify-center items-center" class:hidden={articles.length > 0}>
-    <h2 class="text-2xl">{m.articleList_search_noResults()}</h2>
-    <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500"></iconify-icon>
-    <p>{m.articleList_search_tryAnother()}</p>
-  </div>
-{:else}
-  <div class="mx-auto text-center flex flex-col justify-center items-center">
-    <h2 class="text-2xl">{m.articleList_error()}</h2>
-    <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500"></iconify-icon>
-    <p>{data.errorMessage}</p>
-  </div>
-{/if}
-
-<style>
-  /* This helps significantly reduce layout shift on the few browsers that support this */
-  @supports (grid-template-rows: masonry) {
-    .grid-container {
-      align-items: center;
-      justify-content: center;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      grid-template-rows: masonry;
-    }
-  }
-
-  @supports not (grid-template-rows: masonry) {
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-  }
-</style>
+  {/if}
+</div>

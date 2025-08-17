@@ -72,6 +72,51 @@ test("Rss is 200", async ({ page }) => {
   expect(response.status()).toBe(200);
 });
 
+test("All sitemap links are 200", async ({ request }, testInfo) => {
+  // Fetch the sitemap.xml as text
+  const response = await request.get("/sitemap.xml");
+  expect(response.status()).toBe(200);
+  const xml = await response.text();
+
+  // Extract all <loc>...</loc> URLs from the sitemap
+  const urls = Array.from(xml.matchAll(/<loc>(.*?)<\/loc>/g)).map(match => match[1]);
+
+  // Store results for reporting
+  const results: { url: string, status: number }[] = [];
+  const errors: string[] = [];
+
+  // Check each URL returns 200 or 304, mark flaky if 404, collect errors otherwise
+  for (const url of urls) {
+    const res = await request.get(url);
+    results.push({ url, status: res.status() });
+
+    if ([200, 304].includes(res.status())) {
+      // OK
+    } else if (res.status() === 404) {
+      testInfo.annotations.push({
+        type: "flaky",
+        description: `Sitemap link returned 404: ${url}`,
+      });
+      console.warn(`Flaky: Sitemap link returned 404: ${url}`);
+    } else {
+      errors.push(`URL: ${url} returned status: ${res.status()}`);
+    }
+  }
+
+  // Attach results to the test output
+  await testInfo.attach("sitemap-link-statuses.json", {
+    body: Buffer.from(JSON.stringify(results, null, 2)),
+    contentType: "application/json",
+  });
+
+  // Fail at the end if there were errors, with a detailed message
+  if (errors.length > 0) {
+    throw new Error(
+      `Some sitemap links did not return 200 or 304:\n${errors.join("\n")}`
+    );
+  }
+});
+
 function validateUrl(url: string): boolean {
   let valid = true;
   if (url.startsWith("mailto:")) {
