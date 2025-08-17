@@ -2002,8 +2002,8 @@ export interface components {
             date_updated?: string | null;
             type?: string | null;
             translations?: (number | components["schemas"]["ItemsArtArticlesTranslations"])[] | null;
-            blocks?: (number | components["schemas"]["ItemsArtArticlesBlocks"])[] | null;
             authors?: (number | components["schemas"]["ItemsArtArticlesArtAuthors"])[] | null;
+            blocks?: (number | components["schemas"]["ItemsArtArticlesBlocks"])[] | null;
         };
         ItemsBlockImage: {
             /** Format: uuid */
