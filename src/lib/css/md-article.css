@@ -1,5 +1,9 @@
-@reference "tailwindcss";
+@reference "$root/src/app.css";
 @import "highlight.js/styles/obsidian.css";
+
+.md-text {
+  @apply text-base-content
+}
 
 /* Adds a top margin to 'h1', 'h2', 'h3', 'h4', 'p', 'ul', 'ol' */
 .md-text h1,
@@ -17,7 +21,7 @@
 .md-text h2 + p,
 .md-text h3 + p,
 .md-text h4 + p {
-  @apply mt-0;
+  @apply mt-1;
 }
 
 /* Does not add a top margin to 'ol' or 'ul' if they are underneath 'h1', 'h2', 'h3', 'h4' or 'p' */
@@ -31,7 +35,7 @@
 .md-text h4 + ul,
 .md-text p + ol,
 .md-text p + ul {
-  @apply mt-0;
+  @apply mt-1;
 }
 
 .md-text h1 {
@@ -72,4 +76,22 @@
 
 .md-text code {
   @apply rounded-3xl overflow-scroll
+}
+
+.md-text figure picture img {
+  @apply rounded-t-3xl;
+}
+
+.md-text figure:has(figcaption) picture img {
+  @apply rounded-t-3xl rounded-b-none;
+}
+
+.md-text figure:not(:has(figcaption)) picture img {
+  @apply rounded-t-3xl;
+  @apply rounded-b-xl;
+}
+
+.md-text figure figcaption {
+  @apply bg-neutral text-neutral-content text-lg px-5 py-3;
+  @apply rounded-b-xl;
 }

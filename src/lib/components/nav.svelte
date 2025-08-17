@@ -8,8 +8,8 @@
   import logo from "$lib/img/logo_no-bg.svg";
   import { canRefresh, getDirectusInstance, getImageUrl, isLoggedIn } from "$lib/js/directus";
   import { readMe } from "@directus/sdk";
-  /** @type {{ [key: string]: any }} */
-  let { ...rest } = $props();
+  import { twMerge } from "tailwind-merge";
+  let { class: classString } = $props();
 
   let logoAlwaysSpins = $state(false);
 
@@ -84,7 +84,7 @@
   ];
 </script>
 
-<nav class="bg-m-primary w-full">
+<nav class={twMerge("bg-secondary w-full", classString)}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo Left -->
@@ -97,7 +97,7 @@
           {#each links as link}
             <a
               href={link.href}
-              class={"text-m-primary-text hover:brightness-75 px-3 py-2 rounded-md text-md font-medium " +
+              class={"text-secondary-content hover:brightness-75 px-3 py-2 rounded-md text-md font-medium " +
                 (path === link.href ? "current-page" : "not-current-page")}>{link.label}</a
             >
           {/each}
@@ -105,8 +105,13 @@
       </div>
       <!-- User Account Right -->
       <div class="flex items-center">
-        <Avatar id="acs" />
-        <Dropdown triggeredBy="#acs">
+        <Avatar
+          id="acs"
+          src={isLoggedIn() && userStuff.profilePicture
+            ? userStuff.profilePicture
+            : "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray'><circle cx='12' cy='8' r='4'/><path d='M4 20c0-4 8-4 8-4s8 0 8 4'/></svg>"}
+        />
+        <Dropdown class="list-none" triggeredBy="#acs">
           {#if isLoggedIn()}
             <DropdownHeader>
               <span class="block text-sm text-gray-900 dark:text-white">{userStuff.name}</span>
@@ -117,7 +122,7 @@
           {:else}
             <DropdownItem href="/settings">Innstillinger</DropdownItem>
             <DropdownItem href="/login">Logg in</DropdownItem>
-            <DropdownItem href="/register">Opprett konto</DropdownItem>
+            <DropdownItem href="/signup">Opprett konto</DropdownItem>
           {/if}
         </Dropdown>
       </div>

@@ -22,7 +22,7 @@
   const clampedAspect = aspect < maxAspect ? maxAspect : aspect;
 </script>
 
-<article class="bg-m-mantle shadow p-4 flex flex-col h-full {clazz}">
+<article class="bg-base-200 text-base-content shadow p-4 flex flex-col h-full {clazz}">
   <a href={link} class="block h-full">
     <div class="w-full" style="aspect-ratio: {clampedAspect};">
       <img src={image.src} alt={title} class="object-cover w-full h-full" />
@@ -30,12 +30,12 @@
 
     <div class="mt-4 flex flex-col grow">
       {#if category}
-        <span class="text-sm text-m-mantle-subtext0">{category}</span>
+        <span class="text-sm text-base-content/80">{category}</span>
       {/if}
 
-      <time class="text-xs text-m-mantle-subtext1 mt-1">{formattedDate}</time>
+      <time class="text-xs text-base-content/70 mt-1">{formattedDate}</time>
 
-      <h2 class={(featured ? "text-3xl font-bold mt-2 grow" : "text-xl font-bold mt-2 grow") + " text-m-mantle-text"}>
+      <h2 class={(featured ? "text-4xl font-bold mt-2 grow" : "text-2xl font-bold mt-2 grow")}>
         {title}
       </h2>
     </div>

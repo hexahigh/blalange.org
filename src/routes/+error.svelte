@@ -24,7 +24,7 @@
 </script>
 
 <div class="relative w-full min-h-screen flex justify-center flex-col">
-  <section class="bg-m-base">
+  <section class="bg-base-100">
     <div class="py-8 px-4 mx-auto max-w-(--breakpoint-xl) lg:py-16 lg:px-6">
       <div class="mx-auto max-w-(--breakpoint-sm) text-center">
         <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-m-secondary">
@@ -34,10 +34,10 @@
             </span>
           {/each}
         </h1>
-        <p class="mb-4 text-3xl tracking-tight font-bold text text-m-base-text md:text-4xl">
+        <p class="mb-4 text-3xl tracking-tight font-bold text text-base-content md:text-4xl">
           {errorHeader}
         </p>
-        <p class="mb-4 text-lg font-light text-m-base-subtext0">
+        <p class="mb-4 text-lg font-light text-base-content/70">
           {errorText}
         </p>
         <a

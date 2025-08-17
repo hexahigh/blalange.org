@@ -7,7 +7,25 @@
 
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *, [data-theme=mocha], [data-theme=mocha] *, :global(.dark), :global(.dark) *));
+@custom-variant dark (&:where(
+  .dark, .dark *,
+  [data-theme=dark], [data-theme=dark] *,
+  [data-theme=mocha], [data-theme=mocha] *,
+  [data-theme=synthwave], [data-theme=synthwave] *,
+  [data-theme=halloween], [data-theme=halloween] *,
+  [data-theme=forest], [data-theme=forest] *,
+  [data-theme=aqua], [data-theme=aqua] *,
+  [data-theme=black], [data-theme=black] *,
+  [data-theme=luxury], [data-theme=luxury] *,
+  [data-theme=dracula], [data-theme=dracula] *,
+  [data-theme=business], [data-theme=business] *,
+  [data-theme=night], [data-theme=night] *,
+  [data-theme=coffee], [data-theme=coffee] *,
+  [data-theme=dim], [data-theme=dim] *,
+  [data-theme=sunset], [data-theme=sunset] *,
+  [data-theme=abyss], [data-theme=abyss] *,
+  :global(.dark), :global(.dark) *
+));
 
 @import "./lib/css/themes.css";
 
@@ -24,6 +42,92 @@
 
 @plugin "@tailwindcss/typography";
 @plugin "flowbite-typography";
+
+@plugin "@iconify/tailwind4";
+
+@plugin "daisyui" {
+  themes: nord, lofi, cupcake, valentine;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  color-scheme: "light";
+
+  --color-base-100: #ffffff;
+  --color-base-200: #e8f7ff;
+  --color-base-300: #ccedff;
+  --color-base-content: #000000;
+
+  --color-primary: #00a3ff;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #0c1a43;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #9500ff;
+  --color-accent-content: #fff;
+
+  --color-neutral: #131826;
+  --color-neutral-content: #fff;
+
+  --color-info: #989dff;
+  --color-info-content: #000;
+  --color-success: #13e600;
+  --color-success-content: #ffffff;
+  --color-warning: FFCC00;
+  --color-warning-content: #000;
+  --color-error: FF1e00;
+  --color-error-content: #000;
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  color-scheme: "dark";
+
+  --color-base-100: #131826;
+  --color-base-200: #292d3a;
+  --color-base-300: #404350;
+  --color-base-content: #ffffff;
+
+    --color-primary: #00a3ff;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #0c1a43;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #9500ff;
+  --color-accent-content: #fff;
+
+  --color-neutral: #131826;
+  --color-neutral-content: #fff;
+
+  --color-info: #989dff;
+  --color-info-content: #000;
+  --color-success: #13e600;
+  --color-success-content: #ffffff;
+  --color-warning: FFCC00;
+  --color-warning-content: #000;
+  --color-error: FF1e00;
+  --color-error-content: #000;
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
 
 body * {
   @apply transition-colors duration-200;
