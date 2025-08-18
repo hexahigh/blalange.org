@@ -15,6 +15,7 @@
         "translations",
         "article list rss",
         "types",
-        "scripts"
+        "scripts",
+        "wrangler"
     ]
 }
