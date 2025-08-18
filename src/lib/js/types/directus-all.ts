@@ -1965,66 +1965,6 @@ export interface paths {
         patch: operations["updateSingleItemsChat"];
         trace?: never;
     };
-    "/items/report_to": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List Items
-         * @description List the report_to items.
-         */
-        get: operations["readItemsReportTo"];
-        put?: never;
-        /**
-         * Create an Item
-         * @description Create a new report_to item.
-         */
-        post: operations["createItemsReportTo"];
-        /**
-         * Delete Multiple Items
-         * @description Delete multiple existing report_to items.
-         */
-        delete: operations["deleteItemsReportTo"];
-        options?: never;
-        head?: never;
-        /**
-         * Update Multiple Items
-         * @description Update multiple report_to items at the same time.
-         */
-        patch: operations["updateItemsReportTo"];
-        trace?: never;
-    };
-    "/items/report_to/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Retrieve an Item
-         * @description Retrieve a single report_to item by unique identifier.
-         */
-        get: operations["readSingleItemsReportTo"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete an Item
-         * @description Delete an existing report_to item.
-         */
-        delete: operations["deleteSingleItemsReportTo"];
-        options?: never;
-        head?: never;
-        /**
-         * Update an Item
-         * @description Update an existing report_to item.
-         */
-        patch: operations["updateSingleItemsReportTo"];
-        trace?: never;
-    };
     "/items/analytics_client1": {
         parameters: {
             query?: never;
@@ -3646,16 +3586,6 @@ export interface components {
             user?: (string | components["schemas"]["Users"]) | null;
             text?: string | null;
         };
-        ItemsReportTo: {
-            id: number;
-            user_created?: (string | components["schemas"]["Users"]) | null;
-            /** Format: timestamp */
-            date_created?: string | null;
-            type?: string | null;
-            age?: number | null;
-            url?: string | null;
-            body?: unknown;
-        };
         ItemsAnalyticsClient1: {
             /** Format: uuid */
             id: string;
@@ -3734,8 +3664,8 @@ export interface components {
             date_updated?: string | null;
             type?: string | null;
             translations?: (number | components["schemas"]["ItemsArtArticlesTranslations"])[] | null;
-            blocks?: (number | components["schemas"]["ItemsArtArticlesBlocks"])[] | null;
             authors?: (number | components["schemas"]["ItemsArtArticlesArtAuthors"])[] | null;
+            blocks?: (number | components["schemas"]["ItemsArtArticlesBlocks"])[] | null;
         };
         ItemsBlockImage: {
             /** Format: uuid */
@@ -3865,7 +3795,6 @@ export type SchemaItemsAnalyticsHook = components['schemas']['ItemsAnalyticsHook
 export type SchemaItemsArtAuthors = components['schemas']['ItemsArtAuthors'];
 export type SchemaItemsLanguages = components['schemas']['ItemsLanguages'];
 export type SchemaItemsChat = components['schemas']['ItemsChat'];
-export type SchemaItemsReportTo = components['schemas']['ItemsReportTo'];
 export type SchemaItemsAnalyticsClient1 = components['schemas']['ItemsAnalyticsClient1'];
 export type SchemaItemsUsersExtra = components['schemas']['ItemsUsersExtra'];
 export type SchemaItemsAnalyticsClient2 = components['schemas']['ItemsAnalyticsClient2'];
@@ -10412,231 +10341,6 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: components["schemas"]["ItemsChat"];
-                    };
-                };
-            };
-            401: components["responses"]["UnauthorizedError"];
-            404: components["responses"]["NotFoundError"];
-        };
-    };
-    readItemsReportTo: {
-        parameters: {
-            query?: {
-                /** @description Control what fields are being returned in the object. */
-                fields?: components["parameters"]["Fields"];
-                /** @description A limit on the number of objects that are returned. */
-                limit?: components["parameters"]["Limit"];
-                /** @description What metadata to return in the response. */
-                meta?: components["parameters"]["Meta"];
-                /** @description How many items to skip when fetching data. */
-                offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
-                sort?: components["parameters"]["Sort"];
-                /** @description Select items in collection by given conditions. */
-                filter?: components["parameters"]["Filter"];
-                /** @description Filter by items that contain the given search query in one of their fields. */
-                search?: components["parameters"]["Search"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: components["schemas"]["ItemsReportTo"][];
-                        meta?: components["schemas"]["x-metadata"];
-                    };
-                };
-            };
-            401: components["responses"]["UnauthorizedError"];
-        };
-    };
-    createItemsReportTo: {
-        parameters: {
-            query?: {
-                /** @description What metadata to return in the response. */
-                meta?: components["parameters"]["Meta"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["ItemsReportTo"][] | components["schemas"]["ItemsReportTo"];
-            };
-        };
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: components["schemas"]["ItemsReportTo"][];
-                    };
-                };
-            };
-            401: components["responses"]["UnauthorizedError"];
-        };
-    };
-    deleteItemsReportTo: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            401: components["responses"]["UnauthorizedError"];
-        };
-    };
-    updateItemsReportTo: {
-        parameters: {
-            query?: {
-                /** @description Control what fields are being returned in the object. */
-                fields?: components["parameters"]["Fields"];
-                /** @description A limit on the number of objects that are returned. */
-                limit?: components["parameters"]["Limit"];
-                /** @description What metadata to return in the response. */
-                meta?: components["parameters"]["Meta"];
-                /** @description How many items to skip when fetching data. */
-                offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
-                sort?: components["parameters"]["Sort"];
-                /** @description Select items in collection by given conditions. */
-                filter?: components["parameters"]["Filter"];
-                /** @description Filter by items that contain the given search query in one of their fields. */
-                search?: components["parameters"]["Search"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["ItemsReportTo"][] | components["schemas"]["ItemsReportTo"];
-            };
-        };
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: components["schemas"]["ItemsReportTo"][];
-                    };
-                };
-            };
-        };
-    };
-    readSingleItemsReportTo: {
-        parameters: {
-            query?: {
-                /** @description Control what fields are being returned in the object. */
-                fields?: components["parameters"]["Fields"];
-                /** @description What metadata to return in the response. */
-                meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
-                version?: components["parameters"]["Version"];
-            };
-            header?: never;
-            path: {
-                /** @description Index of the item. */
-                id: number | string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: components["schemas"]["ItemsReportTo"];
-                    };
-                };
-            };
-            401: components["responses"]["UnauthorizedError"];
-            404: components["responses"]["NotFoundError"];
-        };
-    };
-    deleteSingleItemsReportTo: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Index of the item. */
-                id: number | string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            401: components["responses"]["UnauthorizedError"];
-            404: components["responses"]["NotFoundError"];
-        };
-    };
-    updateSingleItemsReportTo: {
-        parameters: {
-            query?: {
-                /** @description Control what fields are being returned in the object. */
-                fields?: components["parameters"]["Fields"];
-                /** @description What metadata to return in the response. */
-                meta?: components["parameters"]["Meta"];
-            };
-            header?: never;
-            path: {
-                /** @description Index of the item. */
-                id: number | string;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["ItemsReportTo"];
-            };
-        };
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: components["schemas"]["ItemsReportTo"];
                     };
                 };
             };
