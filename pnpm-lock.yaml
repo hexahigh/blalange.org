@@ -45,8 +45,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
       '@fontsource/roboto-condensed':
-        specifier: ^5.1.0
-        version: 5.1.0
+        specifier: ^5.2.6
+        version: 5.2.6
       '@formkit/auto-animate':
         specifier: ^0.8.2
         version: 0.8.2
@@ -1395,8 +1395,8 @@ packages:
   '@fontsource/lexend-exa@5.1.0':
     resolution: {integrity: sha512-zyYTB0dm+NADMxvlxTcLdmcruzV+PWe39VYN9EO0nLJCm7ENmjf3EMq1nxFvdYO0aUqJgVn5bkygRWziSuQiTQ==}
 
-  '@fontsource/roboto-condensed@5.1.0':
-    resolution: {integrity: sha512-cTS62X9bgR6H+3qRtaDwt0I+3ocitMPalyr2OrzJtilIcuEo4my8UA4VVhOgr0OI2Sk9JNrNYcSxkv0k4XuKtQ==}
+  '@fontsource/roboto-condensed@5.2.6':
+    resolution: {integrity: sha512-xcvHM/urk/hdZknJNBpUzFdAA00QgKq+FdAfjO8soi9xeTlAPNz2wD2k+K7omsCfedGcOlQ6VnWJIRkF0egUjg==}
 
   '@formkit/auto-animate@0.8.2':
     resolution: {integrity: sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==}
@@ -6055,7 +6055,7 @@ snapshots:
 
   '@fontsource/lexend-exa@5.1.0': {}
 
-  '@fontsource/roboto-condensed@5.1.0': {}
+  '@fontsource/roboto-condensed@5.2.6': {}
 
   '@formkit/auto-animate@0.8.2': {}
 

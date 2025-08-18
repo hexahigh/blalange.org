@@ -73,7 +73,7 @@
     "@fontsource/dela-gothic-one": "^5.1.1",
     "@fontsource/krona-one": "^5.1.0",
     "@fontsource/lexend-exa": "^5.1.0",
-    "@fontsource/roboto-condensed": "^5.1.0",
+    "@fontsource/roboto-condensed": "^5.2.6",
     "@formkit/auto-animate": "^0.8.2",
     "@inlang/paraglide-sveltekit": "0.15.5",
     "@tailwindcss/vite": "^4.1.10",
