@@ -46,7 +46,7 @@ jobs:
           pnpm exec vitest run --reporter=html --outputFile=test-results/vitest/index.html 2>&1 | tee vitest.log
 
       - name: Run e2e tests (Playwright)
-        run: bash -lc "set -o pipefail; pnpm run test:e2e --output test-results/playwright 2>&1 | tee playwright.log"
+        run: bash -lc "set -o pipefail; pnpm run test:e2e 2>&1 | tee playwright.log"
 
       - name: Upload logs & reports
         if: always()
@@ -95,7 +95,7 @@ jobs:
           pnpm exec vitest run --reporter=html --outputFile=test-results/vitest/index.html 2>&1 | tee vitest.log
 
       - name: Run e2e tests (Playwright)
-        run: bash -lc "set -o pipefail; pnpm run test:e2e --output test-results/playwright 2>&1 | tee playwright.log"
+        run: bash -lc "set -o pipefail; pnpm run test:e2e 2>&1 | tee playwright.log"
 
       - name: Upload logs & reports
         if: always()
