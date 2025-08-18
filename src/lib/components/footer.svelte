@@ -19,9 +19,6 @@
         <li>
           <a href="mailto:contact@blalange.org" class="underline">contact@blalange.org</a>
         </li>
-        <li>
-          <a href="/livechat" class="underline">Livechat</a>
-        </li>
       </ul>
     </div>
     <div>
