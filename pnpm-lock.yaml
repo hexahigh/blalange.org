@@ -42,8 +42,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
       '@fontsource/lexend-exa':
-        specifier: ^5.1.0
-        version: 5.1.0
+        specifier: ^5.2.9
+        version: 5.2.9
       '@fontsource/roboto-condensed':
         specifier: ^5.2.6
         version: 5.2.6
@@ -1392,8 +1392,8 @@ packages:
   '@fontsource/krona-one@5.1.0':
     resolution: {integrity: sha512-79rKfvOrH+bahevvxTBN9eajMGV4vkskMQY/+7Q7sXer8IPGL/8swzj9FDHVIjltZtwMhRBCr0z7L+RIuaBFqw==}
 
-  '@fontsource/lexend-exa@5.1.0':
-    resolution: {integrity: sha512-zyYTB0dm+NADMxvlxTcLdmcruzV+PWe39VYN9EO0nLJCm7ENmjf3EMq1nxFvdYO0aUqJgVn5bkygRWziSuQiTQ==}
+  '@fontsource/lexend-exa@5.2.9':
+    resolution: {integrity: sha512-DKve0JeLhnHQQpr8NO82dqxscXiNhTiZRFSStja+6sm7YAJUtg0D7SC2G9y7eL4hR01h3uHorEw4EARGM/wUXg==}
 
   '@fontsource/roboto-condensed@5.2.6':
     resolution: {integrity: sha512-xcvHM/urk/hdZknJNBpUzFdAA00QgKq+FdAfjO8soi9xeTlAPNz2wD2k+K7omsCfedGcOlQ6VnWJIRkF0egUjg==}
@@ -6053,7 +6053,7 @@ snapshots:
 
   '@fontsource/krona-one@5.1.0': {}
 
-  '@fontsource/lexend-exa@5.1.0': {}
+  '@fontsource/lexend-exa@5.2.9': {}
 
   '@fontsource/roboto-condensed@5.2.6': {}
 
