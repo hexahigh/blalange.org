@@ -25,7 +25,7 @@
     "@iconify/tailwind4": "^1.0.6",
     "@inlang/cli": "^2.18.1",
     "@inlang/paraglide-js": "1.11.8",
-    "@playwright/test": "^1.50.1",
+    "@playwright/test": "^1.54.2",
     "@sveltejs/adapter-auto": "^6.0.1",
     "@sveltejs/adapter-cloudflare": "^7.0.4",
     "@sveltejs/adapter-node": "^5.2.12",
