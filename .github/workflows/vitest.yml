@@ -1,0 +1,46 @@
+name: Vitest
+
+env:
+  NODE_VERSION: '21'
+  PNPM_VERSION: '10'
+  GITHUB_ACTIONS: 'true'
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  vitest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Run Vitest
+        run: |
+          mkdir -p test-results/vitest
+          set -o pipefail
+          pnpm exec vitest run --reporter=github-actions 2>&1 | tee vitest.log
+
+      - name: Upload logs & reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-normal
+          path: |
+            vitest.log
