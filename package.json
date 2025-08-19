@@ -85,7 +85,7 @@
     "dayjs": "^1.11.13",
     "dompurify": "^3.2.3",
     "eruda": "^3.4.1",
-    "flowbite-svelte-icons": "^2.0.2",
+    "flowbite-svelte-icons": "^2.3.0",
     "fuse.js": "^7.1.0",
     "highlight.js": "^11.11.1",
     "howler": "^2.2.4",
