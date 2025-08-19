@@ -33,8 +33,8 @@ importers:
         specifier: ^5.2.6
         version: 5.2.6
       '@fontsource-variable/material-symbols-outlined':
-        specifier: ^5.1.3
-        version: 5.1.3
+        specifier: ^5.2.19
+        version: 5.2.19
       '@fontsource/dela-gothic-one':
         specifier: ^5.1.1
         version: 5.1.1
@@ -1383,8 +1383,8 @@ packages:
   '@fontsource-variable/inter@5.2.6':
     resolution: {integrity: sha512-jks/bficUPQ9nn7GvXvHtlQIPudW7Wx8CrlZoY8bhxgeobNxlQan8DclUJuYF2loYRrGpfrhCIZZspXYysiVGg==}
 
-  '@fontsource-variable/material-symbols-outlined@5.1.3':
-    resolution: {integrity: sha512-2wwKaI0oGDCae/rQ2wig9ZoF6hYzPaPrX+co/8nDnYZ7YsGRj2NXq2Cqh+jW6pLcK6sf4WnYHedf/OBcEDWVGQ==}
+  '@fontsource-variable/material-symbols-outlined@5.2.19':
+    resolution: {integrity: sha512-YTEbENtgkmkESfZDjJYHXv5ws1AZzxe2b14xHk0jje6TZk/thcOncv5XZxpkDTEzyf7sJGXAYFIYPdep8URPTw==}
 
   '@fontsource/dela-gothic-one@5.1.1':
     resolution: {integrity: sha512-TSO7kNNV+Ux9VaHR3FDDhT3mPV7O9jTBqatLw1993w57G9sQDpAGzGepTNCZcNW987ZUVFUMO+I8Vh/37Un2Yg==}
@@ -6038,7 +6038,7 @@ snapshots:
 
   '@fontsource-variable/inter@5.2.6': {}
 
-  '@fontsource-variable/material-symbols-outlined@5.1.3': {}
+  '@fontsource-variable/material-symbols-outlined@5.2.19': {}
 
   '@fontsource/dela-gothic-one@5.1.1': {}
 
