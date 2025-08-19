@@ -30,8 +30,8 @@ importers:
         specifier: ^5.2.5
         version: 5.2.5
       '@fontsource-variable/inter':
-        specifier: ^5.1.0
-        version: 5.1.0
+        specifier: ^5.2.6
+        version: 5.2.6
       '@fontsource-variable/material-symbols-outlined':
         specifier: ^5.1.3
         version: 5.1.3
@@ -1380,8 +1380,8 @@ packages:
   '@fontsource-variable/ibm-plex-sans@5.2.5':
     resolution: {integrity: sha512-SrvCxqJK3NI4JBroXsJdBZGfs6QVfY0lK2VIZIIgYPea+/LI/3zYOOTI0AVvrMrmBks87GJQfPGprftlO8yInQ==}
 
-  '@fontsource-variable/inter@5.1.0':
-    resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
+  '@fontsource-variable/inter@5.2.6':
+    resolution: {integrity: sha512-jks/bficUPQ9nn7GvXvHtlQIPudW7Wx8CrlZoY8bhxgeobNxlQan8DclUJuYF2loYRrGpfrhCIZZspXYysiVGg==}
 
   '@fontsource-variable/material-symbols-outlined@5.1.3':
     resolution: {integrity: sha512-2wwKaI0oGDCae/rQ2wig9ZoF6hYzPaPrX+co/8nDnYZ7YsGRj2NXq2Cqh+jW6pLcK6sf4WnYHedf/OBcEDWVGQ==}
@@ -6036,7 +6036,7 @@ snapshots:
 
   '@fontsource-variable/ibm-plex-sans@5.2.5': {}
 
-  '@fontsource-variable/inter@5.1.0': {}
+  '@fontsource-variable/inter@5.2.6': {}
 
   '@fontsource-variable/material-symbols-outlined@5.1.3': {}
 
