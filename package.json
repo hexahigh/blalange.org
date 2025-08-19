@@ -63,7 +63,7 @@
   "dependencies": {
     "@dicebear/collection": "^9.2.2",
     "@dicebear/core": "^9.2.2",
-    "@directus/sdk": "^19.1.0",
+    "@directus/sdk": "^20.0.2",
     "@fingerprintjs/botd": "^1.9.1",
     "@fingerprintjs/fingerprintjs": "^4.5.1",
     "@floating-ui/dom": "^1.7.3",
