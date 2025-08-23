@@ -1,4 +1,3 @@
-import PocketBase from "pocketbase";
 import { config, defaultConfig } from "$lib/js/config";
 import { readItems, readItem } from '@directus/sdk';
 import { getDirectusInstance, getImageUrl } from "$lib/js/directus";

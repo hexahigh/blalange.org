@@ -3,7 +3,6 @@
 
   const bubble = createBubbler();
   import logoSvg from "$lib/img/favicon.svg";
-  import PocketBase from "pocketbase";
   import { defaultConfig, config } from "$lib/js/config";
   import Metatags from "$lib/components/metatags.svelte";
   import { getDirectusInstance, isLoggedIn } from "$lib/js/directus";

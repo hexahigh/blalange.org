@@ -12,8 +12,6 @@
   import { getDirectusInstance, isLoggedIn, storage, getImageUrl, currentUser } from "$lib/js/directus";
   import { readItems, readItem, createItem, authentication, realtime, createDirectus } from "@directus/sdk";
 
-  import PocketBase from "pocketbase";
-
   function formatDate(time) {
     const date = new Date(time);
     const options: Intl.DateTimeFormatOptions = {
@@ -45,7 +43,6 @@
 
   const client = getDirectusInstance(null);
   const wsClient = createDirectus(defaultConfig.directeusWebsocketEndpoint + "/websocket").with(realtime());
-  const pb = new PocketBase(defaultConfig.dbEndpoint);
 
   config.subscribe((value) => {
     devMode = value.devMode;

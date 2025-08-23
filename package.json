@@ -97,7 +97,6 @@
     "marked": "^15.0.6",
     "masonry-layout": "^4.2.2",
     "pako": "^2.1.0",
-    "pocketbase": "^0.25.0",
     "rehype-highlight": "^7.0.1",
     "rehype-katex": "^7.0.1",
     "rehype-slug": "^6.0.0",
