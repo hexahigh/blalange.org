@@ -15,8 +15,8 @@ importers:
         specifier: ^9.2.2
         version: 9.2.2
       '@directus/sdk':
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^20.0.2
+        version: 20.0.2
       '@fingerprintjs/botd':
         specifier: ^1.9.1
         version: 1.9.1
@@ -1048,8 +1048,8 @@ packages:
     peerDependencies:
       '@dicebear/core': ^9.0.0
 
-  '@directus/sdk@19.1.0':
-    resolution: {integrity: sha512-Nqem9BsvvGyVtAa69mGPtoMoMVkZxdIREdsWvvTzNF4/1XqaFfEiFL7PhtUNfc46/Nufus2+QUKYQbNiAWe3ZA==}
+  '@directus/sdk@20.0.2':
+    resolution: {integrity: sha512-eZu61BdWN1R4h6A/K3jIiZfK8WMg3z5JLDPrdGPA8ZWpXjXlR0qtPOBJ0dZFJn25C2Huu0ND6UMrFlhDgkIwyw==}
     engines: {node: '>=22'}
 
   '@emnapi/runtime@1.4.5':
@@ -5849,7 +5849,7 @@ snapshots:
     dependencies:
       '@dicebear/core': 9.2.2
 
-  '@directus/sdk@19.1.0': {}
+  '@directus/sdk@20.0.2': {}
 
   '@emnapi/runtime@1.4.5':
     dependencies:
