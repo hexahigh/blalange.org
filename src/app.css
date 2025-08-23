@@ -74,9 +74,9 @@
   --color-info-content: #000;
   --color-success: #13e600;
   --color-success-content: #ffffff;
-  --color-warning: FFCC00;
+  --color-warning: #FFCC00;
   --color-warning-content: #000;
-  --color-error: FF1e00;
+  --color-error: #FF1e00;
   --color-error-content: #000;
 
   --radius-selector: 1rem;
@@ -114,9 +114,9 @@
   --color-info-content: #000;
   --color-success: #13e600;
   --color-success-content: #ffffff;
-  --color-warning: FFCC00;
+  --color-warning: #FFCC00;
   --color-warning-content: #000;
-  --color-error: FF1e00;
+  --color-error: #FF1e00;
   --color-error-content: #000;
 
   --radius-selector: 1rem;
