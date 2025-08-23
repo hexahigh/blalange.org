@@ -80,7 +80,7 @@
   const links = [
     { href: "/", label: "Hjem" },
     { href: "/articles", label: "Artikler" },
-    { href: toRedirect("https://shop.blalange.org", { noHost: true }), label: "Merch" },
+    { href: "https://shop.blalange.org", label: "Merch", newTab: true },
   ];
 </script>
 
@@ -97,6 +97,7 @@
           {#each links as link}
             <a
               href={link.href}
+              target={link.newTab ? "_blank" : ""}
               class={"text-secondary-content hover:brightness-75 px-3 py-2 rounded-md text-md font-medium " +
                 (path === link.href ? "current-page" : "not-current-page")}>{link.label}</a
             >
