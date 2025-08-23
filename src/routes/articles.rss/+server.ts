@@ -1,6 +1,7 @@
 import { defaultConfig } from "$lib/js/config";
 import { getDirectusInstance } from "$lib/js/directus";
 import { readItems } from "@directus/sdk";
+import { formatNames } from "$lib/js/util/text";
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {
@@ -8,7 +9,7 @@ export async function GET({ url }) {
 
   const articles = await client.request(
     readItems("art_articles", {
-      fields: ["art_id", "name", "description", "image", "date", "text", "author.name"],
+      fields: ["art_id", "name", "description", "image", "date", "text", "authors.art_authors_id.name"],
       limit: -1,
     })
   );
@@ -47,7 +48,8 @@ export async function GET({ url }) {
 
   const content = articles
     .map((article) => {
-      const author = article?.author?.name;
+      const authorNames = article?.authors?.map(author => author?.art_authors_id?.name).filter(Boolean) || [];
+      const formattedAuthors = formatNames(authorNames) || metadata.webmaster;
       return `
             <item>
                 <title>${article.name}</title>
@@ -55,7 +57,7 @@ export async function GET({ url }) {
                 <description>${article.description}</description>
                 <guid isPermaLink="false">${article.art_id}</guid>
                 <pubDate>${formatDateForRSS(article.date)}</pubDate>
-                <author>${author}</author>
+                <author>${escapeXml(formattedAuthors)}</author>
             </item>
             `;
     })
@@ -100,4 +102,15 @@ function formatDateForRSS(date) {
   const paddedSeconds = String(seconds).padStart(2, "0");
 
   return `${day}, ${paddedDateOfMonth} ${month} ${year} ${paddedHours}:${paddedMinutes}:${paddedSeconds} ${timezoneOffset}`;
+}
+
+// Escape XML special characters
+function escapeXml(unsafe: string): string {
+  if (!unsafe) return "";
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
