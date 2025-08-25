@@ -75,7 +75,7 @@
     "@fontsource/lexend-exa": "^5.2.9",
     "@fontsource/roboto-condensed": "^5.2.6",
     "@formkit/auto-animate": "^0.8.2",
-    "@inlang/paraglide-sveltekit": "0.15.5",
+    "@inlang/paraglide-sveltekit": "0.16.1",
     "@tailwindcss/vite": "^4.1.10",
     "@tsparticles/confetti": "^3.7.1",
     "@tsparticles/engine": "^3.7.1",
