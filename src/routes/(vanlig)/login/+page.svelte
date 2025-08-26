@@ -32,7 +32,7 @@
       return;
     }
     try {
-      await client.login(email, pass);
+      await client.login({email: email, password: pass});
     } catch (error) {
       messageType = "error";
       message = "En feil oppsto: " + JSON.stringify(error);
