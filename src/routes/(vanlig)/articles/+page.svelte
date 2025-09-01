@@ -61,6 +61,10 @@
 
     let a = articles;
 
+    if (term.length <= 3 && term.length > 0) {
+      return;
+    }
+
     if (term) {
       result = fuse.search(term);
 
@@ -118,16 +122,12 @@
   }}
 />
 
-<div class="my-8">
+<div class="my-4">
   {#if !data.errorOccurred}
-    <Search
-      class="mb-4"
-      placeholder={m.articleList_search_placeholder()}
-      onSubmit={(e) => {
-        e.preventDefault();
-        search(e.target[0].value);
-      }}
-    />
+    <label class="input mx-auto flex items-center mb-4" style="--input-color: var(--color-primary)">
+      <span class="icon-[mdi--search] h-5 w-5"></span>
+      <input type="search" placeholder="Søk..." oninput={(e) => search((e.target as HTMLInputElement).value)} onchange={(e) => search((e.target as HTMLInputElement).value)} />
+    </label>
     {#if articles.length > 0}
       <div class="w-full flex justify-center">
         <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
