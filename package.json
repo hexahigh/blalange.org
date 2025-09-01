@@ -120,6 +120,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@sveltejs/kit",
+      "@tailwindcss/oxide",
       "@tsparticles/engine",
       "esbuild",
       "sharp",
