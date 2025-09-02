@@ -178,8 +178,8 @@ importers:
         specifier: ^0.1.6
         version: 0.1.6(tailwindcss@4.1.10)
       '@iconify/json':
-        specifier: ^2.2.365
-        version: 2.2.365
+        specifier: ^2.2.380
+        version: 2.2.380
       '@iconify/tailwind4':
         specifier: ^1.0.6
         version: 1.0.6(tailwindcss@4.1.10)
@@ -1398,8 +1398,8 @@ packages:
   '@formkit/auto-animate@0.8.2':
     resolution: {integrity: sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==}
 
-  '@iconify/json@2.2.365':
-    resolution: {integrity: sha512-9ZLdIXnswa1XCssYqnCjmXtuxj0l4nkY33FTs8PYCj5rTfPrJlRiPWUDzZOocNsSqjssr5fVPo0ME1hO9h0/IQ==}
+  '@iconify/json@2.2.380':
+    resolution: {integrity: sha512-+Al/Q+mMB/nLz/tawmJEOkCs6+RKKVUS/Yg9I80h2yRpu0kIzxVLQRfF0NifXz/fH92vDVXbS399wio4lMVF4Q==}
 
   '@iconify/tailwind4@1.0.6':
     resolution: {integrity: sha512-43ZXe+bC7CuE2LCgROdqbQeFYJi/J7L/k1UpSy8KDQlWVsWxPzLSWbWhlJx4uRYLOh1NRyw02YlDOgzBOFNd+A==}
@@ -6046,7 +6046,7 @@ snapshots:
 
   '@formkit/auto-animate@0.8.2': {}
 
-  '@iconify/json@2.2.365':
+  '@iconify/json@2.2.380':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
