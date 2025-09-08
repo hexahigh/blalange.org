@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6",
-    "@iconify/json": "^2.2.365",
+    "@iconify/json": "^2.2.382",
     "@iconify/tailwind4": "^1.0.6",
     "@inlang/cli": "^2.18.1",
     "@inlang/paraglide-js": "1.11.8",
