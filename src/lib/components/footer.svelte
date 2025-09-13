@@ -2,7 +2,6 @@
   import { latestVersion, commitHash, buildDate } from "$lib/js/version";
   import { Tooltip } from "flowbite-svelte";
   import logo from "$lib/img/logo_no-bg.svg";
-  import * as m from "$lib/paraglide/messages.js";
 </script>
 
 <footer class="w-full">

@@ -6,7 +6,6 @@
   import { goto } from "$app/navigation";
   import { browser } from "$app/environment";
 
-  import * as m from "$lib/paraglide/messages.js";
   import { getImageUrl } from "$root/src/lib/js/directus";
   import ArticleCard from "./card.svelte";
   import { searchAPI, calculatePagination } from "./common";
@@ -361,9 +360,9 @@
       {/if}
     {:else if searchTerm}
       <div class="mx-auto text-center flex flex-col justify-center items-center">
-        <h2 class="text-2xl">{m.articleList_search_noResults()}</h2>
+        <h2 class="text-2xl">Ingen artikler funnet</h2>
         <iconify-icon icon="ooui:article-not-found-ltr" width="80" height="80" class="text-blue-500"></iconify-icon>
-        <p>{m.articleList_search_tryAnother()}</p>
+        <p>Prøv å søke etter noe annet</p>
       </div>
     {:else}
       <div class="mx-auto text-center flex flex-col justify-center items-center">
@@ -372,7 +371,7 @@
     {/if}
   {:else}
     <div class="mx-auto text-center flex flex-col justify-center items-center">
-      <h2 class="text-2xl">{m.articleList_error()}</h2>
+      <h2 class="text-2xl">En feil oppsto</h2>
       <iconify-icon icon="svg-spinners:wifi-fade" width="80" height="80" class="text-red-500"></iconify-icon>
       <p>{data.errorMessage}</p>
     </div>

@@ -10,7 +10,6 @@
     "svelte.svelte-vscode",
     "ardenivanov.svelte-intellisense",
     "bradlc.vscode-tailwindcss",
-    "shd101wyy.markdown-preview-enhanced",
-    "inlang.vs-code-extension"
+    "shd101wyy.markdown-preview-enhanced"
   ]
 }
