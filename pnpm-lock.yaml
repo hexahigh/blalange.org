@@ -169,8 +169,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2(rollup@2.79.2)
       flowbite-svelte:
-        specifier: ^1.7.1
-        version: 1.10.22(rollup@2.79.2)(svelte@5.34.3)(tailwindcss@4.1.10)
+        specifier: ^1.13.8
+        version: 1.13.8(rollup@2.79.2)(svelte@5.34.3)(tailwindcss@4.1.10)
       flowbite-typography:
         specifier: ^1.0.5
         version: 1.0.5
@@ -1297,6 +1297,9 @@ packages:
   '@floating-ui/dom@1.7.3':
     resolution: {integrity: sha512-uZA413QEpNuhtb3/iIKoYMSK07keHPYeXF02Zhd6e213j+d1NamLix/mCLxBUDW/Gx52sPH2m+chlUsyaBs/Ag==}
 
+  '@floating-ui/dom@1.7.4':
+    resolution: {integrity: sha512-OOchDgh4F2CchOX94cRVqhvy7b3AFb+/rQXyswmzmGakRfkMgoWVjfnLWkRirfLEfuD4ysVW16eXzwt3jHIzKA==}
+
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
@@ -2186,8 +2189,8 @@ packages:
     resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
     engines: {node: '>=8'}
 
-  apexcharts@4.7.0:
-    resolution: {integrity: sha512-iZSrrBGvVlL+nt2B1NpqfDuBZ9jX61X9I2+XV0hlYXHtTwhwLTHDKGXjNXAgFBDLuvSYCB/rq2nPWVPRv2DrGA==}
+  apexcharts@5.3.5:
+    resolution: {integrity: sha512-I04DY/WBZbJgJD2uixeV5EzyiL+J5LgKQXEu8rctqAwyRmKv44aDVeofJoLdTJe3ao4r2KEQfCgtVzXn6pqirg==}
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
@@ -2675,8 +2678,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  flowbite-svelte@1.10.22:
-    resolution: {integrity: sha512-EKOlLT7YvAclLaxmR9stb9Ejpr5J7FELeznvuLcViZpCcs49xvraKFSi26+A4uJ09QaN8pNKacxS3J4Ws6bD+A==}
+  flowbite-svelte@1.13.8:
+    resolution: {integrity: sha512-ZOUsoqycnKmraVsETJoX+hGKxEkNZeOuU93qAHrh4RafpX3eW3PYCrJmElRvzCEUEHsjdTWTgMeXWzA6r6HNYg==}
     peerDependencies:
       svelte: ^5.29.0
       tailwindcss: ^4.1.4
@@ -3903,17 +3906,18 @@ packages:
     resolution: {integrity: sha512-qd/R7n5rQTRFi+Zf2sk5XVVd9UQl6ZkduPFC3S7WEGJAmetDTjY3qPN50eSKzwuzEyQKy5TN2TiZdkIjos2L6A==}
     engines: {node: '>=8.0.0'}
 
-  tailwind-merge@3.0.2:
-    resolution: {integrity: sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw==}
-
   tailwind-merge@3.3.1:
     resolution: {integrity: sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==}
 
-  tailwind-variants@1.0.0:
-    resolution: {integrity: sha512-2WSbv4ulEEyuBKomOunut65D8UZwxrHoRfYnxGcQNnHqlSCp2+B7Yz2W+yrNDrxRodOXtGD/1oCcKGNBnUqMqA==}
+  tailwind-variants@3.0.0:
+    resolution: {integrity: sha512-RDby9MMHuCfBdNiN53yB7JrhTnt5mGGnqx0XzKHKyM+X0NyhrtS8F/b+0GvatJcp7fnejAEDfAQzx+bSrcIgmw==}
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
+      tailwind-merge: '>=3.0.0'
       tailwindcss: '*'
+    peerDependenciesMeta:
+      tailwind-merge:
+        optional: true
 
   tailwindcss@4.1.10:
     resolution: {integrity: sha512-P3nr6WkvKV/ONsTzj6Gb57sWPMX29EPNPopo7+FcpkQaNsrNpZ1pv8QmrYI2RqEKD7mlGqLnGovlcYnBK0IqUA==}
@@ -5394,6 +5398,11 @@ snapshots:
       '@floating-ui/core': 1.7.3
       '@floating-ui/utils': 0.2.10
 
+  '@floating-ui/dom@1.7.4':
+    dependencies:
+      '@floating-ui/core': 1.7.3
+      '@floating-ui/utils': 0.2.10
+
   '@floating-ui/utils@0.2.10': {}
 
   '@fontsource-variable/ibm-plex-sans@5.2.5': {}
@@ -6177,7 +6186,7 @@ snapshots:
     dependencies:
       color-convert: 2.0.1
 
-  apexcharts@4.7.0:
+  apexcharts@5.3.5:
     dependencies:
       '@svgdotjs/svg.draggable.js': 3.0.6(@svgdotjs/svg.js@3.2.4)
       '@svgdotjs/svg.filter.js': 3.0.9
@@ -6734,17 +6743,17 @@ snapshots:
       svelte: 5.34.3
       tailwind-merge: 3.3.1
 
-  flowbite-svelte@1.10.22(rollup@2.79.2)(svelte@5.34.3)(tailwindcss@4.1.10):
+  flowbite-svelte@1.13.8(rollup@2.79.2)(svelte@5.34.3)(tailwindcss@4.1.10):
     dependencies:
-      '@floating-ui/dom': 1.7.3
+      '@floating-ui/dom': 1.7.4
       '@floating-ui/utils': 0.2.10
-      apexcharts: 4.7.0
+      apexcharts: 5.3.5
       clsx: 2.1.1
       date-fns: 4.1.0
       flowbite: 3.1.2(rollup@2.79.2)
       svelte: 5.34.3
       tailwind-merge: 3.3.1
-      tailwind-variants: 1.0.0(tailwindcss@4.1.10)
+      tailwind-variants: 3.0.0(tailwind-merge@3.3.1)(tailwindcss@4.1.10)
       tailwindcss: 4.1.10
     transitivePeerDependencies:
       - rollup
@@ -8313,14 +8322,13 @@ snapshots:
       typical: 5.2.0
       wordwrapjs: 4.0.1
 
-  tailwind-merge@3.0.2: {}
-
   tailwind-merge@3.3.1: {}
 
-  tailwind-variants@1.0.0(tailwindcss@4.1.10):
+  tailwind-variants@3.0.0(tailwind-merge@3.3.1)(tailwindcss@4.1.10):
     dependencies:
-      tailwind-merge: 3.0.2
       tailwindcss: 4.1.10
+    optionalDependencies:
+      tailwind-merge: 3.3.1
 
   tailwindcss@4.1.10: {}
 
