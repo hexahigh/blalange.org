@@ -1265,6 +1265,58 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/items/art_comments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Items
+         * @description List the art_comments items.
+         */
+        get: operations["readItemsArtComments"];
+        put?: never;
+        /**
+         * Create an Item
+         * @description Create a new art_comments item.
+         */
+        post: operations["createItemsArtComments"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update Multiple Items
+         * @description Update multiple art_comments items at the same time.
+         */
+        patch: operations["updateItemsArtComments"];
+        trace?: never;
+    };
+    "/items/art_comments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve an Item
+         * @description Retrieve a single art_comments item by unique identifier.
+         */
+        get: operations["readSingleItemsArtComments"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update an Item
+         * @description Update an existing art_comments item.
+         */
+        patch: operations["updateSingleItemsArtComments"];
+        trace?: never;
+    };
     "/items/art_articles_art_authors": {
         parameters: {
             query?: never;
@@ -1850,6 +1902,9 @@ export interface components {
             /** @description $t:fields.directus_settings.public_registration_email_filter_note */
             public_registration_email_filter?: unknown;
             visual_editor_urls?: unknown;
+            accepted_terms?: boolean | null;
+            /** Format: uuid */
+            project_id?: string | null;
         };
         Fields: {
             id: number;
@@ -2002,8 +2057,8 @@ export interface components {
             date_updated?: string | null;
             type?: string | null;
             translations?: (number | components["schemas"]["ItemsArtArticlesTranslations"])[] | null;
-            blocks?: (number | components["schemas"]["ItemsArtArticlesBlocks"])[] | null;
             authors?: (number | components["schemas"]["ItemsArtArticlesArtAuthors"])[] | null;
+            blocks?: (number | components["schemas"]["ItemsArtArticlesBlocks"])[] | null;
         };
         ItemsBlockImage: {
             /** Format: uuid */
@@ -2023,6 +2078,21 @@ export interface components {
             item?: (string | components["schemas"]["ItemsBlockImage"] | components["schemas"]["ItemsBlockMarkdown"])[] | null;
             sort?: number | null;
             collection?: string | null;
+        };
+        ItemsArtComments: {
+            /** Format: uuid */
+            id: string;
+            user_created?: (string | components["schemas"]["Users"]) | null;
+            /** Format: timestamp */
+            date_created?: string | null;
+            user_updated?: (string | components["schemas"]["Users"]) | null;
+            /** Format: timestamp */
+            date_updated?: string | null;
+            article_id?: string | null;
+            user?: (string | components["schemas"]["Users"]) | null;
+            text?: string | null;
+            parent?: (string | components["schemas"]["ItemsArtComments"]) | null;
+            status?: string | null;
         };
         ItemsArtArticlesArtAuthors: {
             id: number;
@@ -2118,6 +2188,7 @@ export type SchemaItemsArtArticles = components['schemas']['ItemsArtArticles'];
 export type SchemaItemsBlockImage = components['schemas']['ItemsBlockImage'];
 export type SchemaItemsBlockMarkdown = components['schemas']['ItemsBlockMarkdown'];
 export type SchemaItemsArtArticlesBlocks = components['schemas']['ItemsArtArticlesBlocks'];
+export type SchemaItemsArtComments = components['schemas']['ItemsArtComments'];
 export type SchemaItemsArtArticlesArtAuthors = components['schemas']['ItemsArtArticlesArtAuthors'];
 export type ResponseNotFoundError = components['responses']['NotFoundError'];
 export type ResponseUnauthorizedError = components['responses']['UnauthorizedError'];
@@ -4666,6 +4737,189 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: components["schemas"]["ItemsArtArticlesBlocks"];
+                    };
+                };
+            };
+            401: components["responses"]["UnauthorizedError"];
+            404: components["responses"]["NotFoundError"];
+        };
+    };
+    readItemsArtComments: {
+        parameters: {
+            query?: {
+                /** @description Control what fields are being returned in the object. */
+                fields?: components["parameters"]["Fields"];
+                /** @description A limit on the number of objects that are returned. */
+                limit?: components["parameters"]["Limit"];
+                /** @description What metadata to return in the response. */
+                meta?: components["parameters"]["Meta"];
+                /** @description How many items to skip when fetching data. */
+                offset?: components["parameters"]["Offset"];
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
+                 *      */
+                sort?: components["parameters"]["Sort"];
+                /** @description Select items in collection by given conditions. */
+                filter?: components["parameters"]["Filter"];
+                /** @description Filter by items that contain the given search query in one of their fields. */
+                search?: components["parameters"]["Search"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful request */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: components["schemas"]["ItemsArtComments"][];
+                        meta?: components["schemas"]["x-metadata"];
+                    };
+                };
+            };
+            401: components["responses"]["UnauthorizedError"];
+        };
+    };
+    createItemsArtComments: {
+        parameters: {
+            query?: {
+                /** @description What metadata to return in the response. */
+                meta?: components["parameters"]["Meta"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["ItemsArtComments"][] | components["schemas"]["ItemsArtComments"];
+            };
+        };
+        responses: {
+            /** @description Successful request */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: components["schemas"]["ItemsArtComments"][];
+                    };
+                };
+            };
+            401: components["responses"]["UnauthorizedError"];
+        };
+    };
+    updateItemsArtComments: {
+        parameters: {
+            query?: {
+                /** @description Control what fields are being returned in the object. */
+                fields?: components["parameters"]["Fields"];
+                /** @description A limit on the number of objects that are returned. */
+                limit?: components["parameters"]["Limit"];
+                /** @description What metadata to return in the response. */
+                meta?: components["parameters"]["Meta"];
+                /** @description How many items to skip when fetching data. */
+                offset?: components["parameters"]["Offset"];
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
+                 *      */
+                sort?: components["parameters"]["Sort"];
+                /** @description Select items in collection by given conditions. */
+                filter?: components["parameters"]["Filter"];
+                /** @description Filter by items that contain the given search query in one of their fields. */
+                search?: components["parameters"]["Search"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["ItemsArtComments"][] | components["schemas"]["ItemsArtComments"];
+            };
+        };
+        responses: {
+            /** @description Successful request */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: components["schemas"]["ItemsArtComments"][];
+                    };
+                };
+            };
+        };
+    };
+    readSingleItemsArtComments: {
+        parameters: {
+            query?: {
+                /** @description Control what fields are being returned in the object. */
+                fields?: components["parameters"]["Fields"];
+                /** @description What metadata to return in the response. */
+                meta?: components["parameters"]["Meta"];
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
+                 *      */
+                version?: components["parameters"]["Version"];
+            };
+            header?: never;
+            path: {
+                /** @description Index of the item. */
+                id: number | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful request */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: components["schemas"]["ItemsArtComments"];
+                    };
+                };
+            };
+            401: components["responses"]["UnauthorizedError"];
+            404: components["responses"]["NotFoundError"];
+        };
+    };
+    updateSingleItemsArtComments: {
+        parameters: {
+            query?: {
+                /** @description Control what fields are being returned in the object. */
+                fields?: components["parameters"]["Fields"];
+                /** @description What metadata to return in the response. */
+                meta?: components["parameters"]["Meta"];
+            };
+            header?: never;
+            path: {
+                /** @description Index of the item. */
+                id: number | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["ItemsArtComments"];
+            };
+        };
+        responses: {
+            /** @description Successful request */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: components["schemas"]["ItemsArtComments"];
                     };
                 };
             };
