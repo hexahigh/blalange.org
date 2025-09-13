@@ -118,8 +118,8 @@ importers:
         version: 7.3.0
     devDependencies:
       '@iconify/json':
-        specifier: ^2.2.365
-        version: 2.2.365
+        specifier: ^2.2.383
+        version: 2.2.383
       '@iconify/tailwind4':
         specifier: ^1.0.6
         version: 1.0.6(tailwindcss@4.1.10)
@@ -1306,8 +1306,8 @@ packages:
   '@fontsource-variable/material-symbols-outlined@5.2.19':
     resolution: {integrity: sha512-YTEbENtgkmkESfZDjJYHXv5ws1AZzxe2b14xHk0jje6TZk/thcOncv5XZxpkDTEzyf7sJGXAYFIYPdep8URPTw==}
 
-  '@iconify/json@2.2.365':
-    resolution: {integrity: sha512-9ZLdIXnswa1XCssYqnCjmXtuxj0l4nkY33FTs8PYCj5rTfPrJlRiPWUDzZOocNsSqjssr5fVPo0ME1hO9h0/IQ==}
+  '@iconify/json@2.2.383':
+    resolution: {integrity: sha512-GuRIh/enpjipfauK/wUEn4zmWyKld8fx2eXxay1LPnOZVvkTbSMo4b2VGHn8PGo3RzKlEXzln546Y9KiJzZgBQ==}
 
   '@iconify/tailwind4@1.0.6':
     resolution: {integrity: sha512-43ZXe+bC7CuE2LCgROdqbQeFYJi/J7L/k1UpSy8KDQlWVsWxPzLSWbWhlJx4uRYLOh1NRyw02YlDOgzBOFNd+A==}
@@ -5400,7 +5400,7 @@ snapshots:
 
   '@fontsource-variable/material-symbols-outlined@5.2.19': {}
 
-  '@iconify/json@2.2.365':
+  '@iconify/json@2.2.383':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
