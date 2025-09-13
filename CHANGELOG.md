@@ -2,6 +2,94 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.1](https://github.com/hexahigh/blalange.org/compare/v6.1.0..v6.1.1) - 2025-09-13
+
+### ⛰️  Features
+
+- Update PWA icons - ([850c0a2](https://github.com/hexahigh/blalange.org/commit/850c0a2c518f2e3f7f471c31d7c6f58d0b2caaee))
+
+
+- Add maskable icon for PWA - ([460a246](https://github.com/hexahigh/blalange.org/commit/460a246b1841a9bca41f35d7ca05aaf06a5a460b))
+
+
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump flowbite-svelte-icons from 2.2.1 to 3.0.0 (#601) - ([c53c5f1](https://github.com/hexahigh/blalange.org/commit/c53c5f1880a1b0f053e93f7c611b2226fdeda31d))
+```commit-body
+Bumps [flowbite-svelte-icons](https://github.com/themesberg/flowbite-svelte-icons) from 2.2.1 to 3.0.0.
+- [Release notes](https://github.com/themesberg/flowbite-svelte-icons/releases)
+- [Changelog](https://github.com/themesberg/flowbite-svelte-icons/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/themesberg/flowbite-svelte-icons/compare/v2.2.1...v3.0.0)
+
+---
+updated-dependencies:
+- dependency-name: flowbite-svelte-icons
+  dependency-version: 3.0.0
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+```
+
+- *(deps)* Updated dependencies and node - ([4a348d4](https://github.com/hexahigh/blalange.org/commit/4a348d41ec98f8ff717ca46c0f67cfd592348b7d))
+
+
+- *(deps-dev)* Bump @iconify/json from 2.2.365 to 2.2.383 (#613) - ([a24b976](https://github.com/hexahigh/blalange.org/commit/a24b976f5cea264859ceb99fb92105e1fecac7c9))
+```commit-body
+Bumps [@iconify/json](https://github.com/iconify/icon-sets) from 2.2.365 to 2.2.383.
+- [Commits](https://github.com/iconify/icon-sets/compare/2.2.365...2.2.383)
+
+---
+updated-dependencies:
+- dependency-name: "@iconify/json"
+  dependency-version: 2.2.383
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps-dev)* Bump flowbite-svelte from 1.10.22 to 1.13.8 (#612) - ([9589ee8](https://github.com/hexahigh/blalange.org/commit/9589ee8588fc82da7efbfa4da414ed381acf7a23))
+```commit-body
+Bumps [flowbite-svelte](https://github.com/themesberg/flowbite-svelte) from 1.10.22 to 1.13.8.
+- [Release notes](https://github.com/themesberg/flowbite-svelte/releases)
+- [Changelog](https://github.com/themesberg/flowbite-svelte/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/themesberg/flowbite-svelte/compare/v1.10.22...v1.13.8)
+
+---
+updated-dependencies:
+- dependency-name: flowbite-svelte
+  dependency-version: 1.13.8
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump tsx from 4.20.3 to 4.20.5 (#599) - ([bafecb7](https://github.com/hexahigh/blalange.org/commit/bafecb7b34ce8751ffd578db3f77af5848b32c10))
+```commit-body
+Bumps [tsx](https://github.com/privatenumber/tsx) from 4.20.3 to 4.20.5.
+- [Release notes](https://github.com/privatenumber/tsx/releases)
+- [Changelog](https://github.com/privatenumber/tsx/blob/master/release.config.cjs)
+- [Commits](https://github.com/privatenumber/tsx/compare/v4.20.3...v4.20.5)
+
+---
+updated-dependencies:
+- dependency-name: tsx
+  dependency-version: 4.20.5
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+```
+
+- Update Directus types (automated) (#590) - ([e1e16f4](https://github.com/hexahigh/blalange.org/commit/e1e16f402f4a7d175bb578790e0ad8ddae1e5855))
+
+
+### Commit Statistics
+
+- 8 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 8 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+
 ## [6.1.0](https://github.com/hexahigh/blalange.org/compare/v6.0.0..v6.1.0) - 2025-09-13
 
 ### ⛰️  Features
@@ -277,6 +365,9 @@ updated-dependencies:
 - Added git-cliff to package.json - ([d12925c](https://github.com/hexahigh/blalange.org/commit/d12925c39597280d321350c8df36c7dee6ca0586))
 
 
+- Prepare for release - ([6b9bd1d](https://github.com/hexahigh/blalange.org/commit/6b9bd1dfae1dd18d0225c2f2533f786805b74d61))
+
+
 
 ### Other (unconventional)
 
@@ -291,9 +382,9 @@ updated-dependencies:
 
 ### Commit Statistics
 
-- 42 commit(s) contributed to the release.
+- 43 commit(s) contributed to the release.
 - 26 day(s) passed between the first and last commit.
-- 41 commit(s) parsed as conventional.
+- 42 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
 - 27 day(s) passed between releases.
 
