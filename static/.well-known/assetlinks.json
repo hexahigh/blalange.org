@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "org.blalange.twa",
+        "sha256_cert_fingerprints": ["86:A8:1E:3F:AC:B9:F9:B9:D8:82:9E:BA:02:88:70:A2:77:53:C7:3D:AD:AF:67:17:14:CC:C1:9E:6F:3B:10:AD"]
+      }
+    }]

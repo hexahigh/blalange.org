@@ -139,8 +139,8 @@
     images: [
       {
         url: "https://blalange.org/img/favicon.png",
-        width: 300,
-        height: 300,
+        width: 450,
+        height: 450,
         alt: "Blålange logo",
       },
     ],

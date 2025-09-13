@@ -1,5 +1,5 @@
 {
-    "name": "Blålange festivalen",
+    "name": "Blålange",
     "short_name": "Blålange",
     "start_url": "/",
     "display": "standalone",
@@ -22,12 +22,6 @@
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "any"
-      },
-      {
-        "src": "/img/maskable-icon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "maskable"
       }
     ],
     "theme_color": "#000000",

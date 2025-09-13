@@ -22,7 +22,9 @@ test("All nav links are 200", async ({ page }) => {
   for (const href of hrefs) {
     if (href) {
       // Navigate to the URL
-      const response = await page.goto(href);
+      const response = await page.goto(href, {
+        waitUntil: "domcontentloaded",
+      });
 
       // Check the response status
       expect([200, 304]).toContain(response?.status());
@@ -35,9 +37,7 @@ test("All footer links are 200", async ({ page }) => {
 
   // Find all a elements within the footer element, regardless of depth
   const linkHandles = await page.$$("footer a");
-  console.log(
-    "Found the following " + linkHandles.length + " links in footer:"
-  );
+  console.log("Found the following " + linkHandles.length + " links in footer:");
   for (const linkHandle of linkHandles) {
     const href = await linkHandle.evaluate((link) => link.getAttribute("href"));
     console.log(`- ${href}`);
@@ -47,15 +47,16 @@ test("All footer links are 200", async ({ page }) => {
   const hrefs = [];
   for (const linkHandle of linkHandles) {
     const href = await linkHandle.evaluate((link) => link.getAttribute("href"));
-    if (href && validateUrl(href))
-    hrefs.push(href);
+    if (href && validateUrl(href)) hrefs.push(href);
   }
 
   // Iterate over hrefs to navigate and check status
   for (const href of hrefs) {
     if (href) {
       // Navigate to the URL
-      const response = await page.goto(href);
+      const response = await page.goto(href, {
+        waitUntil: "domcontentloaded",
+      });
       // Check the response status
       expect([200, 304]).toContain(response?.status());
     }
@@ -79,10 +80,10 @@ test("All sitemap links are 200", async ({ request }, testInfo) => {
   const xml = await response.text();
 
   // Extract all <loc>...</loc> URLs from the sitemap
-  const urls = Array.from(xml.matchAll(/<loc>(.*?)<\/loc>/g)).map(match => match[1]);
+  const urls = Array.from(xml.matchAll(/<loc>(.*?)<\/loc>/g)).map((match) => match[1]);
 
   // Store results for reporting
-  const results: { url: string, status: number }[] = [];
+  const results: { url: string; status: number }[] = [];
   const errors: string[] = [];
 
   // Check each URL returns 200 or 304, mark flaky if 404, collect errors otherwise
@@ -111,9 +112,7 @@ test("All sitemap links are 200", async ({ request }, testInfo) => {
 
   // Fail at the end if there were errors, with a detailed message
   if (errors.length > 0) {
-    throw new Error(
-      `Some sitemap links did not return 200 or 304:\n${errors.join("\n")}`
-    );
+    throw new Error(`Some sitemap links did not return 200 or 304:\n${errors.join("\n")}`);
   }
 });
 

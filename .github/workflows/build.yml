@@ -1,62 +1,110 @@
 name: Build and test
 
 env:
-    NODE_VERSION: '21'
-    PNPM_VERSION: '9'
-    PLAYWRIGHT_HTML_OPEN: 'never'
-    PLAYWRIGHT_HTML_OUTPUT_DIR: 'test-results/playwright'
-    GITHUB_ACTIONS: 'true'
+  NODE_VERSION: '21'
+  PNPM_VERSION: '10'
+  PLAYWRIGHT_HTML_OPEN: 'never'
+  GITHUB_ACTIONS: 'true'
 
 on:
- workflow_dispatch:
- push:
- pull_request:
+  workflow_dispatch:
+  push:
+  pull_request:
 
 jobs:
- build-normal:
+  build-normal:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.NODE_VERSION }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: ${{ env.PNPM_VERSION }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
 
-    - name: Install dependencies
-      run: pnpm i
+      - name: Install dependencies
+        run: pnpm i
 
-    - name: Build SvelteKit app
-      run: pnpm run build
+      - name: Build SvelteKit app
+        run: bash -lc "set -o pipefail; pnpm run build 2>&1 | tee build.log"
 
- build-node:
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Run unit tests (Vitest) — produce HTML UI
+        run: |
+          mkdir -p test-results/vitest
+          # produce an HTML UI file and also preserve exit code; log output to vitest.log
+          set -o pipefail
+          pnpm exec vitest run --reporter=html --outputFile=test-results/vitest/index.html 2>&1 | tee vitest.log
+
+      - name: Run e2e tests (Playwright)
+        run: bash -lc "set -o pipefail; pnpm run test:e2e 2>&1 | tee playwright.log"
+
+      - name: Upload logs & reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-normal
+          path: |
+            build.log
+            vitest.log
+            playwright.log
+            test-results/playwright/
+            test-results/vitest/
+
+  build-node:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.NODE_VERSION }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: ${{ env.PNPM_VERSION }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
 
-    - name: Install dependencies
-      run: pnpm i
+      - name: Install dependencies
+        run: pnpm i
 
-    - name: Replace adapter
-      run: sed -i 's/adapter-auto/adapter-node/g' svelte.config.js
+      - name: Replace adapter
+        run: sed -i 's/adapter-cloudflare/adapter-node/g' svelte.config.js
 
-    - name: Build SvelteKit app
-      run: pnpm run build
+      - name: Build SvelteKit app (node)
+        run: bash -lc "set -o pipefail; pnpm run build 2>&1 | tee build.log"
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Run unit tests (Vitest) — produce HTML UI
+        run: |
+          mkdir -p test-results/vitest
+          set -o pipefail
+          pnpm exec vitest run --reporter=html --outputFile=test-results/vitest/index.html 2>&1 | tee vitest.log
+
+      - name: Run e2e tests (Playwright)
+        run: bash -lc "set -o pipefail; pnpm run test:e2e 2>&1 | tee playwright.log"
+
+      - name: Upload logs & reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-node
+          path: |
+            build.log
+            vitest.log
+            playwright.log
+            test-results/playwright/
+            test-results/vitest/

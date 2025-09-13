@@ -2,6 +2,301 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.0](https://github.com/hexahigh/blalange.org/compare/v6.0.0..v6.1.0) - 2025-09-13
+
+### ⛰️  Features
+
+- *(article)* Brought back comments - ([5fe6f6a](https://github.com/hexahigh/blalange.org/commit/5fe6f6a83a674002dd1986b085ca0df146ebd074))
+```commit-body
+Reintroduced comments, now using Directus and DaisyUI.
+Also removed Pocketbase.
+```
+
+- *(article list)* Implement serverside search with pagination - ([c06c9ab](https://github.com/hexahigh/blalange.org/commit/c06c9abcd276c980f7af85f52a7cd8a9519d9adf))
+
+
+- *(article list rss)* Added atom feed and updated author names - ([0907cc8](https://github.com/hexahigh/blalange.org/commit/0907cc865efadc442b1ab1184b4fe3e5c22f75bc))
+
+
+- *(settings)* New fancy settings page - ([d000009](https://github.com/hexahigh/blalange.org/commit/d000009fd4b16392450a5c40c420f2960c81f02a))
+
+
+- Add assetlinks.json for TWA - ([59163ab](https://github.com/hexahigh/blalange.org/commit/59163ab05e6e98930a5afefa2e69382378e62152))
+
+
+
+### 🐛 Bug Fixes
+
+- *(article list)* Improve search input handling and UI - ([f64bcc9](https://github.com/hexahigh/blalange.org/commit/f64bcc9fcc822ecd25d7747a1ac73f4898ef7cda))
+
+
+- *(footer)* Removed livechat link from contacts - ([7854732](https://github.com/hexahigh/blalange.org/commit/785473223a0fabacfe4a5c316ac162b2f42897fd))
+
+
+- *(login)* Fixed login not working - ([fcb0a2d](https://github.com/hexahigh/blalange.org/commit/fcb0a2d64676ac80bd1f3822ac32b888faf64d35))
+```commit-body
+I was so confused that it worked on my local dev environment and not on cloudflare workers, turns out I just had outdated npm packages on my dev server.
+```
+
+- *(navbar)* Merch link using redirect page - ([f001e9b](https://github.com/hexahigh/blalange.org/commit/f001e9bc146ce60a2561dba8f322152365eef70d))
+
+
+- *(theme)* Ensure saved theme is applied correctly during initialization - ([0585b0f](https://github.com/hexahigh/blalange.org/commit/0585b0f214fc8f7de6a1b0086c265b06709ee7b4))
+
+
+- Undefined colors in dark and light themes - ([d793cd0](https://github.com/hexahigh/blalange.org/commit/d793cd02e3196c2e3446ad5fd262c5935e54dd8b))
+
+
+- Login page not working - ([4181c09](https://github.com/hexahigh/blalange.org/commit/4181c09ed8dc6ecadf862c20b9603fca78470df5))
+
+
+
+### 🚜 Refactor
+
+- Update favicon images - ([2e1c67f](https://github.com/hexahigh/blalange.org/commit/2e1c67fd43e7f0ef1dfbf760b5039f5a34a5126d))
+
+
+- Removed inlang and unused components - ([c803e29](https://github.com/hexahigh/blalange.org/commit/c803e299d39bb3eaa2feffc095095dbaa2eff5b5))
+
+
+- Removed unused fonts - ([8285cb9](https://github.com/hexahigh/blalange.org/commit/8285cb914339b215d581c8240c9417898c4d8816))
+```commit-body
+- Removed unused fonts
+- Removed articleCard component
+- Removed confetti.js
+- Remove pwa-assets.config.js
+```
+
+
+### 📚 Documentation
+
+- Add tech stack section to README - ([5d2f26b](https://github.com/hexahigh/blalange.org/commit/5d2f26b597bc7a14594ad30452fccc98bf0aca8a))
+
+
+
+### 🧪 Testing
+
+- *(e2e)* Fix 200 test - ([9408211](https://github.com/hexahigh/blalange.org/commit/940821148b10b59e232bdddb2de8101e2138306f))
+
+
+- Update playwright config - ([8caceec](https://github.com/hexahigh/blalange.org/commit/8caceec481095f7aa0a8b26ad5b9fa07fd1dc87a))
+
+
+- Update playwright config - ([a62c8b1](https://github.com/hexahigh/blalange.org/commit/a62c8b1aa6b70743dc3ffa7d6fbe887d006b2cc2))
+
+
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump tailwind-merge from 2.5.5 to 2.6.0 (#513) - ([b0260f1](https://github.com/hexahigh/blalange.org/commit/b0260f120b11373626f930f60b2b6a50cfafeeff))
+```commit-body
+Bumps [tailwind-merge](https://github.com/dcastil/tailwind-merge) from 2.5.5 to 2.6.0.
+- [Release notes](https://github.com/dcastil/tailwind-merge/releases)
+- [Commits](https://github.com/dcastil/tailwind-merge/compare/v2.5.5...v2.6.0)
+
+---
+updated-dependencies:
+- dependency-name: tailwind-merge
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @floating-ui/dom from 1.6.12 to 1.6.13 (#543) - ([a337a14](https://github.com/hexahigh/blalange.org/commit/a337a141eaa30a370e22083c089ce1dbd559d2f2))
+```commit-body
+Bumps [@floating-ui/dom](https://github.com/floating-ui/floating-ui/tree/HEAD/packages/dom) from 1.6.12 to 1.6.13.
+- [Release notes](https://github.com/floating-ui/floating-ui/releases)
+- [Changelog](https://github.com/floating-ui/floating-ui/blob/master/packages/dom/CHANGELOG.md)
+- [Commits](https://github.com/floating-ui/floating-ui/commits/@floating-ui/dom@1.6.13/packages/dom)
+
+---
+updated-dependencies:
+- dependency-name: "@floating-ui/dom"
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Bump @fontsource/roboto-condensed from 5.1.0 to 5.1.1 (#525) - ([1b67be6](https://github.com/hexahigh/blalange.org/commit/1b67be645ad698d61713c4b2bd29bd434c3c184c))
+```commit-body
+Bumps [@fontsource/roboto-condensed](https://github.com/fontsource/font-files/tree/HEAD/fonts/google/roboto-condensed) from 5.1.0 to 5.1.1.
+- [Changelog](https://github.com/fontsource/font-files/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/fontsource/font-files/commits/HEAD/fonts/google/roboto-condensed)
+
+---
+updated-dependencies:
+- dependency-name: "@fontsource/roboto-condensed"
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Bump @playwright/test to 1.54.2 - ([3a0bca2](https://github.com/hexahigh/blalange.org/commit/3a0bca29e5e1f811296ca60acde656eb8acfbdac))
+
+
+- *(deps)* Bump @fontsource/krona-one from 5.1.0 to 5.2.6 (#589) - ([8682943](https://github.com/hexahigh/blalange.org/commit/8682943c8e484eb3851e232e3982079ee3eb394d))
+```commit-body
+Bumps [@fontsource/krona-one](https://github.com/fontsource/font-files/tree/HEAD/fonts/google/krona-one) from 5.1.0 to 5.2.6.
+- [Changelog](https://github.com/fontsource/font-files/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/fontsource/font-files/commits/HEAD/fonts/google/krona-one)
+
+---
+updated-dependencies:
+- dependency-name: "@fontsource/krona-one"
+  dependency-version: 5.2.6
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @fontsource/lexend-exa from 5.1.0 to 5.2.9 (#588) - ([8b3b4a5](https://github.com/hexahigh/blalange.org/commit/8b3b4a5ebf464234ca786afcd268ce1f5c72293c))
+```commit-body
+Bumps [@fontsource/lexend-exa](https://github.com/fontsource/font-files/tree/HEAD/fonts/google/lexend-exa) from 5.1.0 to 5.2.9.
+- [Changelog](https://github.com/fontsource/font-files/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/fontsource/font-files/commits/HEAD/fonts/google/lexend-exa)
+
+---
+updated-dependencies:
+- dependency-name: "@fontsource/lexend-exa"
+  dependency-version: 5.2.9
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @fontsource-variable/inter from 5.1.0 to 5.2.6 (#586) - ([d963698](https://github.com/hexahigh/blalange.org/commit/d9636987b7fd608c308d4b7b744f21eff94ba35c))
+```commit-body
+Bumps [@fontsource-variable/inter](https://github.com/fontsource/font-files/tree/HEAD/fonts/variable/inter) from 5.1.0 to 5.2.6.
+- [Changelog](https://github.com/fontsource/font-files/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/fontsource/font-files/commits/HEAD/fonts/variable/inter)
+
+---
+updated-dependencies:
+- dependency-name: "@fontsource-variable/inter"
+  dependency-version: 5.2.6
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @fontsource-variable/material-symbols-outlined (#585) - ([18cf5d2](https://github.com/hexahigh/blalange.org/commit/18cf5d20219bafd96f1261fde0139da7f042e23d))
+```commit-body
+Bumps [@fontsource-variable/material-symbols-outlined](https://github.com/fontsource/font-files/tree/HEAD/fonts/variable/material-symbols-outlined) from 5.1.3 to 5.2.19.
+- [Commits](https://github.com/fontsource/font-files/commits/HEAD/fonts/variable/material-symbols-outlined)
+
+---
+updated-dependencies:
+- dependency-name: "@fontsource-variable/material-symbols-outlined"
+  dependency-version: 5.2.19
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @directus/sdk from 19.1.0 to 20.0.2 (#591) - ([d72648a](https://github.com/hexahigh/blalange.org/commit/d72648a300e9fbc967eb9daf79ba28051c6a76db))
+```commit-body
+Bumps [@directus/sdk](https://github.com/directus/directus/tree/HEAD/sdk) from 19.1.0 to 20.0.2.
+- [Release notes](https://github.com/directus/directus/releases)
+- [Commits](https://github.com/directus/directus/commits/HEAD/sdk)
+
+---
+updated-dependencies:
+- dependency-name: "@directus/sdk"
+  dependency-version: 20.0.2
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+```
+
+- *(deps)* Bump @inlang/paraglide-sveltekit from 0.15.5 to 0.16.1 (#598) - ([6405c0d](https://github.com/hexahigh/blalange.org/commit/6405c0da7f5b0b14020cc91b16ec6d77e4c56122))
+```commit-body
+Bumps [@inlang/paraglide-sveltekit](https://github.com/opral/inlang-paraglide-js) from 0.15.5 to 0.16.1.
+- [Commits](https://github.com/opral/inlang-paraglide-js/commits)
+
+---
+updated-dependencies:
+- dependency-name: "@inlang/paraglide-sveltekit"
+  dependency-version: 0.16.1
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Add @tailwindcss/oxide to built dependencies - ([9396f95](https://github.com/hexahigh/blalange.org/commit/9396f95961671a0969ee15f419df6555f607bf35))
+
+
+- *(deps-dev)* Bump @sveltejs/enhanced-img from 0.4.1 to 0.4.4 (#485) - ([8cd690a](https://github.com/hexahigh/blalange.org/commit/8cd690ad3e3efd050ffd9523e5539464f43cc67e))
+```commit-body
+Bumps [@sveltejs/enhanced-img](https://github.com/sveltejs/kit/tree/HEAD/packages/enhanced-img) from 0.4.1 to 0.4.4.
+- [Release notes](https://github.com/sveltejs/kit/releases)
+- [Changelog](https://github.com/sveltejs/kit/blob/main/packages/enhanced-img/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/kit/commits/@sveltejs/enhanced-img@0.4.4/packages/enhanced-img)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/enhanced-img"
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps-dev)* Bump @sveltejs/vite-plugin-svelte from 5.0.1 to 5.1.1 (#587) - ([9916597](https://github.com/hexahigh/blalange.org/commit/9916597669284cf7b776d39f8f22335ac90efba7))
+```commit-body
+Bumps [@sveltejs/vite-plugin-svelte](https://github.com/sveltejs/vite-plugin-svelte/tree/HEAD/packages/vite-plugin-svelte) from 5.0.1 to 5.1.1.
+- [Release notes](https://github.com/sveltejs/vite-plugin-svelte/releases)
+- [Changelog](https://github.com/sveltejs/vite-plugin-svelte/blob/@sveltejs/vite-plugin-svelte@5.1.1/packages/vite-plugin-svelte/CHANGELOG.md)
+- [Commits](https://github.com/sveltejs/vite-plugin-svelte/commits/@sveltejs/vite-plugin-svelte@5.1.1/packages/vite-plugin-svelte)
+
+---
+updated-dependencies:
+- dependency-name: "@sveltejs/vite-plugin-svelte"
+  dependency-version: 5.1.1
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @sveltejs/kit from 2.21.5 to 2.33.0 (#593) - ([5f2faee](https://github.com/hexahigh/blalange.org/commit/5f2faee787eb3ae0c32af9f8651e036a4ea59226))
+
+
+- *(github workflows)* Fix Directus type updater - ([bfaf338](https://github.com/hexahigh/blalange.org/commit/bfaf33815dc4f8bef14ffe301f8528b440cf9c44))
+
+
+- *(github workflows)* Updated build and test workflow - ([93d66d9](https://github.com/hexahigh/blalange.org/commit/93d66d9582e5c4662317f324d4cb0078cc49edaa))
+
+
+- *(github workflows)* Update build and test workflow - ([9353c70](https://github.com/hexahigh/blalange.org/commit/9353c7089496cd8b956719eaef5d13ae33755fe2))
+
+
+- *(github workflows)* Updated build and test workflow - ([cf8bc91](https://github.com/hexahigh/blalange.org/commit/cf8bc919bb0e43f9848484101a9ad780aa325c53))
+
+
+- *(github workflows)* Added Vitest workflow - ([66a12be](https://github.com/hexahigh/blalange.org/commit/66a12be188c99eab1436840b6621f868f0b784e5))
+
+
+- Added git-cliff to package.json - ([d12925c](https://github.com/hexahigh/blalange.org/commit/d12925c39597280d321350c8df36c7dee6ca0586))
+
+
+
+### Other (unconventional)
+
+- *(wrangler)* Update wrangler config - ([bd4f2c7](https://github.com/hexahigh/blalange.org/commit/bd4f2c7dcfc6d4289cca03d1ad8fcfba3e075d21))
+
+
+- Fix pnpm lockfile - ([7296a55](https://github.com/hexahigh/blalange.org/commit/7296a55c5404de41345ab63808c8f991d6ea2605))
+
+
+- Added .aider dir to gitignore - ([01b4ad6](https://github.com/hexahigh/blalange.org/commit/01b4ad6c197665b759ef3c4f30f2631a1fdbe033))
+
+
+### Commit Statistics
+
+- 42 commit(s) contributed to the release.
+- 26 day(s) passed between the first and last commit.
+- 41 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+- 27 day(s) passed between releases.
+
 ## [6.0.0](https://github.com/hexahigh/blalange.org/compare/v5.1.4..v6.0.0) - 2025-08-17
 
 ### ⛰️  Features
@@ -99,6 +394,9 @@ Added a test that tests all links in the sitemap and one that tests the name for
 - Remove 'other' directory - ([cfa9321](https://github.com/hexahigh/blalange.org/commit/cfa9321b82e8e4672509258c4b6f9d005f9b5320))
 
 
+- Prepare for release - ([409beb3](https://github.com/hexahigh/blalange.org/commit/409beb30db1716acbb7c06d5c0d9408fb70dbcb2))
+
+
 
 ### Other (unconventional)
 
@@ -146,9 +444,9 @@ Version 6 - ([8b613cc](https://github.com/hexahigh/blalange.org/commit/8b613cc29
 
 ### Commit Statistics
 
-- 36 commit(s) contributed to the release.
+- 37 commit(s) contributed to the release.
 - 79 day(s) passed between the first and last commit.
-- 29 commit(s) parsed as conventional.
+- 30 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
 - 161 day(s) passed between releases.
 

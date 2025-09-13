@@ -2,7 +2,6 @@
   import { latestVersion, commitHash, buildDate } from "$lib/js/version";
   import { Tooltip } from "flowbite-svelte";
   import logo from "$lib/img/logo_no-bg.svg";
-  import * as m from "$lib/paraglide/messages.js";
 </script>
 
 <footer class="w-full">
@@ -18,9 +17,6 @@
       <ul>
         <li>
           <a href="mailto:contact@blalange.org" class="underline">contact@blalange.org</a>
-        </li>
-        <li>
-          <a href="/livechat" class="underline">Livechat</a>
         </li>
       </ul>
     </div>

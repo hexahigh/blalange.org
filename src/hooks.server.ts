@@ -1,8 +1,5 @@
-import { i18n } from '$lib/i18n'
 import { addCORS } from '$lib/js/handles';
 import { sequence } from '@sveltejs/kit/hooks'
-
-const localeExcludedRoutes: RegExp[] = [new RegExp("/api/.*"), new RegExp("/webring/.*|/webring")];
 
 const handle1: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
   const { url, request } = event;
@@ -33,11 +30,11 @@ const handle1: import('@sveltejs/kit').Handle = async ({ event, resolve }) => {
 /** @type {import('@sveltejs/kit').HandleServerError} */
 export const handleError = async ({ event, error }) => {
   console.error(error);
-  const stacktrace = error.stack || 'Stack trace unavailable';
+  const err = error as Error;
+  const stacktrace = err.stack || 'Stack trace unavailable';
   return {
-    message: error.message,
-    stacktrace: stacktrace
+    message: err.message,
   }
 };
 
-export const handle = sequence(i18n.handle({ disableAsyncLocalStorage: true }), handle1, addCORS)
+export const handle = sequence(handle1, addCORS)

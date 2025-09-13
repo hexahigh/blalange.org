@@ -3,7 +3,7 @@ name: Update Directus types
 on:
   schedule:
     # runs daily at 00:00 UTC (change cron if you prefer another time)
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -23,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '21'
+          node-version: "21"
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -50,26 +50,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          BRANCH="auto/directus-types"
-          git checkout -B "$BRANCH"
-
-          # Stage only the specific files you care about.
-          git add src/lib/js/types/directus-all.ts src/lib/js/types/directus-user.ts src/lib/js/types/directus-public.ts || true
-
-          # If there are staged changes, commit and push them.
-          if git diff --staged --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No changes to the target files."
-          else
-            git commit -m "chore: update Directus types (automated)"
-            git push --set-upstream origin "$BRANCH"
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "Changes pushed to branch $BRANCH."
-          fi
+          git remote show origin
 
       - name: Create or update pull request
-        if: steps.commit.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # branch that contains the changes (the action will create a PR from this branch)
@@ -84,5 +68,11 @@ jobs:
             - src/lib/js/types/directus-user.ts
             - src/lib/js/types/directus-public.ts
           labels: automated, dependencies
-          # if there's already an open PR from the same branch, it will be updated (new commit added)
           maintainer-can-modify: true
+          delete-branch: true
+          commit-message: "chore: update Directus types (automated)"
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          add-paths: |
+            src/lib/js/types/directus-all.ts
+            src/lib/js/types/directus-user.ts
+            src/lib/js/types/directus-public.ts

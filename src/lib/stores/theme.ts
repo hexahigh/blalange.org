@@ -36,6 +36,8 @@ export function initializeTheme(defaultTheme?: string, defaultDarkTheme?: string
     currentTheme.set(initialTheme);
   } else if (!savedTheme && defaultTheme) {
     currentTheme.set(defaultTheme);
+  } else if (savedTheme) {
+    currentTheme.set(savedTheme);
   }
   shouldUpdate = true;
 }

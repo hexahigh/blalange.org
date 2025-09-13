@@ -26,11 +26,16 @@
     if (isLoggedIn()) {
       await client.logout();
     }
+    if (!email || !pass) {
+      messageType = "error";
+      message = "Vennligst fyll inn både epost og passord";
+      return;
+    }
     try {
-      await client.login(email, pass);
+      await client.login({email: email, password: pass});
     } catch (error) {
       messageType = "error";
-      message = "An error occurred: " + error.errors[0].message;
+      message = "En feil oppsto: " + JSON.stringify(error);
       return;
     }
     success = true;

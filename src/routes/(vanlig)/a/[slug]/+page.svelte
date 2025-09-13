@@ -81,7 +81,7 @@
       <div id="articleText" class="max-w-full md-text m-9">
         <ArticleRenderer article={data.article} />
       </div>
-      <!-- <Comments id={artId} /> -->
+      <Comments id={artId} />
     </div>
   </div>
 </div>
