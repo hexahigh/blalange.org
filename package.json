@@ -63,7 +63,7 @@
     "@fontsource-variable/ibm-plex-sans": "^5.2.6",
     "@fontsource-variable/material-symbols-outlined": "^5.2.21",
     "@tailwindcss/vite": "^4.1.13",
-    "axios": "^1.12.1",
+    "axios": "^1.12.2",
     "dompurify": "^3.2.6",
     "eruda": "^3.4.3",
     "flowbite-svelte-icons": "^3.0.0",
