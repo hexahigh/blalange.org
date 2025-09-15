@@ -3015,6 +3015,7 @@ export interface components {
             completed_at?: string | null;
             file_path?: string | null;
             error?: string | null;
+            config?: unknown;
         };
         Revisions: {
             /**
