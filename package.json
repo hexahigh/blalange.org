@@ -60,7 +60,7 @@
     "@directus/sdk": "^20.0.3",
     "@fingerprintjs/botd": "^1.9.1",
     "@fingerprintjs/fingerprintjs": "^4.6.2",
-    "@fontsource-variable/ibm-plex-sans": "^5.2.6",
+    "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource-variable/material-symbols-outlined": "^5.2.21",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.12.1",
