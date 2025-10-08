@@ -5,21 +5,13 @@ import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import { unified } from "unified";
 
-import tosEN from "$lib/md/tos_en.md?raw";
 import tosNO from "$lib/md/tos_no.md?raw";
 
 export async function load() {
-  let mdStuff = unified().use(remarkParse).use(remarkRehype).use(remarkGfm).use(rehypeStringify).use(rehypeSlug);
-
-  let translations: any = {};
-
-  translations = {
-    en: await mdStuff.process(tosEN),
-    no: await mdStuff.process(tosNO),
-    default: await mdStuff.process(tosNO),
-  };
+  const mdStuff = unified().use(remarkParse).use(remarkRehype).use(remarkGfm).use(rehypeStringify).use(rehypeSlug);
+  const content = await mdStuff.process(tosNO);
 
   return {
-    translations,
+    content,
   };
 }
