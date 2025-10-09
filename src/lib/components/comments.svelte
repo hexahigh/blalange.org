@@ -3,7 +3,6 @@
   import { config, defaultConfig } from "$lib/js/config";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
   import { thumbs } from "@dicebear/collection";
-  import { Tooltip } from "flowbite-svelte";
   import "iconify-icon";
 
   import { verifyMessage, verifyName, processMessageText } from "$lib/js/chat";
@@ -300,21 +299,25 @@
               <div class="flex items-center space-x-2">
                 <span class="font-semibold text-sm">{comment.name}</span>
                 {#if comment.verified}
-                  <iconify-icon class="text-success" icon="lucide:check"></iconify-icon>
-                  <Tooltip class="text-primary-content bg-primary">Brukeren var innlogget</Tooltip>
+                  <div class="tooltip" data-tip="Brukeren var innlogget">
+                    <iconify-icon class="text-success" icon="lucide:check"></iconify-icon>
+                  </div>
                 {/if}
                 {#if comment.isAdmin}
-                  <iconify-icon class="text-primary" icon="lucide:shield-check"></iconify-icon>
-                  <Tooltip class="text-primary-content bg-primary">Brukeren er en administrator</Tooltip>
+                  <div class="tooltip" data-tip="Brukeren er en administrator">
+                    <iconify-icon class="text-primary" icon="lucide:shield-check"></iconify-icon>
+                  </div>
                 {/if}
                 {#if comment.extraBadges}
                   {#each comment.extraBadges as badge}
                     {#if badge.v2}
-                      <iconify-icon style={"color: " + badge.color} icon={badge.badge}></iconify-icon>
-                      <Tooltip class="text-primary-content bg-primary">{badge.hover_text}</Tooltip>
+                      <div class="tooltip" data-tip={badge.hover_text}>
+                        <iconify-icon style={"color: " + badge.color} icon={badge.badge}></iconify-icon>
+                      </div>
                     {:else}
-                      <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
-                      <Tooltip class="text-primary-content bg-primary">{badge.hover_text}</Tooltip>
+                      <div class="tooltip" data-tip={badge.hover_text}>
+                        <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
+                      </div>
                     {/if}
                   {/each}
                 {/if}
