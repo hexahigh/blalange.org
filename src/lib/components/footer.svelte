@@ -37,7 +37,7 @@
       <p class="font-bold">Info</p>
       <ul>
         <li>
-          <p class="tooltip" data-tip="Bygd {new Date(buildDate).toLocaleString()}">
+          <p class="tooltip tooltip-primary" data-tip="Bygd {new Date(buildDate).toLocaleString()}">
             Versjon {latestVersion.id}.{commitHash} - {latestVersion.name}
           </p>
         </li>

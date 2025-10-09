@@ -116,11 +116,11 @@
               />
             </div>
           </div>
-          <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             {#if isLoggedIn()}
-              <li class="menu-title">
-                <span class="text-sm font-normal">{userStuff.name}</span>
-                <span class="text-xs truncate">{userStuff.email}</span>
+              <li class="menu-title opacity-100">
+                <span class="text-base font-semibold">{userStuff.name}</span>
+                <span class="text-sm truncate">{userStuff.email}</span>
               </li>
               <li><a href="/settings">Innstillinger</a></li>
               <li><button onclick={logout}>Logg ut</button></li>
