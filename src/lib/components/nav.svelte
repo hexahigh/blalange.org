@@ -118,9 +118,9 @@
           </div>
           <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             {#if isLoggedIn()}
-              <li class="menu-title opacity-100">
-                <span class="text-base font-semibold">{userStuff.name}</span>
-                <span class="text-sm truncate">{userStuff.email}</span>
+              <li class="menu-title opacity-100" style="--menu-active-fg: inherit; --menu-active-bg: transparent; color: var(--color-base-content);">
+                <span class="text-base font-semibold" style="color: inherit;">{userStuff.name}</span>
+                <span class="text-sm truncate" style="color: inherit;">{userStuff.email}</span>
               </li>
               <li><a href="/settings">Innstillinger</a></li>
               <li><button onclick={logout}>Logg ut</button></li>
