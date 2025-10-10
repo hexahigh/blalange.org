@@ -71,10 +71,6 @@
     await getStuff();
   });
 
-  function geti18nItem(code) {
-    return defaultConfig.i18n.supportedLanguages.find((l) => l.code === code);
-  }
-
   let path = $derived($page.url.pathname);
 
   const links = [
