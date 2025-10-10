@@ -1,6 +1,5 @@
 <script lang="ts">
   import { latestVersion, commitHash, buildDate } from "$lib/js/version";
-  import { Tooltip } from "flowbite-svelte";
   import logo from "$lib/img/logo_no-bg.svg";
 </script>
 
@@ -38,8 +37,9 @@
       <p class="font-bold">Info</p>
       <ul>
         <li>
-          <p>Versjon {latestVersion.id}.{commitHash} - {latestVersion.name}</p>
-          <Tooltip>Bygd {new Date(buildDate).toLocaleString()}</Tooltip>
+          <p class="tooltip tooltip-primary" data-tip="Bygd {new Date(buildDate).toLocaleString()}">
+            Versjon {latestVersion.id}.{commitHash} - {latestVersion.name}
+          </p>
         </li>
         <li>
           <p>

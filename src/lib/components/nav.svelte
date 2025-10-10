@@ -1,6 +1,5 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-  import { Dropdown, DropdownItem, DropdownHeader, Avatar } from "flowbite-svelte";
   import { page } from "$app/stores";
   import { config, defaultConfig, editKey } from "$lib/js/config.ts";
   import { toRedirect } from "$lib/js/redirect";
@@ -102,26 +101,32 @@
       </div>
       <!-- User Account Right -->
       <div class="flex items-center">
-        <Avatar
-          id="acs"
-          src={isLoggedIn() && userStuff.profilePicture
-            ? userStuff.profilePicture
-            : "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray'><circle cx='12' cy='8' r='4'/><path d='M4 20c0-4 8-4 8-4s8 0 8 4'/></svg>"}
-        />
-        <Dropdown class="list-none" triggeredBy="#acs">
-          {#if isLoggedIn()}
-            <DropdownHeader>
-              <span class="block text-sm text-gray-900 dark:text-white">{userStuff.name}</span>
-              <span class="block truncate text-sm font-medium">{userStuff.email}</span>
-            </DropdownHeader>
-            <DropdownItem href="/settings">Innstillinger</DropdownItem>
-            <DropdownItem on:click={logout}>Logg ut</DropdownItem>
-          {:else}
-            <DropdownItem href="/settings">Innstillinger</DropdownItem>
-            <DropdownItem href="/login">Logg in</DropdownItem>
-            <DropdownItem href="/signup">Opprett konto</DropdownItem>
-          {/if}
-        </Dropdown>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img
+                src={isLoggedIn() && userStuff.profilePicture
+                  ? userStuff.profilePicture
+                  : "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray'><circle cx='12' cy='8' r='4'/><path d='M4 20c0-4 8-4 8-4s8 0 8 4'/></svg>"}
+                alt="User avatar"
+              />
+            </div>
+          </div>
+          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            {#if isLoggedIn()}
+              <li class="menu-title opacity-100" style="--menu-active-fg: inherit; --menu-active-bg: transparent; color: var(--color-base-content);">
+                <span class="text-base font-semibold" style="color: inherit;">{userStuff.name}</span>
+                <span class="text-sm truncate" style="color: inherit;">{userStuff.email}</span>
+              </li>
+              <li><a href="/settings">Innstillinger</a></li>
+              <li><button onclick={logout}>Logg ut</button></li>
+            {:else}
+              <li><a href="/settings">Innstillinger</a></li>
+              <li><a href="/login">Logg in</a></li>
+              <li><a href="/signup">Opprett konto</a></li>
+            {/if}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
