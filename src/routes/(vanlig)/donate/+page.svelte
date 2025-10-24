@@ -6,7 +6,7 @@
 
 <Metatags title="Støtt Blålange" description="Doner til Blålange" />
 
-<div class="font-['IBM_Plex_Sans'] bg-base-100 text-base-content">
+<div class="bg-base-100 text-base-content">
   <div class="overflow-hidden py-10 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto space-y-8">
       <!-- Heading -->
