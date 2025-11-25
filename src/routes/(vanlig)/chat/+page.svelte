@@ -3,7 +3,6 @@
   import { config, defaultConfig } from "$lib/js/config";
   import { createAvatar, type Result as DicebearResult } from "@dicebear/core";
   import { thumbs } from "@dicebear/collection";
-  import { Tooltip } from "flowbite-svelte";
   import Metatags from "$lib/components/metatags.svelte";
   import "iconify-icon";
 
@@ -279,22 +278,26 @@
             {comment.name}
             {#if comment.verified}
               <!-- <span class="text-green-500 symbols">&#xf42e</span> -->
-              <iconify-icon class="text-green-500" icon="lucide:check"></iconify-icon>
-              <Tooltip class="text-black dark:text-white bg-gray-300">The user was logged in</Tooltip>
+              <span class="tooltip inline-block" data-tip="The user was logged in">
+                <iconify-icon class="text-green-500" icon="lucide:check"></iconify-icon>
+              </span>
             {/if}
             {#if comment.isAdmin}
               <!-- <span class="text-blue-500 symbols">&#xf510</span> -->
-              <iconify-icon class="text-blue-500" icon="lucide:shield-check"></iconify-icon>
-              <Tooltip class="text-black dark:text-white bg-gray-300">The user is an admin</Tooltip>
+              <span class="tooltip inline-block" data-tip="The user is an admin">
+                <iconify-icon class="text-blue-500" icon="lucide:shield-check"></iconify-icon>
+              </span>
             {/if}
             {#if comment.extraBadges}
               {#each comment.extraBadges as badge}
                 {#if badge.v2}
-                  <iconify-icon style={"color: " + badge.color} icon={badge.badge}></iconify-icon>
-                  <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
+                  <span class="tooltip inline-block" data-tip={badge.hover_text}>
+                    <iconify-icon style={"color: " + badge.color} icon={badge.badge}></iconify-icon>
+                  </span>
                 {:else}
-                  <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
-                  <Tooltip class="text-black dark:text-white bg-gray-300">{badge.hover_text}</Tooltip>
+                  <span class="tooltip inline-block" data-tip={badge.hover_text}>
+                    <span style={"color: " + badge.color} class="symbols">{badge.badge}</span>
+                  </span>
                 {/if}
               {/each}
             {/if}

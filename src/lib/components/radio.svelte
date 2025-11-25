@@ -1,12 +1,11 @@
 <script>
   import { run } from 'svelte/legacy';
 
-  import { Range, Label } from "flowbite-svelte";
-  import { PauseOutline, PlayOutline } from "flowbite-svelte-icons";
   import { onMount } from "svelte";
   import { Howl, Howler } from "howler/dist/howler.core.min.js";
   import { dev } from "$app/environment";
   import vinylSvg from "$lib/svg/vinyl.svg";
+  import "iconify-icon";
 
   const enableImage = false;
   const stream = "https://radio.blalange.org/stream";
@@ -167,12 +166,12 @@
     {#if enableImage}<img src={coverSrc} alt="Album cover" class="rounded-lg" />
     {/if}
     <p>Volume: {volume}</p>
-    <Range
-      id="range-minmax"
+    <input
+      type="range"
       min="0"
       max="100"
       bind:value={volume}
-      class="w-1/2"
+      class="range range-primary w-1/2"
     />
     <p>{title}</p>
     <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -183,9 +182,9 @@
         onclick={togglePlayPause}
       >
         {#if playing}
-          <PauseOutline class="h-6 w-6 text-white" />
+          <iconify-icon icon="lucide:pause" class="h-6 w-6 text-white"></iconify-icon>
         {:else}
-          <PlayOutline class="h-6 w-6 text-white" />
+          <iconify-icon icon="lucide:play" class="h-6 w-6 text-white"></iconify-icon>
         {/if}
       </div>
     </div>
