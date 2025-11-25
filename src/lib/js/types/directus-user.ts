@@ -1905,6 +1905,16 @@ export interface components {
             accepted_terms?: boolean | null;
             /** Format: uuid */
             project_id?: string | null;
+            /** @description $t:fields.directus_settings.mcp_enabled_note */
+            mcp_enabled: boolean;
+            /** @description $t:fields.directus_settings.mcp_allow_deletes_note */
+            mcp_allow_deletes: boolean;
+            /** @description $t:fields.directus_settings.mcp_prompts_collection_note */
+            mcp_prompts_collection?: string | null;
+            /** @description $t:fields.directus_settings.mcp_system_prompt_enabled_note */
+            mcp_system_prompt_enabled: boolean;
+            /** @description $t:fields.directus_settings.mcp_system_prompt_note */
+            mcp_system_prompt?: string | null;
         };
         Fields: {
             id: number;
