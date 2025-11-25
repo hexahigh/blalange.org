@@ -41,8 +41,7 @@
     // We call refreshToken() at startup, this way directus will automatically refresh the token if needed
     refreshToken();
 
-    config.subscribe((value) => {
-    });
+    config.subscribe((value) => {});
 
     // FingerprintJS and BotD
     FingerprintJS.load().then((fp) => {
@@ -78,6 +77,19 @@
             console.log("SW registration failed: ", error);
           });
       }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17757657005">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-17757657005");
     </script>
   {/if}
 </svelte:head>
