@@ -24,15 +24,6 @@ interface Config {
     copyrightAgent: string;
     privacyAgent: string;
   };
-  i18n: {
-    defaultLocale: string;
-    supportedLanguages: Array<{
-      name: string;
-      icon: string;
-      code: string;
-      primary?: boolean;
-    }>;
-  };
 }
 
 /**
@@ -61,27 +52,6 @@ export const defaultConfig: Config = {
   emails: {
     copyrightAgent: "simon@blalange.org",
     privacyAgent: "simon@blalange.org",
-  },
-  i18n: {
-    defaultLocale: "nb",
-    supportedLanguages: [
-      {
-        name: "English",
-        icon: "circle-flags:gb",
-        code: "en",
-      },
-      {
-        name: "Norwegian Bokmål",
-        icon: "circle-flags:no",
-        code: "nb",
-        primary: true,
-      },
-      {
-        name: "French",
-        icon: "circle-flags:fr",
-        code: "fr",
-      },
-    ],
   }
 };
 

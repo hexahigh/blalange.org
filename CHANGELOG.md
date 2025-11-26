@@ -2,6 +2,145 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.2](https://github.com/hexahigh/blalange.org/compare/v6.1.1..v6.1.2) - 2025-11-26
+
+### ⛰️  Features
+
+- *(analytics)* Add Matomo Tag Manager - ([d27e63a](https://github.com/hexahigh/blalange.org/commit/d27e63af6c9131e66547224aac47fa0df94ddab8))
+
+
+- [**breaking**] Fully removed Inlang support (#645) - ([0baabbd](https://github.com/hexahigh/blalange.org/commit/0baabbd65eed47097815edf574c83767d9339489))
+
+
+- Add gtag - ([eb6c336](https://github.com/hexahigh/blalange.org/commit/eb6c33639f1038fc58923e4375cefc15e40aabde))
+
+
+
+### 🐛 Bug Fixes
+
+- Incorrect font for donation page - ([677833c](https://github.com/hexahigh/blalange.org/commit/677833ccd2a1a1942b5c155c467233e137a9e440))
+
+
+- No ip returned from /api/ip - ([c0a8be9](https://github.com/hexahigh/blalange.org/commit/c0a8be9d675b106b64b8486ffe06612cc3088a75))
+
+
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump axios from 1.12.1 to 1.13.1 (#660) - ([b6d6666](https://github.com/hexahigh/blalange.org/commit/b6d666685392db6524737f4c4ac65bec1b1ef61b))
+```commit-body
+Bumps [axios](https://github.com/axios/axios) from 1.12.1 to 1.13.1.
+- [Release notes](https://github.com/axios/axios/releases)
+- [Changelog](https://github.com/axios/axios/blob/v1.x/CHANGELOG.md)
+- [Commits](https://github.com/axios/axios/compare/v1.12.1...v1.13.1)
+
+---
+updated-dependencies:
+- dependency-name: axios
+  dependency-version: 1.13.1
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps)* Bump @fontsource-variable/ibm-plex-sans from 5.2.6 to 5.2.8 (#627) - ([d62e131](https://github.com/hexahigh/blalange.org/commit/d62e1318fcdcbcad326535deb34d626b643a0bc4))
+```commit-body
+Bumps [@fontsource-variable/ibm-plex-sans](https://github.com/fontsource/font-files/tree/HEAD/fonts/variable/ibm-plex-sans) from 5.2.6 to 5.2.8.
+- [Changelog](https://github.com/fontsource/font-files/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/fontsource/font-files/commits/HEAD/fonts/variable/ibm-plex-sans)
+
+---
+updated-dependencies:
+- dependency-name: "@fontsource-variable/ibm-plex-sans"
+  dependency-version: 5.2.8
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+```
+
+- *(deps)* Bump marked from 16.2.1 to 16.4.1 (#653) - ([84bd520](https://github.com/hexahigh/blalange.org/commit/84bd520792cb30327f5438a147d61de67088255a))
+```commit-body
+Bumps [marked](https://github.com/markedjs/marked) from 16.2.1 to 16.4.1.
+- [Release notes](https://github.com/markedjs/marked/releases)
+- [Changelog](https://github.com/markedjs/marked/blob/master/.releaserc.json)
+- [Commits](https://github.com/markedjs/marked/compare/v16.2.1...v16.4.1)
+
+---
+updated-dependencies:
+- dependency-name: marked
+  dependency-version: 16.4.1
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump wrangler from 4.36.0 to 4.45.2 (#661) - ([1ed9c94](https://github.com/hexahigh/blalange.org/commit/1ed9c9445f1951df22c15cbbdeae9737cc91157b))
+```commit-body
+Bumps [wrangler](https://github.com/cloudflare/workers-sdk/tree/HEAD/packages/wrangler) from 4.36.0 to 4.45.2.
+- [Release notes](https://github.com/cloudflare/workers-sdk/releases)
+- [Changelog](https://github.com/cloudflare/workers-sdk/blob/main/packages/wrangler/CHANGELOG.md)
+- [Commits](https://github.com/cloudflare/workers-sdk/commits/HEAD/packages/wrangler)
+
+---
+updated-dependencies:
+- dependency-name: wrangler
+  dependency-version: 4.45.2
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump openapi-typescript from 7.9.1 to 7.10.1 (#665) - ([020021e](https://github.com/hexahigh/blalange.org/commit/020021ee13a4ad640067d22ba516f67f962f6650))
+```commit-body
+Bumps [openapi-typescript](https://github.com/openapi-ts/openapi-typescript/tree/HEAD/packages/openapi-typescript) from 7.9.1 to 7.10.1.
+- [Release notes](https://github.com/openapi-ts/openapi-typescript/releases)
+- [Changelog](https://github.com/openapi-ts/openapi-typescript/blob/main/packages/openapi-typescript/CHANGELOG.md)
+- [Commits](https://github.com/openapi-ts/openapi-typescript/commits/openapi-typescript@7.10.1/packages/openapi-typescript)
+
+---
+updated-dependencies:
+- dependency-name: openapi-typescript
+  dependency-version: 7.10.1
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @types/node from 24.3.3 to 24.10.1 (#666) - ([c065e8d](https://github.com/hexahigh/blalange.org/commit/c065e8db8538e7777f67742b8d01190b6016c083))
+```commit-body
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 24.3.3 to 24.10.1.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+---
+updated-dependencies:
+- dependency-name: "@types/node"
+  dependency-version: 24.10.1
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(deps-dev)* Bump @tailwindcss/typography from 0.5.16 to 0.5.19 (#663) - ([4750aaa](https://github.com/hexahigh/blalange.org/commit/4750aaaceda53855430f1ba9d6b72d9d6f2354c2))
+
+
+- *(deps-dev)* Bump git-cliff from 2.10.0 to 2.10.1 (#664) - ([9d288cd](https://github.com/hexahigh/blalange.org/commit/9d288cdca9511950ca026a344b41cbee92da8806))
+
+
+- *(deps-dev)* Bump tsx from 4.20.5 to 4.20.6 (#662) - ([59a8dbe](https://github.com/hexahigh/blalange.org/commit/59a8dbe02c24b8173c95511ec1deda2dc5879db9))
+
+
+- Update Directus types (automated) (#617) - ([fc41ce3](https://github.com/hexahigh/blalange.org/commit/fc41ce3bc7d1c6e530a248676535c3f326785298))
+
+
+### Commit Statistics
+
+- 15 commit(s) contributed to the release.
+- 47 day(s) passed between the first and last commit.
+- 15 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+- 74 day(s) passed between releases.
+
 ## [6.1.1](https://github.com/hexahigh/blalange.org/compare/v6.1.0..v6.1.1) - 2025-09-13
 
 ### ⛰️  Features
@@ -83,11 +222,14 @@ updated-dependencies:
 - Update Directus types (automated) (#590) - ([e1e16f4](https://github.com/hexahigh/blalange.org/commit/e1e16f402f4a7d175bb578790e0ad8ddae1e5855))
 
 
+- Prepare for release - ([cf1a0dd](https://github.com/hexahigh/blalange.org/commit/cf1a0dde1a2700c076c322767d40718f95ef91a3))
+
+
 ### Commit Statistics
 
-- 8 commit(s) contributed to the release.
+- 9 commit(s) contributed to the release.
 - 0 day(s) passed between the first and last commit.
-- 8 commit(s) parsed as conventional.
+- 9 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
 
 ## [6.1.0](https://github.com/hexahigh/blalange.org/compare/v6.0.0..v6.1.0) - 2025-09-13

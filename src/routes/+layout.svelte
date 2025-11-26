@@ -41,8 +41,7 @@
     // We call refreshToken() at startup, this way directus will automatically refresh the token if needed
     refreshToken();
 
-    config.subscribe((value) => {
-    });
+    config.subscribe((value) => {});
 
     // FingerprintJS and BotD
     FingerprintJS.load().then((fp) => {
@@ -79,6 +78,33 @@
           });
       }
     </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17757657005">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-17757657005");
+    </script>
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = (window._mtm = window._mtm || []);
+      _mtm.push({ "mtm.startTime": new Date().getTime(), event: "mtm.Start" });
+      (function () {
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = "https://mat.blalange.org/js/container_mFuedr2k.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <!-- End Matomo Tag Manager -->
   {/if}
 </svelte:head>
 

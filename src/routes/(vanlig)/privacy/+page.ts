@@ -8,16 +8,10 @@ import { unified } from "unified";
 import ppEN from "$lib/md/pp_en.md?raw";
 
 export async function load() {
-  let mdStuff = unified().use(remarkParse).use(remarkRehype).use(remarkGfm).use(rehypeStringify).use(rehypeSlug);
-
-  let translations: any = {};
-
-  translations = {
-    en: await mdStuff.process(ppEN),
-    default: await mdStuff.process(ppEN),
-  };
+  const mdStuff = unified().use(remarkParse).use(remarkRehype).use(remarkGfm).use(rehypeStringify).use(rehypeSlug);
+  const content = await mdStuff.process(ppEN);
 
   return {
-    translations,
+    content,
   };
 }
