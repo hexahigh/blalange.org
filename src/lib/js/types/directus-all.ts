@@ -913,30 +913,6 @@ export interface paths {
         patch: operations["updatePermission"];
         trace?: never;
     };
-    "/settings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Retrieve Settings
-         * @description List the settings.
-         */
-        get: operations["getSettings"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Update Settings
-         * @description Update the settings
-         */
-        patch: operations["updateSetting"];
-        trace?: never;
-    };
     "/webhooks": {
         parameters: {
             query?: never;
@@ -995,6 +971,30 @@ export interface paths {
          * @description Update an existing webhook
          */
         patch: operations["updateWebhook"];
+        trace?: never;
+    };
+    "/settings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve Settings
+         * @description List the settings.
+         */
+        get: operations["getSettings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update Settings
+         * @description Update the settings
+         */
+        patch: operations["updateSetting"];
         trace?: never;
     };
     "/fields": {
@@ -3015,6 +3015,7 @@ export interface components {
             completed_at?: string | null;
             file_path?: string | null;
             error?: string | null;
+            config?: unknown;
         };
         Revisions: {
             /**
@@ -3229,6 +3230,47 @@ export interface components {
             fields?: string[] | null;
             policy: unknown;
         };
+        Webhooks: {
+            /**
+             * @description The index of the webhook.
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The name of the webhook.
+             * @example create articles
+             */
+            name: string;
+            /**
+             * @description Method used in the webhook.
+             * @example POST
+             */
+            method: string;
+            /**
+             * @description The url of the webhook.
+             * @example null
+             */
+            url?: string | null;
+            /**
+             * @description The status of the webhook.
+             * @example inactive
+             */
+            status: string;
+            /**
+             * @description If yes, send the content of what was done
+             * @example true
+             */
+            data: boolean;
+            /**
+             * @description The actions that triggers this webhook.
+             * @example null
+             */
+            actions?: string[] | null;
+            collections: string[];
+            headers?: unknown;
+            was_active_before_deprecation: boolean;
+            migrated_flow?: (string | components["schemas"]["Flows"]) | null;
+        };
         Settings: {
             /**
              * @description Unique identifier for the setting.
@@ -3356,47 +3398,16 @@ export interface components {
             accepted_terms?: boolean | null;
             /** Format: uuid */
             project_id?: string | null;
-        };
-        Webhooks: {
-            /**
-             * @description The index of the webhook.
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The name of the webhook.
-             * @example create articles
-             */
-            name: string;
-            /**
-             * @description Method used in the webhook.
-             * @example POST
-             */
-            method: string;
-            /**
-             * @description The url of the webhook.
-             * @example null
-             */
-            url?: string | null;
-            /**
-             * @description The status of the webhook.
-             * @example inactive
-             */
-            status: string;
-            /**
-             * @description If yes, send the content of what was done
-             * @example true
-             */
-            data: boolean;
-            /**
-             * @description The actions that triggers this webhook.
-             * @example null
-             */
-            actions?: string[] | null;
-            collections: string[];
-            headers?: unknown;
-            was_active_before_deprecation: boolean;
-            migrated_flow?: (string | components["schemas"]["Flows"]) | null;
+            /** @description $t:fields.directus_settings.mcp_enabled_note */
+            mcp_enabled: boolean;
+            /** @description $t:fields.directus_settings.mcp_allow_deletes_note */
+            mcp_allow_deletes: boolean;
+            /** @description $t:fields.directus_settings.mcp_prompts_collection_note */
+            mcp_prompts_collection?: string | null;
+            /** @description $t:fields.directus_settings.mcp_system_prompt_enabled_note */
+            mcp_system_prompt_enabled: boolean;
+            /** @description $t:fields.directus_settings.mcp_system_prompt_note */
+            mcp_system_prompt?: string | null;
         };
         Fields: {
             id: number;
@@ -3933,8 +3944,8 @@ export type SchemaPresets = components['schemas']['Presets'];
 export type SchemaActivity = components['schemas']['Activity'];
 export type SchemaRelations = components['schemas']['Relations'];
 export type SchemaPermissions = components['schemas']['Permissions'];
-export type SchemaSettings = components['schemas']['Settings'];
 export type SchemaWebhooks = components['schemas']['Webhooks'];
+export type SchemaSettings = components['schemas']['Settings'];
 export type SchemaFields = components['schemas']['Fields'];
 export type SchemaOperations = components['schemas']['Operations'];
 export type SchemaFlows = components['schemas']['Flows'];
@@ -6697,67 +6708,6 @@ export interface operations {
             404: components["responses"]["NotFoundError"];
         };
     };
-    getSettings: {
-        parameters: {
-            query?: {
-                /** @description A limit on the number of objects that are returned. */
-                limit?: components["parameters"]["Limit"];
-                /** @description How many items to skip when fetching data. */
-                offset?: components["parameters"]["Offset"];
-                /** @description What metadata to return in the response. */
-                meta?: components["parameters"]["Meta"];
-                /** @description Cursor for use in pagination. Often used in combination with limit. */
-                page?: components["parameters"]["Page"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: components["schemas"]["Settings"];
-                    };
-                };
-            };
-            401: components["responses"]["UnauthorizedError"];
-            404: components["responses"]["NotFoundError"];
-        };
-    };
-    updateSetting: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Successful request */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: components["schemas"]["Settings"];
-                    };
-                };
-            };
-            401: components["responses"]["UnauthorizedError"];
-            404: components["responses"]["NotFoundError"];
-        };
-    };
     getWebhooks: {
         parameters: {
             query?: never;
@@ -7068,6 +7018,67 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: components["schemas"]["Roles"];
+                    };
+                };
+            };
+            401: components["responses"]["UnauthorizedError"];
+            404: components["responses"]["NotFoundError"];
+        };
+    };
+    getSettings: {
+        parameters: {
+            query?: {
+                /** @description A limit on the number of objects that are returned. */
+                limit?: components["parameters"]["Limit"];
+                /** @description How many items to skip when fetching data. */
+                offset?: components["parameters"]["Offset"];
+                /** @description What metadata to return in the response. */
+                meta?: components["parameters"]["Meta"];
+                /** @description Cursor for use in pagination. Often used in combination with limit. */
+                page?: components["parameters"]["Page"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful request */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: components["schemas"]["Settings"];
+                    };
+                };
+            };
+            401: components["responses"]["UnauthorizedError"];
+            404: components["responses"]["NotFoundError"];
+        };
+    };
+    updateSetting: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Successful request */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: components["schemas"]["Settings"];
                     };
                 };
             };
