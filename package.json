@@ -38,7 +38,7 @@
     "flowbite-svelte": "^1.13.8",
     "flowbite-typography": "^1.0.5",
     "git-cliff": "^2.10.0",
-    "openapi-typescript": "^7.9.1",
+    "openapi-typescript": "^7.10.1",
     "svelte": "^5.38.10",
     "svelte-meta-tags": "^4.4.1",
     "tailwindcss": "^4.1.13",
