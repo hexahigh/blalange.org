@@ -58,7 +58,7 @@
     "@dicebear/collection": "^9.2.4",
     "@dicebear/core": "^9.2.4",
     "@directus/sdk": "^20.0.3",
-    "@fingerprintjs/botd": "^1.9.1",
+    "@fingerprintjs/botd": "^2.0.0",
     "@fingerprintjs/fingerprintjs": "^4.6.2",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource-variable/material-symbols-outlined": "^5.2.21",
