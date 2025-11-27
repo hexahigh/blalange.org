@@ -90,7 +90,7 @@
     "tone": "^15.1.22",
     "unified": "^11.0.5",
     "workbox-build": "^7.3.0",
-    "workbox-expiration": "^7.3.0"
+    "workbox-expiration": "^7.4.0"
   },
   "engines": {
     "node": ">=22.19.0"
