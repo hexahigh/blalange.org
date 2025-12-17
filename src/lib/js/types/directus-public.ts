@@ -834,11 +834,13 @@ export interface components {
              *     ]
              */
             fields: string[];
-            /** @example {
+            /**
+             * @example {
              *       "<field>": {
              *         "<operator>": "<value>"
              *       }
-             *     } */
+             *     }
+             */
             filter: Record<string, never>;
             /** @description Filter by items that contain the given search query in one of their fields. */
             search: string;
@@ -1207,8 +1209,7 @@ export interface components {
         Page: number;
         /** @description How many items to skip when fetching data. */
         Offset: number;
-        /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-         *      */
+        /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
         Sort: string[];
         /** @description What metadata to return in the response. */
         Meta: string;
@@ -1218,10 +1219,9 @@ export interface components {
         Filter: string;
         /** @description Control what fields are being returned in the object. */
         Fields: string[];
-        /** @description Saves the API response to a file. Accepts one of "csv", "json", "xml", "yaml". */
-        Export: "csv" | "json" | "xml" | "yaml";
-        /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-         *      */
+        /** @description Saves the API response to a file. Accepts one of "csv", "csv_utf8", "json", "xml", "yaml". */
+        Export: "csv" | "csv_utf8" | "json" | "xml" | "yaml";
+        /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
         Version: string;
     };
     requestBodies: never;
@@ -1490,10 +1490,12 @@ export interface operations {
                 content: {
                     "application/json": {
                         public?: boolean;
-                        /** @example [
+                        /**
+                         * @example [
                          *       "github",
                          *       "facebook"
-                         *     ] */
+                         *     ]
+                         */
                         data?: string[];
                     };
                 };
@@ -1589,8 +1591,7 @@ export interface operations {
                 limit?: components["parameters"]["Limit"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -1662,8 +1663,7 @@ export interface operations {
                 limit?: components["parameters"]["Limit"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -1735,8 +1735,7 @@ export interface operations {
                 offset?: components["parameters"]["Offset"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -1837,8 +1836,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -1873,8 +1871,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -1912,8 +1909,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -1948,8 +1944,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -1987,8 +1982,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2023,8 +2017,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -2062,8 +2055,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2098,8 +2090,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -2137,8 +2128,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2173,8 +2163,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -2212,8 +2201,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2248,8 +2236,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -2287,8 +2274,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2323,8 +2309,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -2362,8 +2347,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2398,8 +2382,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -2437,8 +2420,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2473,8 +2455,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
@@ -2512,8 +2493,7 @@ export interface operations {
                 meta?: components["parameters"]["Meta"];
                 /** @description How many items to skip when fetching data. */
                 offset?: components["parameters"]["Offset"];
-                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly.
-                 *      */
+                /** @description How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
                 sort?: components["parameters"]["Sort"];
                 /** @description Select items in collection by given conditions. */
                 filter?: components["parameters"]["Filter"];
@@ -2548,8 +2528,7 @@ export interface operations {
                 fields?: components["parameters"]["Fields"];
                 /** @description What metadata to return in the response. */
                 meta?: components["parameters"]["Meta"];
-                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version.
-                 *      */
+                /** @description Retrieve an item's state from a specific Content Version. The value corresponds to the "key" of the Content Version. */
                 version?: components["parameters"]["Version"];
             };
             header?: never;
