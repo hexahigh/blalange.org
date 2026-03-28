@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.3](https://github.com/hexahigh/blalange.org/compare/v6.1.2..v6.1.3) - 2026-03-28
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump @fingerprintjs/botd from 1.9.1 to 2.0.0 (#669) - ([6f3d729](https://github.com/hexahigh/blalange.org/commit/6f3d72975017746acea462ccdcca4f2a441cc463))
+```commit-body
+Bumps [@fingerprintjs/botd](https://github.com/fingerprintjs/botd) from 1.9.1 to 2.0.0.
+- [Release notes](https://github.com/fingerprintjs/botd/releases)
+- [Commits](https://github.com/fingerprintjs/botd/commits/v2.0.0)
+
+---
+updated-dependencies:
+- dependency-name: "@fingerprintjs/botd"
+  dependency-version: 2.0.0
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+```
+
+- *(deps)* Update all dependencies - ([c1e494e](https://github.com/hexahigh/blalange.org/commit/c1e494e0da2b96463b6d846bdbac11545b511735))
+
+
+- *(deps-dev)* Bump wrangler from 4.45.2 to 4.51.0 (#670) - ([e1b7af1](https://github.com/hexahigh/blalange.org/commit/e1b7af1e62c8fc70e9a7cc3e1f01e883a724440c))
+```commit-body
+Bumps [wrangler](https://github.com/cloudflare/workers-sdk/tree/HEAD/packages/wrangler) from 4.45.2 to 4.51.0.
+- [Release notes](https://github.com/cloudflare/workers-sdk/releases)
+- [Commits](https://github.com/cloudflare/workers-sdk/commits/wrangler@4.51.0/packages/wrangler)
+
+---
+updated-dependencies:
+- dependency-name: wrangler
+  dependency-version: 4.51.0
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+```
+
+- *(node)* Update Node.js to v22 - ([a0d4f2c](https://github.com/hexahigh/blalange.org/commit/a0d4f2cb8683958e996d3f6737689b14522d9f23))
+
+
+- Update Directus types (automated) (#668) - ([f66d439](https://github.com/hexahigh/blalange.org/commit/f66d4394a9d4132952f3fae23d49f28e65a1ecb5))
+
+
+### Commit Statistics
+
+- 5 commit(s) contributed to the release.
+- 28 day(s) passed between the first and last commit.
+- 5 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+- 122 day(s) passed between releases.
+
 ## [6.1.2](https://github.com/hexahigh/blalange.org/compare/v6.1.1..v6.1.2) - 2025-11-26
 
 ### ⛰️  Features
@@ -133,11 +184,14 @@ updated-dependencies:
 - Update Directus types (automated) (#617) - ([fc41ce3](https://github.com/hexahigh/blalange.org/commit/fc41ce3bc7d1c6e530a248676535c3f326785298))
 
 
+- Prepare for release - ([3514575](https://github.com/hexahigh/blalange.org/commit/3514575363eb5c5d1e78f2b241e9b05d19be97d0))
+
+
 ### Commit Statistics
 
-- 15 commit(s) contributed to the release.
+- 16 commit(s) contributed to the release.
 - 47 day(s) passed between the first and last commit.
-- 15 commit(s) parsed as conventional.
+- 16 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
 - 74 day(s) passed between releases.
 
