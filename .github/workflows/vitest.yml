@@ -1,7 +1,7 @@
 name: Vitest
 
 env:
-  NODE_VERSION: '21'
+  NODE_VERSION: '22'
   PNPM_VERSION: '10'
   GITHUB_ACTIONS: 'true'
 
