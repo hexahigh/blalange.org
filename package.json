@@ -59,7 +59,7 @@
   "dependencies": {
     "@dicebear/collection": "^9.4.2",
     "@dicebear/core": "^9.4.2",
-    "@directus/sdk": "^21.2.1",
+    "@directus/sdk": "^21.2.2",
     "@fingerprintjs/botd": "^2.0.0",
     "@fingerprintjs/fingerprintjs": "^5.1.0",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
