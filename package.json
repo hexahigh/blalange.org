@@ -54,7 +54,7 @@
     "workbox-routing": "^7.4.0",
     "workbox-strategies": "^7.4.0",
     "workbox-window": "^7.4.0",
-    "wrangler": "^4.78.0"
+    "wrangler": "^4.79.0"
   },
   "dependencies": {
     "@dicebear/collection": "^9.4.2",
